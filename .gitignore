@@ -1,0 +1,5 @@
+/venv
+/main/nhl_venv/
+/temp_data
+/venv
+.ipynb_checkpoints/
