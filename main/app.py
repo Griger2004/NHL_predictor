@@ -12,9 +12,9 @@ with open('model.pkl', 'rb') as f:
 # Define the prediction endpoint
 @app.route('/predict', methods=['POST'])
 def predict():
-    data = request.json  # Receive JSON data from the frontend
+    data = request.json  # Receive JSON
     try:
-        # Parse the input data into a DataFrame
+        
         input_df = pd.DataFrame([data])
 
         # Define feature columns (same as during training)
@@ -28,18 +28,18 @@ def predict():
         # Ensure input matches feature columns
         input_data = input_df[feature_cols]
 
-        # Make prediction
+        # prediction
         prediction = model.predict(input_data)[0]
         probability = model.predict_proba(input_data)[0].tolist()
 
         return jsonify({
             'prediction': int(prediction),  # 1 for home win, 0 for away win
-            'probabilities': probability   # [probability_away_win, probability_home_win]
+            'probabilities': probability 
         })
 
     except Exception as e:
         return jsonify({'error': str(e)}), 400
 
-# Run the app
+# Run the app/start server
 if __name__ == '__main__':
     app.run(debug=True)

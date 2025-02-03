@@ -1537,3 +1537,211 @@ date,time,venue,rest days,result,gf/gp,ga/gp,net goals,opponent,shots for,shots 
 2025-01-18,19:00,Away,1,L,1,5,-4,Tampa Bay Lightning,40,22,18,6,3,16.7,33.3,54.0,Detroit Red Wings,Alex Lyon,1.0
 2025-01-18,20:00,Home,1,W,6,2,4,Minnesota Wild,38,29,9,3,4,33.3,75.0,55.2,Nashville Predators,Juuse Saros,0.931
 2025-01-18,21:00,Home,1,W,4,2,2,St. Louis Blues,33,24,9,3,4,33.3,75.0,40.7,Utah Hockey Club,Connor Ingram,0.917
+2025-01-19,19:00,Away,0,L,4,5,-1,Montreal Canadiens,28,37,-9,2,3,50,100,52.9,New York Rangers,Jonathan Quick,0.865
+2025-01-19,19:00,Home,0,W,5,4,1,New York Rangers,37,28,9,3,2,0,50,47.1,Montreal Canadiens,Jakub Dobes,0.857
+2025-01-19,13:00,Home,0,L,1,2,-1,Ottawa Senators,26,20,6,1,3,0,100,53.5,New Jersey Devils,Jacob Markstrom,0.9
+2025-01-19,20:00,Away,0,L,1,4,-3,Dallas Stars,34,25,9,3,1,0,0,40.6,Detroit Red Wings,Alex Lyon,0.84
+2025-01-19,20:00,Home,0,W,4,1,3,Detroit Red Wings,25,34,-9,1,3,100,100,59.4,Dallas Stars,Jake Oettinger,0.971
+2025-01-19,13:00,Away,0,W,2,1,1,New Jersey Devils,20,26,-6,3,1,0,100,46.5,Ottawa Senators,Anton Forsberg,0.962
+2025-01-20,20:30,Home,1,L,3,4,-1,Carolina Hurricanes,25,48,-23,2,2,0,100,39.4,Chicago Blackhawks,Petr Mrazek,0.917
+2025-01-20,19:30,Home,1,W,3,1,2,Columbus Blue Jackets,25,26,-1,2,4,50,75,68.0,New York Islanders,Ilya Sorokin,0.962
+2025-01-20,18:00,Away,1,L,4,4,0,Vegas Golden Knights,28,32,-4,2,2,50,50,51.4,St. Louis Blues,Jordan Binnington,0.875
+2025-01-20,13:00,Home,1,W,6,3,3,San Jose Sharks,33,28,5,2,1,50,100,43.3,Boston Bruins,Joonas Korpisalo,0.893
+2025-01-20,16:00,Away,2,L,4,6,-2,Seattle Kraken,29,34,-5,3,2,33.3,50,48.1,Buffalo Sabres,Devon Levi,0.848
+2025-01-20,19:30,Home,1,W,5,3,2,Tampa Bay Lightning,28,30,-2,1,2,100,50,50.0,Toronto Maple Leafs,Joseph Woll,0.9
+2025-01-20,20:30,Away,2,W,4,3,1,Chicago Blackhawks,48,25,23,2,2,0,100,60.6,Carolina Hurricanes,Frederik Andersen,0.88
+2025-01-20,19:30,Away,1,L,3,5,-2,Toronto Maple Leafs,30,28,2,2,1,50,0,50.0,Tampa Bay Lightning,Jonas Johansson,0.852
+2025-01-20,22:30,Away,1,W,5,1,4,Los Angeles Kings,32,26,6,1,3,100,66.7,53.5,Pittsburgh Penguins,Alex Nedeljkovic,0.962
+2025-01-20,16:00,Home,1,W,6,4,2,Buffalo Sabres,34,29,5,2,3,50,66.7,51.9,Seattle Kraken,Joey Daccord,0.862
+2025-01-20,13:00,Away,1,L,3,6,-3,Boston Bruins,28,33,-5,1,2,0,50,56.7,San Jose Sharks,Yaroslav Askarov,0.871
+2025-01-20,19:30,Away,1,L,1,3,-2,New York Islanders,26,25,1,4,2,25,50,32.0,Columbus Blue Jackets,Elvis Merzlikins,0.88
+2025-01-20,15:00,Away,1,W,3,1,2,Colorado Avalanche,26,27,-1,4,3,0,100,50.8,Minnesota Wild,Marc-Andre Fleury,0.963
+2025-01-20,21:30,Away,1,L,2,5,-3,Utah Hockey Club,25,28,-3,0,2,--,100,37.3,Winnipeg Jets,Connor Hellebuyck,0.852
+2025-01-20,18:00,Home,1,L,4,4,0,St. Louis Blues,32,28,4,2,2,50,50,48.6,Vegas Golden Knights,Adin Hill,0.857
+2025-01-20,21:30,Home,1,W,5,2,3,Winnipeg Jets,28,25,3,2,0,0,--,62.7,Utah Hockey Club,Connor Ingram,0.92
+2025-01-20,22:30,Home,1,L,1,5,-4,Pittsburgh Penguins,26,32,-6,3,1,33.3,0,46.6,Los Angeles Kings,David Rittich,0.875
+2025-01-20,15:00,Home,1,L,1,3,-2,Minnesota Wild,27,26,1,3,4,0,100,49.2,Colorado Avalanche,Mackenzie Blackwood,0.885
+2025-01-21,19:00,Home,1,W,3,2,1,Tampa Bay Lightning,22,35,-13,2,4,50,100,49.1,Montreal Canadiens,Sam Montembeault,0.943
+2025-01-21,19:00,Away,1,L,0,5,-5,New York Rangers,20,29,-9,2,4,0,50,45.3,Ottawa Senators,Anton Forsberg,0.769
+2025-01-21,19:00,Away,1,L,0,5,-5,New York Rangers,20,29,-9,2,4,0,50,45.3,Ottawa Senators,Leevi Meriläinen,0.875
+2025-01-21,19:00,Home,1,W,5,0,5,Ottawa Senators,29,20,9,4,2,50,100,54.7,New York Rangers,Igor Shesterkin,1.0
+2025-01-21,19:00,Home,2,W,2,1,1,Detroit Red Wings,26,28,-2,1,0,0,--,50.0,Philadelphia Flyers,Samuel Ersson,0.964
+2025-01-21,22:00,Away,0,W,3,2,1,Vancouver Canucks,26,34,-8,2,1,0,100,50.0,Buffalo Sabres,Ukko-Pekka Luukkonen,0.941
+2025-01-21,20:00,Away,0,W,2,1,1,Dallas Stars,19,23,-4,3,3,0,100,48.0,Carolina Hurricanes,Pyotr Kochetkov,0.957
+2025-01-22,22:00,Home,1,W,2,1,1,Florida Panthers,28,28,0,2,2,0,50,50.0,Los Angeles Kings,Darcy Kuemper,0.964
+2025-01-22,19:30,Away,1,W,5,1,4,Toronto Maple Leafs,19,29,-10,0,3,--,100,38.5,Columbus Blue Jackets,Elvis Merzlikins,0.966
+2025-01-22,19:00,Home,2,W,5,1,4,Boston Bruins,34,23,11,7,3,42.9,100,50.0,New Jersey Devils,Jacob Markstrom,0.857
+2025-01-22,19:00,Home,2,W,5,1,4,Boston Bruins,34,23,11,7,3,42.9,100,50.0,New Jersey Devils,Jake Allen,1.0
+2025-01-22,19:00,Away,1,L,1,5,-4,New Jersey Devils,23,34,-11,3,7,0,57.1,50.0,Boston Bruins,Joonas Korpisalo,0.833
+2025-01-22,19:00,Away,1,L,1,5,-4,New Jersey Devils,23,34,-11,3,7,0,57.1,50.0,Boston Bruins,Jeremy Swayman,0.857
+2025-01-22,19:30,Home,1,L,1,5,-4,Columbus Blue Jackets,29,19,10,3,0,0,--,61.5,Toronto Maple Leafs,Dennis Hildeby,0.778
+2025-01-22,22:00,Away,0,L,1,2,-1,Los Angeles Kings,28,28,0,2,2,50,100,50.0,Florida Panthers,Spencer Knight,0.929
+2025-01-22,21:30,Home,1,L,2,3,-1,Winnipeg Jets,27,25,2,2,1,0,100,49.0,Colorado Avalanche,Mackenzie Blackwood,0.88
+2025-01-22,21:30,Away,1,W,3,2,1,Colorado Avalanche,25,27,-2,1,2,0,100,51.0,Winnipeg Jets,Connor Hellebuyck,0.926
+2025-01-23,19:00,Home,1,W,4,2,2,Montreal Canadiens,45,29,16,4,3,25,100,49.1,Detroit Red Wings,Cam Talbot,0.931
+2025-01-23,22:30,Away,1,W,6,5,1,San Jose Sharks,38,35,3,5,4,60,75,52.0,Nashville Predators,Justus Annunen,0.857
+2025-01-23,19:00,Home,1,W,6,1,5,Philadelphia Flyers,37,34,3,2,3,50,100,52.6,New York Rangers,Igor Shesterkin,0.971
+2025-01-23,19:00,Away,1,L,1,6,-5,New York Rangers,34,37,-3,3,2,0,50,47.4,Philadelphia Flyers,Samuel Ersson,0.861
+2025-01-23,22:00,Away,2,L,1,5,-4,Anaheim Ducks,32,34,-2,3,2,33.3,100,57.4,Pittsburgh Penguins,Alex Nedeljkovic,0.879
+2025-01-23,21:00,Away,1,L,2,5,-3,Calgary Flames,34,26,8,6,2,0,100,61.2,Buffalo Sabres,Ukko-Pekka Luukkonen,0.875
+2025-01-23,19:00,Away,1,L,2,4,-2,Detroit Red Wings,29,45,-16,3,4,0,75,50.9,Montreal Canadiens,Sam Montembeault,0.911
+2025-01-23,19:00,Away,1,L,0,2,-2,Boston Bruins,29,26,3,4,2,0,100,55.8,Ottawa Senators,Anton Forsberg,0.96
+2025-01-23,19:00,Home,1,W,7,4,3,Columbus Blue Jackets,43,22,21,3,2,33.3,100,58.1,Carolina Hurricanes,Frederik Andersen,0.818
+2025-01-23,22:00,Away,1,W,3,0,3,Seattle Kraken,32,22,10,0,1,--,100,61.5,Washington Capitals,Charlie Lindgren,1.0
+2025-01-23,19:00,Home,0,W,2,0,2,Ottawa Senators,26,29,-3,2,4,0,100,44.2,Boston Bruins,Joonas Korpisalo,1.0
+2025-01-23,20:00,Away,2,W,4,2,2,St. Louis Blues,31,17,14,2,2,50,100,47.4,Vegas Golden Knights,Ilya Samsonov,0.882
+2025-01-23,21:00,Home,1,W,6,2,4,Vancouver Canucks,34,26,8,4,0,50,--,43.3,Edmonton Oilers,Calvin Pickard,0.923
+2025-01-23,21:00,Away,1,L,2,6,-4,Edmonton Oilers,26,34,-8,0,4,--,50,56.7,Vancouver Canucks,Thatcher Demko,0.824
+2025-01-23,22:00,Home,1,W,5,1,4,Pittsburgh Penguins,34,32,2,2,3,0,66.7,42.6,Anaheim Ducks,John Gibson,0.969
+2025-01-23,22:30,Home,1,L,5,6,-1,Nashville Predators,35,38,-3,4,5,25,40,48.1,San Jose Sharks,Yaroslav Askarov,0.842
+2025-01-23,19:00,Away,0,L,4,7,-3,Carolina Hurricanes,22,43,-21,2,3,0,66.7,41.9,Columbus Blue Jackets,Daniil Tarasov,0.857
+2025-01-23,20:00,Home,2,L,0,4,-4,Utah Hockey Club,26,29,-3,3,2,0,50,47.6,Minnesota Wild,Filip Gustavsson,0.862
+2025-01-23,22:00,Home,2,L,0,3,-3,Washington Capitals,22,32,-10,1,0,0,--,38.5,Seattle Kraken,Joey Daccord,0.968
+2025-01-23,20:00,Away,2,W,4,0,4,Minnesota Wild,29,26,3,2,3,50,100,52.4,Utah Hockey Club,Karel Vejmelka,1.0
+2025-01-23,21:00,Home,4,W,5,2,3,Buffalo Sabres,26,34,-8,2,6,0,100,38.8,Calgary Flames,Dustin Wolf,0.941
+2025-01-23,20:00,Home,2,L,2,4,-2,Vegas Golden Knights,17,31,-14,2,2,0,50,52.6,St. Louis Blues,Joel Hofer,0.9
+2025-01-24,19:30,Away,0,L,1,3,-2,New York Islanders,30,27,3,1,3,0,100,38.5,Philadelphia Flyers,Ivan Fedotov,0.889
+2025-01-24,20:00,Home,3,L,3,4,-1,Tampa Bay Lightning,14,40,-26,2,3,0,0,46.5,Chicago Blackhawks,Arvid Soderblom,0.9
+2025-01-24,20:00,Away,2,W,4,3,1,Chicago Blackhawks,40,14,26,3,2,100,100,53.5,Tampa Bay Lightning,Jonas Johansson,0.786
+2025-01-24,19:30,Home,3,W,3,1,2,Philadelphia Flyers,27,30,-3,3,1,0,100,61.5,New York Islanders,Ilya Sorokin,0.967
+2025-01-24,19:30,Home,2,W,4,3,1,Vegas Golden Knights,27,21,6,2,3,50,33.3,48.2,Dallas Stars,Jake Oettinger,0.857
+2025-01-24,20:00,Away,0,L,2,5,-3,Winnipeg Jets,19,29,-10,3,1,33.3,0,45.5,Utah Hockey Club,Connor Ingram,0.857
+2025-01-24,20:00,Home,1,W,5,2,3,Utah Hockey Club,29,19,10,1,3,100,66.7,54.6,Winnipeg Jets,Connor Hellebuyck,0.895
+2025-01-24,19:30,Away,0,L,3,4,-1,Dallas Stars,21,27,-6,3,2,66.7,50,51.8,Vegas Golden Knights,Adin Hill,0.852
+2025-01-25,19:00,Home,1,L,3,4,-1,New Jersey Devils,32,44,-12,1,1,0,100,47.4,Montreal Canadiens,Jakub Dobes,0.909
+2025-01-25,19:00,Away,0,L,0,2,-2,Detroit Red Wings,28,32,-4,2,3,0,100,58.5,Tampa Bay Lightning,Andrei Vasilevskiy,0.968
+2025-01-25,22:00,Away,2,W,7,2,5,San Jose Sharks,32,23,9,2,1,50,100,52.7,Florida Panthers,Sergei Bobrovsky,0.913
+2025-01-25,19:30,Away,1,L,2,3,-1,New York Islanders,27,27,0,1,3,0,100,34.8,Carolina Hurricanes,Pyotr Kochetkov,0.889
+2025-01-25,19:00,Away,2,L,1,2,-1,Ottawa Senators,29,23,6,1,2,0,50,52.9,Toronto Maple Leafs,Joseph Woll,0.913
+2025-01-25,13:00,Home,1,W,3,1,2,Colorado Avalanche,15,28,-13,0,2,--,100,52.8,Boston Bruins,Jeremy Swayman,0.964
+2025-01-25,16:00,Away,1,L,2,3,-1,Edmonton Oilers,41,34,7,3,1,0,100,49.2,Buffalo Sabres,James Reimer,0.912
+2025-01-25,19:00,Home,1,W,2,0,2,Tampa Bay Lightning,32,28,4,3,2,0,100,41.5,Detroit Red Wings,Cam Talbot,1.0
+2025-01-25,16:00,Away,1,L,1,4,-3,Seattle Kraken,29,25,4,2,3,0,66.7,44.7,Pittsburgh Penguins,Joel Blomqvist,0.84
+2025-01-25,19:30,Home,0,W,3,2,1,Carolina Hurricanes,27,27,0,3,1,0,100,65.2,New York Islanders,Marcus Hogberg,0.923
+2025-01-25,19:30,Home,0,W,3,2,1,Carolina Hurricanes,27,27,0,3,1,0,100,65.2,New York Islanders,Ilya Sorokin,1.0
+2025-01-25,19:00,Away,2,W,4,3,1,Montreal Canadiens,44,32,12,1,1,0,100,52.6,New Jersey Devils,Jake Allen,0.906
+2025-01-25,22:00,Away,1,L,1,2,-1,Vancouver Canucks,33,25,8,2,2,0,100,54.6,Washington Capitals,Charlie Lindgren,0.92
+2025-01-25,19:00,Home,1,W,2,1,1,Toronto Maple Leafs,23,29,-6,2,1,50,100,47.1,Ottawa Senators,Anton Forsberg,0.966
+2025-01-25,22:00,Away,1,L,2,5,-3,Anaheim Ducks,43,35,8,3,2,0,50,46.7,Nashville Predators,Juuse Saros,0.857
+2025-01-25,16:00,Home,1,W,4,1,3,Pittsburgh Penguins,25,29,-4,3,2,33.3,100,55.3,Seattle Kraken,Joey Daccord,0.966
+2025-01-25,19:00,Home,1,L,4,5,-1,Calgary Flames,25,29,-4,2,3,50,33.3,38.1,Minnesota Wild,Marc-Andre Fleury,0.828
+2025-01-25,19:00,Home,1,W,3,2,1,Los Angeles Kings,24,33,-9,1,1,0,100,42.3,Columbus Blue Jackets,Elvis Merzlikins,0.939
+2025-01-25,19:00,Away,0,W,2,0,2,St. Louis Blues,19,33,-14,3,1,33.3,100,44.8,Dallas Stars,Casey DeSmith,1.0
+2025-01-25,19:00,Away,2,L,2,3,-1,Columbus Blue Jackets,33,24,9,1,1,0,100,57.7,Los Angeles Kings,Darcy Kuemper,0.875
+2025-01-25,22:00,Home,1,L,2,7,-5,Florida Panthers,23,32,-9,1,2,0,50,47.3,San Jose Sharks,Alexandar Georgiev,0.733
+2025-01-25,22:00,Home,1,L,2,7,-5,Florida Panthers,23,32,-9,1,2,0,50,47.3,San Jose Sharks,Yaroslav Askarov,0.824
+2025-01-25,22:00,Home,1,W,2,1,1,Washington Capitals,25,33,-8,2,2,0,100,45.5,Vancouver Canucks,Kevin Lankinen,0.97
+2025-01-25,16:00,Home,1,W,3,2,1,Buffalo Sabres,34,41,-7,1,3,0,100,50.8,Edmonton Oilers,Stuart Skinner,0.951
+2025-01-25,13:00,Away,2,L,1,3,-2,Boston Bruins,28,15,13,2,0,0,--,47.2,Colorado Avalanche,Scott Wedgewood,0.857
+2025-01-25,19:00,Away,1,W,5,4,1,Minnesota Wild,29,25,4,3,2,66.7,50,61.9,Calgary Flames,Dustin Wolf,0.84
+2025-01-25,19:00,Home,1,L,0,2,-2,Dallas Stars,33,19,14,1,3,0,66.7,55.2,St. Louis Blues,Jordan Binnington,0.895
+2025-01-25,22:00,Home,1,W,5,2,3,Nashville Predators,35,43,-8,2,3,50,100,53.3,Anaheim Ducks,John Gibson,0.9
+2025-01-25,22:00,Home,1,W,5,2,3,Nashville Predators,35,43,-8,2,3,50,100,53.3,Anaheim Ducks,Lukas Dostal,0.97
+2025-01-26,18:00,Away,0,L,2,5,-3,Winnipeg Jets,22,27,-5,3,2,33.3,0,45.8,Calgary Flames,Dan Vladar,0.815
+2025-01-26,13:00,Home,2,L,4,5,-1,Colorado Avalanche,37,22,15,2,2,0,50,56.9,New York Rangers,Igor Shesterkin,0.773
+2025-01-26,17:00,Home,0,W,3,1,2,Utah Hockey Club,27,35,-8,3,3,0,100,47.3,Ottawa Senators,Leevi Meriläinen,0.971
+2025-01-26,20:00,Away,0,L,1,4,-3,Vegas Golden Knights,34,26,8,3,2,0,100,47.8,Florida Panthers,Spencer Knight,0.88
+2025-01-26,19:00,Home,1,L,2,4,-2,Minnesota Wild,20,28,-8,3,3,33.3,66.7,57.9,Chicago Blackhawks,Petr Mrazek,0.889
+2025-01-26,19:00,Away,0,W,4,2,2,Chicago Blackhawks,28,20,8,3,3,33.3,66.7,42.1,Minnesota Wild,Filip Gustavsson,0.9
+2025-01-26,18:00,Home,1,W,5,2,3,Calgary Flames,27,22,5,2,3,100,66.7,54.2,Winnipeg Jets,Eric Comrie,0.909
+2025-01-26,20:00,Home,1,W,4,1,3,Florida Panthers,26,34,-8,2,3,0,100,52.2,Vegas Golden Knights,Adin Hill,0.971
+2025-01-26,17:00,Away,1,L,1,3,-2,Ottawa Senators,35,27,8,3,3,0,100,52.7,Utah Hockey Club,Karel Vejmelka,0.889
+2025-01-26,13:00,Away,0,W,5,4,1,New York Rangers,22,37,-15,2,2,50,100,43.1,Colorado Avalanche,Mackenzie Blackwood,0.892
+2025-01-27,19:00,Away,1,L,2,5,-3,Detroit Red Wings,25,28,-3,1,3,0,66.7,58.3,Los Angeles Kings,Darcy Kuemper,0.852
+2025-01-27,22:30,Home,1,W,2,1,1,Pittsburgh Penguins,28,30,-2,3,4,0,100,42.9,San Jose Sharks,Yaroslav Askarov,0.967
+2025-01-27,19:00,Away,1,L,2,4,-2,Philadelphia Flyers,33,26,7,3,2,0,50,38.0,New Jersey Devils,Jake Allen,0.88
+2025-01-27,19:00,Home,2,W,4,2,2,New Jersey Devils,26,33,-7,2,3,50,100,62.0,Philadelphia Flyers,Samuel Ersson,0.939
+2025-01-27,22:30,Away,1,L,1,2,-1,San Jose Sharks,30,28,2,4,3,0,100,57.1,Pittsburgh Penguins,Alex Nedeljkovic,0.929
+2025-01-27,19:00,Home,1,W,5,2,3,Los Angeles Kings,28,25,3,3,1,33.3,100,41.7,Detroit Red Wings,Cam Talbot,0.96
+2025-01-27,19:30,Home,1,L,2,5,-3,Vancouver Canucks,26,30,-4,5,2,20,0,55.6,St. Louis Blues,Jordan Binnington,0.833
+2025-01-27,19:30,Home,1,L,2,5,-3,Vancouver Canucks,26,30,-4,5,2,20,0,55.6,St. Louis Blues,Joel Hofer,0.909
+2025-01-27,21:30,Home,1,W,4,2,2,Seattle Kraken,31,28,3,1,4,0,100,51.1,Edmonton Oilers,Calvin Pickard,0.929
+2025-01-27,19:30,Away,1,W,5,2,3,St. Louis Blues,30,26,4,2,5,100,80,44.4,Vancouver Canucks,Kevin Lankinen,0.923
+2025-01-27,21:30,Away,1,L,2,4,-2,Edmonton Oilers,28,31,-3,4,1,0,100,48.9,Seattle Kraken,Joey Daccord,0.9
+2025-01-28,19:00,Home,2,L,1,4,-3,Chicago Blackhawks,35,21,14,3,2,0,50,59.3,Tampa Bay Lightning,Jonas Johansson,0.85
+2025-01-28,21:00,Away,2,W,3,1,2,Calgary Flames,23,33,-10,4,5,25,80,50.0,Washington Capitals,Logan Thompson,0.97
+2025-01-28,19:00,Away,1,W,4,1,3,Tampa Bay Lightning,21,35,-14,2,3,50,100,40.7,Chicago Blackhawks,Arvid Soderblom,0.971
+2025-01-28,21:00,Home,1,L,1,3,-2,Washington Capitals,33,23,10,5,4,20,75,50.0,Calgary Flames,Dustin Wolf,0.87
+2025-01-28,19:30,Away,1,L,2,5,-3,New York Islanders,32,28,4,2,0,0,--,53.9,Colorado Avalanche,Mackenzie Blackwood,0.852
+2025-01-28,22:00,Away,2,W,6,4,2,Seattle Kraken,23,30,-7,2,3,0,66.7,40.0,Anaheim Ducks,Lukas Dostal,0.867
+2025-01-28,22:00,Away,2,W,4,3,1,Vegas Golden Knights,28,28,0,3,2,0,50,47.7,Dallas Stars,Jake Oettinger,0.893
+2025-01-28,19:00,Away,1,W,4,1,3,Montreal Canadiens,24,25,-1,3,0,0,--,42.6,Winnipeg Jets,Connor Hellebuyck,0.96
+2025-01-28,22:00,Home,1,L,3,4,-1,Dallas Stars,28,28,0,2,3,50,100,52.3,Vegas Golden Knights,Adin Hill,0.857
+2025-01-28,22:00,Home,0,L,4,6,-2,Anaheim Ducks,30,23,7,3,2,33.3,100,60.0,Seattle Kraken,Philipp Grubauer,0.773
+2025-01-29,19:00,Home,1,W,5,0,5,Philadelphia Flyers,26,24,2,3,4,66.7,100,47.4,New Jersey Devils,Jake Allen,1.0
+2025-01-29,19:00,Away,1,L,0,5,-5,New Jersey Devils,24,26,-2,4,3,0,33.3,52.6,Philadelphia Flyers,Ivan Fedotov,0.9
+2025-01-29,19:00,Away,1,L,0,5,-5,New Jersey Devils,24,26,-2,4,3,0,33.3,52.6,Philadelphia Flyers,Samuel Ersson,0.75
+2025-01-29,21:30,Away,1,W,3,2,1,Utah Hockey Club,29,29,0,1,1,0,0,56.7,Pittsburgh Penguins,Alex Nedeljkovic,0.931
+2025-01-29,19:00,Home,3,L,1,3,-2,Minnesota Wild,33,25,8,1,1,0,0,62.8,Toronto Maple Leafs,Joseph Woll,0.917
+2025-01-29,19:00,Home,2,W,3,0,3,Los Angeles Kings,39,29,10,4,2,25,100,43.3,Florida Panthers,Sergei Bobrovsky,1.0
+2025-01-29,21:00,Home,3,L,1,3,-2,Vancouver Canucks,32,22,10,3,3,0,66.7,66.0,Nashville Predators,Juuse Saros,0.905
+2025-01-29,21:00,Away,1,W,3,1,2,Nashville Predators,22,32,-10,3,3,33.3,100,34.0,Vancouver Canucks,Thatcher Demko,0.969
+2025-01-29,19:00,Away,1,L,0,3,-3,Florida Panthers,29,39,-10,2,4,0,75,56.7,Los Angeles Kings,Darcy Kuemper,0.947
+2025-01-29,19:00,Away,2,W,3,1,2,Toronto Maple Leafs,25,33,-8,1,1,100,100,37.3,Minnesota Wild,Filip Gustavsson,0.97
+2025-01-29,21:30,Home,2,L,2,3,-1,Pittsburgh Penguins,29,29,0,1,1,100,100,43.3,Utah Hockey Club,Connor Ingram,0.897
+2025-01-30,21:00,Away,2,L,2,2,0,Edmonton Oilers,35,47,-12,3,4,0,75,54.8,Detroit Red Wings,Alex Lyon,0.957
+2025-01-30,19:30,Away,1,W,3,0,3,Philadelphia Flyers,28,23,5,2,3,0,100,50.8,New York Islanders,Ilya Sorokin,1.0
+2025-01-30,19:00,Home,1,L,2,6,-4,Winnipeg Jets,28,28,0,3,4,33.3,50,63.1,Boston Bruins,Joonas Korpisalo,0.815
+2025-01-30,19:00,Home,1,L,0,4,-4,Minnesota Wild,19,27,-8,1,1,0,100,62.2,Montreal Canadiens,Jakub Dobes,0.885
+2025-01-30,19:00,Home,3,W,5,4,1,Washington Capitals,34,35,-1,5,6,40,66.7,57.4,Ottawa Senators,Anton Forsberg,0.886
+2025-01-30,19:00,Home,1,W,3,2,1,Chicago Blackhawks,27,20,7,2,2,0,100,49.0,Carolina Hurricanes,Pyotr Kochetkov,0.9
+2025-01-30,19:00,Home,1,W,3,0,3,Los Angeles Kings,33,28,5,2,1,0,100,55.4,Tampa Bay Lightning,Andrei Vasilevskiy,1.0
+2025-01-30,19:00,Away,1,L,4,5,-1,Ottawa Senators,35,34,1,6,5,33.3,60,42.6,Washington Capitals,Charlie Lindgren,0.853
+2025-01-30,19:00,Away,1,L,2,3,-1,Carolina Hurricanes,20,27,-7,2,2,0,100,51.0,Chicago Blackhawks,Arvid Soderblom,0.889
+2025-01-30,19:30,Home,0,L,0,3,-3,New York Islanders,23,28,-5,3,2,0,100,49.3,Philadelphia Flyers,Ivan Fedotov,0.893
+2025-01-30,22:00,Home,1,L,1,2,-1,Columbus Blue Jackets,26,24,2,1,1,0,100,58.7,Vegas Golden Knights,Ilya Samsonov,0.917
+2025-01-30,21:00,Home,2,L,2,2,0,Detroit Red Wings,47,35,12,4,3,25,100,45.2,Edmonton Oilers,Stuart Skinner,0.943
+2025-01-30,21:00,Away,1,L,1,4,-3,Calgary Flames,31,30,1,4,1,0,100,40.0,Anaheim Ducks,John Gibson,0.897
+2025-01-30,19:00,Away,0,L,0,3,-3,Tampa Bay Lightning,28,33,-5,1,2,0,100,44.6,Los Angeles Kings,David Rittich,0.938
+2025-01-30,22:30,Away,2,L,2,6,-4,Seattle Kraken,28,33,-5,2,2,0,50,38.6,San Jose Sharks,Alexandar Georgiev,0.909
+2025-01-30,22:30,Away,2,L,2,6,-4,Seattle Kraken,28,33,-5,2,2,0,50,38.6,San Jose Sharks,Yaroslav Askarov,0.636
+2025-01-30,22:00,Away,4,W,2,1,1,Vegas Golden Knights,24,26,-2,1,1,0,100,41.3,Columbus Blue Jackets,Elvis Merzlikins,0.962
+2025-01-30,19:00,Away,0,W,4,0,4,Montreal Canadiens,27,19,8,1,1,0,100,37.8,Minnesota Wild,Marc-Andre Fleury,1.0
+2025-01-30,19:00,Away,1,W,6,2,4,Boston Bruins,28,28,0,4,3,50,66.7,36.9,Winnipeg Jets,Connor Hellebuyck,0.929
+2025-01-30,22:30,Home,1,W,6,2,4,San Jose Sharks,33,28,5,2,2,50,100,61.4,Seattle Kraken,Joey Daccord,0.929
+2025-01-30,21:00,Home,1,W,4,1,3,Anaheim Ducks,30,31,-1,1,4,0,100,60.0,Calgary Flames,Dustin Wolf,0.968
+2025-01-31,21:00,Away,3,L,0,5,-5,Colorado Avalanche,19,36,-17,2,4,0,50,58.0,St. Louis Blues,Joel Hofer,0.861
+2025-01-31,21:00,Home,2,W,5,0,5,St. Louis Blues,36,19,17,4,2,50,100,42.0,Colorado Avalanche,Mackenzie Blackwood,1.0
+2025-01-31,19:00,Home,2,W,4,3,1,Nashville Predators,27,31,-4,2,4,0,100,35.9,Buffalo Sabres,Ukko-Pekka Luukkonen,0.903
+2025-01-31,19:00,Away,1,L,3,4,-1,Buffalo Sabres,31,27,4,4,2,0,100,64.2,Nashville Predators,Justus Annunen,0.852
+2025-01-31,21:00,Home,1,L,2,3,-1,Columbus Blue Jackets,34,23,11,3,2,33.3,100,61.7,Utah Hockey Club,Karel Vejmelka,0.87
+2025-01-31,21:00,Away,0,W,3,2,1,Utah Hockey Club,23,34,-11,2,3,0,66.7,38.3,Columbus Blue Jackets,Daniil Tarasov,0.941
+2025-01-31,20:00,Home,2,W,5,3,2,Vancouver Canucks,16,29,-13,2,5,50,80,56.6,Dallas Stars,Jake Oettinger,0.897
+2025-01-31,20:00,Away,1,L,3,5,-2,Dallas Stars,29,16,13,5,2,20,50,43.4,Vancouver Canucks,Thatcher Demko,0.786
+2025-02-01,19:00,Home,1,L,2,3,-1,New York Islanders,31,36,-5,3,1,0,100,51.8,Tampa Bay Lightning,Andrei Vasilevskiy,0.917
+2025-02-01,15:30,Away,3,L,3,6,-3,Boston Bruins,25,25,0,3,3,33.3,33.3,60.4,New York Rangers,Igor Shesterkin,0.792
+2025-02-01,19:00,Home,2,W,3,0,3,Nashville Predators,36,25,11,3,0,0,--,54.6,Pittsburgh Penguins,Alex Nedeljkovic,1.0
+2025-02-01,15:30,Home,1,W,6,3,3,New York Rangers,25,25,0,3,3,66.7,66.7,39.6,Boston Bruins,Jeremy Swayman,0.88
+2025-02-01,19:00,Home,1,W,6,0,6,Minnesota Wild,52,16,36,8,3,37.5,100,70.7,Ottawa Senators,Leevi Meriläinen,1.0
+2025-02-01,19:00,Away,2,W,4,3,1,Edmonton Oilers,28,48,-20,2,2,100,100,52.9,Toronto Maple Leafs,Joseph Woll,0.938
+2025-02-01,19:00,Home,1,L,2,4,-2,Los Angeles Kings,28,26,2,3,1,0,100,52.5,Carolina Hurricanes,Frederik Andersen,0.846
+2025-02-01,13:00,Home,2,W,5,1,4,Chicago Blackhawks,44,25,19,6,3,16.7,100,50.7,Florida Panthers,Sergei Bobrovsky,0.96
+2025-02-01,19:00,Away,1,W,3,2,1,Tampa Bay Lightning,36,31,5,1,3,0,100,48.2,New York Islanders,Ilya Sorokin,0.935
+2025-02-01,19:00,Home,1,L,4,5,-1,Winnipeg Jets,29,30,-1,1,2,0,50,40.0,Washington Capitals,Logan Thompson,0.833
+2025-02-01,13:00,Away,1,L,1,5,-4,Florida Panthers,25,44,-19,3,6,0,83.3,49.3,Chicago Blackhawks,Petr Mrazek,0.886
+2025-02-01,22:00,Away,1,W,3,1,2,Calgary Flames,24,34,-10,0,2,--,50,51.6,Detroit Red Wings,Cam Talbot,0.971
+2025-02-01,19:00,Away,0,L,0,3,-3,Pittsburgh Penguins,25,36,-11,0,3,--,100,45.5,Nashville Predators,Juuse Saros,0.943
+2025-02-01,22:00,Home,1,L,1,3,-2,Detroit Red Wings,34,24,10,2,0,50,--,48.4,Calgary Flames,Dustin Wolf,0.917
+2025-02-01,19:00,Home,1,L,3,4,-1,Toronto Maple Leafs,48,28,20,2,2,0,0,47.1,Edmonton Oilers,Stuart Skinner,0.857
+2025-02-01,19:00,Away,1,W,4,2,2,Carolina Hurricanes,26,28,-2,1,3,0,100,47.5,Los Angeles Kings,Darcy Kuemper,0.929
+2025-02-01,19:00,Away,1,W,5,4,1,Washington Capitals,30,29,1,2,1,50,100,60.0,Winnipeg Jets,Connor Hellebuyck,0.862
+2025-02-01,19:00,Away,1,L,0,6,-6,Ottawa Senators,16,52,-36,3,8,0,62.5,29.3,Minnesota Wild,Filip Gustavsson,0.885
+2025-02-02,16:00,Away,2,L,2,3,-1,Anaheim Ducks,23,22,1,4,4,25,100,61.7,Montreal Canadiens,Sam Montembeault,0.864
+2025-02-02,15:00,Away,2,L,0,2,-2,Colorado Avalanche,24,32,-8,1,2,0,50,37.0,Philadelphia Flyers,Samuel Ersson,0.938
+2025-02-02,21:00,Home,2,L,2,3,-1,Calgary Flames,31,35,-4,3,5,0,60,43.5,Seattle Kraken,Joey Daccord,0.914
+2025-02-02,18:00,Away,0,L,3,6,-3,Florida Panthers,34,33,1,3,2,33.3,50,66.1,New York Islanders,Jakub Skarek,0.844
+2025-02-02,13:00,Away,3,L,3,4,-1,Buffalo Sabres,24,34,-10,5,4,0,100,38.6,New Jersey Devils,Jake Allen,0.852
+2025-02-02,13:00,Away,3,L,3,4,-1,Buffalo Sabres,24,34,-10,5,4,0,100,38.6,New Jersey Devils,Nico Daws,1.0
+2025-02-02,18:00,Home,0,W,6,3,3,New York Islanders,33,34,-1,2,3,50,66.7,33.9,Florida Panthers,Spencer Knight,0.912
+2025-02-02,18:00,Home,0,W,4,2,2,Vegas Golden Knights,28,36,-8,2,1,100,0,56.7,New York Rangers,Jonathan Quick,0.944
+2025-02-02,13:00,Home,1,W,4,3,1,New Jersey Devils,34,24,10,4,5,0,100,61.4,Buffalo Sabres,Ukko-Pekka Luukkonen,0.875
+2025-02-02,18:00,Away,1,L,3,5,-2,Dallas Stars,30,39,-9,3,3,0,66.7,42.2,Columbus Blue Jackets,Elvis Merzlikins,0.872
+2025-02-02,16:00,Home,2,W,3,2,1,Montreal Canadiens,22,23,-1,4,4,0,75,38.3,Anaheim Ducks,Lukas Dostal,0.913
+2025-02-02,21:00,Away,0,W,3,2,1,Seattle Kraken,35,31,4,5,3,40,100,56.5,Calgary Flames,Dan Vladar,0.935
+2025-02-02,18:00,Home,1,W,5,3,2,Columbus Blue Jackets,39,30,9,3,3,33.3,100,57.8,Dallas Stars,Casey DeSmith,0.9
+2025-02-02,18:00,Away,2,L,2,4,-2,New York Rangers,36,28,8,1,2,100,0,43.3,Vegas Golden Knights,Adin Hill,0.857
+2025-02-02,20:00,Home,1,L,2,3,-1,Detroit Red Wings,27,18,9,0,1,--,100,59.3,Vancouver Canucks,Kevin Lankinen,0.833
+2025-02-02,15:00,Home,1,W,2,0,2,Philadelphia Flyers,32,24,8,2,1,50,100,63.0,Colorado Avalanche,Mackenzie Blackwood,1.0
+2025-02-02,20:00,Away,0,W,3,2,1,Vancouver Canucks,18,27,-9,1,0,0,--,40.7,Detroit Red Wings,Alex Lyon,0.926
+2025-02-02,19:00,Away,1,W,2,1,1,Utah Hockey Club,29,25,4,2,3,0,100,62.5,St. Louis Blues,Jordan Binnington,0.96
+2025-02-02,19:00,Home,1,L,1,2,-1,St. Louis Blues,25,29,-4,3,2,0,100,37.5,Utah Hockey Club,Connor Ingram,0.931
