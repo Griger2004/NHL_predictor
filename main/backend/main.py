@@ -13,7 +13,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Load the trained model
-with open('../model_make/model.pkl', 'rb') as f:
+with open('./model/model.pkl', 'rb') as f:
     model = pickle.load(f)
 
 # Define the prediction endpoint
@@ -21,7 +21,7 @@ with open('../model_make/model.pkl', 'rb') as f:
 def predict():
     try:
 
-        with open('../backend/schedule.json', 'r') as f:
+        with open('./data/schedule.json', 'r') as f:
             games = json.load(f)
 
         if not games:
@@ -66,10 +66,10 @@ def get_games():
 
         venv_python = r"C:\Users\riger\Desktop\NHL_predictor\main\nhl_venv\Scripts\python.exe"
 
-        result = subprocess.run(['python', 'get_games.py'], check=True, capture_output=True, text=True)
+        result = subprocess.run(['python', './scripts/get_games.py'], check=True, capture_output=True, text=True)
         print(result.stdout) 
         
-        with open('schedule.json', 'r') as f:
+        with open('./data/schedule.json', 'r') as f:
             games_data = json.load(f)
             
         return jsonify({"games": games_data})

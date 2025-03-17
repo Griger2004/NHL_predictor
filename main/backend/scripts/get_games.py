@@ -2,10 +2,12 @@ import requests
 import json
 from unidecode import unidecode  # Import the unidecode library
 from datetime import datetime, timedelta
+import os
 
 
 # Get today's date in the required format (YYYY-MM-DD)
 today = datetime.today().strftime('%Y-%m-%d')
+print(today)
 yesterday = (datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d')
 
 # URL for the NHL schedule
@@ -23,7 +25,11 @@ response_stats = requests.get(url_stats)
 data_stats = response_stats.json()
 
 # Load the name-to-code mapping from your JSON file (name_codes.json)
-with open('name_codes.json') as f:
+script_dir = os.path.dirname(os.path.realpath(__file__))  # Get the current script directory
+data_dir = os.path.join(script_dir, '../data')
+name_codes_path = os.path.join(data_dir, 'name_codes.json')
+
+with open(name_codes_path) as f:
     name_codes = json.load(f)
 
 # Initialize an empty list to store the game schedule
@@ -41,7 +47,7 @@ def check_prev_day():
     data = response.json()
 
     for week in data['gameWeek']:
-        if week['date'] == "2025-03-12":
+        if week['date'] == f"{yesterday}":
             for game in week['games']:
 
                 #get team abbriviations
@@ -57,12 +63,17 @@ all_prev_day_teams = check_prev_day()
 
 # Loop through the 'gameWeek' in the data
 for week in data['gameWeek']:
-    if week['date'] == "2025-03-15":
+    if week['date'] == f"{today}":
         for game in week['games']:
 
             # Combine 'placeName' and 'commonName' to get the full team name
             home_team = game['homeTeam']['placeName']['default'] + " " + game['homeTeam']['commonName']['default']
             away_team = game['awayTeam']['placeName']['default'] + " " + game['awayTeam']['commonName']['default']
+
+            if home_team == "Utah Utah Hockey Club":
+                home_team = "Utah Hockey Club"
+            elif away_team == "Utah Utah Hockey Club":
+                away_team = "Utah Hockey Club"
 
             #get team abbriviations
             home_abrv = game['homeTeam']['abbrev']
@@ -115,7 +126,8 @@ for week in data['gameWeek']:
             })
 
 # Save the formatted schedule to a JSON file
-with open('schedule.json', 'w') as f:
+schedule_path = os.path.join(data_dir, 'schedule.json')
+with open(schedule_path, 'w') as f:
     json.dump(games, f, indent=4)
 
 print("Schedule saved to schedule.json")
