@@ -26,14 +26,14 @@
         "opp_code": 20,
         "rest_days_home": 1,
         "rest_days_away": 1,
-        "home_AVG_gf/gp": 3.5303,
-        "away_AVG_gf/gp": 2.75,
-        "home_AVG_ga/gp": 2.68181,
-        "away_AVG_ga/gp": 3.36764,
-        "home_AVG_pp%": 0.258064,
-        "away_AVG_pp%": 0.146892,
-        "home_AVG_fow%": 0.50676,
-        "away_AVG_fow%": 0.500802
+        "home_AVG_gf/gp": 3.50746,
+        "away_AVG_gf/gp": 2.71014,
+        "home_AVG_ga/gp": 2.64179,
+        "away_AVG_ga/gp": 3.34782,
+        "home_AVG_pp%": 0.257894,
+        "away_AVG_pp%": 0.142857,
+        "home_AVG_fow%": 0.506923,
+        "away_AVG_fow%": 0.500527
     },
     {
         "home": "Columbus Blue Jackets",
