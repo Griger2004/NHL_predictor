@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
-export const BASE_URL = process.env.NODE_ENV === "development"
-  ? process.env.REACT_APP_API_URL
-  : process.env.REACT_APP_API_URL_PROD;
+export const BASE_URL = import.meta.env.MODE === "development"
+  ? import.meta.env.VITE_API_URL
+  : import.meta.env.VITE_API_URL_PROD;
 
 function App() {
   const [games, setGames] = useState([])
