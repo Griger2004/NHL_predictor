@@ -32,8 +32,8 @@
         "away_AVG_ga/gp": 3.34782,
         "home_AVG_pp%": 0.257894,
         "away_AVG_pp%": 0.142857,
-        "home_AVG_fow%": 0.506923,
-        "away_AVG_fow%": 0.500527
+        "home_AVG_fow%": 0.506666,
+        "away_AVG_fow%": 0.50079
     },
     {
         "home": "Columbus Blue Jackets",
@@ -44,14 +44,14 @@
         "opp_code": 16,
         "rest_days_home": 1,
         "rest_days_away": 1,
-        "home_AVG_gf/gp": 3.22727,
-        "away_AVG_gf/gp": 2.98529,
-        "home_AVG_ga/gp": 3.33333,
-        "away_AVG_ga/gp": 2.58823,
-        "home_AVG_pp%": 0.193548,
-        "away_AVG_pp%": 0.275132,
-        "home_AVG_fow%": 0.473202,
-        "away_AVG_fow%": 0.49593
+        "home_AVG_gf/gp": 3.19402,
+        "away_AVG_gf/gp": 2.97101,
+        "home_AVG_ga/gp": 3.31343,
+        "away_AVG_ga/gp": 2.56521,
+        "home_AVG_pp%": 0.192307,
+        "away_AVG_pp%": 0.273684,
+        "home_AVG_fow%": 0.474311,
+        "away_AVG_fow%": 0.495351
     },
     {
         "home": "Toronto Maple Leafs",
@@ -62,14 +62,14 @@
         "opp_code": 3,
         "rest_days_home": 1,
         "rest_days_away": 1,
-        "home_AVG_gf/gp": 3.16666,
-        "away_AVG_gf/gp": 2.55384,
-        "home_AVG_ga/gp": 2.96969,
-        "away_AVG_ga/gp": 2.8923,
-        "home_AVG_pp%": 0.240437,
-        "away_AVG_pp%": 0.217391,
-        "home_AVG_fow%": 0.532573,
-        "away_AVG_fow%": 0.462341
+        "home_AVG_gf/gp": 3.20895,
+        "away_AVG_gf/gp": 2.54545,
+        "home_AVG_ga/gp": 2.95522,
+        "away_AVG_ga/gp": 2.93939,
+        "home_AVG_pp%": 0.252688,
+        "away_AVG_pp%": 0.212765,
+        "home_AVG_fow%": 0.535064,
+        "away_AVG_fow%": 0.460122
     },
     {
         "home": "Minnesota Wild",

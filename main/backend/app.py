@@ -26,7 +26,7 @@ with open('./model/model.pkl', 'rb') as f:
     model = pickle.load(f)
 
 # Define the prediction endpoint
-@app.route('/predict', methods=['GET'])
+@app.route('/api/predict', methods=['GET'])
 def predict():
     try:
 
@@ -68,7 +68,7 @@ def predict():
         return jsonify({'error': str(e)}), 400
     
 # Define the prediction endpoint
-@app.route('/games', methods=['GET'])
+@app.route('/api/games', methods=['GET'])
 def get_games():
     try:
 
