@@ -1,16 +1,25 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import pickle
 import pandas as pd
 import subprocess
 import json
-
-import sys
-print(sys.executable)
+import os
 
 # Initialize Flask app
 app = Flask(__name__)
 CORS(app)
+
+frontend_folder = os.path.join(os.getcwd(),"..","frontend")
+dist_folder = os.path.join(frontend_folder,"dist")
+
+#serve static files from the "dist" folder under the "frontend" directory
+@app.route("/",defaults={"filename":""})
+@app.route("/<path:filename>")
+def index(filename):
+    if not filename:
+        filename = "index.html"
+    return send_from_directory(dist_folder,filename)
 
 # Load the trained model
 with open('./model/model.pkl', 'rb') as f:
@@ -45,7 +54,6 @@ def predict():
             prediction = model.predict(input_df)[0]
             probability = model.predict_proba(input_df)[0].tolist()
             winner = game['home'] if prediction == 1 else game['away']
-            print(winner)
 
             predictions.append({
                 "home": game['home'],
