@@ -8,14 +8,14 @@
         "opp_code": 2,
         "rest_days_home": 1,
         "rest_days_away": 1,
-        "home_AVG_gf/gp": 2.70588,
-        "away_AVG_gf/gp": 3.12307,
-        "home_AVG_ga/gp": 3.19117,
-        "away_AVG_ga/gp": 3.52307,
-        "home_AVG_pp%": 0.15,
-        "away_AVG_pp%": 0.172043,
-        "home_AVG_fow%": 0.515174,
-        "away_AVG_fow%": 0.485454
+        "home_AVG_gf/gp": 2.69565,
+        "away_AVG_gf/gp": 3.12121,
+        "home_AVG_ga/gp": 3.1884,
+        "away_AVG_ga/gp": 3.5,
+        "home_AVG_pp%": 0.148514,
+        "away_AVG_pp%": 0.178947,
+        "home_AVG_fow%": 0.516607,
+        "away_AVG_fow%": 0.483986
     },
     {
         "home": "Tampa Bay Lightning",
