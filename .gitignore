@@ -1,5 +1,46 @@
-/venv
-/main/nhl_venv/
-/temp_data
-/venv
+# Ignore the model development folder (ml_dev)
+#main/ml_dev/
+
+# Ignore node_modules folder (for React frontend dependencies)
+node_modules/
+
+# Ignore virtual environments (if any, for backend development)
+main/nhl_venv/
+*.env
+
+# Ignore Python bytecode files
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore Flask instance folder (if exists)
+instance/
+
+#Ignore model
+main/backend/model/
+
+# Ignore environment files (e.g., local configurations)
+.env
+*.env
+main/frontend/.env
+main/frontend/.env.production
+
+# Ignore logs and temporary files
+*.log
+*.bak
+*.swp
+*.swo
 .ipynb_checkpoints/
+
+# Ignore build output for frontend (React)
+build/
+dist/
+
+# Ignore other potential IDE files
+.idea/
+.vscode/
+.DS_Store  # MacOS system files
+Thumbs.db  # Windows system files
+
+# Ignore any personal or OS-specific files
+*.iml
