@@ -7,12 +7,10 @@ import os
 
 # Get today's date in the required format (YYYY-MM-DD)
 today = datetime.today().strftime('%Y-%m-%d')
-print(today)
 yesterday = (datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d')
 
 # URL for the NHL schedule
 url = f"https://api-web.nhle.com/v1/schedule/{today}"
-print(url)
 
 # URL for the team stats
 url_stats = "https://api.nhle.com/stats/rest/en/team/summary?sort=shotsForPerGame&cayenneExp=seasonId=20242025%20and%20gameTypeId=2"
