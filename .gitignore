@@ -22,6 +22,8 @@ main/backend/model/
 # Ignore environment files (e.g., local configurations)
 .env
 *.env
+main/frontend/.env
+main/frontend/.env.production
 
 # Ignore logs and temporary files
 *.log

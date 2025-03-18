@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
+export const BASE_URL = import.meta.env.REACT_APP_API_URL || "http://127.0.0.1:5000";
+
 function App() {
   const [games, setGames] = useState([])
   const [predictions, setPredictions] = useState([])
@@ -11,7 +13,7 @@ function App() {
 
   const fetchGames = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:5000/games")
+      const response = await fetch(BASE_URL + "/games")
       if (!response.ok) throw new Error("Failed to fetch games")
       
       const data = await response.json()
@@ -24,7 +26,7 @@ function App() {
 
   const fetchPrediction = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:5000/predict")
+      const response = await fetch(BASE_URL + "/predict")
       if (!response.ok) throw new Error("Failed to predict games")
       
       const data = await response.json()
