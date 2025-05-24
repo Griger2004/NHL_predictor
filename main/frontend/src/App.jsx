@@ -17,6 +17,7 @@ function App() {
 
   const fetchGames = async () => {
     try {
+      console.log(BASE_URL)
       const response = await fetch(BASE_URL + "/games")
       if (!response.ok) throw new Error("Failed to fetch games")
       

@@ -1,9 +1,8 @@
 import requests
 import json
-from unidecode import unidecode  # Import the unidecode library
+from unidecode import unidecode
 from datetime import datetime, timedelta
 import os
-
 
 # Get today's date in the required format (YYYY-MM-DD)
 today = datetime.today().strftime('%Y-%m-%d')
@@ -11,9 +10,11 @@ yesterday = (datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d')
 
 # URL for the NHL schedule
 url = f"https://api-web.nhle.com/v1/schedule/{today}"
+print(url)
 
 # URL for the team stats
 url_stats = "https://api.nhle.com/stats/rest/en/team/summary?sort=shotsForPerGame&cayenneExp=seasonId=20242025%20and%20gameTypeId=2"
+print(url_stats)
 
 # Fetch the data from the URL
 response = requests.get(url)
@@ -33,11 +34,9 @@ with open(name_codes_path) as f:
 # Initialize an empty list to store the game schedule
 games = []
 
-# Previous day teams that played.
-
+# Get teams that played the previous day
 def check_prev_day():
     url = f"https://api-web.nhle.com/v1/schedule/{yesterday}"
-
     prev_day_teams = []
 
     # Fetch the data from the URL
@@ -45,10 +44,9 @@ def check_prev_day():
     data = response.json()
 
     for week in data['gameWeek']:
-        if week['date'] == f"{yesterday}":
+        if week['date'] == yesterday:
             for game in week['games']:
-
-                #get team abbriviations
+                #get team abbreviations
                 home_abrv = game['homeTeam']['abbrev']
                 away_abrv = game['awayTeam']['abbrev']
                 
@@ -59,21 +57,32 @@ def check_prev_day():
 
 all_prev_day_teams = check_prev_day()
 
+# Create a dictionary to store team stats for easy lookup
+team_stats_dict = {}
+for team in data_stats["data"]:
+    team_full_name = team["teamFullName"]
+    team_stats_dict[team_full_name] = {
+        "goalsForPerGame": team.get("goalsForPerGame", 0),
+        "goalsAgainstPerGame": team.get("goalsAgainstPerGame", 0),
+        "powerPlayPct": (team.get("powerPlayPct", 0) * 100),
+        "faceoffWinPct": (team.get("faceoffWinPct", 0) * 100)
+    }
+
 # Loop through the 'gameWeek' in the data
 for week in data['gameWeek']:
-    if week['date'] == f"{today}":
+    if week['date'] == today:
         for game in week['games']:
-
             # Combine 'placeName' and 'commonName' to get the full team name
             home_team = game['homeTeam']['placeName']['default'] + " " + game['homeTeam']['commonName']['default']
             away_team = game['awayTeam']['placeName']['default'] + " " + game['awayTeam']['commonName']['default']
 
+            # Special case for Utah Hockey Club
             if home_team == "Utah Utah Hockey Club":
                 home_team = "Utah Hockey Club"
             elif away_team == "Utah Utah Hockey Club":
                 away_team = "Utah Hockey Club"
 
-            #get team abbriviations
+            # Get team abbreviations
             home_abrv = game['homeTeam']['abbrev']
             away_abrv = game['awayTeam']['abbrev']
             
@@ -84,24 +93,9 @@ for week in data['gameWeek']:
             home_code = name_codes['team_codes'][0].get(home_team)
             away_code = name_codes['team_codes'][0].get(away_team)
 
-            # Get team stats
-
-            both_team_stats = 0
-            for team in data_stats["data"]:
-                if both_team_stats == 2:
-                    break
-                if team["teamFullName"] == home_team:
-                    both_team_stats += 1
-                    home_goals_for = team["goalsForPerGame"]
-                    home_goals_against = team["goalsAgainstPerGame"]
-                    home_pp_percent = team["powerPlayPct"]
-                    home_fow_percent = team["faceoffWinPct"]
-                if team["teamFullName"] == away_team:
-                    both_team_stats += 1
-                    away_goals_for = team["goalsForPerGame"]
-                    away_goals_against = team["goalsAgainstPerGame"]
-                    away_pp_percent = team["powerPlayPct"]
-                    away_fow_percent = team["faceoffWinPct"]
+            # Get team stats from the dictionary
+            home_stats = team_stats_dict.get(home_team, {})
+            away_stats = team_stats_dict.get(away_team, {})
 
             # Append the formatted game data to the list
             games.append({
@@ -113,22 +107,19 @@ for week in data['gameWeek']:
                 "opp_code": away_code,
                 "rest_days_home": 0 if home_abrv in all_prev_day_teams else 1,
                 "rest_days_away": 0 if away_abrv in all_prev_day_teams else 1,
-                "home_AVG_gf/gp": home_goals_for,
-                "away_AVG_gf/gp": away_goals_for,
-                'home_AVG_ga/gp': home_goals_against,
-                'away_AVG_ga/gp': away_goals_against,
-                'home_AVG_pp%': home_pp_percent,
-                'away_AVG_pp%': away_pp_percent,
-                'home_AVG_fow%': home_fow_percent,
-                'away_AVG_fow%': away_fow_percent
+                "home_AVG_gf/gp": home_stats.get("goalsForPerGame", 0),
+                "away_AVG_gf/gp": away_stats.get("goalsForPerGame", 0),
+                'home_AVG_ga/gp': home_stats.get("goalsAgainstPerGame", 0),
+                'away_AVG_ga/gp': away_stats.get("goalsAgainstPerGame", 0),
+                'home_AVG_pp%': home_stats.get("powerPlayPct", 0),
+                'away_AVG_pp%': away_stats.get("powerPlayPct", 0),
+                'home_AVG_fow%': home_stats.get("faceoffWinPct", 0),
+                'away_AVG_fow%': away_stats.get("faceoffWinPct", 0)
             })
 
 # Save the formatted schedule to a JSON file
-schedule_path = os.path.join(data_dir, 'schedule.json')
+schedule_path = os.path.join(data_dir, 'schedule.json')  # Fixed the path
 with open(schedule_path, 'w') as f:
     json.dump(games, f, indent=4)
 
 print("Schedule saved to schedule.json")
-
-
-

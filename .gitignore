@@ -17,7 +17,7 @@ main/nhl_venv/
 instance/
 
 #Ignore model
-main/backend/model/
+#main/backend/model/
 
 # Ignore environment files (e.g., local configurations)
 .env
