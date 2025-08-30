@@ -14,7 +14,7 @@ Philipp Grubauer,2022-10-12,Seattle Kraken,L,1,1,0,0,--,1,27,22,5,0.815,4.94,60:
 Petr Mrazek,2022-10-12,Chicago Blackhawks,L,1,1,0,1,--,0,35,30,5,0.857,5.0,60:00,0,0,0,0,0,3600
 Frederik Andersen,2022-10-12,Carolina Hurricanes,L,1,1,1,0,--,0,32,31,1,0.969,1.0,60:00,0,0,0,0,0,3600
 John Gibson,2022-10-12,Anaheim Ducks,L,1,1,1,0,--,0,48,44,4,0.917,3.94,60:55,0,0,1,1,0,3655
-Matt Murray,2022-10-12,Toronto Maple Leafs,L,1,1,0,1,--,0,23,19,4,0.826,4.05,59:18,0,0,0,0,0,3558
+Matthew Murray,2022-10-12,Toronto Maple Leafs,L,1,1,0,1,--,0,23,19,4,0.826,4.05,59:18,0,0,0,0,0,3558
 Linus Ullmark,2022-10-12,Boston Bruins,L,1,1,1,0,--,0,35,33,2,0.943,2.0,60:00,0,0,0,0,0,3600
 Thatcher Demko,2022-10-12,Vancouver Canucks,L,1,1,0,1,--,0,24,20,4,0.833,4.13,58:04,0,0,0,0,0,3484
 Daniil Tarasov,2022-10-12,Columbus Blue Jackets,L,1,1,0,1,--,0,43,39,4,0.907,4.0,60:00,0,0,0,0,0,3600
@@ -60,11 +60,11 @@ Tristan Jarry,2022-10-15,Pittsburgh Penguins,L,1,1,1,0,--,0,36,34,2,0.944,2.01,5
 Eric Comrie,2022-10-15,Buffalo Sabres,L,1,1,0,1,--,0,37,33,4,0.892,4.02,59:40,0,0,1,1,0,3580
 Thatcher Demko,2022-10-15,Vancouver Canucks,L,1,1,0,1,--,0,31,28,3,0.903,3.13,57:27,0,0,0,0,0,3447
 Alex Nedeljkovic,2022-10-15,Detroit Red Wings,L,1,1,1,0,--,0,39,37,2,0.949,2.02,59:31,0,0,0,0,0,3571
-Vitek Vanecek,2022-10-15,New Jersey Devils,L,1,1,0,1,--,0,22,17,5,0.773,5.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2022-10-15,New Jersey Devils,L,1,1,0,1,--,0,22,17,5,0.773,5.0,60:00,0,0,0,0,0,3600
 Elvis Merzlikins,2022-10-15,Columbus Blue Jackets,L,1,1,0,1,--,0,25,20,5,0.8,5.0,60:00,0,0,0,0,0,3600
 Ilya Sorokin,2022-10-15,New York Islanders,L,1,1,1,0,--,0,23,22,1,0.957,1.0,59:52,0,0,0,0,0,3592
 Kaapo Kahkonen,2022-10-15,San Jose Sharks,L,1,1,0,1,--,0,25,20,5,0.8,5.03,59:37,0,0,0,0,0,3577
-Dan Vladar,2022-10-15,Calgary Flames,L,1,1,1,0,--,0,29,26,3,0.897,3.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2022-10-15,Calgary Flames,L,1,1,1,0,--,0,29,26,3,0.897,3.0,60:00,0,0,0,0,0,3600
 Sam Montembeault,2022-10-15,Montréal Canadiens,L,1,1,0,1,--,0,29,26,3,0.897,3.08,58:25,0,0,0,0,0,3505
 Ilya Samsonov,2022-10-15,Toronto Maple Leafs,L,1,1,1,0,--,0,28,26,2,0.929,2.0,60:00,0,0,0,0,0,3600
 Adin Hill,2022-10-15,Vegas Golden Knights,L,1,1,1,0,--,0,33,31,2,0.939,2.0,60:00,0,0,0,0,0,3600
@@ -133,7 +133,7 @@ Elvis Merzlikins,2022-10-20,Columbus Blue Jackets,L,1,1,1,0,--,0,26,23,3,0.885,3
 Ilya Sorokin,2022-10-20,New York Islanders,L,1,1,0,1,--,0,42,39,3,0.929,3.16,57:01,0,0,0,0,0,3421
 Igor Shesterkin,2022-10-20,New York Rangers,L,1,1,0,0,--,1,27,24,3,0.889,2.96,60:47,0,0,0,0,0,3647
 Mackenzie Blackwood,2022-10-20,New Jersey Devils,L,1,1,1,0,--,0,17,16,1,0.941,1.0,60:00,0,0,0,0,0,3600
-Dan Vladar,2022-10-20,Calgary Flames,L,1,0,0,1,--,0,19,17,2,0.839,3.08,38:58,0,0,0,0,0,2338
+Daniel Vladar,2022-10-20,Calgary Flames,L,1,0,0,1,--,0,19,17,2,0.839,3.08,38:58,0,0,0,0,0,2338
 Ilya Samsonov,2022-10-20,Toronto Maple Leafs,L,1,1,1,0,--,0,28,26,2,0.929,1.89,63:33,0,0,0,0,0,3813
 Adin Hill,2022-10-20,Vegas Golden Knights,L,1,1,1,0,--,0,28,26,2,0.929,2.0,59:52,0,0,0,0,2,3592
 Connor Ingram,2022-10-20,Utah Hockey Club,L,1,1,0,1,--,0,29,24,5,0.828,5.04,59:28,0,0,0,0,0,3568
@@ -205,7 +205,7 @@ Andrei Vasilevskiy,2022-10-25,Tampa Bay Lightning,L,1,1,0,1,--,0,33,29,4,0.879,4
 Linus Ullmark,2022-10-25,Boston Bruins,L,1,1,1,0,--,0,31,30,1,0.968,1.0,59:55,0,0,0,0,0,3595
 Eric Comrie,2022-10-25,Buffalo Sabres,L,1,1,0,1,--,0,24,19,5,0.792,5.01,59:56,0,0,0,0,0,3596
 Alex Nedeljkovic,2022-10-25,Detroit Red Wings,L,1,1,0,1,--,0,41,35,6,0.854,6.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2022-10-25,New Jersey Devils,L,1,1,1,0,--,0,22,20,2,0.909,2.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2022-10-25,New Jersey Devils,L,1,1,1,0,--,0,22,20,2,0.909,2.0,60:00,0,0,0,0,0,3600
 Igor Shesterkin,2022-10-25,New York Rangers,L,1,1,0,0,--,1,44,42,2,0.955,1.88,64:00,0,0,0,0,0,3840
 Adin Hill,2022-10-25,Vegas Golden Knights,L,1,1,1,0,--,0,31,29,2,0.935,2.0,60:00,0,0,0,0,0,3600
 Connor Ingram,2022-10-25,Utah Hockey Club,L,1,1,1,0,--,0,33,30,3,0.909,3.0,60:00,0,0,0,0,0,3600
@@ -244,7 +244,7 @@ John Gibson,2022-10-28,Anaheim Ducks,L,1,1,0,1,--,0,18,14,4,0.818,6.0,40:00,0,0,
 Linus Ullmark,2022-10-28,Boston Bruins,L,1,1,1,0,--,0,30,30,0,1.0,0.0,59:34,1,0,0,0,0,3574
 Tristan Jarry,2022-10-28,Pittsburgh Penguins,L,1,1,0,1,--,0,28,24,4,0.857,4.06,59:04,0,0,0,0,0,3544
 Spencer Martin,2022-10-28,Vancouver Canucks,L,1,1,1,0,--,0,35,34,1,0.971,1.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2022-10-28,New Jersey Devils,L,1,1,1,0,--,0,24,24,0,1.0,0.0,60:00,1,0,0,0,0,3600
+Vítek Vaněček,2022-10-28,New Jersey Devils,L,1,1,1,0,--,0,24,24,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Elvis Merzlikins,2022-10-28,Columbus Blue Jackets,L,1,1,0,1,--,0,29,25,4,0.886,6.0,40:00,0,0,0,0,0,2400
 Ilya Sorokin,2022-10-28,New York Islanders,L,1,1,1,0,--,0,35,33,2,0.943,2.0,60:00,0,0,0,0,0,3600
 Karel Vejmelka,2022-10-28,Utah Hockey Club,R,1,1,0,0,--,1,35,32,3,0.914,2.98,60:19,0,0,0,0,0,3619
@@ -279,7 +279,7 @@ Marc-Andre Fleury,2022-10-30,Minnesota Wild,L,1,1,1,0,--,0,26,23,3,0.885,2.77,65
 Alex Stalock,2022-10-30,Chicago Blackhawks,L,1,1,0,0,--,1,35,32,3,0.914,2.77,65:00,0,0,0,0,0,3900
 John Gibson,2022-10-30,Anaheim Ducks,L,1,1,1,0,--,0,36,33,3,0.917,2.89,62:15,0,0,0,0,0,3735
 Connor Hellebuyck,2022-10-30,Winnipeg Jets,L,1,1,0,0,--,1,48,46,2,0.958,1.86,64:35,0,0,0,0,0,3875
-Vitek Vanecek,2022-10-30,New Jersey Devils,L,1,1,1,0,--,0,21,20,1,0.952,1.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2022-10-30,New Jersey Devils,L,1,1,1,0,--,0,21,20,1,0.952,1.0,60:00,0,0,0,0,0,3600
 Elvis Merzlikins,2022-10-30,Columbus Blue Jackets,L,1,1,0,1,--,0,53,46,7,0.868,7.0,60:00,0,0,0,0,2,3600
 Igor Shesterkin,2022-10-30,New York Rangers,L,1,1,1,0,--,0,20,18,2,0.9,2.0,60:00,0,0,0,0,0,3600
 Adin Hill,2022-10-30,Vegas Golden Knights,L,1,1,1,0,--,0,24,23,1,0.958,0.93,64:34,0,0,0,0,0,3874
@@ -307,7 +307,7 @@ Ilya Sorokin,2022-11-01,New York Islanders,L,1,1,1,0,--,0,22,21,1,0.955,1.0,60:0
 Kaapo Kahkonen,2022-11-01,San Jose Sharks,L,1,1,0,0,--,1,44,39,5,0.886,4.69,64:02,0,0,0,0,0,3842
 Igor Shesterkin,2022-11-01,New York Rangers,L,1,1,1,0,--,0,19,19,0,1.0,0.0,64:07,1,0,0,0,0,3847
 Mackenzie Blackwood,2022-11-01,New Jersey Devils,L,1,1,1,0,--,0,23,21,2,0.913,2.0,60:00,0,0,0,0,0,3600
-Dan Vladar,2022-11-01,Calgary Flames,L,1,1,0,1,--,0,26,21,5,0.808,5.14,58:19,0,0,0,0,0,3499
+Daniel Vladar,2022-11-01,Calgary Flames,L,1,1,0,1,--,0,26,21,5,0.808,5.14,58:19,0,0,0,0,0,3499
 Karel Vejmelka,2022-11-01,Utah Hockey Club,R,1,1,1,0,--,0,42,41,1,0.976,1.0,60:00,0,0,0,0,0,3600
 Joey Daccord,2022-11-01,Seattle Kraken,L,1,1,1,0,--,0,40,36,4,0.9,4.0,60:00,0,0,0,0,0,3600
 Charlie Lindgren,2022-11-01,Washington Capitals,R,1,1,0,0,--,1,31,28,3,0.903,2.92,61:35,0,0,0,0,0,3695
@@ -335,7 +335,7 @@ Andrei Vasilevskiy,2022-11-03,Tampa Bay Lightning,L,1,1,0,0,--,1,55,52,3,0.945,2
 Connor Hellebuyck,2022-11-03,Winnipeg Jets,L,1,1,1,0,--,0,22,20,2,0.909,1.95,61:37,0,0,0,0,0,3697
 Linus Ullmark,2022-11-03,Boston Bruins,L,1,1,1,0,--,0,20,18,2,0.9,2.0,60:00,0,0,0,0,0,3600
 Spencer Martin,2022-11-03,Vancouver Canucks,L,1,1,1,0,--,0,31,26,5,0.839,5.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2022-11-03,New Jersey Devils,L,1,0,1,0,--,0,19,18,1,0.919,1.92,31:19,0,0,0,0,0,1879
+Vítek Vaněček,2022-11-03,New Jersey Devils,L,1,0,1,0,--,0,19,18,1,0.919,1.92,31:19,0,0,0,0,0,1879
 Ilya Sorokin,2022-11-03,New York Islanders,L,1,1,1,0,--,0,34,32,2,0.941,2.0,60:00,0,0,0,0,0,3600
 Ville Husso,2022-11-03,Detroit Red Wings,L,1,1,1,0,--,0,34,33,1,0.971,1.0,59:47,0,0,0,0,0,3587
 Igor Shesterkin,2022-11-03,New York Rangers,L,1,1,0,1,--,0,36,32,4,0.889,4.02,59:39,0,0,0,0,0,3579
@@ -369,7 +369,7 @@ Juuse Saros,2022-11-05,Nashville Predators,L,1,1,1,0,--,0,45,42,3,0.933,2.77,65:
 Tristan Jarry,2022-11-05,Pittsburgh Penguins,L,1,1,0,1,--,0,28,25,3,0.893,3.08,58:26,0,0,0,0,0,3506
 Eric Comrie,2022-11-05,Buffalo Sabres,L,1,1,0,1,--,0,29,25,4,0.862,4.03,59:37,0,0,0,0,0,3577
 Thatcher Demko,2022-11-05,Vancouver Canucks,L,1,1,0,0,--,1,30,27,3,0.9,2.77,65:00,0,0,0,0,0,3900
-Vitek Vanecek,2022-11-05,New Jersey Devils,L,1,1,1,0,--,0,30,27,3,0.9,2.89,62:14,0,0,0,0,0,3734
+Vítek Vaněček,2022-11-05,New Jersey Devils,L,1,1,1,0,--,0,30,27,3,0.9,2.89,62:14,0,0,0,0,0,3734
 Ville Husso,2022-11-05,Detroit Red Wings,L,1,1,1,0,--,0,24,24,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Ilya Samsonov,2022-11-05,Toronto Maple Leafs,L,1,1,1,0,--,0,14,13,1,0.952,1.5,40:00,0,0,0,0,0,2400
 Adin Hill,2022-11-05,Vegas Golden Knights,L,1,1,1,0,--,0,31,27,4,0.871,4.0,60:00,0,0,0,0,0,3600
@@ -403,7 +403,7 @@ Andrei Vasilevskiy,2022-11-08,Tampa Bay Lightning,L,1,1,0,1,--,0,29,26,3,0.897,3
 Connor Hellebuyck,2022-11-08,Winnipeg Jets,L,1,1,1,0,--,0,22,21,1,0.955,1.0,60:00,0,0,0,0,0,3600
 Eric Comrie,2022-11-08,Buffalo Sabres,L,1,1,0,1,--,0,23,20,3,0.87,3.01,59:53,0,0,0,0,0,3593
 Spencer Martin,2022-11-08,Vancouver Canucks,L,1,1,1,0,--,0,41,37,4,0.902,4.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2022-11-08,New Jersey Devils,L,1,1,1,0,--,0,35,33,2,0.943,2.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2022-11-08,New Jersey Devils,L,1,1,1,0,--,0,35,33,2,0.943,2.0,60:00,0,0,0,0,0,3600
 Ville Husso,2022-11-08,Detroit Red Wings,L,1,1,0,0,--,1,33,31,2,0.939,1.85,65:00,0,0,0,0,0,3900
 Igor Shesterkin,2022-11-08,New York Rangers,L,1,1,0,1,--,0,26,22,4,0.846,4.15,57:54,0,0,0,0,0,3474
 Felix Sandstrom,2022-11-08,Philadelphia Flyers,L,1,1,1,0,--,0,28,27,1,0.964,1.0,60:00,0,0,0,0,0,3600
@@ -427,12 +427,12 @@ Jordan Binnington,2022-11-10,St. Louis Blues,L,1,1,1,0,--,0,30,27,3,0.9,3.0,60:0
 Joonas Korpisalo,2022-11-10,Columbus Blue Jackets,L,1,1,1,0,--,0,34,32,2,0.941,2.0,60:00,0,0,0,0,0,3600
 Linus Ullmark,2022-11-10,Boston Bruins,L,1,1,1,0,--,0,32,31,1,0.969,1.01,59:24,0,0,0,0,0,3564
 Eric Comrie,2022-11-10,Buffalo Sabres,L,1,1,0,1,--,0,35,29,6,0.829,6.19,58:11,0,0,0,0,0,3491
-Vitek Vanecek,2022-11-10,New Jersey Devils,L,1,1,0,0,--,0,21,18,3,0.893,3.56,50:37,0,0,0,0,0,3037
+Vítek Vaněček,2022-11-10,New Jersey Devils,L,1,1,0,0,--,0,21,18,3,0.893,3.56,50:37,0,0,0,0,0,3037
 Ilya Sorokin,2022-11-10,New York Islanders,L,1,1,0,1,--,0,27,26,1,0.963,1.02,58:53,0,0,0,0,0,3533
 Ville Husso,2022-11-10,Detroit Red Wings,L,1,1,0,1,--,0,33,25,8,0.758,8.03,59:45,0,0,0,0,0,3585
 Kaapo Kahkonen,2022-11-10,San Jose Sharks,L,1,1,0,1,--,0,32,28,4,0.875,4.12,58:11,0,0,0,0,0,3491
 Igor Shesterkin,2022-11-10,New York Rangers,L,1,1,1,0,--,0,20,18,2,0.9,2.0,60:00,0,0,0,0,0,3600
-Dan Vladar,2022-11-10,Calgary Flames,L,1,1,0,1,--,0,27,25,2,0.926,2.03,59:12,0,0,0,0,0,3552
+Daniel Vladar,2022-11-10,Calgary Flames,L,1,1,0,1,--,0,27,25,2,0.926,2.03,59:12,0,0,0,0,0,3552
 Karel Vejmelka,2022-11-10,Utah Hockey Club,R,1,1,1,0,--,0,24,24,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Carter Hart,2022-11-10,Philadelphia Flyers,L,1,1,0,1,--,0,27,24,3,0.889,3.11,57:56,0,0,0,0,0,3476
 Logan Thompson,2022-11-10,Vegas Golden Knights,R,1,1,1,0,--,0,35,31,4,0.886,4.06,59:07,0,0,0,0,0,3547
@@ -501,10 +501,10 @@ Jake Allen,2022-11-15,Montréal Canadiens,L,1,1,0,1,--,0,38,34,4,0.895,4.27,56:1
 Darcy Kuemper,2022-11-15,Washington Capitals,L,1,1,0,1,--,0,42,38,4,0.905,4.09,58:43,0,0,0,0,0,3523
 Sergei Bobrovsky,2022-11-15,Florida Panthers,L,1,1,1,0,--,0,43,41,2,0.953,2.0,60:00,0,0,0,0,0,3600
 John Gibson,2022-11-15,Anaheim Ducks,L,1,1,1,0,--,0,33,31,2,0.939,1.91,62:51,0,0,0,0,0,3771
-Matt Murray,2022-11-15,Toronto Maple Leafs,L,1,1,1,0,--,0,37,35,2,0.946,2.0,60:00,0,0,0,0,0,3600
+Matthew Murray,2022-11-15,Toronto Maple Leafs,L,1,1,1,0,--,0,37,35,2,0.946,2.0,60:00,0,0,0,0,0,3600
 Juuse Saros,2022-11-15,Nashville Predators,L,1,1,1,0,--,0,33,32,1,0.97,1.0,60:00,0,0,0,0,0,3600
 Spencer Martin,2022-11-15,Vancouver Canucks,L,1,1,1,0,--,0,32,28,4,0.875,4.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2022-11-15,New Jersey Devils,L,1,1,1,0,--,0,26,25,1,0.962,1.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2022-11-15,New Jersey Devils,L,1,1,1,0,--,0,26,25,1,0.962,1.0,60:00,0,0,0,0,0,3600
 Elvis Merzlikins,2022-11-15,Columbus Blue Jackets,L,1,1,0,0,--,0,17,15,2,0.892,3.72,32:16,0,0,0,0,0,1936
 Ville Husso,2022-11-15,Detroit Red Wings,L,1,1,0,0,--,1,30,27,3,0.9,2.81,64:10,0,0,0,0,0,3850
 Casey DeSmith,2022-11-15,Pittsburgh Penguins,L,1,1,0,1,--,0,32,28,4,0.875,4.04,59:21,0,0,0,0,0,3561
@@ -524,14 +524,14 @@ Martin Jones,2022-11-17,Seattle Kraken,L,1,1,1,0,--,0,30,28,2,0.933,1.89,63:39,0
 Scott Wedgewood,2022-11-17,Dallas Stars,L,1,1,1,0,--,0,23,21,2,0.909,3.52,34:05,0,0,0,0,0,2045
 John Gibson,2022-11-17,Anaheim Ducks,L,1,1,0,1,--,0,32,29,3,0.906,3.06,58:49,0,0,0,0,0,3529
 Andrei Vasilevskiy,2022-11-17,Tampa Bay Lightning,L,1,1,1,0,--,0,40,39,1,0.975,1.0,60:00,0,0,0,0,0,3600
-Matt Murray,2022-11-17,Toronto Maple Leafs,L,1,1,0,0,--,1,33,30,3,0.909,3.0,60:04,0,0,0,0,0,3604
+Matthew Murray,2022-11-17,Toronto Maple Leafs,L,1,1,0,0,--,1,33,30,3,0.909,3.0,60:04,0,0,0,0,0,3604
 Joonas Korpisalo,2022-11-17,Columbus Blue Jackets,L,1,1,1,0,--,0,42,38,4,0.905,4.0,60:00,0,0,0,0,0,3600
 Connor Hellebuyck,2022-11-17,Winnipeg Jets,L,1,1,1,0,--,0,31,29,2,0.935,2.0,60:00,0,0,0,0,0,3600
 Linus Ullmark,2022-11-17,Boston Bruins,L,1,1,1,0,--,0,23,22,1,0.957,1.01,59:40,0,0,0,0,2,3580
 Antti Raanta,2022-11-17,Carolina Hurricanes,L,1,1,0,0,--,1,15,12,3,0.8,2.93,61:21,0,0,0,0,0,3681
 Juuse Saros,2022-11-17,Nashville Predators,L,1,1,1,0,--,0,33,29,4,0.879,4.0,60:00,0,0,0,0,0,3600
 Tristan Jarry,2022-11-17,Pittsburgh Penguins,L,1,1,1,0,--,0,23,19,4,0.826,4.03,59:30,0,0,1,1,0,3570
-Vitek Vanecek,2022-11-17,New Jersey Devils,L,1,1,1,0,--,0,27,25,2,0.926,1.98,60:45,0,0,0,0,0,3645
+Vítek Vaněček,2022-11-17,New Jersey Devils,L,1,1,1,0,--,0,27,25,2,0.926,1.98,60:45,0,0,0,0,0,3645
 Ilya Sorokin,2022-11-17,New York Islanders,L,1,1,0,1,--,0,31,26,5,0.839,5.08,59:02,0,0,0,0,0,3542
 Ville Husso,2022-11-17,Detroit Red Wings,L,1,1,1,0,--,0,25,21,4,0.84,4.0,59:58,0,0,0,0,0,3598
 Igor Shesterkin,2022-11-17,New York Rangers,L,1,1,0,0,--,1,32,29,3,0.906,2.87,62:45,0,0,0,0,0,3765
@@ -556,7 +556,7 @@ Petr Mrazek,2022-11-19,Chicago Blackhawks,L,1,1,0,1,--,0,43,37,6,0.86,6.0,60:00,
 Jordan Binnington,2022-11-19,St. Louis Blues,L,1,1,1,0,--,0,32,30,2,0.938,2.0,60:00,0,0,0,0,0,3600
 John Gibson,2022-11-19,Anaheim Ducks,L,1,1,0,1,--,0,29,24,5,0.824,7.58,39:36,0,0,0,0,0,2376
 Andrei Vasilevskiy,2022-11-19,Tampa Bay Lightning,L,1,1,1,0,--,0,32,30,2,0.938,1.92,62:36,0,0,0,0,0,3756
-Matt Murray,2022-11-19,Toronto Maple Leafs,L,1,1,1,0,--,0,34,32,2,0.941,2.01,59:38,0,0,0,0,0,3578
+Matthew Murray,2022-11-19,Toronto Maple Leafs,L,1,1,1,0,--,0,34,32,2,0.941,2.01,59:38,0,0,0,0,0,3578
 Joonas Korpisalo,2022-11-19,Columbus Blue Jackets,L,1,1,0,1,--,0,37,31,6,0.838,6.0,60:00,0,0,0,0,0,3600
 Connor Hellebuyck,2022-11-19,Winnipeg Jets,L,1,1,0,1,--,0,31,29,2,0.935,2.05,58:39,0,0,0,0,0,3519
 Cal Petersen,2022-11-19,Los Angeles Kings,R,1,1,0,0,--,1,29,26,3,0.897,2.89,62:23,0,0,0,0,0,3743
@@ -587,7 +587,7 @@ Andrei Vasilevskiy,2022-11-21,Tampa Bay Lightning,L,1,1,0,1,--,0,29,24,5,0.828,5
 Linus Ullmark,2022-11-21,Boston Bruins,L,1,1,1,0,--,0,35,32,3,0.914,3.0,60:00,0,0,0,0,0,3600
 Juuse Saros,2022-11-21,Nashville Predators,L,1,1,1,0,--,0,27,24,3,0.889,2.77,65:00,0,0,0,0,0,3900
 Thatcher Demko,2022-11-21,Vancouver Canucks,L,1,1,0,1,--,0,38,33,5,0.868,5.18,57:56,0,0,0,0,0,3476
-Vitek Vanecek,2022-11-21,New Jersey Devils,L,1,1,1,0,--,0,30,28,2,0.933,2.0,59:53,0,0,0,0,0,3593
+Vítek Vaněček,2022-11-21,New Jersey Devils,L,1,1,1,0,--,0,30,28,2,0.933,2.0,59:53,0,0,0,0,0,3593
 Ilya Sorokin,2022-11-21,New York Islanders,L,1,1,1,0,--,0,32,30,2,0.938,1.94,61:56,0,0,0,0,0,3716
 Kaapo Kahkonen,2022-11-21,San Jose Sharks,L,1,1,1,0,--,0,38,37,1,0.974,1.0,60:00,0,0,0,0,0,3600
 Erik Kallgren,2022-11-21,Toronto Maple Leafs,L,1,1,0,0,--,1,24,21,3,0.875,2.92,61:40,0,0,0,0,0,3700
@@ -611,17 +611,17 @@ Jack Campbell,2022-11-23,Edmonton Oilers,L,1,1,0,1,--,0,31,28,3,0.903,3.01,59:52
 Petr Mrazek,2022-11-23,Chicago Blackhawks,L,1,1,0,1,--,0,38,33,5,0.868,5.08,59:05,0,0,0,0,0,3545
 Jordan Binnington,2022-11-23,St. Louis Blues,L,1,1,0,1,--,0,32,26,6,0.813,6.0,60:00,0,0,0,0,0,3600
 John Gibson,2022-11-23,Anaheim Ducks,L,1,1,1,0,--,0,43,41,2,0.953,2.0,60:00,0,0,0,0,0,3600
-Matt Murray,2022-11-23,Toronto Maple Leafs,L,1,1,1,0,--,0,35,34,1,0.971,1.0,60:00,0,0,0,0,0,3600
+Matthew Murray,2022-11-23,Toronto Maple Leafs,L,1,1,1,0,--,0,35,34,1,0.971,1.0,60:00,0,0,0,0,0,3600
 Joonas Korpisalo,2022-11-23,Columbus Blue Jackets,L,1,1,0,1,--,0,28,26,2,0.929,2.07,57:57,0,0,0,0,0,3477
 Connor Hellebuyck,2022-11-23,Winnipeg Jets,L,1,1,0,1,--,0,39,33,6,0.846,6.0,60:00,0,0,0,0,0,3600
 Tristan Jarry,2022-11-23,Pittsburgh Penguins,L,1,1,1,0,--,0,34,33,1,0.971,0.92,65:00,0,0,0,0,0,3900
 Spencer Martin,2022-11-23,Vancouver Canucks,L,1,1,1,0,--,0,36,33,3,0.917,3.0,59:59,0,0,0,0,0,3599
-Vitek Vanecek,2022-11-23,New Jersey Devils,L,1,1,0,1,--,0,20,18,2,0.9,2.08,57:46,0,0,0,0,0,3466
+Vítek Vaněček,2022-11-23,New Jersey Devils,L,1,1,0,1,--,0,20,18,2,0.9,2.08,57:46,0,0,0,0,0,3466
 Ilya Sorokin,2022-11-23,New York Islanders,L,1,1,1,0,--,0,49,49,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Ville Husso,2022-11-23,Detroit Red Wings,L,1,1,1,0,--,0,26,26,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Kaapo Kahkonen,2022-11-23,San Jose Sharks,L,1,1,0,1,--,0,26,19,7,0.731,7.35,57:10,0,0,0,0,0,3430
 Felix Sandstrom,2022-11-23,Philadelphia Flyers,L,1,1,0,0,--,1,32,29,3,0.906,2.96,60:50,0,0,0,0,0,3650
-Dan Vladar,2022-11-23,Calgary Flames,L,1,1,0,0,--,1,39,38,1,0.974,0.93,64:50,0,0,0,0,0,3890
+Daniel Vladar,2022-11-23,Calgary Flames,L,1,1,0,0,--,1,39,38,1,0.974,0.93,64:50,0,0,0,0,0,3890
 Sam Montembeault,2022-11-23,Montréal Canadiens,L,1,1,1,0,--,0,31,30,1,0.968,1.01,59:37,0,0,0,0,0,3577
 Karel Vejmelka,2022-11-23,Utah Hockey Club,R,1,1,1,0,--,0,36,36,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Filip Gustavsson,2022-11-23,Minnesota Wild,L,1,1,1,0,--,0,29,28,1,0.966,1.0,59:54,0,0,0,0,0,3594
@@ -643,7 +643,7 @@ Cam Talbot,2022-11-25,Ottawa Senators,L,1,1,1,0,--,0,32,31,1,0.969,1.01,59:41,0,
 Philipp Grubauer,2022-11-25,Seattle Kraken,L,1,1,1,0,--,0,22,20,2,0.909,2.0,60:00,0,0,0,0,0,3600
 Jordan Binnington,2022-11-25,St. Louis Blues,L,1,1,0,1,--,0,26,22,4,0.846,4.02,59:45,0,0,0,0,0,3585
 Andrei Vasilevskiy,2022-11-25,Tampa Bay Lightning,L,1,1,1,0,--,0,27,25,2,0.926,2.0,60:00,0,0,0,0,0,3600
-Matt Murray,2022-11-25,Toronto Maple Leafs,L,1,1,1,0,--,0,28,25,3,0.893,3.01,59:52,0,0,0,0,0,3592
+Matthew Murray,2022-11-25,Toronto Maple Leafs,L,1,1,1,0,--,0,28,25,3,0.893,3.01,59:52,0,0,0,0,0,3592
 Joonas Korpisalo,2022-11-25,Columbus Blue Jackets,L,1,1,0,1,--,0,24,21,3,0.875,3.1,58:04,0,0,0,0,0,3484
 Anthony Stolarz,2022-11-25,Anaheim Ducks,L,1,1,0,1,--,0,33,28,5,0.848,5.0,60:00,0,0,0,0,0,3600
 Connor Hellebuyck,2022-11-25,Winnipeg Jets,L,1,1,1,0,--,0,41,37,4,0.902,3.97,60:30,0,0,0,0,0,3630
@@ -665,10 +665,10 @@ Jack Campbell,2022-11-26,Edmonton Oilers,L,1,1,1,0,--,0,23,20,3,0.87,3.0,60:00,0
 Scott Wedgewood,2022-11-26,Dallas Stars,L,1,1,0,1,--,0,36,32,4,0.889,4.0,60:00,0,0,0,0,0,3600
 Antti Raanta,2022-11-26,Carolina Hurricanes,L,1,1,1,0,--,0,20,18,2,0.9,2.0,60:00,0,0,0,0,0,3600
 Spencer Martin,2022-11-26,Vancouver Canucks,L,1,1,1,0,--,0,27,26,1,0.963,1.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2022-11-26,New Jersey Devils,L,1,1,1,0,--,0,38,37,1,0.974,1.0,59:57,0,0,0,0,0,3597
+Vítek Vaněček,2022-11-26,New Jersey Devils,L,1,1,1,0,--,0,38,37,1,0.974,1.0,59:57,0,0,0,0,0,3597
 Igor Shesterkin,2022-11-26,New York Rangers,L,1,1,0,1,--,0,32,28,4,0.875,4.08,58:47,0,0,0,0,0,3527
 Felix Sandstrom,2022-11-26,Philadelphia Flyers,L,1,1,0,1,--,0,23,18,5,0.783,5.01,59:54,0,0,0,0,0,3594
-Dan Vladar,2022-11-26,Calgary Flames,L,1,1,0,1,--,0,33,30,3,0.909,3.07,58:34,0,0,0,0,0,3514
+Daniel Vladar,2022-11-26,Calgary Flames,L,1,1,0,1,--,0,33,30,3,0.909,3.07,58:34,0,0,0,0,0,3514
 Erik Kallgren,2022-11-26,Toronto Maple Leafs,L,1,1,1,0,--,0,26,25,1,0.962,1.0,60:00,0,0,0,0,0,3600
 Casey DeSmith,2022-11-26,Pittsburgh Penguins,L,1,1,0,1,--,0,41,37,4,0.902,4.0,60:00,0,0,0,0,0,3600
 Charlie Lindgren,2022-11-26,Washington Capitals,R,1,1,0,1,--,0,29,24,5,0.828,5.06,59:17,0,0,0,0,0,3557
@@ -688,8 +688,8 @@ Connor Ingram,2022-11-27,Utah Hockey Club,L,1,1,0,1,--,0,29,25,4,0.862,4.1,58:28
 Brian Elliott,2022-11-28,Tampa Bay Lightning,L,1,1,1,0,--,0,37,32,5,0.865,4.81,62:23,0,0,0,0,0,3743
 Scott Wedgewood,2022-11-28,Dallas Stars,L,1,1,1,0,--,0,24,23,1,0.958,1.01,59:33,0,0,0,0,0,3573
 Jordan Binnington,2022-11-28,St. Louis Blues,L,1,1,0,1,--,0,23,20,3,0.87,3.01,59:53,0,0,0,0,0,3593
-Matt Murray,2022-11-28,Toronto Maple Leafs,L,1,1,1,0,--,0,44,42,2,0.955,2.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2022-11-28,New Jersey Devils,L,1,1,1,0,--,0,38,35,3,0.921,3.0,60:00,0,0,0,0,2,3600
+Matthew Murray,2022-11-28,Toronto Maple Leafs,L,1,1,1,0,--,0,44,42,2,0.955,2.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2022-11-28,New Jersey Devils,L,1,1,1,0,--,0,38,35,3,0.921,3.0,60:00,0,0,0,0,2,3600
 Ville Husso,2022-11-28,Detroit Red Wings,L,1,1,0,1,--,0,13,9,4,0.84,8.39,28:37,0,0,0,0,0,1717
 Igor Shesterkin,2022-11-28,New York Rangers,L,1,1,0,1,--,0,37,33,4,0.892,4.15,57:52,0,0,0,0,0,3472
 Stuart Skinner,2022-11-28,Edmonton Oilers,L,1,1,1,0,--,0,28,25,3,0.893,3.07,58:41,0,0,0,0,0,3521
@@ -710,7 +710,7 @@ Tristan Jarry,2022-11-29,Pittsburgh Penguins,L,1,1,0,0,--,1,39,36,3,0.923,2.91,6
 Spencer Martin,2022-11-29,Vancouver Canucks,L,1,1,0,1,--,0,27,23,4,0.852,4.19,57:19,0,0,0,0,0,3439
 Ilya Sorokin,2022-11-29,New York Islanders,L,1,1,0,1,--,0,32,30,2,0.938,2.04,58:42,0,0,0,0,0,3522
 Kaapo Kahkonen,2022-11-29,San Jose Sharks,L,1,1,1,0,--,0,28,28,0,1.0,0.0,60:00,1,0,0,0,0,3600
-Dan Vladar,2022-11-29,Calgary Flames,L,1,1,1,0,--,0,33,31,2,0.939,2.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2022-11-29,Calgary Flames,L,1,1,1,0,--,0,33,31,2,0.939,2.0,60:00,0,0,0,0,0,3600
 Carter Hart,2022-11-29,Philadelphia Flyers,L,1,1,1,0,--,0,24,23,1,0.958,1.0,59:46,0,0,0,0,0,3586
 Jeremy Swayman,2022-11-29,Boston Bruins,L,1,1,1,0,--,0,28,27,1,0.964,1.0,60:00,0,0,0,0,0,3600
 Alexandar Georgiev,2022-11-29,Colorado Avalanche,L,1,1,0,1,--,0,23,18,5,0.783,5.0,60:00,0,0,0,0,0,3600
@@ -737,7 +737,7 @@ Antti Raanta,2022-12-01,Carolina Hurricanes,L,1,1,0,0,--,0,15,12,3,0.846,4.51,39
 Juuse Saros,2022-12-01,Nashville Predators,L,1,1,1,0,--,0,28,25,3,0.893,2.98,60:24,0,0,0,0,0,3624
 Tristan Jarry,2022-12-01,Pittsburgh Penguins,L,1,1,1,0,--,0,37,34,3,0.919,3.0,60:00,0,0,0,0,0,3600
 Spencer Martin,2022-12-01,Vancouver Canucks,L,1,0,0,0,--,0,14,12,2,0.844,2.99,40:11,0,0,0,0,0,2411
-Vitek Vanecek,2022-12-01,New Jersey Devils,L,1,1,0,0,--,1,24,20,4,0.833,3.96,60:33,0,0,0,0,0,3633
+Vítek Vaněček,2022-12-01,New Jersey Devils,L,1,1,0,0,--,1,24,20,4,0.833,3.96,60:33,0,0,0,0,0,3633
 Karel Vejmelka,2022-12-01,Utah Hockey Club,R,1,1,0,1,--,0,31,27,4,0.871,4.03,59:31,0,0,0,0,0,3571
 Carter Hart,2022-12-01,Philadelphia Flyers,L,1,1,0,1,--,0,27,23,4,0.852,4.0,60:00,0,0,0,0,0,3600
 Jake Oettinger,2022-12-01,Dallas Stars,L,1,1,1,0,--,0,31,31,0,1.0,0.0,60:00,1,0,0,0,0,3600
@@ -761,13 +761,13 @@ Petr Mrazek,2022-12-03,Chicago Blackhawks,L,1,1,1,0,--,0,22,21,1,0.929,1.5,40:00
 Anton Forsberg,2022-12-03,Ottawa Senators,L,1,1,1,0,--,0,37,35,2,0.946,2.01,59:45,0,0,0,0,0,3585
 John Gibson,2022-12-03,Anaheim Ducks,L,1,1,0,0,--,1,49,45,4,0.918,3.74,64:09,0,0,0,0,4,3849
 Andrei Vasilevskiy,2022-12-03,Tampa Bay Lightning,L,1,1,1,0,--,0,39,36,3,0.923,2.99,60:12,0,0,0,0,0,3612
-Matt Murray,2022-12-03,Toronto Maple Leafs,L,1,1,0,0,--,1,33,29,4,0.879,3.96,60:33,0,0,0,0,0,3633
+Matthew Murray,2022-12-03,Toronto Maple Leafs,L,1,1,0,0,--,1,33,29,4,0.879,3.96,60:33,0,0,0,0,0,3633
 Linus Ullmark,2022-12-03,Boston Bruins,L,1,1,1,0,--,0,25,24,1,0.96,1.0,59:55,0,0,0,0,0,3595
 Tristan Jarry,2022-12-03,Pittsburgh Penguins,L,1,1,1,0,--,0,28,26,2,0.929,2.01,59:34,0,0,0,0,0,3574
 Spencer Martin,2022-12-03,Vancouver Canucks,L,1,1,1,0,--,0,23,21,2,0.913,1.87,64:03,0,0,0,0,0,3843
 Ville Husso,2022-12-03,Detroit Red Wings,L,1,1,0,1,--,0,24,21,3,0.875,3.04,59:17,0,0,0,0,0,3557
 Kaapo Kahkonen,2022-12-03,San Jose Sharks,L,1,1,0,1,--,0,39,34,5,0.872,5.0,60:00,0,0,0,0,0,3600
-Dan Vladar,2022-12-03,Calgary Flames,L,1,1,1,0,--,0,29,27,2,0.931,2.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2022-12-03,Calgary Flames,L,1,1,1,0,--,0,29,27,2,0.931,2.0,60:00,0,0,0,0,0,3600
 Adin Hill,2022-12-03,Vegas Golden Knights,L,1,1,1,0,--,0,25,24,1,0.96,1.0,60:00,0,0,0,0,0,3600
 Karel Vejmelka,2022-12-03,Utah Hockey Club,R,1,1,0,0,--,1,32,29,3,0.906,2.82,63:44,0,0,0,0,0,3824
 Carter Hart,2022-12-03,Philadelphia Flyers,L,1,1,0,1,--,0,18,15,3,0.833,3.11,57:52,0,0,0,0,0,3472
@@ -789,7 +789,7 @@ Ukko-Pekka Luukkonen,2022-12-04,Buffalo Sabres,L,1,1,1,0,--,0,29,26,3,0.897,3.01
 Arvid Soderblom,2022-12-04,Chicago Blackhawks,L,1,1,0,1,--,0,40,37,3,0.925,3.0,60:00,0,0,0,0,0,3600
 Jordan Binnington,2022-12-05,St. Louis Blues,L,1,1,0,1,--,0,24,18,6,0.75,6.34,56:47,0,0,0,0,0,3407
 Igor Shesterkin,2022-12-05,New York Rangers,L,1,1,1,0,--,0,29,25,4,0.862,4.0,60:00,0,0,0,0,0,3600
-Dan Vladar,2022-12-05,Calgary Flames,L,1,1,1,0,--,0,20,18,2,0.9,2.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2022-12-05,Calgary Flames,L,1,1,1,0,--,0,20,18,2,0.9,2.0,60:00,0,0,0,0,0,3600
 Sam Montembeault,2022-12-05,Montréal Canadiens,L,1,1,0,0,--,1,32,25,7,0.781,6.97,60:13,0,0,0,0,0,3613
 Karel Vejmelka,2022-12-05,Utah Hockey Club,R,1,1,0,1,--,0,27,24,3,0.889,3.1,58:07,0,0,0,0,0,3487
 Charlie Lindgren,2022-12-05,Washington Capitals,R,1,1,1,0,--,0,30,28,2,0.933,2.01,59:45,0,0,0,0,0,3585
@@ -806,11 +806,11 @@ Cam Talbot,2022-12-06,Ottawa Senators,L,1,1,0,1,--,0,14,9,5,0.821,9.21,32:34,0,0
 Sergei Bobrovsky,2022-12-06,Florida Panthers,L,1,0,0,0,--,0,15,14,1,0.867,1.57,38:13,0,0,0,0,0,2293
 John Gibson,2022-12-06,Anaheim Ducks,L,1,1,1,0,--,0,37,34,3,0.919,2.91,61:56,0,0,0,0,0,3716
 Andrei Vasilevskiy,2022-12-06,Tampa Bay Lightning,L,1,1,0,1,--,0,24,22,2,0.917,2.06,58:16,0,0,0,0,0,3496
-Matt Murray,2022-12-06,Toronto Maple Leafs,L,1,1,1,0,--,0,44,44,0,1.0,0.0,60:00,1,0,0,0,0,3600
+Matthew Murray,2022-12-06,Toronto Maple Leafs,L,1,1,1,0,--,0,44,44,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Connor Hellebuyck,2022-12-06,Winnipeg Jets,L,1,1,1,0,--,0,41,39,2,0.951,2.0,60:00,0,0,0,0,0,3600
 Tristan Jarry,2022-12-06,Pittsburgh Penguins,L,1,1,1,0,--,0,39,38,1,0.974,1.0,59:47,0,0,0,0,0,3587
 Pheonix Copley,2022-12-06,Los Angeles Kings,L,1,1,1,0,--,0,33,31,2,0.939,2.0,59:58,0,0,0,0,0,3598
-Vitek Vanecek,2022-12-06,New Jersey Devils,L,1,1,1,0,--,0,24,24,0,1.0,0.0,59:58,1,0,0,0,0,3598
+Vítek Vaněček,2022-12-06,New Jersey Devils,L,1,1,1,0,--,0,24,24,0,1.0,0.0,59:58,1,0,0,0,0,3598
 Elvis Merzlikins,2022-12-06,Columbus Blue Jackets,L,1,1,0,1,--,0,34,30,4,0.882,4.2,57:06,0,0,0,0,0,3426
 Ilya Sorokin,2022-12-06,New York Islanders,L,1,1,0,1,--,0,26,21,5,0.808,5.08,59:03,0,0,0,0,0,3543
 Ville Husso,2022-12-06,Detroit Red Wings,L,1,1,1,0,--,0,46,44,2,0.957,2.0,60:00,0,0,0,0,0,3600
@@ -823,7 +823,7 @@ Spencer Martin,2022-12-07,Vancouver Canucks,L,1,1,1,0,--,0,39,34,5,0.872,4.66,64
 Elvis Merzlikins,2022-12-07,Columbus Blue Jackets,L,1,0,0,1,--,0,21,15,6,0.7,11.07,32:32,0,0,0,0,0,1952
 Kaapo Kahkonen,2022-12-07,San Jose Sharks,L,1,1,0,0,--,0,19,15,4,0.778,6.0,40:00,0,0,0,0,0,2400
 Igor Shesterkin,2022-12-07,New York Rangers,L,1,1,1,0,--,0,26,25,1,0.962,1.01,59:14,0,0,0,0,0,3554
-Dan Vladar,2022-12-07,Calgary Flames,L,1,1,1,0,--,0,28,25,3,0.893,3.01,59:46,0,0,0,0,0,3586
+Daniel Vladar,2022-12-07,Calgary Flames,L,1,1,1,0,--,0,28,25,3,0.893,3.01,59:46,0,0,0,0,0,3586
 Connor Ingram,2022-12-07,Utah Hockey Club,L,1,1,0,1,--,0,35,27,8,0.771,8.03,59:48,0,0,0,0,0,3588
 Charlie Lindgren,2022-12-07,Washington Capitals,R,1,1,1,0,--,0,30,29,1,0.967,1.01,59:35,0,0,0,0,0,3575
 Carter Hart,2022-12-07,Philadelphia Flyers,L,1,1,0,1,--,0,25,23,2,0.92,2.06,58:13,0,0,0,0,0,3493
@@ -865,13 +865,13 @@ Jake Allen,2022-12-10,Montréal Canadiens,L,1,1,0,1,--,0,34,31,3,0.912,3.06,58:5
 Cam Talbot,2022-12-10,Ottawa Senators,L,1,1,1,0,--,0,29,27,2,0.931,2.0,60:00,0,0,0,0,0,3600
 Sergei Bobrovsky,2022-12-10,Florida Panthers,L,1,1,0,1,--,0,38,34,4,0.895,4.03,59:33,0,0,0,0,0,3573
 Andrei Vasilevskiy,2022-12-10,Tampa Bay Lightning,L,1,1,1,0,--,0,25,24,1,0.96,1.0,59:54,0,0,0,0,0,3594
-Matt Murray,2022-12-10,Toronto Maple Leafs,L,1,1,1,0,--,0,26,22,4,0.846,3.95,60:43,0,0,0,0,0,3643
+Matthew Murray,2022-12-10,Toronto Maple Leafs,L,1,1,1,0,--,0,26,22,4,0.846,3.95,60:43,0,0,0,0,0,3643
 Juuse Saros,2022-12-10,Nashville Predators,L,1,1,0,1,--,0,33,30,3,0.909,3.03,59:28,0,0,0,0,0,3568
 Spencer Martin,2022-12-10,Vancouver Canucks,L,1,1,0,1,--,0,33,30,3,0.909,3.02,59:33,0,0,0,0,0,3573
 Pheonix Copley,2022-12-10,Los Angeles Kings,L,1,1,1,0,--,0,22,20,2,0.909,2.0,59:59,0,0,0,0,0,3599
 Ilya Sorokin,2022-12-10,New York Islanders,L,1,1,0,1,--,0,29,26,3,0.897,3.0,60:00,0,0,0,0,0,3600
 Ville Husso,2022-12-10,Detroit Red Wings,L,1,1,0,0,--,1,33,30,3,0.909,2.79,64:29,0,0,0,0,0,3869
-Dan Vladar,2022-12-10,Calgary Flames,L,1,1,0,0,--,1,34,29,5,0.853,4.94,60:43,0,0,0,0,2,3643
+Daniel Vladar,2022-12-10,Calgary Flames,L,1,1,0,0,--,1,34,29,5,0.853,4.94,60:43,0,0,0,0,2,3643
 Casey DeSmith,2022-12-10,Pittsburgh Penguins,L,1,1,1,0,--,0,38,37,1,0.974,1.0,59:44,0,0,0,0,0,3584
 Filip Gustavsson,2022-12-10,Minnesota Wild,L,1,1,1,0,--,0,35,35,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Jake Oettinger,2022-12-10,Dallas Stars,L,1,1,1,0,--,0,26,24,2,0.923,1.86,64:29,0,0,0,0,0,3869
@@ -896,7 +896,7 @@ Cam Talbot,2022-12-12,Ottawa Senators,L,1,1,1,0,--,0,32,32,0,1.0,0.0,60:00,1,0,0
 Jordan Binnington,2022-12-12,St. Louis Blues,L,1,1,1,0,--,0,25,25,0,1.0,0.0,62:06,1,0,0,0,0,3726
 Juuse Saros,2022-12-12,Nashville Predators,L,1,1,0,0,--,1,24,23,1,0.958,0.96,62:23,0,0,0,0,0,3743
 Tristan Jarry,2022-12-12,Pittsburgh Penguins,L,1,1,1,0,--,0,27,26,1,0.963,1.0,59:55,0,0,0,0,0,3595
-Vitek Vanecek,2022-12-12,New Jersey Devils,L,1,1,0,0,--,1,23,19,4,0.826,3.89,61:44,0,0,0,0,0,3704
+Vítek Vaněček,2022-12-12,New Jersey Devils,L,1,1,0,0,--,1,23,19,4,0.826,3.89,61:44,0,0,0,0,0,3704
 Igor Shesterkin,2022-12-12,New York Rangers,L,1,1,1,0,--,0,29,26,3,0.897,2.89,62:15,0,0,0,0,0,3735
 Stuart Skinner,2022-12-12,Edmonton Oilers,L,1,1,0,1,--,0,30,28,2,0.933,2.03,59:08,0,0,0,0,0,3548
 Jake Oettinger,2022-12-12,Dallas Stars,L,1,1,0,1,--,0,25,23,2,0.92,2.02,59:32,0,0,0,0,0,3572
@@ -936,13 +936,13 @@ Jake Allen,2022-12-15,Montréal Canadiens,L,1,1,0,1,--,0,30,27,3,0.9,3.06,58:47,
 Sergei Bobrovsky,2022-12-15,Florida Panthers,L,1,1,0,1,--,0,38,35,3,0.921,3.05,59:06,0,0,0,0,0,3546
 Philipp Grubauer,2022-12-15,Seattle Kraken,L,1,1,0,1,--,0,39,36,3,0.923,3.07,58:35,0,0,0,0,0,3515
 Jordan Binnington,2022-12-15,St. Louis Blues,L,1,1,1,0,--,0,27,24,3,0.889,2.8,64:20,0,0,0,0,0,3860
-Matt Murray,2022-12-15,Toronto Maple Leafs,L,1,1,0,1,--,0,19,17,2,0.895,2.02,59:22,0,0,0,0,0,3562
+Matthew Murray,2022-12-15,Toronto Maple Leafs,L,1,1,0,1,--,0,19,17,2,0.895,2.02,59:22,0,0,0,0,0,3562
 Connor Hellebuyck,2022-12-15,Winnipeg Jets,L,1,1,1,0,--,0,26,25,1,0.962,0.94,63:31,0,0,0,0,0,3811
 Linus Ullmark,2022-12-15,Boston Bruins,L,1,1,0,0,--,1,30,28,2,0.933,1.85,64:43,0,0,0,0,0,3883
 Juuse Saros,2022-12-15,Nashville Predators,L,1,1,0,0,--,1,41,39,2,0.951,1.89,63:31,0,0,0,0,0,3811
 Tristan Jarry,2022-12-15,Pittsburgh Penguins,L,1,1,1,0,--,0,34,32,2,0.941,2.0,59:57,0,0,0,0,0,3597
 Pheonix Copley,2022-12-15,Los Angeles Kings,L,1,1,1,0,--,0,35,33,2,0.943,1.85,64:48,0,0,0,0,0,3888
-Vitek Vanecek,2022-12-15,New Jersey Devils,L,1,1,0,1,--,0,24,22,2,0.917,2.08,57:49,0,0,0,0,0,3469
+Vítek Vaněček,2022-12-15,New Jersey Devils,L,1,1,0,1,--,0,24,22,2,0.917,2.08,57:49,0,0,0,0,0,3469
 Igor Shesterkin,2022-12-15,New York Rangers,L,1,1,1,0,--,0,23,22,1,0.957,1.0,60:00,0,0,0,0,0,3600
 Charlie Lindgren,2022-12-15,Washington Capitals,R,1,1,0,1,--,0,26,24,2,0.923,2.09,57:26,0,0,0,0,0,3446
 Carter Hart,2022-12-15,Philadelphia Flyers,L,1,1,1,0,--,0,49,48,1,0.98,1.0,60:00,0,0,0,0,0,3600
@@ -1019,10 +1019,10 @@ Jacob Markstrom,2022-12-20,Calgary Flames,L,1,1,1,0,--,0,27,24,3,0.889,3.0,59:55
 Martin Jones,2022-12-20,Seattle Kraken,L,1,1,1,0,--,0,24,22,2,0.917,2.0,60:00,0,0,0,0,0,3600
 Cam Talbot,2022-12-20,Ottawa Senators,L,1,1,0,1,--,0,24,19,5,0.792,5.0,60:00,0,0,0,0,0,3600
 Andrei Vasilevskiy,2022-12-20,Tampa Bay Lightning,L,1,1,0,1,--,0,38,36,2,0.947,2.03,59:10,0,0,0,0,0,3550
-Matt Murray,2022-12-20,Toronto Maple Leafs,L,1,1,1,0,--,0,19,18,1,0.947,1.01,59:32,0,0,0,0,0,3572
+Matthew Murray,2022-12-20,Toronto Maple Leafs,L,1,1,1,0,--,0,19,18,1,0.947,1.01,59:32,0,0,0,0,0,3572
 Tristan Jarry,2022-12-20,Pittsburgh Penguins,L,1,1,1,0,--,0,28,26,2,0.929,2.0,59:57,0,0,0,0,0,3597
 Pheonix Copley,2022-12-20,Los Angeles Kings,L,1,1,1,0,--,0,25,24,1,0.96,1.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2022-12-20,New Jersey Devils,L,1,1,0,1,--,0,13,10,3,0.8,4.5,40:00,0,0,0,0,0,2400
+Vítek Vaněček,2022-12-20,New Jersey Devils,L,1,1,0,1,--,0,13,10,3,0.8,4.5,40:00,0,0,0,0,0,2400
 Igor Shesterkin,2022-12-20,New York Rangers,L,1,1,0,1,--,0,24,21,3,0.875,3.1,58:08,0,0,0,0,0,3488
 Carter Hart,2022-12-20,Philadelphia Flyers,L,1,1,1,0,--,0,33,30,3,0.909,3.0,60:00,0,0,0,0,0,3600
 David Rittich,2022-12-20,Winnipeg Jets,L,1,1,1,0,--,0,36,35,1,0.972,1.01,59:20,0,0,0,0,0,3560
@@ -1054,7 +1054,7 @@ Spencer Martin,2022-12-22,Vancouver Canucks,L,1,1,1,0,--,0,36,31,5,0.861,4.71,63
 Pheonix Copley,2022-12-22,Los Angeles Kings,L,1,1,1,0,--,0,30,27,3,0.9,2.84,63:23,0,0,0,0,0,3803
 Ilya Sorokin,2022-12-22,New York Islanders,L,1,1,0,1,--,0,33,29,4,0.879,4.09,58:43,0,0,0,0,0,3523
 Igor Shesterkin,2022-12-22,New York Rangers,L,1,1,1,0,--,0,18,15,3,0.833,3.03,59:28,0,0,0,0,0,3568
-Dan Vladar,2022-12-22,Calgary Flames,L,1,1,0,0,--,1,32,28,4,0.875,3.79,63:23,0,0,0,0,0,3803
+Daniel Vladar,2022-12-22,Calgary Flames,L,1,1,0,0,--,1,32,28,4,0.875,3.79,63:23,0,0,0,0,0,3803
 Ilya Samsonov,2022-12-22,Toronto Maple Leafs,L,1,1,1,0,--,0,19,16,3,0.842,3.07,58:39,0,0,0,0,0,3519
 Carter Hart,2022-12-22,Philadelphia Flyers,L,1,1,0,1,--,0,34,30,4,0.882,4.15,57:50,0,0,0,0,0,3470
 Filip Gustavsson,2022-12-22,Minnesota Wild,L,1,1,0,1,--,0,24,20,4,0.833,4.12,58:18,0,0,0,0,0,3498
@@ -1109,8 +1109,8 @@ Magnus Hellberg,2022-12-28,Detroit Red Wings,L,1,0,1,0,--,0,19,19,0,0.871,0.0,42
 John Gibson,2022-12-28,Anaheim Ducks,L,1,1,1,0,--,0,51,49,2,0.961,1.85,64:55,0,0,0,0,0,3895
 Andrei Vasilevskiy,2022-12-28,Tampa Bay Lightning,L,1,1,1,0,--,0,26,25,1,0.962,1.0,59:53,0,0,0,0,0,3593
 Linus Ullmark,2022-12-28,Boston Bruins,L,1,1,1,0,--,0,31,30,1,0.968,1.0,59:49,0,0,0,0,0,3589
-Vitek Vanecek,2022-12-28,New Jersey Devils,L,1,1,0,1,--,0,26,24,2,0.923,2.08,57:35,0,0,0,0,0,3455
-Dan Vladar,2022-12-28,Calgary Flames,L,1,1,1,0,--,0,31,29,2,0.935,2.01,59:45,0,0,0,0,0,3585
+Vítek Vaněček,2022-12-28,New Jersey Devils,L,1,1,0,1,--,0,26,24,2,0.923,2.08,57:35,0,0,0,0,0,3455
+Daniel Vladar,2022-12-28,Calgary Flames,L,1,1,1,0,--,0,31,29,2,0.935,2.01,59:45,0,0,0,0,0,3585
 Casey DeSmith,2022-12-28,Pittsburgh Penguins,L,1,1,0,0,--,1,46,41,5,0.891,4.82,62:13,0,0,0,0,0,3733
 Logan Thompson,2022-12-28,Vegas Golden Knights,R,1,0,0,0,--,1,22,22,0,0.926,0.0,52:00,0,0,0,0,0,3120
 Marc-Andre Fleury,2022-12-29,Minnesota Wild,L,1,1,0,1,--,0,42,39,3,0.929,3.04,59:09,0,0,0,0,0,3549
@@ -1121,7 +1121,7 @@ Sergei Bobrovsky,2022-12-29,Florida Panthers,L,1,1,1,0,--,0,27,25,2,0.926,2.0,60
 Jordan Binnington,2022-12-29,St. Louis Blues,L,1,1,1,0,--,0,22,21,1,0.955,1.0,60:00,0,0,0,0,0,3600
 Magnus Hellberg,2022-12-29,Detroit Red Wings,L,1,1,0,1,--,0,34,29,5,0.853,5.11,58:43,0,0,0,0,0,3523
 Andrei Vasilevskiy,2022-12-29,Tampa Bay Lightning,L,1,1,1,0,--,0,46,45,1,0.978,0.93,64:51,0,0,0,0,0,3891
-Matt Murray,2022-12-29,Toronto Maple Leafs,L,1,1,0,1,--,0,21,17,4,0.81,4.08,58:51,0,0,0,0,0,3531
+Matthew Murray,2022-12-29,Toronto Maple Leafs,L,1,1,0,1,--,0,21,17,4,0.81,4.08,58:51,0,0,0,0,0,3531
 Joonas Korpisalo,2022-12-29,Columbus Blue Jackets,L,1,1,0,1,--,0,36,34,2,0.944,2.08,57:47,0,0,0,0,0,3467
 Connor Hellebuyck,2022-12-29,Winnipeg Jets,L,1,1,1,0,--,0,22,20,2,0.909,2.0,60:00,0,0,0,0,0,3600
 Pheonix Copley,2022-12-29,Los Angeles Kings,L,1,1,1,0,--,0,27,23,4,0.852,3.69,65:00,0,0,0,0,0,3900
@@ -1140,7 +1140,7 @@ John Gibson,2022-12-30,Anaheim Ducks,L,1,1,0,1,--,0,43,37,6,0.86,6.0,60:00,0,0,0
 Antti Raanta,2022-12-30,Carolina Hurricanes,L,1,1,1,0,--,0,19,19,0,1.0,0.0,59:59,1,0,0,0,0,3599
 Juuse Saros,2022-12-30,Nashville Predators,L,1,1,1,0,--,0,27,26,1,0.963,1.0,60:00,0,0,0,0,0,3600
 Tristan Jarry,2022-12-30,Pittsburgh Penguins,L,1,1,0,1,--,0,27,24,3,0.889,3.07,58:43,0,0,0,0,0,3523
-Vitek Vanecek,2022-12-30,New Jersey Devils,L,1,1,1,0,--,0,27,25,2,0.926,2.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2022-12-30,New Jersey Devils,L,1,1,1,0,--,0,27,25,2,0.926,2.0,60:00,0,0,0,0,0,3600
 Stuart Skinner,2022-12-30,Edmonton Oilers,L,1,1,1,0,--,0,38,36,2,0.947,2.0,60:00,0,0,0,0,0,3600
 Spencer Knight,2022-12-30,Florida Panthers,L,1,1,0,1,--,0,34,30,4,0.882,4.0,60:00,0,0,0,0,0,3600
 Marc-Andre Fleury,2022-12-31,Minnesota Wild,L,1,1,1,0,--,0,31,29,2,0.935,2.02,59:16,0,0,0,0,0,3556
@@ -1154,7 +1154,7 @@ Jack Campbell,2022-12-31,Edmonton Oilers,L,1,1,0,1,--,0,17,15,2,0.882,2.04,58:46
 Jordan Binnington,2022-12-31,St. Louis Blues,L,1,1,0,1,--,0,31,27,4,0.871,4.12,58:12,0,0,0,0,0,3492
 Magnus Hellberg,2022-12-31,Detroit Red Wings,L,1,1,1,0,--,0,23,21,2,0.913,2.0,60:00,0,0,0,0,0,3600
 Andrei Vasilevskiy,2022-12-31,Tampa Bay Lightning,L,1,1,1,0,--,0,31,28,3,0.903,3.0,60:00,0,0,0,0,0,3600
-Matt Murray,2022-12-31,Toronto Maple Leafs,L,1,1,1,0,--,0,28,26,2,0.929,2.01,59:39,0,0,0,0,0,3579
+Matthew Murray,2022-12-31,Toronto Maple Leafs,L,1,1,1,0,--,0,28,26,2,0.929,2.01,59:39,0,0,0,0,0,3579
 Joonas Korpisalo,2022-12-31,Columbus Blue Jackets,L,1,1,1,0,--,0,28,27,1,0.964,1.0,60:00,0,0,0,0,0,3600
 Connor Hellebuyck,2022-12-31,Winnipeg Jets,L,1,1,1,0,--,0,32,31,1,0.969,1.0,60:00,0,0,0,0,0,3600
 Spencer Martin,2022-12-31,Vancouver Canucks,L,1,1,0,1,--,0,30,27,3,0.9,3.14,57:16,0,0,0,0,0,3436
@@ -1208,7 +1208,7 @@ Pyotr Kochetkov,2023-01-03,Carolina Hurricanes,L,1,1,0,1,--,0,30,26,4,0.867,4.03
 Brian Elliott,2023-01-04,Tampa Bay Lightning,L,1,1,0,1,--,0,32,28,4,0.875,4.08,58:47,0,0,0,0,0,3527
 Scott Wedgewood,2023-01-04,Dallas Stars,L,1,1,0,1,--,0,27,25,2,0.926,2.1,57:08,0,0,0,0,0,3428
 John Gibson,2023-01-04,Anaheim Ducks,L,1,1,1,0,--,0,35,35,0,1.0,0.0,60:00,1,0,0,0,0,3600
-Vitek Vanecek,2023-01-04,New Jersey Devils,L,1,1,1,0,--,0,33,32,1,0.97,1.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2023-01-04,New Jersey Devils,L,1,1,1,0,--,0,33,32,1,0.97,1.0,60:00,0,0,0,0,0,3600
 Ville Husso,2023-01-04,Detroit Red Wings,L,1,1,0,1,--,0,27,22,5,0.815,5.0,60:00,0,0,0,0,0,3600
 Filip Gustavsson,2023-01-04,Minnesota Wild,L,1,1,1,0,--,0,35,34,1,0.971,1.04,57:52,0,0,0,0,0,3472
 Jaroslav Halak,2023-01-05,New York Rangers,L,1,1,1,0,--,0,18,17,1,0.944,1.0,59:46,0,0,0,0,0,3586
@@ -1217,7 +1217,7 @@ Martin Jones,2023-01-05,Seattle Kraken,L,1,1,1,0,--,0,27,26,1,0.963,1.0,60:00,0,
 Darcy Kuemper,2023-01-05,Washington Capitals,L,1,1,1,0,--,0,27,25,2,0.926,2.0,60:00,0,0,0,0,0,3600
 Jack Campbell,2023-01-05,Edmonton Oilers,L,1,1,1,0,--,0,22,20,2,0.909,2.0,59:58,0,0,0,0,0,3598
 Jordan Binnington,2023-01-05,St. Louis Blues,L,1,1,1,0,--,0,39,36,3,0.923,3.0,60:00,0,0,0,0,0,3600
-Matt Murray,2023-01-05,Toronto Maple Leafs,L,1,1,0,1,--,0,26,21,5,0.808,5.0,60:00,0,0,0,0,0,3600
+Matthew Murray,2023-01-05,Toronto Maple Leafs,L,1,1,0,1,--,0,26,21,5,0.808,5.0,60:00,0,0,0,0,0,3600
 Juuse Saros,2023-01-05,Nashville Predators,L,1,1,1,0,--,0,67,64,3,0.955,3.0,60:00,0,0,0,0,0,3600
 Pheonix Copley,2023-01-05,Los Angeles Kings,L,1,1,0,1,--,0,21,17,4,0.81,4.03,59:31,0,0,0,0,0,3571
 Elvis Merzlikins,2023-01-05,Columbus Blue Jackets,L,1,1,0,1,--,0,37,31,6,0.838,6.03,59:45,0,0,0,0,0,3585
@@ -1254,7 +1254,7 @@ Joonas Korpisalo,2023-01-07,Columbus Blue Jackets,L,1,1,1,0,--,0,42,39,3,0.929,2
 Linus Ullmark,2023-01-07,Boston Bruins,L,1,1,1,0,--,0,30,28,2,0.933,2.01,59:38,0,0,0,0,0,3578
 Antti Raanta,2023-01-07,Carolina Hurricanes,L,1,1,0,0,--,1,18,15,3,0.833,2.77,65:00,0,0,0,0,0,3900
 Pheonix Copley,2023-01-07,Los Angeles Kings,L,1,1,1,0,--,0,20,19,1,0.95,1.01,59:41,0,0,0,0,0,3581
-Vitek Vanecek,2023-01-07,New Jersey Devils,L,1,1,1,0,--,0,34,31,3,0.912,2.87,62:47,0,0,0,0,0,3767
+Vítek Vaněček,2023-01-07,New Jersey Devils,L,1,1,1,0,--,0,34,31,3,0.912,2.87,62:47,0,0,0,0,0,3767
 Igor Shesterkin,2023-01-07,New York Rangers,L,1,1,0,0,--,1,43,39,4,0.907,3.82,62:47,0,0,0,0,0,3767
 Ilya Samsonov,2023-01-07,Toronto Maple Leafs,L,1,1,1,0,--,0,23,22,1,0.957,1.01,59:28,0,0,0,0,0,3568
 Stuart Skinner,2023-01-07,Edmonton Oilers,L,1,1,0,0,--,1,46,43,3,0.935,2.91,61:51,0,0,0,0,0,3711
@@ -1265,10 +1265,10 @@ Thomas Greiss,2023-01-08,St. Louis Blues,L,1,1,1,0,--,0,35,35,0,1.0,0.0,59:44,1,
 Alex Stalock,2023-01-08,Chicago Blackhawks,L,1,1,1,0,--,0,47,44,3,0.936,2.95,61:04,0,0,0,0,0,3664
 Darcy Kuemper,2023-01-08,Washington Capitals,L,1,1,1,0,--,0,38,38,0,1.0,0.0,60:00,1,0,0,0,0,3600
 John Gibson,2023-01-08,Anaheim Ducks,L,1,1,0,1,--,0,42,35,7,0.833,7.0,60:00,0,0,0,0,0,3600
-Matt Murray,2023-01-08,Toronto Maple Leafs,L,1,1,1,0,--,0,36,34,2,0.944,2.0,60:00,0,0,0,0,0,3600
+Matthew Murray,2023-01-08,Toronto Maple Leafs,L,1,1,1,0,--,0,36,34,2,0.944,2.0,60:00,0,0,0,0,0,3600
 Spencer Martin,2023-01-08,Vancouver Canucks,L,1,0,0,1,--,0,14,11,3,0.741,5.23,34:26,0,0,0,0,0,2066
 Elvis Merzlikins,2023-01-08,Columbus Blue Jackets,L,1,1,0,1,--,0,19,18,1,0.947,1.03,58:30,0,0,0,0,0,3510
-Dan Vladar,2023-01-08,Calgary Flames,L,1,0,0,0,--,1,14,13,1,0.84,1.48,40:29,0,0,0,0,0,2429
+Daniel Vladar,2023-01-08,Calgary Flames,L,1,0,0,0,--,1,14,13,1,0.84,1.48,40:29,0,0,0,0,0,2429
 Karel Vejmelka,2023-01-08,Utah Hockey Club,R,1,1,0,1,--,0,27,24,3,0.889,3.14,57:22,0,0,0,0,0,3442
 Casey DeSmith,2023-01-08,Pittsburgh Penguins,L,1,1,1,0,--,0,24,23,1,0.958,1.0,59:59,0,0,0,0,0,3599
 Carter Hart,2023-01-08,Philadelphia Flyers,L,1,1,0,1,--,0,35,29,6,0.829,6.03,59:42,0,0,0,0,0,3582
@@ -1295,7 +1295,7 @@ Andrei Vasilevskiy,2023-01-10,Tampa Bay Lightning,L,1,1,1,0,--,0,24,21,3,0.875,3
 Connor Hellebuyck,2023-01-10,Winnipeg Jets,L,1,1,0,1,--,0,22,16,6,0.727,6.26,57:33,0,0,0,0,0,3453
 Eric Comrie,2023-01-10,Buffalo Sabres,L,1,1,0,1,--,0,22,18,4,0.818,4.16,57:45,0,0,0,0,0,3465
 Spencer Martin,2023-01-10,Vancouver Canucks,L,1,1,0,1,--,0,36,31,5,0.861,5.17,58:01,0,0,0,0,0,3481
-Vitek Vanecek,2023-01-10,New Jersey Devils,L,1,1,1,0,--,0,28,25,3,0.893,3.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2023-01-10,New Jersey Devils,L,1,1,1,0,--,0,28,25,3,0.893,3.0,60:00,0,0,0,0,0,3600
 Elvis Merzlikins,2023-01-10,Columbus Blue Jackets,L,1,1,0,1,--,0,46,40,6,0.87,6.0,60:00,0,0,0,0,2,3600
 Ilya Sorokin,2023-01-10,New York Islanders,L,1,1,0,0,--,1,26,25,1,0.962,0.92,65:00,0,0,0,0,0,3900
 Ville Husso,2023-01-10,Detroit Red Wings,L,1,1,1,0,--,0,37,32,5,0.865,5.02,59:46,0,0,0,0,0,3586
@@ -1309,7 +1309,7 @@ James Reimer,2023-01-11,San Jose Sharks,L,1,1,0,1,--,0,37,33,4,0.892,4.16,57:42,
 Darcy Kuemper,2023-01-11,Washington Capitals,L,1,1,0,1,--,0,35,31,4,0.886,4.11,58:23,0,0,0,0,0,3503
 Jack Campbell,2023-01-11,Edmonton Oilers,L,1,1,1,0,--,0,23,21,2,0.913,2.0,60:00,0,0,0,0,0,3600
 John Gibson,2023-01-11,Anaheim Ducks,L,1,1,0,1,--,0,37,31,6,0.887,9.0,40:00,0,0,0,0,0,2400
-Matt Murray,2023-01-11,Toronto Maple Leafs,L,1,1,1,0,--,0,33,32,1,0.97,1.0,60:00,0,0,0,0,0,3600
+Matthew Murray,2023-01-11,Toronto Maple Leafs,L,1,1,1,0,--,0,33,32,1,0.97,1.0,60:00,0,0,0,0,0,3600
 Juuse Saros,2023-01-11,Nashville Predators,L,1,1,0,1,--,0,35,33,2,0.943,2.04,58:49,0,0,0,0,0,3529
 Pheonix Copley,2023-01-11,Los Angeles Kings,L,1,1,1,0,--,0,30,27,3,0.9,3.0,60:00,0,0,0,0,0,3600
 Carter Hart,2023-01-11,Philadelphia Flyers,L,1,1,1,0,--,0,29,26,3,0.897,3.01,59:53,0,0,0,0,0,3593
@@ -1326,7 +1326,7 @@ Linus Ullmark,2023-01-12,Boston Bruins,L,1,1,0,1,--,0,30,28,2,0.933,2.11,56:55,0
 Ilya Sorokin,2023-01-12,New York Islanders,L,1,1,0,1,--,0,35,33,2,0.943,2.03,59:05,0,0,0,0,0,3545
 Ville Husso,2023-01-12,Detroit Red Wings,L,1,1,1,0,--,0,33,32,1,0.97,1.0,59:48,0,0,0,0,0,3588
 Igor Shesterkin,2023-01-12,New York Rangers,L,1,1,1,0,--,0,25,24,1,0.96,1.02,59:04,0,0,0,0,0,3544
-Dan Vladar,2023-01-12,Calgary Flames,L,1,1,1,0,--,0,26,25,1,0.962,1.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2023-01-12,Calgary Flames,L,1,1,1,0,--,0,26,25,1,0.962,1.0,60:00,0,0,0,0,0,3600
 Sam Montembeault,2023-01-12,Montréal Canadiens,L,1,1,1,0,--,0,42,39,3,0.929,3.0,60:00,0,0,0,0,0,3600
 Ilya Samsonov,2023-01-12,Toronto Maple Leafs,L,1,1,0,1,--,0,22,19,3,0.864,3.05,59:04,0,0,0,0,0,3544
 Adin Hill,2023-01-12,Vegas Golden Knights,L,1,1,1,0,--,0,39,38,2,0.974,2.0,60:00,0,0,0,0,0,3600
@@ -1340,7 +1340,7 @@ Yaroslav Askarov,2023-01-12,Nashville Predators,R,1,1,0,1,--,0,35,31,4,0.886,4.1
 Dustin Tokarski,2023-01-13,Pittsburgh Penguins,L,1,1,0,1,--,0,40,36,4,0.9,4.0,60:00,0,0,0,0,0,3600
 Jack Campbell,2023-01-13,Edmonton Oilers,L,1,1,1,0,--,0,26,25,1,0.962,1.0,59:49,0,0,0,0,0,3589
 John Gibson,2023-01-13,Anaheim Ducks,L,1,1,0,1,--,0,39,33,6,0.846,6.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2023-01-13,New Jersey Devils,L,1,1,1,0,--,0,33,31,2,0.939,2.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2023-01-13,New Jersey Devils,L,1,1,1,0,--,0,33,31,2,0.939,2.0,60:00,0,0,0,0,0,3600
 Kaapo Kahkonen,2023-01-13,San Jose Sharks,L,1,1,0,1,--,0,41,34,7,0.829,7.0,60:00,0,0,0,0,0,3600
 David Rittich,2023-01-13,Winnipeg Jets,L,1,1,1,0,--,0,23,22,1,0.957,1.01,59:42,0,0,0,0,2,3582
 Marc-Andre Fleury,2023-01-14,Minnesota Wild,L,1,1,1,0,--,0,28,27,1,0.964,1.01,59:39,0,0,0,0,0,3579
@@ -1355,7 +1355,7 @@ Frederik Andersen,2023-01-14,Carolina Hurricanes,L,1,1,1,0,--,0,35,34,1,0.971,1.
 Anton Forsberg,2023-01-14,Ottawa Senators,L,1,1,0,1,--,0,33,26,7,0.788,7.0,60:00,0,0,0,0,0,3600
 Jordan Binnington,2023-01-14,St. Louis Blues,L,1,1,0,1,--,0,30,26,4,0.867,4.04,59:23,0,0,0,0,0,3563
 Andrei Vasilevskiy,2023-01-14,Tampa Bay Lightning,L,1,1,1,0,--,0,25,23,2,0.92,2.0,60:00,0,0,0,0,0,3600
-Matt Murray,2023-01-14,Toronto Maple Leafs,L,1,1,0,1,--,0,34,30,4,0.882,4.08,58:48,0,0,0,0,0,3528
+Matthew Murray,2023-01-14,Toronto Maple Leafs,L,1,1,0,1,--,0,34,30,4,0.882,4.08,58:48,0,0,0,0,0,3528
 Linus Ullmark,2023-01-14,Boston Bruins,L,1,1,1,0,--,0,21,18,3,0.857,3.0,60:00,0,0,0,0,0,3600
 Juuse Saros,2023-01-14,Nashville Predators,L,1,1,0,1,--,0,33,28,5,0.848,5.21,57:32,0,0,0,0,0,3452
 Spencer Martin,2023-01-14,Vancouver Canucks,L,1,1,0,1,--,0,35,31,4,0.886,4.15,57:52,0,0,0,0,0,3472
@@ -1363,7 +1363,7 @@ Elvis Merzlikins,2023-01-14,Columbus Blue Jackets,L,1,1,1,0,--,0,28,25,3,0.893,3
 Ilya Sorokin,2023-01-14,New York Islanders,L,1,1,1,0,--,0,23,22,1,0.957,1.0,60:00,0,0,0,0,0,3600
 Ville Husso,2023-01-14,Detroit Red Wings,L,1,1,0,1,--,0,25,21,4,0.84,4.11,58:26,0,0,0,0,0,3506
 Mackenzie Blackwood,2023-01-14,New Jersey Devils,L,1,1,1,0,--,0,37,35,2,0.946,2.0,60:00,0,0,0,0,0,3600
-Dan Vladar,2023-01-14,Calgary Flames,L,1,1,1,0,--,0,33,29,5,0.879,5.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2023-01-14,Calgary Flames,L,1,1,1,0,--,0,33,29,5,0.879,5.0,60:00,0,0,0,0,0,3600
 Sam Montembeault,2023-01-14,Montréal Canadiens,L,1,1,0,1,--,0,38,36,2,0.947,2.04,58:57,0,0,0,0,0,3537
 Connor Ingram,2023-01-14,Utah Hockey Club,L,1,1,0,1,--,0,27,25,2,0.926,2.04,58:49,0,0,0,0,0,3529
 Casey DeSmith,2023-01-14,Pittsburgh Penguins,L,1,1,0,1,--,0,36,34,2,0.944,2.05,58:38,0,0,0,0,0,3518
@@ -1388,7 +1388,7 @@ Jordan Binnington,2023-01-16,St. Louis Blues,L,1,1,1,0,--,0,33,32,1,0.97,1.0,59:
 John Gibson,2023-01-16,Anaheim Ducks,L,1,1,0,0,--,1,45,41,4,0.911,3.96,60:33,0,0,0,0,0,3633
 Andrei Vasilevskiy,2023-01-16,Tampa Bay Lightning,L,1,1,1,0,--,0,23,22,1,0.957,1.0,60:00,0,0,0,0,0,3600
 Juuse Saros,2023-01-16,Nashville Predators,L,1,1,1,0,--,0,39,38,1,0.974,1.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2023-01-16,New Jersey Devils,L,1,1,1,0,--,0,32,29,3,0.906,2.81,64:05,0,0,0,0,0,3845
+Vítek Vaněček,2023-01-16,New Jersey Devils,L,1,1,1,0,--,0,32,29,3,0.906,2.81,64:05,0,0,0,0,0,3845
 Elvis Merzlikins,2023-01-16,Columbus Blue Jackets,L,1,1,0,1,--,0,33,30,3,0.909,3.16,56:54,0,0,0,0,0,3414
 Ilya Sorokin,2023-01-16,New York Islanders,L,1,1,0,0,--,1,35,31,4,0.886,3.75,63:59,0,0,0,0,0,3839
 Ville Husso,2023-01-16,Detroit Red Wings,L,1,1,0,1,--,0,22,17,5,0.778,7.5,40:00,0,0,0,0,0,2400
@@ -1470,7 +1470,7 @@ Spencer Martin,2023-01-21,Vancouver Canucks,L,1,1,0,1,--,0,28,25,3,0.893,3.04,59
 Ilya Sorokin,2023-01-21,New York Islanders,L,1,1,0,1,--,0,25,21,4,0.84,4.19,57:20,0,0,0,0,0,3440
 Ville Husso,2023-01-21,Detroit Red Wings,L,1,1,0,1,--,0,25,23,2,0.92,2.13,56:13,0,0,0,0,0,3373
 Kaapo Kahkonen,2023-01-21,San Jose Sharks,L,1,1,0,1,--,0,28,24,4,0.857,4.1,58:28,0,0,0,0,0,3508
-Dan Vladar,2023-01-21,Calgary Flames,L,1,1,1,0,--,0,24,21,3,0.875,3.01,59:52,0,0,0,0,0,3592
+Daniel Vladar,2023-01-21,Calgary Flames,L,1,1,1,0,--,0,24,21,3,0.875,3.01,59:52,0,0,0,0,0,3592
 Sam Montembeault,2023-01-21,Montréal Canadiens,L,1,1,1,0,--,0,38,36,2,0.947,1.94,61:49,0,0,0,0,0,3709
 Ilya Samsonov,2023-01-21,Toronto Maple Leafs,L,1,1,0,0,--,1,31,28,3,0.903,2.91,61:55,0,0,0,0,0,3715
 Connor Ingram,2023-01-21,Utah Hockey Club,L,1,1,0,1,--,0,39,35,4,0.897,4.01,59:47,0,0,0,0,0,3587
@@ -1488,7 +1488,7 @@ Petr Mrazek,2023-01-22,Chicago Blackhawks,L,1,1,0,1,--,0,27,25,2,0.926,2.07,58:0
 Linus Ullmark,2023-01-22,Boston Bruins,L,1,1,1,0,--,0,17,17,0,1.0,0.0,57:25,0,0,0,0,0,3445
 Tristan Jarry,2023-01-22,Pittsburgh Penguins,L,1,1,0,0,--,1,25,23,2,0.92,1.94,61:42,0,0,0,0,0,3702
 Pheonix Copley,2023-01-22,Los Angeles Kings,L,1,1,1,0,--,0,19,18,1,0.947,1.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2023-01-22,New Jersey Devils,L,1,1,1,0,--,0,26,25,1,0.962,0.97,62:07,0,0,0,0,0,3727
+Vítek Vaněček,2023-01-22,New Jersey Devils,L,1,1,1,0,--,0,26,25,1,0.962,0.97,62:07,0,0,0,0,0,3727
 Felix Sandstrom,2023-01-22,Philadelphia Flyers,L,1,1,0,1,--,0,29,25,4,0.862,4.15,57:47,0,0,0,0,0,3467
 Karel Vejmelka,2023-01-22,Utah Hockey Club,R,1,1,1,0,--,0,36,35,1,0.972,1.0,60:00,0,0,0,0,0,3600
 David Rittich,2023-01-22,Winnipeg Jets,L,1,1,1,0,--,0,31,28,3,0.903,3.01,59:50,0,0,0,0,0,3590
@@ -1497,7 +1497,7 @@ Craig Anderson,2023-01-23,Buffalo Sabres,L,1,1,1,0,--,0,31,29,2,0.935,1.97,60:56
 Joonas Korpisalo,2023-01-23,Columbus Blue Jackets,L,1,1,0,0,--,1,49,45,4,0.918,3.85,62:25,0,0,0,0,0,3745
 Ilya Sorokin,2023-01-23,New York Islanders,L,1,1,0,1,--,0,39,34,5,0.872,5.0,60:00,0,0,0,0,0,3600
 Igor Shesterkin,2023-01-23,New York Rangers,L,1,1,1,0,--,0,35,33,2,0.943,2.0,60:00,0,0,0,0,0,3600
-Dan Vladar,2023-01-23,Calgary Flames,L,1,1,1,0,--,0,25,22,3,0.88,2.88,62:25,0,0,0,0,0,3745
+Daniel Vladar,2023-01-23,Calgary Flames,L,1,1,1,0,--,0,25,22,3,0.88,2.88,62:25,0,0,0,0,0,3745
 Ilya Samsonov,2023-01-23,Toronto Maple Leafs,L,1,1,1,0,--,0,33,31,2,0.939,2.0,60:00,0,0,1,1,0,3600
 Alex Lyon,2023-01-23,Florida Panthers,L,1,1,0,1,--,0,25,20,5,0.8,5.43,55:17,0,0,0,0,0,3317
 Jake Oettinger,2023-01-23,Dallas Stars,L,1,1,0,0,--,1,25,22,3,0.88,2.95,60:56,0,0,0,0,0,3656
@@ -1511,7 +1511,7 @@ Anthony Stolarz,2023-01-24,Anaheim Ducks,L,1,1,1,0,--,0,39,37,2,0.949,2.0,59:55,
 Connor Hellebuyck,2023-01-24,Winnipeg Jets,L,1,1,0,1,--,0,41,39,2,0.951,2.07,57:56,0,0,0,0,0,3476
 Juuse Saros,2023-01-24,Nashville Predators,L,1,1,1,0,--,0,33,32,1,0.97,1.0,59:52,0,0,0,0,0,3592
 Pheonix Copley,2023-01-24,Los Angeles Kings,L,1,1,1,0,--,0,31,28,3,0.903,2.96,60:51,0,0,0,0,0,3651
-Vitek Vanecek,2023-01-24,New Jersey Devils,L,1,1,1,0,--,0,30,28,2,0.933,1.89,63:20,0,0,1,1,0,3800
+Vítek Vaněček,2023-01-24,New Jersey Devils,L,1,1,1,0,--,0,30,28,2,0.933,1.89,63:20,0,0,1,1,0,3800
 Ville Husso,2023-01-24,Detroit Red Wings,L,1,1,1,0,--,0,30,28,2,0.933,1.99,60:25,0,0,0,0,0,3625
 Sam Montembeault,2023-01-24,Montréal Canadiens,L,1,1,0,1,--,0,28,25,3,0.893,3.09,58:18,0,0,0,0,0,3498
 Connor Ingram,2023-01-24,Utah Hockey Club,L,1,1,0,1,--,0,42,38,4,0.905,4.03,59:29,0,0,0,0,0,3569
@@ -1559,9 +1559,9 @@ Magnus Hellberg,2023-01-27,Detroit Red Wings,L,1,1,0,1,--,0,29,27,2,0.931,2.12,5
 Joonas Korpisalo,2023-01-27,Columbus Blue Jackets,L,1,1,0,1,--,0,34,29,5,0.853,5.05,59:27,0,0,0,0,0,3567
 Antti Raanta,2023-01-27,Carolina Hurricanes,L,1,1,1,0,--,0,29,26,3,0.897,3.03,59:25,0,0,0,0,0,3565
 Pheonix Copley,2023-01-27,Los Angeles Kings,L,1,1,1,0,--,0,48,45,3,0.938,3.03,59:21,0,0,0,0,0,3561
-Vitek Vanecek,2023-01-27,New Jersey Devils,L,1,1,1,0,--,0,35,33,2,0.943,1.99,60:20,0,0,0,0,0,3620
+Vítek Vaněček,2023-01-27,New Jersey Devils,L,1,1,1,0,--,0,35,33,2,0.943,1.99,60:20,0,0,0,0,0,3620
 Ilya Sorokin,2023-01-27,New York Islanders,L,1,1,1,0,--,0,23,23,0,1.0,0.0,59:54,1,0,0,0,0,3594
-Dan Vladar,2023-01-27,Calgary Flames,L,1,1,1,0,--,0,30,28,2,0.933,2.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2023-01-27,Calgary Flames,L,1,1,1,0,--,0,30,28,2,0.933,2.0,60:00,0,0,0,0,0,3600
 Ilya Samsonov,2023-01-27,Toronto Maple Leafs,L,1,1,0,1,--,0,34,28,6,0.824,6.0,60:00,0,0,0,0,0,3600
 Adin Hill,2023-01-27,Vegas Golden Knights,L,1,1,0,1,--,0,39,36,3,0.923,3.03,59:28,0,0,0,0,0,3568
 Alex Lyon,2023-01-27,Florida Panthers,L,1,1,0,1,--,0,32,29,3,0.906,3.1,58:07,0,0,0,0,0,3487
@@ -1612,7 +1612,7 @@ Jacob Markstrom,2023-02-06,Calgary Flames,L,1,1,0,0,--,1,33,28,5,0.848,4.89,61:2
 Sergei Bobrovsky,2023-02-06,Florida Panthers,L,1,1,1,0,--,0,33,32,1,0.97,1.0,60:00,0,0,0,0,0,3600
 John Gibson,2023-02-06,Anaheim Ducks,L,1,1,0,0,--,1,41,39,2,0.951,1.85,64:54,0,0,0,0,0,3894
 Andrei Vasilevskiy,2023-02-06,Tampa Bay Lightning,L,1,1,0,1,--,0,49,42,7,0.857,7.01,59:54,0,0,0,0,0,3594
-Vitek Vanecek,2023-02-06,New Jersey Devils,L,1,1,1,0,--,0,30,26,4,0.867,3.73,64:18,0,0,0,0,0,3858
+Vítek Vaněček,2023-02-06,New Jersey Devils,L,1,1,1,0,--,0,30,26,4,0.867,3.73,64:18,0,0,0,0,0,3858
 Karel Vejmelka,2023-02-06,Utah Hockey Club,R,1,1,1,0,--,0,35,33,2,0.943,2.0,60:00,0,0,0,0,0,3600
 Carter Hart,2023-02-06,Philadelphia Flyers,L,1,1,0,1,--,0,30,28,2,0.933,2.07,58:02,0,0,0,0,0,3482
 Jake Oettinger,2023-02-06,Dallas Stars,L,1,1,1,0,--,0,34,32,2,0.941,1.85,65:00,0,0,0,0,0,3900
@@ -1641,7 +1641,7 @@ Ilya Sorokin,2023-02-09,New York Islanders,L,1,1,0,1,--,0,34,28,6,0.824,6.31,57:
 Ville Husso,2023-02-09,Detroit Red Wings,L,1,1,1,0,--,0,36,35,1,0.972,1.0,60:00,0,0,0,0,0,3600
 Kaapo Kahkonen,2023-02-09,San Jose Sharks,L,1,1,0,1,--,0,40,38,2,0.95,2.04,58:57,0,0,0,0,0,3537
 Mackenzie Blackwood,2023-02-09,New Jersey Devils,L,1,1,1,0,--,0,34,33,1,0.971,1.0,59:46,0,0,0,0,0,3586
-Dan Vladar,2023-02-09,Calgary Flames,L,1,1,0,1,--,0,17,15,2,0.882,2.04,58:50,0,0,0,0,0,3530
+Daniel Vladar,2023-02-09,Calgary Flames,L,1,1,0,1,--,0,17,15,2,0.882,2.04,58:50,0,0,0,0,0,3530
 Carter Hart,2023-02-09,Philadelphia Flyers,L,1,1,1,0,--,0,35,34,1,0.971,0.92,65:00,0,0,0,0,0,3900
 Stuart Skinner,2023-02-09,Edmonton Oilers,L,1,1,0,0,--,1,36,35,1,0.972,0.92,65:00,0,0,0,0,0,3900
 Logan Thompson,2023-02-09,Vegas Golden Knights,R,1,1,1,0,--,0,24,23,1,0.964,1.45,41:19,0,0,0,0,0,2479
@@ -1672,7 +1672,7 @@ Connor Hellebuyck,2023-02-11,Winnipeg Jets,L,1,1,1,0,--,0,32,31,1,0.969,1.0,60:0
 Juuse Saros,2023-02-11,Nashville Predators,L,1,1,1,0,--,0,24,23,1,0.958,1.0,60:11,0,0,0,0,0,3611
 Spencer Martin,2023-02-11,Vancouver Canucks,L,1,1,0,1,--,0,25,20,5,0.8,5.0,60:00,0,0,0,0,0,3600
 Pheonix Copley,2023-02-11,Los Angeles Kings,L,1,1,1,0,--,0,25,25,0,1.0,0.0,60:00,1,0,0,0,0,3600
-Vitek Vanecek,2023-02-11,New Jersey Devils,L,1,1,0,0,--,1,24,22,2,0.917,1.85,65:00,0,0,0,0,0,3900
+Vítek Vaněček,2023-02-11,New Jersey Devils,L,1,1,0,0,--,1,24,22,2,0.917,1.85,65:00,0,0,0,0,0,3900
 Elvis Merzlikins,2023-02-11,Columbus Blue Jackets,L,1,1,1,0,--,0,29,26,3,0.897,3.0,60:00,0,0,0,0,0,3600
 Ville Husso,2023-02-11,Detroit Red Wings,L,1,1,1,0,--,0,34,32,2,0.941,2.03,59:00,0,0,0,0,0,3540
 Sam Montembeault,2023-02-11,Montréal Canadiens,L,1,1,1,0,--,0,30,27,3,0.9,2.78,64:38,0,0,0,0,0,3878
@@ -1709,7 +1709,7 @@ Jordan Binnington,2023-02-14,St. Louis Blues,L,1,1,1,0,--,0,36,34,2,0.944,2.01,5
 Andrei Vasilevskiy,2023-02-14,Tampa Bay Lightning,L,1,1,1,0,--,0,46,43,3,0.935,2.78,64:40,0,0,0,0,0,3880
 Linus Ullmark,2023-02-14,Boston Bruins,L,1,1,1,0,--,0,31,29,2,0.935,1.89,63:38,0,0,0,0,0,3818
 Aaron Dell,2023-02-14,San Jose Sharks,L,1,1,0,1,--,0,27,25,2,0.926,2.02,59:27,0,0,0,0,0,3567
-Vitek Vanecek,2023-02-14,New Jersey Devils,L,1,1,1,0,--,0,33,31,2,0.939,2.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2023-02-14,New Jersey Devils,L,1,1,1,0,--,0,33,31,2,0.939,2.0,60:00,0,0,0,0,0,3600
 Elvis Merzlikins,2023-02-14,Columbus Blue Jackets,L,1,1,0,1,--,0,32,29,3,0.906,3.0,60:00,0,0,0,0,0,3600
 Ilya Sorokin,2023-02-14,New York Islanders,L,1,1,0,0,--,1,34,32,2,0.941,1.85,64:54,0,0,0,0,0,3894
 Casey DeSmith,2023-02-14,Pittsburgh Penguins,L,1,1,1,0,--,0,39,38,1,0.974,1.0,60:00,0,0,0,0,0,3600
@@ -1741,7 +1741,7 @@ Antti Raanta,2023-02-16,Carolina Hurricanes,L,1,1,1,0,--,0,22,20,2,0.909,2.01,59
 Juuse Saros,2023-02-16,Nashville Predators,L,1,1,0,1,--,0,30,25,5,0.833,5.0,60:00,0,0,0,0,0,3600
 Kaapo Kahkonen,2023-02-16,San Jose Sharks,L,1,1,0,1,--,0,38,36,2,0.947,2.02,59:32,0,0,0,0,0,3572
 Mackenzie Blackwood,2023-02-16,New Jersey Devils,L,1,1,0,1,--,0,35,31,4,0.886,4.07,58:58,0,0,0,0,0,3538
-Dan Vladar,2023-02-16,Calgary Flames,L,1,1,0,1,--,0,24,19,5,0.792,5.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2023-02-16,Calgary Flames,L,1,1,0,1,--,0,24,19,5,0.792,5.0,60:00,0,0,0,0,0,3600
 Sam Montembeault,2023-02-16,Montréal Canadiens,L,1,1,0,1,--,0,41,35,6,0.854,6.0,60:00,0,0,0,0,0,3600
 Adin Hill,2023-02-16,Vegas Golden Knights,L,1,1,1,0,--,0,26,25,1,0.962,1.0,60:00,0,0,0,0,0,3600
 Carter Hart,2023-02-16,Philadelphia Flyers,L,1,1,0,1,--,0,19,15,4,0.8,7.64,31:26,0,0,0,0,0,1886
@@ -1771,7 +1771,7 @@ Jordan Binnington,2023-02-18,St. Louis Blues,L,1,1,0,1,--,0,33,29,4,0.879,4.03,5
 Andrei Vasilevskiy,2023-02-18,Tampa Bay Lightning,L,1,1,0,1,--,0,25,21,4,0.84,4.02,59:38,0,0,0,0,0,3578
 Joonas Korpisalo,2023-02-18,Columbus Blue Jackets,L,1,1,1,0,--,0,29,28,1,0.966,1.01,59:25,0,0,0,0,0,3565
 Linus Ullmark,2023-02-18,Boston Bruins,L,1,1,1,0,--,0,28,26,2,0.929,2.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2023-02-18,New Jersey Devils,L,1,1,1,0,--,0,31,29,2,0.935,2.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2023-02-18,New Jersey Devils,L,1,1,1,0,--,0,31,29,2,0.935,2.0,60:00,0,0,0,0,0,3600
 Ville Husso,2023-02-18,Detroit Red Wings,L,1,1,0,1,--,0,26,22,4,0.846,4.18,57:28,0,0,0,0,0,3448
 Kaapo Kahkonen,2023-02-18,San Jose Sharks,L,1,1,0,1,--,0,30,27,3,0.9,3.12,57:44,0,0,0,0,0,3464
 Adin Hill,2023-02-18,Vegas Golden Knights,L,1,1,1,0,--,0,24,20,4,0.833,4.0,60:00,0,0,0,0,0,3600
@@ -1816,7 +1816,7 @@ Jordan Binnington,2023-02-21,St. Louis Blues,L,1,1,0,1,--,0,36,32,4,0.889,4.12,5
 Andrei Vasilevskiy,2023-02-21,Tampa Bay Lightning,L,1,1,1,0,--,0,25,24,1,0.96,1.0,60:00,0,0,0,0,0,3600
 Juuse Saros,2023-02-21,Nashville Predators,L,1,1,1,0,--,0,39,35,4,0.897,3.71,64:39,0,0,0,0,0,3879
 Pheonix Copley,2023-02-21,Los Angeles Kings,L,1,1,0,1,--,0,20,18,2,0.9,2.08,57:41,0,0,0,0,0,3461
-Vitek Vanecek,2023-02-21,New Jersey Devils,L,1,1,0,1,--,0,17,13,4,0.765,4.01,59:50,0,0,0,0,0,3590
+Vítek Vaněček,2023-02-21,New Jersey Devils,L,1,1,0,1,--,0,17,13,4,0.765,4.01,59:50,0,0,0,0,0,3590
 Ville Husso,2023-02-21,Detroit Red Wings,L,1,1,1,0,--,0,27,26,1,0.963,1.0,60:00,0,0,0,0,0,3600
 Sam Montembeault,2023-02-21,Montréal Canadiens,L,1,1,1,0,--,0,40,38,2,0.95,2.0,60:00,0,0,0,0,0,3600
 Ilya Samsonov,2023-02-21,Toronto Maple Leafs,L,1,1,1,0,--,0,32,29,3,0.906,3.0,60:00,0,0,0,0,0,3600
@@ -1827,7 +1827,7 @@ Collin Delia,2023-02-21,Vancouver Canucks,L,1,1,0,0,--,1,26,22,4,0.846,3.92,61:1
 Lukas Dostal,2023-02-21,Anaheim Ducks,L,1,1,0,1,--,0,44,38,6,0.864,6.03,59:43,0,0,0,0,0,3583
 Connor Hellebuyck,2023-02-22,Winnipeg Jets,L,1,1,0,1,--,0,22,20,2,0.909,2.07,57:52,0,0,0,0,0,3472
 Ilya Sorokin,2023-02-22,New York Islanders,L,1,1,1,0,--,0,26,25,1,0.962,1.0,60:00,0,0,0,0,0,3600
-Dan Vladar,2023-02-22,Calgary Flames,L,1,1,1,0,--,0,14,12,3,0.857,3.02,59:31,0,0,0,0,0,3571
+Daniel Vladar,2023-02-22,Calgary Flames,L,1,1,1,0,--,0,14,12,3,0.857,3.02,59:31,0,0,0,0,0,3571
 Karel Vejmelka,2023-02-22,Utah Hockey Club,R,1,1,0,1,--,0,51,45,6,0.882,6.0,60:00,0,0,0,0,0,3600
 Jake Oettinger,2023-02-22,Dallas Stars,L,1,1,0,1,--,0,23,19,4,0.826,4.16,57:42,0,0,0,0,0,3462
 Jaxson Stauber,2023-02-22,Chicago Blackhawks,L,1,1,1,0,--,0,32,29,3,0.906,3.0,60:00,0,0,0,0,0,3600
@@ -1844,9 +1844,9 @@ Juuse Saros,2023-02-23,Nashville Predators,L,1,1,1,0,--,0,24,22,2,0.917,2.0,60:0
 Tristan Jarry,2023-02-23,Pittsburgh Penguins,L,1,1,0,1,--,0,29,23,6,0.841,9.04,39:50,0,0,0,0,0,2390
 Eric Comrie,2023-02-23,Buffalo Sabres,L,1,1,1,0,--,0,41,36,5,0.878,4.86,61:41,0,0,0,0,0,3701
 Pheonix Copley,2023-02-23,Los Angeles Kings,L,1,1,0,0,--,1,32,28,4,0.875,3.84,62:30,0,0,0,0,0,3750
-Vitek Vanecek,2023-02-23,New Jersey Devils,L,1,1,1,0,--,0,22,19,3,0.864,2.91,61:54,0,0,1,1,0,3714
+Vítek Vaněček,2023-02-23,New Jersey Devils,L,1,1,1,0,--,0,22,19,3,0.864,2.91,61:54,0,0,1,1,0,3714
 Ville Husso,2023-02-23,Detroit Red Wings,L,1,1,1,0,--,0,31,30,1,0.968,1.0,60:00,0,0,0,0,0,3600
-Dan Vladar,2023-02-23,Calgary Flames,L,1,1,0,0,--,1,29,25,4,0.862,4.02,59:46,0,0,0,0,0,3586
+Daniel Vladar,2023-02-23,Calgary Flames,L,1,1,0,0,--,1,29,25,4,0.862,4.02,59:46,0,0,0,0,0,3586
 Charlie Lindgren,2023-02-23,Washington Capitals,R,1,1,0,1,--,0,20,17,3,0.85,3.11,57:57,0,0,0,0,0,3477
 Stuart Skinner,2023-02-23,Edmonton Oilers,L,1,1,1,0,--,0,24,22,2,0.917,2.0,60:00,0,0,0,0,0,3600
 Jeremy Swayman,2023-02-23,Boston Bruins,L,1,1,1,0,--,0,41,36,5,0.878,5.0,60:00,0,0,0,0,0,3600
@@ -1932,7 +1932,7 @@ Mads Sogaard,2023-02-28,Ottawa Senators,L,1,1,1,0,--,0,17,16,1,0.941,1.0,60:00,0
 Darcy Kuemper,2023-03-01,Washington Capitals,L,1,1,1,0,--,0,23,21,2,0.913,1.96,61:09,0,0,0,0,0,3669
 Frederik Andersen,2023-03-01,Carolina Hurricanes,L,1,1,0,1,--,0,20,17,3,0.85,3.11,57:58,0,0,0,0,0,3478
 John Gibson,2023-03-01,Anaheim Ducks,L,1,1,0,0,--,1,39,36,3,0.923,2.94,61:09,0,0,0,0,0,3669
-Vitek Vanecek,2023-03-01,New Jersey Devils,L,1,1,1,0,--,0,19,14,5,0.839,7.24,41:26,0,0,0,0,0,2486
+Vítek Vaněček,2023-03-01,New Jersey Devils,L,1,1,1,0,--,0,19,14,5,0.839,7.24,41:26,0,0,0,0,0,2486
 Igor Shesterkin,2023-03-01,New York Rangers,L,1,1,1,0,--,0,28,26,2,0.929,1.92,62:32,0,0,0,0,0,3752
 Ilya Samsonov,2023-03-01,Toronto Maple Leafs,L,1,1,0,1,--,0,32,27,5,0.844,5.0,60:00,0,0,0,0,0,3600
 Adin Hill,2023-03-01,Vegas Golden Knights,L,1,1,1,0,--,0,26,24,2,0.923,2.0,60:00,0,0,0,0,0,3600
@@ -1981,7 +1981,7 @@ Jack Campbell,2023-03-04,Edmonton Oilers,L,1,1,0,1,--,0,38,32,6,0.842,6.14,58:39
 Petr Mrazek,2023-03-04,Chicago Blackhawks,L,1,1,0,1,--,0,24,22,2,0.917,2.05,58:28,0,0,0,0,0,3508
 Jordan Binnington,2023-03-04,St. Louis Blues,L,1,1,0,1,--,0,37,34,3,0.919,3.01,59:49,0,0,0,0,0,3589
 Magnus Hellberg,2023-03-04,Detroit Red Wings,L,1,1,0,1,--,0,36,32,4,0.889,4.04,59:23,0,0,0,0,0,3563
-Matt Murray,2023-03-04,Toronto Maple Leafs,L,1,1,0,1,--,0,24,20,4,0.833,4.07,58:54,0,0,0,0,0,3534
+Matthew Murray,2023-03-04,Toronto Maple Leafs,L,1,1,0,1,--,0,24,20,4,0.833,4.07,58:54,0,0,0,0,0,3534
 Joonas Korpisalo,2023-03-04,Los Angeles Kings,L,1,1,1,0,--,0,26,24,2,0.923,2.01,59:39,0,0,0,0,0,3579
 Connor Hellebuyck,2023-03-04,Winnipeg Jets,L,1,1,1,0,--,0,35,30,5,0.857,5.0,60:00,0,0,0,0,0,3600
 Linus Ullmark,2023-03-04,Boston Bruins,L,1,1,1,0,--,0,26,24,2,0.923,2.0,59:55,0,0,0,0,0,3595
@@ -2000,7 +2000,7 @@ Jake Allen,2023-03-05,Montréal Canadiens,L,1,1,0,1,--,0,28,24,4,0.857,4.09,58:3
 Philipp Grubauer,2023-03-05,Seattle Kraken,L,1,1,1,0,--,0,23,21,2,0.913,1.97,60:55,0,0,0,0,0,3655
 Frederik Andersen,2023-03-05,Carolina Hurricanes,L,1,1,1,0,--,0,14,14,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Andrei Vasilevskiy,2023-03-05,Tampa Bay Lightning,L,1,1,0,1,--,0,38,32,6,0.842,6.05,59:29,0,0,0,0,0,3569
-Vitek Vanecek,2023-03-05,New Jersey Devils,L,1,1,1,0,--,0,29,25,4,0.862,3.97,60:23,0,0,0,0,0,3623
+Vítek Vaněček,2023-03-05,New Jersey Devils,L,1,1,1,0,--,0,29,25,4,0.862,3.97,60:23,0,0,0,0,0,3623
 Ville Husso,2023-03-05,Detroit Red Wings,L,1,1,0,1,--,0,36,34,2,0.944,2.02,59:31,0,0,0,0,0,3571
 Connor Ingram,2023-03-05,Utah Hockey Club,L,1,1,0,0,--,1,40,35,5,0.875,4.97,60:23,0,0,0,0,0,3623
 Carter Hart,2023-03-05,Philadelphia Flyers,L,1,1,1,0,--,0,26,25,1,0.962,1.0,60:00,0,0,0,0,0,3600
@@ -2027,7 +2027,7 @@ Frederik Andersen,2023-03-07,Carolina Hurricanes,L,1,0,1,0,--,0,14,13,1,0.875,1.
 Jordan Binnington,2023-03-07,St. Louis Blues,L,1,1,0,1,--,0,27,21,6,0.778,6.01,59:55,0,0,0,0,0,3595
 John Gibson,2023-03-07,Anaheim Ducks,L,1,1,0,1,--,0,30,26,4,0.867,4.09,58:42,0,0,0,0,0,3522
 Andrei Vasilevskiy,2023-03-07,Tampa Bay Lightning,L,1,1,1,0,--,0,35,33,2,0.943,2.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2023-03-07,New Jersey Devils,L,1,1,0,1,--,0,25,21,4,0.84,4.14,57:56,0,0,0,0,0,3476
+Vítek Vaněček,2023-03-07,New Jersey Devils,L,1,1,0,1,--,0,25,21,4,0.84,4.14,57:56,0,0,0,0,0,3476
 Ilya Sorokin,2023-03-07,New York Islanders,L,1,1,1,0,--,0,24,22,2,0.917,2.02,59:20,0,0,0,0,0,3560
 Ilya Samsonov,2023-03-07,Toronto Maple Leafs,L,1,1,1,0,--,0,33,30,3,0.909,3.04,59:16,0,0,0,0,0,3556
 Adin Hill,2023-03-07,Vegas Golden Knights,L,1,1,0,1,--,0,34,32,2,0.941,2.07,58:02,0,0,0,0,0,3482
@@ -2083,7 +2083,7 @@ Philipp Grubauer,2023-03-11,Seattle Kraken,L,1,1,0,0,--,1,25,21,4,0.84,3.78,63:2
 Petr Mrazek,2023-03-11,Chicago Blackhawks,L,1,1,0,1,--,0,36,34,2,0.944,2.02,59:20,0,0,0,0,0,3560
 Frederik Andersen,2023-03-11,Carolina Hurricanes,L,1,1,0,1,--,0,23,20,3,0.87,3.19,56:21,0,0,0,0,0,3381
 Magnus Hellberg,2023-03-11,Detroit Red Wings,L,1,1,0,1,--,0,38,35,3,0.921,3.12,57:42,0,0,0,0,0,3462
-Matt Murray,2023-03-11,Toronto Maple Leafs,L,1,1,1,0,--,0,26,22,4,0.846,4.0,60:00,0,0,0,0,0,3600
+Matthew Murray,2023-03-11,Toronto Maple Leafs,L,1,1,1,0,--,0,26,22,4,0.846,4.0,60:00,0,0,0,0,0,3600
 Connor Hellebuyck,2023-03-11,Winnipeg Jets,L,1,1,1,0,--,0,48,44,4,0.917,3.74,64:09,0,0,0,0,0,3849
 Linus Ullmark,2023-03-11,Boston Bruins,L,1,1,1,0,--,0,31,29,2,0.935,2.0,60:00,0,0,0,0,0,3600
 Pheonix Copley,2023-03-11,Los Angeles Kings,L,1,1,0,0,--,1,30,29,1,0.967,0.92,65:00,0,0,0,0,0,3900
@@ -2107,7 +2107,7 @@ Andrei Vasilevskiy,2023-03-12,Tampa Bay Lightning,L,1,1,0,1,--,0,22,19,3,0.864,3
 Connor Hellebuyck,2023-03-12,Winnipeg Jets,L,1,1,1,0,--,0,35,33,2,0.943,2.0,59:57,0,0,0,0,0,3597
 Juuse Saros,2023-03-12,Nashville Predators,L,1,1,1,0,--,0,37,33,4,0.892,3.92,61:12,0,0,0,0,0,3672
 Tristan Jarry,2023-03-12,Pittsburgh Penguins,L,1,1,1,0,--,0,29,27,2,0.931,1.95,61:33,0,0,0,0,0,3693
-Vitek Vanecek,2023-03-12,New Jersey Devils,L,1,1,1,0,--,0,32,32,0,1.0,0.0,59:46,1,0,0,0,0,3586
+Vítek Vaněček,2023-03-12,New Jersey Devils,L,1,1,1,0,--,0,32,32,0,1.0,0.0,59:46,1,0,0,0,0,3586
 Ville Husso,2023-03-12,Detroit Red Wings,L,1,1,1,0,--,0,33,30,3,0.909,3.0,60:00,0,0,0,0,0,3600
 Karel Vejmelka,2023-03-12,Utah Hockey Club,R,1,1,1,0,--,0,34,30,4,0.882,3.74,64:09,0,0,0,0,0,3849
 Filip Gustavsson,2023-03-12,Minnesota Wild,L,1,1,0,0,--,1,23,18,5,0.783,4.68,64:09,0,0,0,0,0,3849
@@ -2117,7 +2117,7 @@ Kevin Mandolese,2023-03-12,Ottawa Senators,L,1,1,0,1,--,0,39,34,5,0.872,5.0,60:0
 Pyotr Kochetkov,2023-03-12,Carolina Hurricanes,L,1,1,0,1,--,0,23,20,3,0.87,3.0,60:00,0,0,0,0,0,3600
 Craig Anderson,2023-03-13,Buffalo Sabres,L,1,1,1,0,--,0,28,25,3,0.893,3.0,60:00,0,0,0,0,0,3600
 Martin Jones,2023-03-13,Seattle Kraken,L,1,1,0,1,--,0,32,27,5,0.844,5.0,60:00,0,0,0,0,0,3600
-Matt Murray,2023-03-13,Toronto Maple Leafs,L,1,1,0,1,--,0,29,25,4,0.862,4.27,56:15,0,0,0,0,0,3375
+Matthew Murray,2023-03-13,Toronto Maple Leafs,L,1,1,0,1,--,0,29,25,4,0.862,4.27,56:15,0,0,0,0,0,3375
 Sam Montembeault,2023-03-13,Montréal Canadiens,L,1,0,0,0,--,0,18,16,2,0.758,3.33,36:00,0,0,0,0,0,2160
 Jake Oettinger,2023-03-13,Dallas Stars,L,1,1,1,0,--,0,28,26,2,0.929,2.0,60:00,0,0,0,0,0,3600
 Alexandar Georgiev,2023-03-13,Colorado Avalanche,L,1,1,1,0,--,0,19,15,4,0.789,4.0,60:00,0,0,0,0,0,3600
@@ -2131,7 +2131,7 @@ Joonas Korpisalo,2023-03-14,Los Angeles Kings,L,1,1,1,0,--,0,28,26,2,0.929,2.0,6
 Linus Ullmark,2023-03-14,Boston Bruins,L,1,1,0,1,--,0,28,23,5,0.821,5.05,59:21,0,0,0,0,0,3561
 Juuse Saros,2023-03-14,Nashville Predators,L,1,1,1,0,--,0,29,28,1,0.966,1.0,60:00,0,0,0,0,0,3600
 Thatcher Demko,2023-03-14,Vancouver Canucks,L,1,1,1,0,--,0,27,25,2,0.926,2.01,59:44,0,0,0,0,0,3584
-Vitek Vanecek,2023-03-14,New Jersey Devils,L,1,1,0,1,--,0,30,26,4,0.867,4.01,59:55,0,0,0,0,0,3595
+Vítek Vaněček,2023-03-14,New Jersey Devils,L,1,1,0,1,--,0,30,26,4,0.867,4.01,59:55,0,0,0,0,0,3595
 Ilya Sorokin,2023-03-14,New York Islanders,L,1,1,0,1,--,0,36,32,4,0.889,4.12,58:17,0,0,0,0,0,3497
 Ville Husso,2023-03-14,Detroit Red Wings,L,1,1,0,1,--,0,16,14,2,0.875,2.1,57:02,0,0,0,0,0,3422
 Kaapo Kahkonen,2023-03-14,San Jose Sharks,L,1,1,0,0,--,1,48,42,6,0.875,5.6,64:17,0,0,0,0,0,3857
@@ -2189,7 +2189,7 @@ Jacob Markstrom,2023-03-18,Calgary Flames,L,1,1,0,0,--,1,26,20,6,0.769,5.56,64:4
 Martin Jones,2023-03-18,Seattle Kraken,L,1,0,0,1,--,0,13,10,3,0.739,5.49,32:46,0,0,0,0,0,1966
 Sergei Bobrovsky,2023-03-18,Florida Panthers,L,1,1,1,0,--,0,35,33,2,0.943,2.0,60:00,0,0,0,0,0,3600
 Frederik Andersen,2023-03-18,Carolina Hurricanes,L,1,1,1,0,--,0,33,29,4,0.879,4.12,58:13,0,0,0,0,0,3493
-Matt Murray,2023-03-18,Toronto Maple Leafs,L,1,1,1,0,--,0,52,48,4,0.923,3.69,65:00,0,0,0,0,0,3900
+Matthew Murray,2023-03-18,Toronto Maple Leafs,L,1,1,1,0,--,0,52,48,4,0.923,3.69,65:00,0,0,0,0,0,3900
 Joonas Korpisalo,2023-03-18,Los Angeles Kings,L,1,1,0,0,--,1,17,15,2,0.882,1.85,65:00,0,0,0,0,0,3900
 Connor Hellebuyck,2023-03-18,Winnipeg Jets,L,1,1,1,0,--,0,20,18,2,0.9,1.97,60:55,0,0,0,0,0,3655
 Linus Ullmark,2023-03-18,Boston Bruins,L,1,1,1,0,--,0,31,29,2,0.935,2.0,60:00,0,0,0,0,0,3600
@@ -2215,7 +2215,7 @@ John Gibson,2023-03-19,Anaheim Ducks,L,1,1,0,1,--,0,40,38,2,0.95,2.06,58:07,0,0,
 Andrei Vasilevskiy,2023-03-19,Tampa Bay Lightning,L,1,1,0,1,--,0,38,34,4,0.895,4.09,58:42,0,0,0,0,0,3522
 Connor Hellebuyck,2023-03-19,Winnipeg Jets,L,1,1,0,1,--,0,17,14,3,0.824,3.05,58:57,0,0,0,0,0,3537
 Juuse Saros,2023-03-19,Nashville Predators,L,1,0,0,0,--,0,29,26,3,0.794,3.54,50:51,0,0,0,0,0,3051
-Vitek Vanecek,2023-03-19,New Jersey Devils,L,1,1,1,0,--,0,24,22,2,0.917,2.0,59:56,0,0,0,0,0,3596
+Vítek Vaněček,2023-03-19,New Jersey Devils,L,1,1,1,0,--,0,24,22,2,0.917,2.0,59:56,0,0,0,0,0,3596
 Charlie Lindgren,2023-03-19,Washington Capitals,R,1,1,0,1,--,0,40,35,5,0.875,5.32,56:23,0,0,0,0,0,3383
 Ukko-Pekka Luukkonen,2023-03-19,Buffalo Sabres,L,1,1,0,1,--,0,25,18,7,0.72,7.0,60:00,0,0,0,0,0,3600
 Daniil Tarasov,2023-03-19,Columbus Blue Jackets,L,1,1,0,1,--,0,29,24,5,0.829,8.12,36:57,0,0,0,0,0,2217
@@ -2243,10 +2243,10 @@ Connor Hellebuyck,2023-03-21,Winnipeg Jets,L,1,1,1,0,--,0,30,29,1,0.967,1.0,60:0
 Linus Ullmark,2023-03-21,Boston Bruins,L,1,1,1,0,--,0,41,40,1,0.976,1.0,60:00,0,0,0,0,0,3600
 Juuse Saros,2023-03-21,Nashville Predators,L,1,1,1,0,--,0,31,28,3,0.903,3.0,59:58,0,0,1,1,0,3598
 Thatcher Demko,2023-03-21,Vancouver Canucks,L,1,1,0,1,--,0,27,23,4,0.852,4.15,57:49,0,0,0,0,0,3469
-Vitek Vanecek,2023-03-21,New Jersey Devils,L,1,1,0,0,--,1,29,27,2,0.931,1.85,64:58,0,0,0,0,0,3898
+Vítek Vaněček,2023-03-21,New Jersey Devils,L,1,1,0,0,--,1,29,27,2,0.931,1.85,64:58,0,0,0,0,0,3898
 Ilya Sorokin,2023-03-21,New York Islanders,L,1,1,1,0,--,0,27,25,2,0.926,2.01,59:43,0,0,0,0,0,3583
 Igor Shesterkin,2023-03-21,New York Rangers,L,1,1,0,1,--,0,39,36,3,0.923,3.06,58:45,0,0,0,0,0,3525
-Dan Vladar,2023-03-21,Calgary Flames,L,1,1,1,0,--,0,20,19,1,0.95,1.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2023-03-21,Calgary Flames,L,1,1,1,0,--,0,20,19,1,0.95,1.0,60:00,0,0,0,0,0,3600
 Sam Montembeault,2023-03-21,Montréal Canadiens,L,1,1,1,0,--,0,33,31,2,0.939,2.0,60:00,0,0,0,0,0,3600
 Ilya Samsonov,2023-03-21,Toronto Maple Leafs,L,1,1,0,1,--,0,28,22,6,0.786,6.04,59:34,0,0,0,0,0,3574
 Karel Vejmelka,2023-03-21,Utah Hockey Club,R,1,1,0,1,--,0,25,23,2,0.92,2.02,59:31,0,0,0,0,0,3571
@@ -2273,7 +2273,7 @@ Darcy Kuemper,2023-03-23,Washington Capitals,L,1,1,1,0,--,0,28,27,1,0.964,1.0,60
 Sergei Bobrovsky,2023-03-23,Florida Panthers,L,1,1,0,1,--,0,26,21,5,0.808,5.15,58:17,0,0,0,0,0,3497
 Frederik Andersen,2023-03-23,Carolina Hurricanes,L,1,1,0,1,--,0,16,14,2,0.875,2.07,57:51,0,0,0,0,0,3471
 Magnus Hellberg,2023-03-23,Detroit Red Wings,L,1,1,0,0,--,0,13,10,3,0.818,5.52,32:36,0,0,0,0,0,1956
-Matt Murray,2023-03-23,Toronto Maple Leafs,L,1,1,1,0,--,0,35,33,2,0.943,2.0,60:00,0,0,0,0,0,3600
+Matthew Murray,2023-03-23,Toronto Maple Leafs,L,1,1,1,0,--,0,35,33,2,0.943,2.0,60:00,0,0,0,0,0,3600
 Connor Hellebuyck,2023-03-23,Winnipeg Jets,L,1,1,1,0,--,0,20,18,2,0.9,2.0,59:52,0,0,0,0,0,3592
 Juuse Saros,2023-03-23,Nashville Predators,L,1,1,1,0,--,0,28,27,1,0.964,0.92,65:00,0,0,0,0,0,3900
 Thatcher Demko,2023-03-23,Vancouver Canucks,L,1,1,1,0,--,0,19,17,2,0.895,2.01,59:48,0,0,0,0,0,3588
@@ -2288,7 +2288,7 @@ Lukas Dostal,2023-03-23,Anaheim Ducks,L,1,1,0,1,--,0,33,30,3,0.909,3.13,57:31,0,
 Joel Hofer,2023-03-23,St. Louis Blues,L,1,1,1,0,--,0,28,25,3,0.893,3.01,59:44,0,0,0,0,0,3584
 Mads Sogaard,2023-03-23,Ottawa Senators,L,1,1,1,0,--,0,29,27,2,0.931,2.0,60:00,0,0,0,0,0,3600
 Michael Hutchinson,2023-03-24,Columbus Blue Jackets,R,1,1,1,0,--,0,38,34,4,0.895,3.96,60:40,0,0,0,0,0,3640
-Vitek Vanecek,2023-03-24,New Jersey Devils,L,1,0,0,1,--,0,19,17,2,0.808,2.52,47:41,0,0,0,0,0,2861
+Vítek Vaněček,2023-03-24,New Jersey Devils,L,1,0,0,1,--,0,19,17,2,0.808,2.52,47:41,0,0,0,0,0,2861
 Ilya Sorokin,2023-03-24,New York Islanders,L,1,1,0,0,--,1,27,22,5,0.815,4.95,60:40,0,0,0,0,0,3640
 Karel Vejmelka,2023-03-24,Utah Hockey Club,R,1,1,0,1,--,0,30,27,3,0.9,3.05,58:58,0,0,0,0,0,3538
 Ukko-Pekka Luukkonen,2023-03-24,Buffalo Sabres,L,1,1,1,0,--,0,31,27,4,0.871,4.01,59:51,0,0,0,0,0,3591
@@ -2304,7 +2304,7 @@ Laurent Brossoit,2023-03-25,Vegas Golden Knights,L,1,1,1,0,--,0,30,27,3,0.9,2.88
 Jordan Binnington,2023-03-25,St. Louis Blues,L,1,1,1,0,--,0,25,22,3,0.88,3.0,60:00,0,0,0,0,0,3600
 John Gibson,2023-03-25,Anaheim Ducks,L,1,1,0,1,--,0,36,30,6,0.833,6.05,59:33,0,0,0,0,0,3573
 Andrei Vasilevskiy,2023-03-25,Tampa Bay Lightning,L,1,1,0,1,--,0,34,32,2,0.941,2.03,59:01,0,0,0,0,0,3541
-Matt Murray,2023-03-25,Toronto Maple Leafs,L,1,1,0,1,--,0,27,23,4,0.852,4.09,58:44,0,0,0,0,0,3524
+Matthew Murray,2023-03-25,Toronto Maple Leafs,L,1,1,0,1,--,0,27,23,4,0.852,4.09,58:44,0,0,0,0,0,3524
 Joonas Korpisalo,2023-03-25,Los Angeles Kings,L,1,1,1,0,--,0,26,25,1,0.962,1.0,60:00,0,0,0,0,0,3600
 Connor Hellebuyck,2023-03-25,Winnipeg Jets,L,1,1,0,1,--,0,28,25,3,0.893,3.0,59:55,0,0,0,0,0,3595
 Linus Ullmark,2023-03-25,Boston Bruins,L,1,1,1,0,--,0,27,26,1,0.963,1.0,60:00,0,0,0,0,0,3600
@@ -2340,7 +2340,7 @@ Jack Campbell,2023-03-27,Edmonton Oilers,L,1,1,1,0,--,0,33,29,4,0.879,4.0,59:57,
 Philipp Grubauer,2023-03-27,Seattle Kraken,L,1,1,0,1,--,0,13,9,4,0.75,5.9,40:42,0,0,0,0,0,2442
 John Gibson,2023-03-27,Anaheim Ducks,L,1,1,0,1,--,0,44,39,5,0.886,5.0,60:00,0,0,0,0,0,3600
 Eric Comrie,2023-03-27,Buffalo Sabres,L,1,1,0,0,--,1,41,38,3,0.927,2.78,64:42,0,0,0,0,0,3882
-Vitek Vanecek,2023-03-27,New Jersey Devils,L,1,1,0,1,--,0,34,31,3,0.912,3.15,57:14,0,0,0,0,0,3434
+Vítek Vaněček,2023-03-27,New Jersey Devils,L,1,1,0,1,--,0,34,31,3,0.912,3.15,57:14,0,0,0,0,0,3434
 Jonas Johansson,2023-03-27,Colorado Avalanche,L,1,1,1,0,--,0,30,29,1,0.967,1.01,59:42,0,0,0,0,0,3582
 Ilya Sorokin,2023-03-27,New York Islanders,L,1,1,1,0,--,0,31,30,1,0.968,1.0,60:00,0,0,0,0,0,3600
 Karel Vejmelka,2023-03-27,Utah Hockey Club,R,1,1,0,1,--,0,29,24,5,0.828,5.24,57:15,0,0,0,0,0,3435
@@ -2386,7 +2386,7 @@ Linus Ullmark,2023-03-30,Boston Bruins,L,1,1,1,0,--,0,26,25,1,0.962,0.99,60:39,0
 Juuse Saros,2023-03-30,Nashville Predators,L,1,1,0,1,--,0,45,43,2,0.956,2.02,59:22,0,0,0,0,0,3562
 Tristan Jarry,2023-03-30,Pittsburgh Penguins,L,1,1,1,0,--,0,28,28,0,1.0,0.0,59:24,1,0,0,0,0,3564
 Alex Nedeljkovic,2023-03-30,Detroit Red Wings,L,1,1,1,0,--,0,33,31,2,0.939,2.01,59:44,0,0,0,0,0,3584
-Vitek Vanecek,2023-03-30,New Jersey Devils,L,1,1,1,0,--,0,25,24,1,0.96,1.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2023-03-30,New Jersey Devils,L,1,1,1,0,--,0,25,24,1,0.96,1.0,60:00,0,0,0,0,0,3600
 Igor Shesterkin,2023-03-30,New York Rangers,L,1,1,0,1,--,0,31,29,2,0.935,2.06,58:16,0,0,0,0,0,3496
 Felix Sandstrom,2023-03-30,Philadelphia Flyers,L,1,1,0,0,--,1,46,41,5,0.891,4.87,61:36,0,0,0,0,0,3696
 Sam Montembeault,2023-03-30,Montréal Canadiens,L,1,1,0,1,--,0,29,25,4,0.862,4.07,58:59,0,0,0,0,0,3539
@@ -2437,10 +2437,10 @@ Connor Hellebuyck,2023-04-02,Winnipeg Jets,L,1,1,1,0,--,0,32,31,1,0.969,1.0,60:0
 Linus Ullmark,2023-04-02,Boston Bruins,L,1,1,1,0,--,0,38,35,3,0.921,2.8,64:22,0,0,0,0,0,3862
 Thatcher Demko,2023-04-02,Vancouver Canucks,L,1,1,0,1,--,0,24,21,3,0.875,3.1,58:03,0,0,0,0,0,3483
 Alex Nedeljkovic,2023-04-02,Detroit Red Wings,L,1,1,1,0,--,0,45,43,2,0.956,2.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2023-04-02,New Jersey Devils,L,1,1,0,1,--,0,21,17,4,0.778,6.0,40:00,0,0,0,0,0,2400
+Vítek Vaněček,2023-04-02,New Jersey Devils,L,1,1,0,1,--,0,21,17,4,0.778,6.0,40:00,0,0,0,0,0,2400
 Ilya Sorokin,2023-04-02,New York Islanders,L,1,1,0,1,--,0,35,33,2,0.943,2.03,59:11,0,0,0,0,0,3551
 Igor Shesterkin,2023-04-02,New York Rangers,L,1,1,1,0,--,0,28,26,2,0.929,2.0,60:00,0,0,0,0,0,3600
-Dan Vladar,2023-04-02,Calgary Flames,L,1,0,1,0,--,0,13,11,2,0.818,3.04,39:32,0,0,0,0,0,2372
+Daniel Vladar,2023-04-02,Calgary Flames,L,1,0,1,0,--,0,13,11,2,0.818,3.04,39:32,0,0,0,0,0,2372
 Ilya Samsonov,2023-04-02,Toronto Maple Leafs,L,1,0,0,1,--,0,16,14,2,0.826,2.8,42:48,0,0,0,0,0,2568
 Casey DeSmith,2023-04-02,Pittsburgh Penguins,L,1,1,1,0,--,0,33,31,2,0.939,2.0,60:00,0,0,0,0,0,3600
 Lukas Dostal,2023-04-02,Anaheim Ducks,L,1,1,0,1,--,0,41,36,5,0.878,5.1,58:46,0,0,0,0,0,3526
@@ -2459,7 +2459,7 @@ Jordan Binnington,2023-04-04,St. Louis Blues,L,1,1,1,0,--,0,34,32,2,0.941,2.0,60
 Antti Raanta,2023-04-04,Carolina Hurricanes,L,1,1,1,0,--,0,28,26,2,0.929,1.87,64:19,0,0,0,0,0,3859
 Tristan Jarry,2023-04-04,Pittsburgh Penguins,L,1,1,0,1,--,0,37,32,5,0.865,5.0,60:00,0,0,0,0,0,3600
 Pheonix Copley,2023-04-04,Los Angeles Kings,L,1,1,0,1,--,0,32,30,2,0.938,2.01,59:35,0,0,0,0,0,3575
-Vitek Vanecek,2023-04-04,New Jersey Devils,L,1,1,1,0,--,0,23,22,1,0.957,1.0,59:55,0,0,0,0,0,3595
+Vítek Vaněček,2023-04-04,New Jersey Devils,L,1,1,1,0,--,0,23,22,1,0.957,1.0,59:55,0,0,0,0,0,3595
 Ville Husso,2023-04-04,Detroit Red Wings,L,1,1,1,0,--,0,24,24,0,1.0,0.0,59:44,1,0,0,0,0,3584
 Kaapo Kahkonen,2023-04-04,San Jose Sharks,L,1,1,0,0,--,1,42,38,4,0.905,3.81,63:00,0,0,0,0,0,3780
 Alex Lyon,2023-04-04,Florida Panthers,L,1,1,1,0,--,0,40,39,1,0.975,1.0,60:00,0,0,0,0,0,3600
@@ -2494,7 +2494,7 @@ Juuse Saros,2023-04-06,Nashville Predators,L,1,1,1,0,--,0,33,33,0,1.0,0.0,60:00,
 Tristan Jarry,2023-04-06,Pittsburgh Penguins,L,1,1,1,0,--,0,28,27,1,0.964,1.0,60:00,0,0,0,0,0,3600
 Pheonix Copley,2023-04-06,Los Angeles Kings,L,1,0,0,0,--,0,22,22,0,0.865,0.0,38:58,0,0,0,0,0,2338
 Thatcher Demko,2023-04-06,Vancouver Canucks,L,1,1,1,0,--,0,33,33,0,1.0,0.0,60:00,1,0,0,0,0,3600
-Vitek Vanecek,2023-04-06,New Jersey Devils,L,1,1,1,0,--,0,17,16,1,0.941,1.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2023-04-06,New Jersey Devils,L,1,1,1,0,--,0,17,16,1,0.941,1.0,60:00,0,0,0,0,0,3600
 Ilya Sorokin,2023-04-06,New York Islanders,L,1,1,1,0,--,0,31,30,1,0.968,1.01,59:36,0,0,0,0,0,3576
 Ville Husso,2023-04-06,Detroit Red Wings,L,1,1,0,0,--,1,36,30,6,0.833,5.62,64:01,0,0,0,0,0,3841
 Sam Montembeault,2023-04-06,Montréal Canadiens,L,1,1,1,0,--,0,26,24,2,0.923,2.02,59:16,0,0,0,0,0,3556
@@ -2574,7 +2574,7 @@ Antti Raanta,2023-04-11,Carolina Hurricanes,L,1,1,1,0,--,0,21,20,1,0.952,1.0,59:
 Tristan Jarry,2023-04-11,Pittsburgh Penguins,L,1,1,0,1,--,0,25,22,3,0.88,3.13,57:32,0,0,0,0,0,3452
 Thatcher Demko,2023-04-11,Vancouver Canucks,L,1,1,1,0,--,0,35,33,2,0.943,2.01,59:42,0,0,1,1,0,3582
 Alex Nedeljkovic,2023-04-11,Detroit Red Wings,L,1,1,0,1,--,0,27,24,3,0.889,3.12,57:38,0,0,0,0,0,3458
-Vitek Vanecek,2023-04-11,New Jersey Devils,L,1,1,1,0,--,0,38,36,2,0.947,2.0,59:53,0,0,1,1,0,3593
+Vítek Vaněček,2023-04-11,New Jersey Devils,L,1,1,1,0,--,0,38,36,2,0.947,2.0,59:53,0,0,1,1,0,3593
 Joey Daccord,2023-04-11,Seattle Kraken,L,1,1,0,1,--,0,37,33,4,0.892,4.0,60:00,0,0,0,0,0,3600
 Charlie Lindgren,2023-04-11,Washington Capitals,R,1,1,0,1,--,0,36,33,3,0.907,3.97,45:21,0,0,0,0,0,2721
 Joseph Woll,2023-04-11,Toronto Maple Leafs,L,1,1,1,0,--,0,48,45,3,0.938,3.0,60:00,0,0,0,0,0,3600
@@ -2645,7 +2645,7 @@ Sergei Bobrovsky,2023-10-12,Florida Panthers,L,1,1,0,1,--,0,21,19,2,0.905,2.09,5
 Philipp Grubauer,2023-10-12,Seattle Kraken,L,1,1,0,1,--,0,34,32,2,0.941,2.07,57:52,0,0,0,0,0,3472
 Jordan Binnington,2023-10-12,St. Louis Blues,L,1,1,0,0,--,1,34,33,1,0.971,0.93,64:50,0,0,0,0,0,3890
 Juuse Saros,2023-10-12,Nashville Predators,L,1,1,1,0,--,0,23,23,0,1.0,0.0,59:36,1,0,0,0,0,3576
-Vitek Vanecek,2023-10-12,New Jersey Devils,L,1,1,1,0,--,0,35,32,3,0.914,3.0,59:58,0,0,0,0,0,3598
+Vítek Vaněček,2023-10-12,New Jersey Devils,L,1,1,1,0,--,0,35,32,3,0.914,3.0,59:58,0,0,0,0,0,3598
 Elvis Merzlikins,2023-10-12,Columbus Blue Jackets,L,1,1,0,1,--,0,35,33,2,0.943,2.07,58:01,0,0,0,0,0,3481
 Ville Husso,2023-10-12,Detroit Red Wings,L,1,1,0,1,--,0,26,23,3,0.885,3.11,57:48,0,0,0,0,0,3468
 Kaapo Kahkonen,2023-10-12,San Jose Sharks,L,1,1,0,1,--,0,32,28,4,0.875,4.0,60:00,0,0,0,0,0,3600
@@ -2696,7 +2696,7 @@ Jacob Markstrom,2023-10-16,Calgary Flames,L,1,1,0,0,--,1,23,21,2,0.913,1.85,64:4
 Darcy Kuemper,2023-10-16,Washington Capitals,L,1,1,1,0,--,0,40,38,2,0.95,1.85,65:00,0,0,0,0,0,3900
 Sergei Bobrovsky,2023-10-16,Florida Panthers,L,1,1,1,0,--,0,34,31,3,0.912,3.0,60:00,0,0,0,0,0,3600
 Spencer Martin,2023-10-16,Columbus Blue Jackets,L,1,1,0,1,--,0,28,24,4,0.857,4.05,59:16,0,0,0,0,0,3556
-Vitek Vanecek,2023-10-16,New Jersey Devils,L,1,1,0,1,--,0,30,26,4,0.867,4.29,56:00,0,0,0,0,0,3360
+Vítek Vaněček,2023-10-16,New Jersey Devils,L,1,1,0,1,--,0,30,26,4,0.867,4.29,56:00,0,0,0,0,0,3360
 Igor Shesterkin,2023-10-16,New York Rangers,L,1,1,1,0,--,0,27,26,1,0.963,1.0,59:55,0,0,0,0,2,3595
 Connor Ingram,2023-10-16,Utah Hockey Club,L,1,1,0,1,--,0,28,26,2,0.929,2.04,58:43,0,0,0,0,0,3523
 Joseph Woll,2023-10-16,Toronto Maple Leafs,L,1,1,0,1,--,0,30,27,3,0.9,3.2,56:13,0,0,0,0,0,3373
@@ -2736,7 +2736,7 @@ Thatcher Demko,2023-10-19,Vancouver Canucks,L,1,1,0,1,--,0,36,32,4,0.889,4.16,57
 Jonas Johansson,2023-10-19,Tampa Bay Lightning,L,1,1,1,0,--,0,29,26,3,0.897,3.0,60:00,0,0,0,0,0,3600
 Kaapo Kahkonen,2023-10-19,San Jose Sharks,L,1,1,0,1,--,0,36,33,3,0.917,3.18,56:32,0,0,0,0,0,3392
 Igor Shesterkin,2023-10-19,New York Rangers,L,1,1,0,1,--,0,18,14,4,0.852,7.09,33:51,0,0,0,0,0,2031
-Dan Vladar,2023-10-19,Calgary Flames,L,1,1,1,0,--,0,27,24,3,0.889,3.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2023-10-19,Calgary Flames,L,1,1,1,0,--,0,27,24,3,0.889,3.0,60:00,0,0,0,0,0,3600
 Ilya Samsonov,2023-10-19,Toronto Maple Leafs,L,1,1,0,1,--,0,23,21,2,0.913,2.07,57:50,0,0,0,0,0,3470
 Joey Daccord,2023-10-19,Seattle Kraken,L,1,1,1,0,--,0,36,32,4,0.889,4.01,59:47,0,0,0,0,0,3587
 Connor Ingram,2023-10-19,Utah Hockey Club,L,1,1,1,0,--,0,26,24,2,0.923,2.01,59:51,0,0,0,0,0,3591
@@ -2784,7 +2784,7 @@ Arvid Soderblom,2023-10-21,Chicago Blackhawks,L,1,1,0,1,--,0,24,19,5,0.792,5.0,6
 James Reimer,2023-10-22,Detroit Red Wings,L,1,1,1,0,--,0,31,29,2,0.935,2.0,60:00,0,0,0,0,2,3600
 John Gibson,2023-10-22,Anaheim Ducks,L,1,1,0,1,--,0,25,23,2,0.92,2.05,58:35,0,0,0,0,0,3515
 Linus Ullmark,2023-10-22,Boston Bruins,L,1,1,1,0,--,0,31,30,1,0.968,1.0,60:00,0,0,0,0,0,3600
-Dan Vladar,2023-10-22,Calgary Flames,L,1,1,0,1,--,0,30,24,6,0.8,6.02,59:51,0,0,0,0,0,3591
+Daniel Vladar,2023-10-22,Calgary Flames,L,1,1,0,1,--,0,30,24,6,0.8,6.02,59:51,0,0,0,0,0,3591
 Jake Allen,2023-10-23,Montréal Canadiens,L,1,1,1,0,--,0,37,36,1,0.973,1.0,60:00,0,0,0,0,0,3600
 Eric Comrie,2023-10-23,Buffalo Sabres,L,1,1,0,1,--,0,27,24,3,0.889,3.16,56:53,0,0,0,0,0,3413
 Jacob Markstrom,2023-10-24,Calgary Flames,L,1,1,0,1,--,0,20,17,3,0.85,3.04,59:17,0,0,0,0,0,3557
@@ -2799,7 +2799,7 @@ Juuse Saros,2023-10-24,Nashville Predators,L,1,1,0,1,--,0,24,21,3,0.875,3.05,58:
 Pheonix Copley,2023-10-24,Los Angeles Kings,L,1,1,1,0,--,0,27,24,3,0.889,3.01,59:52,0,0,0,0,0,3592
 Thatcher Demko,2023-10-24,Vancouver Canucks,L,1,1,1,0,--,0,18,16,2,0.889,2.0,60:00,0,0,0,0,0,3600
 Alex Nedeljkovic,2023-10-24,Pittsburgh Penguins,L,1,1,0,1,--,0,34,30,4,0.882,4.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2023-10-24,New Jersey Devils,L,1,1,1,0,--,0,29,27,2,0.931,2.01,59:39,0,0,0,0,0,3579
+Vítek Vaněček,2023-10-24,New Jersey Devils,L,1,1,1,0,--,0,29,27,2,0.931,2.01,59:39,0,0,0,0,0,3579
 Jonas Johansson,2023-10-24,Tampa Bay Lightning,L,1,1,1,0,--,0,32,32,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Elvis Merzlikins,2023-10-24,Columbus Blue Jackets,L,1,1,0,0,--,1,27,24,3,0.889,2.92,61:44,0,0,0,0,2,3704
 Ilya Sorokin,2023-10-24,New York Islanders,L,1,1,0,1,--,0,37,32,5,0.865,5.1,58:47,0,0,0,0,0,3527
@@ -2819,7 +2819,7 @@ Logan Thompson,2023-10-24,Vegas Golden Knights,R,1,1,1,0,--,0,28,26,2,0.929,2.0,
 Alexandar Georgiev,2023-10-24,Colorado Avalanche,L,1,1,1,0,--,0,32,28,4,0.875,4.03,59:32,0,0,0,0,0,3572
 Lukas Dostal,2023-10-24,Anaheim Ducks,L,1,1,1,0,--,0,37,35,2,0.946,1.93,62:20,0,0,0,0,0,3740
 Pyotr Kochetkov,2023-10-24,Carolina Hurricanes,L,1,1,0,1,--,0,23,20,3,0.87,3.06,58:54,0,0,0,0,0,3534
-Vitek Vanecek,2023-10-25,New Jersey Devils,L,1,0,0,1,--,0,16,14,2,0.792,3.22,37:13,0,0,0,0,0,2233
+Vítek Vaněček,2023-10-25,New Jersey Devils,L,1,0,0,1,--,0,16,14,2,0.792,3.22,37:13,0,0,0,0,0,2233
 Hunter Shepard,2023-10-25,Washington Capitals,L,1,1,1,0,--,0,22,18,4,0.818,4.0,60:00,0,0,0,0,0,3600
 Jonathan Quick,2023-10-26,New York Rangers,L,1,1,1,0,--,0,29,29,0,1.0,0.0,59:45,1,0,0,0,0,3585
 James Reimer,2023-10-26,Detroit Red Wings,L,1,1,0,1,--,0,28,25,3,0.893,3.06,58:50,0,0,0,0,0,3530
@@ -2851,7 +2851,7 @@ Jordan Binnington,2023-10-27,St. Louis Blues,L,1,1,0,1,--,0,35,30,5,0.857,5.0,60
 Antti Raanta,2023-10-27,Carolina Hurricanes,L,1,1,1,0,--,0,20,20,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Eric Comrie,2023-10-27,Buffalo Sabres,L,1,1,0,0,--,0,18,16,2,0.872,4.03,29:46,0,0,0,0,0,1786
 Thatcher Demko,2023-10-27,Vancouver Canucks,L,1,1,1,0,--,0,22,22,0,1.0,0.0,60:00,1,0,0,0,0,3600
-Vitek Vanecek,2023-10-27,New Jersey Devils,L,1,1,1,0,--,0,27,23,4,0.852,4.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2023-10-27,New Jersey Devils,L,1,1,1,0,--,0,27,23,4,0.852,4.0,60:00,0,0,0,0,0,3600
 Kaapo Kahkonen,2023-10-27,San Jose Sharks,L,1,1,0,1,--,0,40,37,3,0.925,3.0,60:00,0,0,0,0,0,3600
 Adin Hill,2023-10-27,Vegas Golden Knights,L,1,1,0,0,--,1,24,20,4,0.833,3.82,62:50,0,0,0,0,0,3770
 Karel Vejmelka,2023-10-27,Utah Hockey Club,R,1,1,0,1,--,0,41,36,5,0.878,5.03,59:40,0,0,1,1,0,3580
@@ -2876,7 +2876,7 @@ Samuel Ersson,2023-10-28,Philadelphia Flyers,L,1,1,0,1,--,0,25,18,7,0.72,7.05,59
 Marc-Andre Fleury,2023-10-29,Minnesota Wild,L,1,1,0,1,--,0,30,26,4,0.867,4.19,57:18,0,0,0,0,0,3438
 Jacob Markstrom,2023-10-29,Calgary Flames,L,1,1,0,1,--,0,32,28,4,0.875,4.13,58:03,0,0,1,1,0,3483
 Darcy Kuemper,2023-10-29,Washington Capitals,L,1,1,1,0,--,0,31,30,1,0.968,1.0,59:52,0,0,0,0,0,3592
-Vitek Vanecek,2023-10-29,New Jersey Devils,L,1,1,1,0,--,0,34,31,3,0.912,3.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2023-10-29,New Jersey Devils,L,1,1,1,0,--,0,34,31,3,0.912,3.0,60:00,0,0,0,0,0,3600
 Mackenzie Blackwood,2023-10-29,San Jose Sharks,L,1,1,0,1,--,0,41,39,2,0.951,2.02,59:30,0,0,0,0,0,3570
 Stuart Skinner,2023-10-29,Edmonton Oilers,L,1,1,1,0,--,0,26,24,2,0.923,2.01,59:45,0,0,0,0,0,3585
 Ukko-Pekka Luukkonen,2023-10-29,Buffalo Sabres,L,1,1,1,0,--,0,23,23,0,1.0,0.0,60:00,1,0,0,0,0,3600
@@ -2925,7 +2925,7 @@ Connor Hellebuyck,2023-11-02,Winnipeg Jets,L,1,1,0,1,--,0,25,21,4,0.84,4.04,59:2
 Matt Tomkins,2023-11-02,Tampa Bay Lightning,L,1,1,0,1,--,0,27,24,3,0.889,3.12,57:47,0,0,0,0,0,3467
 Juuse Saros,2023-11-02,Nashville Predators,L,1,1,0,1,--,0,31,27,4,0.871,4.15,57:52,0,0,0,0,0,3472
 Thatcher Demko,2023-11-02,Vancouver Canucks,L,1,1,1,0,--,0,31,30,1,0.968,1.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2023-11-02,New Jersey Devils,L,1,1,1,0,--,0,25,22,3,0.88,3.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2023-11-02,New Jersey Devils,L,1,1,1,0,--,0,25,22,3,0.88,3.0,60:00,0,0,0,0,0,3600
 Elvis Merzlikins,2023-11-02,Columbus Blue Jackets,L,1,1,1,0,--,0,29,27,2,0.931,2.0,60:00,0,0,0,0,0,3600
 Igor Shesterkin,2023-11-02,New York Rangers,L,1,1,1,0,--,0,27,26,1,0.963,1.01,59:28,0,0,0,0,0,3568
 Mackenzie Blackwood,2023-11-02,San Jose Sharks,L,1,0,0,0,--,0,14,10,4,0.697,7.69,31:13,0,0,0,0,0,1873
@@ -2957,7 +2957,7 @@ Jonas Johansson,2023-11-04,Tampa Bay Lightning,L,1,1,1,0,--,0,28,24,4,0.857,4.01
 Elvis Merzlikins,2023-11-04,Columbus Blue Jackets,L,1,1,0,1,--,0,27,25,2,0.926,2.07,58:03,0,0,0,0,0,3483
 Ilya Sorokin,2023-11-04,New York Islanders,L,1,1,0,0,--,1,46,42,4,0.913,3.92,61:14,0,0,0,0,0,3674
 Ville Husso,2023-11-04,Detroit Red Wings,L,1,1,1,0,--,0,30,26,4,0.867,4.0,59:57,0,0,0,0,0,3597
-Dan Vladar,2023-11-04,Calgary Flames,L,1,1,1,0,--,0,20,17,3,0.85,3.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2023-11-04,Calgary Flames,L,1,1,1,0,--,0,20,17,3,0.85,3.0,60:00,0,0,0,0,0,3600
 Sam Montembeault,2023-11-04,Montréal Canadiens,L,1,1,0,1,--,0,34,29,5,0.853,5.02,59:45,0,0,0,0,0,3585
 Adin Hill,2023-11-04,Vegas Golden Knights,L,1,1,1,0,--,0,41,41,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Karel Vejmelka,2023-11-04,Utah Hockey Club,R,1,1,0,1,--,0,27,22,5,0.815,5.18,57:52,0,0,0,0,0,3472
@@ -2970,7 +2970,7 @@ Joel Hofer,2023-11-04,St. Louis Blues,L,1,1,1,0,--,0,33,30,3,0.909,3.0,60:00,0,0
 Magnus Chrona,2023-11-04,San Jose Sharks,L,1,0,0,0,--,0,17,13,4,0.714,7.87,30:30,0,0,0,0,0,1830
 Devon Levi,2023-11-04,Buffalo Sabres,L,1,1,1,0,--,0,28,24,4,0.857,4.0,60:00,0,0,0,0,0,3600
 John Gibson,2023-11-05,Anaheim Ducks,L,1,1,1,0,--,0,32,30,2,0.938,2.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2023-11-05,New Jersey Devils,L,1,1,1,0,--,0,34,32,2,0.941,2.0,59:55,0,0,0,0,0,3595
+Vítek Vaněček,2023-11-05,New Jersey Devils,L,1,1,1,0,--,0,34,32,2,0.941,2.0,59:55,0,0,0,0,0,3595
 Logan Thompson,2023-11-05,Vegas Golden Knights,R,1,1,0,1,--,0,22,19,3,0.864,3.03,59:29,0,0,0,0,0,3569
 Arvid Soderblom,2023-11-05,Chicago Blackhawks,L,1,1,0,1,--,0,40,37,3,0.925,3.11,57:53,0,0,0,0,0,3473
 Sergei Bobrovsky,2023-11-06,Florida Panthers,L,1,1,1,0,--,0,23,19,4,0.826,4.07,59:02,0,0,0,0,0,3542
@@ -2992,7 +2992,7 @@ Matt Tomkins,2023-11-07,Tampa Bay Lightning,L,1,1,1,0,--,0,26,23,3,0.885,3.0,60:
 Antti Raanta,2023-11-07,Carolina Hurricanes,L,1,1,1,0,--,0,21,19,2,0.905,1.96,61:06,0,0,0,0,0,3666
 Juuse Saros,2023-11-07,Nashville Predators,L,1,1,0,1,--,0,38,35,3,0.921,3.1,58:00,0,0,0,0,0,3480
 Tristan Jarry,2023-11-07,Pittsburgh Penguins,L,1,1,1,0,--,0,20,20,0,1.0,0.0,38:15,0,0,0,0,0,2295
-Vitek Vanecek,2023-11-07,New Jersey Devils,L,1,1,0,1,--,0,31,26,5,0.839,5.13,58:28,0,0,0,0,0,3508
+Vítek Vaněček,2023-11-07,New Jersey Devils,L,1,1,0,1,--,0,31,26,5,0.839,5.13,58:28,0,0,0,0,0,3508
 Ville Husso,2023-11-07,Detroit Red Wings,L,1,1,0,1,--,0,32,27,5,0.844,5.29,56:42,0,0,1,1,0,3402
 Mackenzie Blackwood,2023-11-07,San Jose Sharks,L,1,1,1,0,--,0,39,38,1,0.974,1.0,60:00,0,0,0,0,0,3600
 Sam Montembeault,2023-11-07,Montréal Canadiens,L,1,0,0,0,--,0,23,22,1,0.844,1.3,46:10,0,0,0,0,0,2770
@@ -3032,7 +3032,7 @@ Ivan Prosvetov,2023-11-09,Colorado Avalanche,L,1,1,0,1,--,0,22,18,4,0.818,4.04,5
 Sergei Bobrovsky,2023-11-10,Florida Panthers,L,1,1,1,0,--,0,30,28,2,0.933,2.0,60:00,0,0,0,0,0,3600
 Antti Raanta,2023-11-10,Carolina Hurricanes,L,1,1,0,1,--,0,34,30,4,0.882,4.02,59:43,0,0,0,0,0,3583
 Kaapo Kahkonen,2023-11-10,San Jose Sharks,L,1,1,0,1,--,0,39,34,5,0.872,5.0,60:00,0,0,0,0,0,3600
-Dan Vladar,2023-11-10,Calgary Flames,L,1,1,0,0,--,1,36,32,4,0.889,3.69,65:00,0,0,0,0,0,3900
+Daniel Vladar,2023-11-10,Calgary Flames,L,1,1,0,0,--,1,36,32,4,0.889,3.69,65:00,0,0,0,0,0,3900
 Adin Hill,2023-11-10,Vegas Golden Knights,L,1,1,1,0,--,0,20,20,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Charlie Lindgren,2023-11-10,Washington Capitals,R,1,1,1,0,--,0,26,24,2,0.923,2.03,59:06,0,0,0,0,0,3546
 Joseph Woll,2023-11-10,Toronto Maple Leafs,L,1,1,1,0,--,0,28,24,4,0.857,3.69,65:00,0,0,0,0,0,3900
@@ -3115,7 +3115,7 @@ Petr Mrazek,2023-11-16,Chicago Blackhawks,L,1,1,0,1,--,0,31,28,3,0.903,3.06,58:4
 Jordan Binnington,2023-11-16,St. Louis Blues,L,1,0,0,0,--,0,14,13,1,0.857,1.64,36:35,0,0,0,0,0,2195
 Joonas Korpisalo,2023-11-16,Ottawa Senators,L,1,1,1,0,--,0,41,37,4,0.902,3.69,64:58,0,0,0,0,0,3898
 Tristan Jarry,2023-11-16,Pittsburgh Penguins,L,1,1,0,1,--,0,31,26,5,0.839,5.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2023-11-16,New Jersey Devils,L,1,1,1,0,--,0,23,21,2,0.913,2.0,59:57,0,0,0,0,0,3597
+Vítek Vaněček,2023-11-16,New Jersey Devils,L,1,1,1,0,--,0,23,21,2,0.913,2.0,59:57,0,0,0,0,0,3597
 Jonas Johansson,2023-11-16,Tampa Bay Lightning,L,1,1,1,0,--,0,14,12,2,0.857,2.0,60:00,0,0,0,0,0,3600
 Elvis Merzlikins,2023-11-16,Columbus Blue Jackets,L,1,1,0,1,--,0,32,29,3,0.906,3.18,56:40,0,0,0,0,0,3400
 Kaapo Kahkonen,2023-11-16,San Jose Sharks,L,1,1,1,0,--,0,45,44,1,0.978,1.0,59:44,0,0,0,0,0,3584
@@ -3139,7 +3139,7 @@ Jordan Binnington,2023-11-18,St. Louis Blues,L,1,1,0,1,--,0,31,26,5,0.839,5.01,5
 Antti Raanta,2023-11-18,Carolina Hurricanes,L,1,1,1,0,--,0,28,26,2,0.929,2.0,60:00,0,0,0,0,0,3600
 Tristan Jarry,2023-11-18,Pittsburgh Penguins,L,1,1,0,1,--,0,33,30,3,0.909,3.03,59:24,0,0,0,0,0,3564
 Thatcher Demko,2023-11-18,Vancouver Canucks,L,1,1,0,1,--,0,26,22,4,0.846,4.18,57:25,0,0,0,0,0,3445
-Vitek Vanecek,2023-11-18,New Jersey Devils,L,1,1,0,1,--,0,34,30,4,0.882,4.17,57:36,0,0,0,0,0,3456
+Vítek Vaněček,2023-11-18,New Jersey Devils,L,1,1,0,1,--,0,34,30,4,0.882,4.17,57:36,0,0,0,0,0,3456
 Jonas Johansson,2023-11-18,Tampa Bay Lightning,L,1,1,1,0,--,0,42,38,4,0.905,4.0,60:00,0,0,0,0,0,3600
 Elvis Merzlikins,2023-11-18,Columbus Blue Jackets,L,1,1,0,1,--,0,26,22,4,0.846,4.08,58:47,0,0,0,0,0,3527
 Ilya Sorokin,2023-11-18,New York Islanders,L,1,1,1,0,--,0,39,35,4,0.897,3.69,65:00,0,0,0,0,0,3900
@@ -3174,7 +3174,7 @@ Thatcher Demko,2023-11-20,Vancouver Canucks,L,1,1,1,0,--,0,28,27,1,0.964,1.0,60:
 Jonas Johansson,2023-11-20,Tampa Bay Lightning,L,1,1,1,0,--,0,27,23,4,0.852,4.06,59:04,0,0,0,0,0,3544
 Igor Shesterkin,2023-11-20,New York Rangers,L,1,1,0,1,--,0,34,30,4,0.882,4.07,58:57,0,0,0,0,0,3537
 Mackenzie Blackwood,2023-11-20,San Jose Sharks,L,1,1,0,1,--,0,37,34,3,0.919,3.06,58:45,0,0,0,0,0,3525
-Dan Vladar,2023-11-20,Calgary Flames,L,1,1,1,0,--,0,31,28,3,0.903,2.84,63:28,0,0,0,0,0,3808
+Daniel Vladar,2023-11-20,Calgary Flames,L,1,1,1,0,--,0,31,28,3,0.903,2.84,63:28,0,0,0,0,0,3808
 Joey Daccord,2023-11-20,Seattle Kraken,L,1,0,0,0,--,1,24,22,2,0.871,2.76,43:28,0,0,0,0,0,2608
 Connor Ingram,2023-11-20,Utah Hockey Club,L,1,1,0,1,--,0,25,21,4,0.84,4.0,60:00,0,0,0,0,0,3600
 Jeremy Swayman,2023-11-20,Boston Bruins,L,1,1,0,0,--,1,47,42,5,0.894,4.9,61:10,0,0,0,0,0,3670
@@ -3191,7 +3191,7 @@ Linus Ullmark,2023-11-22,Boston Bruins,L,1,1,1,0,--,0,28,27,1,0.964,1.0,60:00,0,
 Juuse Saros,2023-11-22,Nashville Predators,L,1,1,1,0,--,0,26,24,2,0.923,2.01,59:50,0,0,0,0,0,3590
 Tristan Jarry,2023-11-22,Pittsburgh Penguins,L,1,1,0,1,--,0,36,35,1,0.972,1.01,59:30,0,0,0,0,0,3570
 Thatcher Demko,2023-11-22,Vancouver Canucks,L,1,1,0,1,--,0,24,20,4,0.833,4.04,59:25,0,0,0,0,0,3565
-Vitek Vanecek,2023-11-22,New Jersey Devils,L,1,1,0,1,--,0,28,24,4,0.857,4.03,59:31,0,0,0,0,0,3571
+Vítek Vaněček,2023-11-22,New Jersey Devils,L,1,1,0,1,--,0,28,24,4,0.857,4.03,59:31,0,0,0,0,0,3571
 Jonas Johansson,2023-11-22,Tampa Bay Lightning,L,1,1,0,0,--,1,32,29,3,0.906,2.92,61:39,0,0,0,0,0,3699
 Elvis Merzlikins,2023-11-22,Columbus Blue Jackets,L,1,1,1,0,--,0,36,33,3,0.917,3.0,60:00,0,0,0,0,0,3600
 Ilya Sorokin,2023-11-22,New York Islanders,L,1,1,1,0,--,0,36,34,2,0.944,2.0,60:00,0,0,0,0,0,3600
@@ -3242,10 +3242,10 @@ Jake Allen,2023-11-25,Montréal Canadiens,L,1,1,0,1,--,0,30,26,4,0.867,4.0,60:00
 Linus Ullmark,2023-11-25,Boston Bruins,L,1,1,0,1,--,0,40,33,7,0.825,7.0,60:00,0,0,0,0,0,3600
 Tristan Jarry,2023-11-25,Pittsburgh Penguins,L,1,1,1,0,--,0,33,31,2,0.939,2.0,59:53,0,0,0,0,0,3593
 Pheonix Copley,2023-11-25,Los Angeles Kings,L,1,1,1,0,--,0,18,18,0,1.0,0.0,59:40,1,0,0,0,0,3580
-Vitek Vanecek,2023-11-25,New Jersey Devils,L,1,1,1,0,--,0,12,10,2,0.833,2.02,59:24,0,0,0,0,0,3564
+Vítek Vaněček,2023-11-25,New Jersey Devils,L,1,1,1,0,--,0,12,10,2,0.833,2.02,59:24,0,0,0,0,0,3564
 Ilya Sorokin,2023-11-25,New York Islanders,L,1,1,0,0,--,1,40,40,0,1.0,0.0,64:06,1,0,0,0,0,3846
 Kaapo Kahkonen,2023-11-25,San Jose Sharks,L,1,1,1,0,--,0,33,30,3,0.909,3.03,59:30,0,0,0,0,0,3570
-Dan Vladar,2023-11-25,Calgary Flames,L,1,1,0,1,--,0,24,21,3,0.875,3.1,57:59,0,0,0,0,0,3479
+Daniel Vladar,2023-11-25,Calgary Flames,L,1,1,0,1,--,0,24,21,3,0.875,3.1,57:59,0,0,0,0,0,3479
 Connor Ingram,2023-11-25,Utah Hockey Club,L,1,1,1,0,--,0,34,34,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Casey DeSmith,2023-11-25,Vancouver Canucks,L,1,1,0,1,--,0,22,18,4,0.818,4.2,57:09,0,0,0,0,0,3429
 Joseph Woll,2023-11-25,Toronto Maple Leafs,L,1,1,0,1,--,0,35,32,3,0.914,3.14,57:17,0,0,0,0,0,3437
@@ -3271,7 +3271,7 @@ Linus Ullmark,2023-11-27,Boston Bruins,L,1,0,0,1,--,0,20,18,2,0.897,3.66,32:45,0
 Spencer Martin,2023-11-27,Columbus Blue Jackets,L,1,1,1,0,--,0,33,31,2,0.939,2.0,60:00,0,0,0,0,0,3600
 Igor Shesterkin,2023-11-27,New York Rangers,L,1,1,0,1,--,0,38,34,4,0.895,4.09,58:39,0,0,0,0,0,3519
 Mackenzie Blackwood,2023-11-27,San Jose Sharks,L,1,1,1,0,--,0,34,33,1,0.971,1.0,60:00,0,0,0,0,0,3600
-Dan Vladar,2023-11-27,Calgary Flames,L,1,1,1,0,--,0,28,27,1,0.964,0.93,64:31,0,0,0,0,0,3871
+Daniel Vladar,2023-11-27,Calgary Flames,L,1,1,1,0,--,0,28,27,1,0.964,0.93,64:31,0,0,0,0,0,3871
 Adin Hill,2023-11-27,Vegas Golden Knights,L,1,1,0,0,--,1,34,32,2,0.941,1.86,64:35,0,0,0,0,0,3875
 Ukko-Pekka Luukkonen,2023-11-27,Buffalo Sabres,L,1,1,1,0,--,0,26,25,1,0.962,1.0,60:00,0,0,0,0,0,3600
 Alexandar Georgiev,2023-11-27,Colorado Avalanche,L,1,1,1,0,--,0,39,38,1,0.974,1.0,59:55,0,0,0,0,0,3595
@@ -3284,7 +3284,7 @@ Connor Hellebuyck,2023-11-28,Winnipeg Jets,L,1,1,0,1,--,0,21,19,2,0.905,2.04,58:
 Juuse Saros,2023-11-28,Nashville Predators,L,1,1,1,0,--,0,31,29,2,0.935,2.03,59:14,0,0,0,0,0,3554
 Tristan Jarry,2023-11-28,Pittsburgh Penguins,L,1,1,0,0,--,1,25,22,3,0.88,3.0,59:55,0,0,0,0,0,3595
 Thatcher Demko,2023-11-28,Vancouver Canucks,L,1,1,1,0,--,0,31,30,1,0.968,1.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2023-11-28,New Jersey Devils,L,1,1,0,0,--,0,18,14,4,0.846,7.25,33:05,0,0,0,0,0,1985
+Vítek Vaněček,2023-11-28,New Jersey Devils,L,1,1,0,0,--,0,18,14,4,0.846,7.25,33:05,0,0,0,0,0,1985
 Jonas Johansson,2023-11-28,Tampa Bay Lightning,L,1,1,0,1,--,0,27,24,3,0.889,3.04,59:09,0,0,0,0,0,3549
 Ilya Sorokin,2023-11-28,New York Islanders,L,1,1,0,1,--,0,33,28,5,0.848,5.03,59:37,0,0,0,0,0,3577
 Connor Ingram,2023-11-28,Utah Hockey Club,L,1,1,1,0,--,0,31,30,1,0.968,1.0,60:00,0,0,1,1,0,3600
@@ -3387,7 +3387,7 @@ Juuse Saros,2023-12-05,Nashville Predators,L,1,1,1,0,--,0,28,25,3,0.893,2.77,65:
 Eric Comrie,2023-12-05,Buffalo Sabres,L,1,1,0,1,--,0,26,22,4,0.846,4.12,58:18,0,0,0,0,0,3498
 Pheonix Copley,2023-12-05,Los Angeles Kings,L,1,1,1,0,--,0,29,26,3,0.897,2.97,60:33,0,0,0,0,0,3633
 Thatcher Demko,2023-12-05,Vancouver Canucks,L,1,1,0,1,--,0,32,26,6,0.813,6.06,59:26,0,0,0,0,0,3566
-Vitek Vanecek,2023-12-05,New Jersey Devils,L,1,1,1,0,--,0,33,28,5,0.848,5.03,59:37,0,0,0,0,0,3577
+Vítek Vaněček,2023-12-05,New Jersey Devils,L,1,1,1,0,--,0,33,28,5,0.848,5.03,59:37,0,0,0,0,0,3577
 Elvis Merzlikins,2023-12-05,Columbus Blue Jackets,L,1,1,0,0,--,1,39,35,4,0.897,3.96,60:33,0,0,0,0,0,3633
 Ilya Sorokin,2023-12-05,New York Islanders,L,1,1,0,0,--,1,37,32,5,0.865,4.65,64:35,0,0,0,0,0,3875
 Kaapo Kahkonen,2023-12-05,San Jose Sharks,L,1,1,1,0,--,0,39,35,4,0.897,3.78,63:32,0,0,0,0,0,3812
@@ -3446,7 +3446,7 @@ Joonas Korpisalo,2023-12-09,Ottawa Senators,L,1,1,1,0,--,0,31,30,1,0.968,1.0,60:
 Linus Ullmark,2023-12-09,Boston Bruins,L,1,1,1,0,--,0,33,30,3,0.909,3.01,59:47,0,0,0,0,0,3587
 Antti Raanta,2023-12-09,Carolina Hurricanes,L,1,1,0,1,--,0,24,20,4,0.833,4.13,58:03,0,0,0,0,0,3483
 Thatcher Demko,2023-12-09,Vancouver Canucks,L,1,1,1,0,--,0,24,21,3,0.875,3.01,59:46,0,0,0,0,0,3586
-Vitek Vanecek,2023-12-09,New Jersey Devils,L,1,1,1,0,--,0,25,23,2,0.92,2.0,59:52,0,0,0,0,0,3592
+Vítek Vaněček,2023-12-09,New Jersey Devils,L,1,1,1,0,--,0,25,23,2,0.92,2.0,59:52,0,0,0,0,0,3592
 Ilya Sorokin,2023-12-09,New York Islanders,L,1,1,1,0,--,0,35,33,2,0.943,1.99,60:13,0,0,0,0,0,3613
 Igor Shesterkin,2023-12-09,New York Rangers,L,1,1,0,1,--,0,29,25,4,0.862,4.0,60:00,0,0,0,0,0,3600
 Ilya Samsonov,2023-12-09,Toronto Maple Leafs,L,1,1,1,0,--,0,18,18,0,1.0,0.0,60:00,1,0,0,0,0,3600
@@ -3479,7 +3479,7 @@ Arvid Soderblom,2023-12-10,Chicago Blackhawks,L,1,1,0,1,--,0,27,23,4,0.852,4.1,5
 Jet Greaves,2023-12-10,Columbus Blue Jackets,L,1,1,0,1,--,0,33,30,3,0.909,3.05,58:56,0,0,0,0,0,3536
 James Reimer,2023-12-11,Detroit Red Wings,L,1,1,0,1,--,0,34,29,5,0.853,5.16,58:09,0,0,0,0,0,3489
 Ilya Sorokin,2023-12-11,New York Islanders,L,1,1,1,0,--,0,40,37,3,0.925,2.96,60:46,0,0,0,0,0,3646
-Dan Vladar,2023-12-11,Calgary Flames,L,1,1,0,1,--,0,38,32,6,0.842,6.17,58:21,0,0,0,0,0,3501
+Daniel Vladar,2023-12-11,Calgary Flames,L,1,1,0,1,--,0,38,32,6,0.842,6.17,58:21,0,0,0,0,0,3501
 Ilya Samsonov,2023-12-11,Toronto Maple Leafs,L,1,1,0,0,--,1,29,25,4,0.862,4.08,58:51,0,0,0,0,0,3531
 Karel Vejmelka,2023-12-11,Utah Hockey Club,R,1,1,0,1,--,0,37,33,4,0.892,4.02,59:39,0,0,0,0,0,3579
 Jake Oettinger,2023-12-11,Dallas Stars,L,1,1,1,0,--,0,30,27,3,0.9,3.01,59:45,0,0,0,0,0,3585
@@ -3510,7 +3510,7 @@ Cam Talbot,2023-12-13,Los Angeles Kings,L,1,1,0,1,--,0,28,24,4,0.857,4.26,56:19,
 John Gibson,2023-12-13,Anaheim Ducks,L,1,1,0,1,--,0,35,31,4,0.886,4.08,58:46,0,0,0,0,0,3526
 Connor Hellebuyck,2023-12-13,Winnipeg Jets,L,1,1,1,0,--,0,34,32,2,0.941,2.0,60:00,0,0,0,0,0,3600
 Alex Nedeljkovic,2023-12-13,Pittsburgh Penguins,L,1,1,1,0,--,0,42,39,3,0.929,2.77,65:00,0,0,0,0,0,3900
-Vitek Vanecek,2023-12-13,New Jersey Devils,L,1,1,1,0,--,0,24,23,1,0.958,0.96,62:47,0,0,1,1,0,3767
+Vítek Vaněček,2023-12-13,New Jersey Devils,L,1,1,1,0,--,0,24,23,1,0.958,0.96,62:47,0,0,1,1,0,3767
 Sam Montembeault,2023-12-13,Montréal Canadiens,L,1,1,0,0,--,1,30,27,3,0.9,2.79,64:30,0,0,0,0,0,3870
 Ukko-Pekka Luukkonen,2023-12-13,Buffalo Sabres,L,1,1,0,1,--,0,29,24,5,0.828,5.0,60:00,0,0,0,0,0,3600
 Jeremy Swayman,2023-12-13,Boston Bruins,L,1,1,0,0,--,1,35,33,2,0.943,1.91,62:47,0,0,0,0,0,3767
@@ -3522,7 +3522,7 @@ Joonas Korpisalo,2023-12-14,Ottawa Senators,L,1,1,0,1,--,0,30,26,4,0.867,4.1,58:
 Thatcher Demko,2023-12-14,Vancouver Canucks,L,1,1,1,0,--,0,36,36,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Elvis Merzlikins,2023-12-14,Columbus Blue Jackets,L,1,1,1,0,--,0,48,43,5,0.896,4.73,63:26,0,0,0,0,0,3806
 Ville Husso,2023-12-14,Detroit Red Wings,L,1,1,0,1,--,0,39,37,2,0.949,2.04,58:52,0,0,0,0,0,3532
-Dan Vladar,2023-12-14,Calgary Flames,L,1,1,0,0,--,1,32,30,2,0.938,1.85,65:00,0,0,0,0,0,3900
+Daniel Vladar,2023-12-14,Calgary Flames,L,1,1,0,0,--,1,32,30,2,0.938,1.85,65:00,0,0,0,0,0,3900
 Ilya Samsonov,2023-12-14,Toronto Maple Leafs,L,1,1,0,0,--,1,35,29,6,0.829,5.83,61:44,0,0,0,0,0,3704
 Joey Daccord,2023-12-14,Seattle Kraken,L,1,1,1,0,--,0,22,21,1,0.955,1.0,60:00,0,0,0,0,0,3600
 Charlie Lindgren,2023-12-14,Washington Capitals,R,1,1,0,0,--,1,32,29,3,0.906,2.79,64:30,0,0,0,0,0,3870
@@ -3556,7 +3556,7 @@ Juuse Saros,2023-12-16,Nashville Predators,L,1,1,1,0,--,0,22,21,1,0.955,1.0,60:0
 Alex Nedeljkovic,2023-12-16,Pittsburgh Penguins,L,1,0,0,0,--,0,21,18,3,0.8,4.86,37:01,0,0,0,0,0,2221
 Ville Husso,2023-12-16,Detroit Red Wings,L,1,0,0,0,--,0,18,18,0,0.971,0.0,30:19,0,0,0,0,0,1819
 Igor Shesterkin,2023-12-16,New York Rangers,L,1,1,1,0,--,0,22,21,1,0.955,0.98,61:21,0,0,0,0,0,3681
-Dan Vladar,2023-12-16,Calgary Flames,L,1,1,1,0,--,0,33,31,2,0.939,2.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2023-12-16,Calgary Flames,L,1,1,1,0,--,0,33,31,2,0.939,2.0,60:00,0,0,0,0,0,3600
 Sam Montembeault,2023-12-16,Montréal Canadiens,L,1,1,1,0,--,0,33,30,3,0.909,3.0,60:00,0,0,0,0,0,3600
 Karel Vejmelka,2023-12-16,Utah Hockey Club,R,1,1,1,0,--,0,28,28,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Joey Daccord,2023-12-16,Seattle Kraken,L,1,1,0,0,--,1,38,36,2,0.947,1.85,65:00,0,0,0,0,0,3900
@@ -3597,7 +3597,7 @@ Andrei Vasilevskiy,2023-12-19,Tampa Bay Lightning,L,1,1,1,0,--,0,29,28,1,0.966,1
 Joonas Korpisalo,2023-12-19,Ottawa Senators,L,1,1,0,1,--,0,38,34,4,0.895,4.11,58:20,0,0,0,0,0,3500
 Linus Ullmark,2023-12-19,Boston Bruins,L,1,1,0,0,--,1,30,26,4,0.867,3.86,62:07,0,0,0,0,0,3727
 Juuse Saros,2023-12-19,Nashville Predators,L,1,1,0,1,--,0,24,19,5,0.857,7.34,40:51,0,0,0,0,0,2451
-Vitek Vanecek,2023-12-19,New Jersey Devils,L,1,1,0,0,--,1,26,23,3,0.885,2.84,63:25,0,0,0,0,0,3805
+Vítek Vaněček,2023-12-19,New Jersey Devils,L,1,1,0,0,--,1,26,23,3,0.885,2.84,63:25,0,0,0,0,0,3805
 Ilya Sorokin,2023-12-19,New York Islanders,L,1,1,1,0,--,0,31,30,1,0.968,1.0,59:57,0,0,0,0,0,3597
 Kaapo Kahkonen,2023-12-19,San Jose Sharks,L,1,1,0,1,--,0,38,35,3,0.921,3.05,59:01,0,0,0,0,0,3541
 Igor Shesterkin,2023-12-19,New York Rangers,L,1,1,1,0,--,0,33,31,2,0.939,2.0,60:00,0,0,0,0,0,3600
@@ -3627,7 +3627,7 @@ Joonas Korpisalo,2023-12-21,Ottawa Senators,L,1,1,0,1,--,0,38,33,5,0.868,5.05,59
 Juuse Saros,2023-12-21,Nashville Predators,L,1,1,1,0,--,0,31,29,2,0.935,2.01,59:47,0,0,0,0,0,3587
 Thatcher Demko,2023-12-21,Vancouver Canucks,L,1,1,0,0,--,1,36,32,4,0.889,3.7,64:50,0,0,0,0,0,3890
 Alex Nedeljkovic,2023-12-21,Pittsburgh Penguins,L,1,1,1,0,--,0,24,23,1,0.958,0.92,65:00,0,0,0,0,0,3900
-Vitek Vanecek,2023-12-21,New Jersey Devils,L,1,0,0,1,--,0,32,28,4,0.842,4.4,54:36,0,0,0,0,0,3276
+Vítek Vaněček,2023-12-21,New Jersey Devils,L,1,0,0,1,--,0,32,28,4,0.842,4.4,54:36,0,0,0,0,0,3276
 Elvis Merzlikins,2023-12-21,Columbus Blue Jackets,L,1,1,0,0,--,1,32,29,3,0.906,2.81,64:07,0,0,0,0,2,3847
 Mackenzie Blackwood,2023-12-21,San Jose Sharks,L,1,1,0,1,--,0,30,25,5,0.833,5.0,60:00,0,0,0,0,0,3600
 Sam Montembeault,2023-12-21,Montréal Canadiens,L,1,1,0,0,--,1,24,20,4,0.833,3.7,64:55,0,0,0,0,0,3895
@@ -3663,7 +3663,7 @@ Linus Ullmark,2023-12-23,Boston Bruins,L,1,1,0,1,--,0,35,33,3,0.943,3.09,58:16,0
 Juuse Saros,2023-12-23,Nashville Predators,L,1,1,0,1,--,0,34,31,3,0.912,3.0,60:00,0,0,0,0,0,3600
 Thatcher Demko,2023-12-23,Vancouver Canucks,L,1,1,1,0,--,0,25,21,4,0.84,4.0,60:00,0,0,0,0,0,3600
 Alex Nedeljkovic,2023-12-23,Pittsburgh Penguins,L,1,1,0,0,--,1,26,21,5,0.808,4.9,61:10,0,0,0,0,0,3670
-Vitek Vanecek,2023-12-23,New Jersey Devils,L,1,1,1,0,--,0,24,22,2,0.917,2.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2023-12-23,New Jersey Devils,L,1,1,1,0,--,0,24,22,2,0.917,2.0,60:00,0,0,0,0,0,3600
 Ilya Sorokin,2023-12-23,New York Islanders,L,1,1,1,0,--,0,40,36,4,0.9,4.01,59:52,0,0,0,0,0,3592
 Igor Shesterkin,2023-12-23,New York Rangers,L,1,1,1,0,--,0,30,27,3,0.9,2.88,62:24,0,0,0,0,0,3744
 Mackenzie Blackwood,2023-12-23,San Jose Sharks,L,1,1,0,1,--,0,25,19,6,0.76,6.21,58:00,0,0,0,0,0,3480
@@ -3691,7 +3691,7 @@ Joonas Korpisalo,2023-12-27,Ottawa Senators,L,1,1,1,0,--,0,36,34,2,0.944,2.0,60:
 Connor Hellebuyck,2023-12-27,Winnipeg Jets,L,1,1,0,0,--,1,25,23,2,0.92,1.94,61:48,0,0,0,0,0,3708
 Juuse Saros,2023-12-27,Nashville Predators,L,1,1,0,1,--,0,19,14,5,0.8,7.5,40:00,0,0,0,0,0,2400
 Tristan Jarry,2023-12-27,Pittsburgh Penguins,L,1,1,1,0,--,0,22,22,0,1.0,0.0,60:00,1,0,0,0,0,3600
-Vitek Vanecek,2023-12-27,New Jersey Devils,L,1,1,1,0,--,0,29,26,3,0.897,2.91,61:46,0,0,0,0,0,3706
+Vítek Vaněček,2023-12-27,New Jersey Devils,L,1,1,1,0,--,0,29,26,3,0.897,2.91,61:46,0,0,0,0,0,3706
 Elvis Merzlikins,2023-12-27,Columbus Blue Jackets,L,1,1,0,0,--,1,35,31,4,0.886,3.86,62:06,0,0,0,0,0,3726
 Ilya Sorokin,2023-12-27,New York Islanders,L,1,1,0,1,--,0,25,19,6,0.781,9.0,40:00,0,0,0,0,0,2400
 Kaapo Kahkonen,2023-12-27,San Jose Sharks,L,1,1,0,1,--,0,43,38,5,0.884,5.0,60:00,0,0,0,0,0,3600
@@ -3739,7 +3739,7 @@ Anthony Stolarz,2023-12-30,Florida Panthers,L,1,1,1,0,--,0,19,18,1,0.947,1.01,59
 Connor Hellebuyck,2023-12-30,Winnipeg Jets,L,1,1,1,0,--,0,36,34,2,0.944,2.0,59:52,0,0,0,0,0,3592
 Linus Ullmark,2023-12-30,Boston Bruins,L,1,1,1,0,--,0,33,31,2,0.939,2.0,60:00,0,0,0,0,0,3600
 Tristan Jarry,2023-12-30,Pittsburgh Penguins,L,1,1,1,0,--,0,27,25,2,0.926,2.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2023-12-30,New Jersey Devils,L,1,1,0,1,--,0,31,26,5,0.839,5.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2023-12-30,New Jersey Devils,L,1,1,0,1,--,0,31,26,5,0.839,5.0,60:00,0,0,0,0,0,3600
 Igor Shesterkin,2023-12-30,New York Rangers,L,1,1,1,0,--,0,35,34,1,0.971,1.0,60:00,0,0,0,0,0,3600
 Filip Gustavsson,2023-12-30,Minnesota Wild,L,1,1,0,1,--,0,22,19,3,0.875,4.5,40:00,0,0,0,0,0,2400
 Stuart Skinner,2023-12-30,Edmonton Oilers,L,1,1,1,0,--,0,28,26,2,0.929,1.85,65:00,0,0,0,0,0,3900
@@ -3814,7 +3814,7 @@ Alex Nedeljkovic,2024-01-04,Pittsburgh Penguins,L,1,1,1,0,--,0,29,24,5,0.828,5.0
 Ilya Sorokin,2024-01-04,New York Islanders,L,1,1,1,0,--,0,27,26,1,0.963,1.0,60:00,0,0,0,0,0,3600
 Igor Shesterkin,2024-01-04,New York Rangers,L,1,1,1,0,--,0,23,22,1,0.957,1.0,60:00,0,0,0,0,0,3600
 Mackenzie Blackwood,2024-01-04,San Jose Sharks,L,1,1,0,1,--,0,30,28,2,0.933,2.07,58:00,0,0,0,0,0,3480
-Dan Vladar,2024-01-04,Calgary Flames,L,1,1,1,0,--,0,32,29,3,0.906,3.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2024-01-04,Calgary Flames,L,1,1,1,0,--,0,32,29,3,0.906,3.0,60:00,0,0,0,0,0,3600
 Joey Daccord,2024-01-04,Seattle Kraken,L,1,1,1,0,--,0,33,32,1,0.97,1.0,60:00,0,0,0,0,0,3600
 Connor Ingram,2024-01-04,Utah Hockey Club,L,1,1,0,1,--,0,31,26,5,0.839,5.02,59:47,0,0,0,0,0,3587
 Alex Lyon,2024-01-04,Detroit Red Wings,L,1,1,1,0,--,0,43,40,3,0.93,2.77,65:00,0,0,0,0,0,3900
@@ -3828,7 +3828,7 @@ Devon Levi,2024-01-04,Buffalo Sabres,L,1,1,1,0,--,0,33,32,1,0.97,1.0,60:00,0,0,0
 Darcy Kuemper,2024-01-05,Washington Capitals,L,1,1,0,1,--,0,33,28,5,0.848,5.08,59:01,0,0,0,0,0,3541
 Laurent Brossoit,2024-01-05,Winnipeg Jets,L,1,1,1,0,--,0,38,37,1,0.974,1.0,60:00,0,0,0,0,0,3600
 John Gibson,2024-01-05,Anaheim Ducks,L,1,1,0,1,--,0,27,24,3,0.889,3.18,56:34,0,0,0,0,0,3394
-Vitek Vanecek,2024-01-05,New Jersey Devils,L,1,1,1,0,--,0,25,23,2,0.92,2.01,59:51,0,0,0,0,0,3591
+Vítek Vaněček,2024-01-05,New Jersey Devils,L,1,1,1,0,--,0,25,23,2,0.92,2.01,59:51,0,0,0,0,0,3591
 Pyotr Kochetkov,2024-01-05,Carolina Hurricanes,L,1,1,1,0,--,0,17,15,2,0.882,2.0,60:00,0,0,0,0,0,3600
 Arvid Soderblom,2024-01-05,Chicago Blackhawks,L,1,1,0,1,--,0,31,28,3,0.903,3.09,58:16,0,0,0,0,0,3496
 Marc-Andre Fleury,2024-01-06,Minnesota Wild,L,1,1,1,0,--,0,29,26,3,0.897,2.86,63:01,0,0,0,0,0,3781
@@ -3859,7 +3859,7 @@ Darcy Kuemper,2024-01-07,Washington Capitals,L,1,1,1,0,--,0,41,38,3,0.927,3.0,60
 Cam Talbot,2024-01-07,Los Angeles Kings,L,1,1,0,1,--,0,34,30,4,0.882,4.05,59:13,0,0,0,0,0,3553
 Petr Mrazek,2024-01-07,Chicago Blackhawks,L,1,1,1,0,--,0,30,27,3,0.9,3.0,59:57,0,0,0,0,0,3597
 Connor Hellebuyck,2024-01-07,Winnipeg Jets,L,1,1,1,0,--,0,17,15,2,0.882,2.03,59:11,0,0,0,0,0,3551
-Dan Vladar,2024-01-07,Calgary Flames,L,1,1,0,1,--,0,20,16,4,0.8,4.16,57:45,0,0,0,0,0,3465
+Daniel Vladar,2024-01-07,Calgary Flames,L,1,1,0,1,--,0,20,16,4,0.8,4.16,57:45,0,0,0,0,0,3465
 Karel Vejmelka,2024-01-07,Utah Hockey Club,R,1,1,0,1,--,0,35,31,5,0.886,5.04,59:29,0,0,0,0,0,3569
 Alex Lyon,2024-01-07,Detroit Red Wings,L,1,1,1,0,--,0,31,29,2,0.935,2.0,60:00,0,0,0,0,0,3600
 Lukas Dostal,2024-01-07,Anaheim Ducks,L,1,1,0,1,--,0,28,25,3,0.893,3.05,59:06,0,0,0,0,0,3546
@@ -3911,7 +3911,7 @@ Andrei Vasilevskiy,2024-01-11,Tampa Bay Lightning,L,1,1,1,0,--,0,30,27,3,0.9,2.9
 Joonas Korpisalo,2024-01-11,Ottawa Senators,L,1,0,0,1,--,0,24,21,3,0.871,4.27,42:11,0,0,0,0,0,2531
 Tristan Jarry,2024-01-11,Pittsburgh Penguins,L,1,0,0,0,--,1,20,19,1,0.862,1.46,41:07,0,0,0,0,0,2467
 Thatcher Demko,2024-01-11,Vancouver Canucks,L,1,1,1,0,--,0,35,32,3,0.914,2.86,62:56,0,0,0,0,0,3776
-Vitek Vanecek,2024-01-11,New Jersey Devils,L,1,1,0,0,--,1,20,16,4,0.8,3.88,61:52,0,0,0,0,0,3712
+Vítek Vaněček,2024-01-11,New Jersey Devils,L,1,1,0,0,--,1,20,16,4,0.8,3.88,61:52,0,0,0,0,0,3712
 Ilya Sorokin,2024-01-11,New York Islanders,L,1,1,1,0,--,0,35,32,3,0.914,2.98,60:21,0,0,0,0,0,3621
 Igor Shesterkin,2024-01-11,New York Rangers,L,1,1,0,1,--,0,19,15,4,0.789,4.18,57:29,0,0,0,0,0,3449
 Mackenzie Blackwood,2024-01-11,San Jose Sharks,L,1,1,1,0,--,0,35,33,2,0.943,2.0,60:00,0,0,0,0,0,3600
@@ -3993,7 +3993,7 @@ Connor Hellebuyck,2024-01-16,Winnipeg Jets,L,1,1,1,0,--,0,37,35,2,0.946,2.0,59:5
 Ilya Sorokin,2024-01-16,New York Islanders,L,1,1,0,1,--,0,43,40,3,0.93,3.09,58:16,0,0,0,0,0,3496
 Igor Shesterkin,2024-01-16,New York Rangers,L,1,1,1,0,--,0,31,29,2,0.935,2.0,60:00,0,0,0,0,0,3600
 Mackenzie Blackwood,2024-01-16,San Jose Sharks,L,1,1,0,0,--,1,25,24,1,0.96,0.92,64:54,0,0,0,0,0,3894
-Dan Vladar,2024-01-16,Calgary Flames,L,1,1,1,0,--,0,25,23,2,0.92,1.85,64:43,0,0,0,0,0,3883
+Daniel Vladar,2024-01-16,Calgary Flames,L,1,1,1,0,--,0,25,23,2,0.92,1.85,64:43,0,0,0,0,0,3883
 Connor Ingram,2024-01-16,Utah Hockey Club,L,1,1,0,0,--,1,30,27,3,0.9,2.78,64:43,0,0,0,0,0,3883
 Stuart Skinner,2024-01-16,Edmonton Oilers,L,1,1,1,0,--,0,27,25,2,0.926,2.01,59:42,0,0,0,0,0,3582
 Jake Oettinger,2024-01-16,Dallas Stars,L,1,1,1,0,--,0,32,31,1,0.969,1.0,60:00,0,0,0,0,0,3600
@@ -4010,7 +4010,7 @@ Joonas Korpisalo,2024-01-18,Ottawa Senators,L,1,1,1,0,--,0,23,21,2,0.913,2.0,59:
 Juuse Saros,2024-01-18,Nashville Predators,L,1,1,1,0,--,0,34,33,1,0.971,1.0,59:52,0,0,0,0,0,3592
 Thatcher Demko,2024-01-18,Vancouver Canucks,L,1,1,1,0,--,0,21,20,1,0.952,1.0,60:00,0,0,0,0,0,3600
 Igor Shesterkin,2024-01-18,New York Rangers,L,1,1,0,1,--,0,25,21,4,0.84,4.17,57:32,0,0,0,0,0,3452
-Dan Vladar,2024-01-18,Calgary Flames,L,1,1,0,1,--,0,32,28,4,0.875,4.11,58:27,0,0,0,0,0,3507
+Daniel Vladar,2024-01-18,Calgary Flames,L,1,1,0,1,--,0,32,28,4,0.875,4.11,58:27,0,0,0,0,0,3507
 Joey Daccord,2024-01-18,Seattle Kraken,L,1,1,0,1,--,0,36,32,4,0.889,4.04,59:27,0,0,0,0,0,3567
 Connor Ingram,2024-01-18,Utah Hockey Club,L,1,1,0,1,--,0,26,24,2,0.923,2.04,58:51,0,0,0,0,0,3531
 Charlie Lindgren,2024-01-18,Washington Capitals,R,1,1,1,0,--,0,20,18,2,0.9,2.0,60:00,0,0,0,0,0,3600
@@ -4029,7 +4029,7 @@ Marc-Andre Fleury,2024-01-19,Minnesota Wild,L,1,1,0,0,--,0,11,10,1,0.886,1.97,30
 Sergei Bobrovsky,2024-01-19,Florida Panthers,L,1,1,0,0,--,0,15,11,4,0.8,7.86,30:32,0,0,0,0,2,1832
 Petr Mrazek,2024-01-19,Chicago Blackhawks,L,1,1,1,0,--,0,30,27,3,0.9,2.98,60:22,0,0,0,0,0,3622
 Antti Raanta,2024-01-19,Carolina Hurricanes,L,1,1,1,0,--,0,12,10,2,0.833,2.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2024-01-19,New Jersey Devils,L,1,1,1,0,--,0,30,29,1,0.967,1.0,59:45,0,0,0,0,0,3585
+Vítek Vaněček,2024-01-19,New Jersey Devils,L,1,1,1,0,--,0,30,29,1,0.967,1.0,59:45,0,0,0,0,0,3585
 Elvis Merzlikins,2024-01-19,Columbus Blue Jackets,L,1,1,0,1,--,0,33,29,4,0.879,4.0,60:00,0,0,0,0,0,3600
 Ilya Sorokin,2024-01-19,New York Islanders,L,1,1,0,0,--,1,24,20,4,0.833,3.98,60:22,0,0,0,0,0,3622
 Alex Lyon,2024-01-19,Detroit Red Wings,L,1,1,0,1,--,0,29,26,3,0.897,3.02,59:39,0,0,0,0,0,3579
@@ -4046,7 +4046,7 @@ Tristan Jarry,2024-01-20,Pittsburgh Penguins,L,1,1,0,1,--,0,29,26,3,0.897,3.06,5
 Thatcher Demko,2024-01-20,Vancouver Canucks,L,1,1,1,0,--,0,46,42,4,0.913,4.04,59:22,0,0,0,0,0,3562
 Jonas Johansson,2024-01-20,Tampa Bay Lightning,L,1,1,1,0,--,0,27,26,1,0.963,1.0,59:57,0,0,0,0,0,3597
 Mackenzie Blackwood,2024-01-20,San Jose Sharks,L,1,1,1,0,--,0,34,31,3,0.912,3.0,60:00,0,0,0,0,0,3600
-Dan Vladar,2024-01-20,Calgary Flames,L,1,1,0,1,--,0,31,29,2,0.935,2.04,58:45,0,0,0,0,0,3525
+Daniel Vladar,2024-01-20,Calgary Flames,L,1,1,0,1,--,0,31,29,2,0.935,2.04,58:45,0,0,0,0,0,3525
 Sam Montembeault,2024-01-20,Montréal Canadiens,L,1,1,0,1,--,0,30,22,8,0.75,9.75,49:13,0,0,0,0,0,2953
 Connor Ingram,2024-01-20,Utah Hockey Club,L,1,1,1,0,--,0,32,30,2,0.938,2.0,60:00,0,0,0,0,0,3600
 Charlie Lindgren,2024-01-20,Washington Capitals,R,1,1,0,1,--,0,29,26,3,0.897,3.02,59:38,0,0,0,0,0,3578
@@ -4075,7 +4075,7 @@ Connor Hellebuyck,2024-01-22,Winnipeg Jets,L,1,1,0,1,--,0,20,17,3,0.85,3.05,58:5
 Juuse Saros,2024-01-22,Nashville Predators,L,1,1,0,1,--,0,36,34,2,0.944,2.06,58:11,0,0,0,0,0,3491
 Tristan Jarry,2024-01-22,Pittsburgh Penguins,L,1,1,0,1,--,0,26,22,4,0.846,4.03,59:35,0,0,0,0,0,3575
 Thatcher Demko,2024-01-22,Vancouver Canucks,L,1,1,1,0,--,0,31,31,0,1.0,0.0,59:26,1,0,0,0,0,3566
-Vitek Vanecek,2024-01-22,New Jersey Devils,L,1,1,1,0,--,0,32,27,5,0.844,4.79,62:35,0,0,0,0,0,3755
+Vítek Vaněček,2024-01-22,New Jersey Devils,L,1,1,1,0,--,0,32,27,5,0.844,4.79,62:35,0,0,0,0,0,3755
 Kaapo Kahkonen,2024-01-22,San Jose Sharks,L,1,1,1,0,--,0,47,44,3,0.936,2.79,64:26,0,0,0,0,2,3866
 Connor Ingram,2024-01-22,Utah Hockey Club,L,1,1,1,0,--,0,27,25,2,0.926,2.0,60:00,0,0,0,0,0,3600
 David Rittich,2024-01-22,Los Angeles Kings,L,1,1,0,0,--,1,27,24,3,0.889,2.79,64:31,0,0,0,0,0,3871
@@ -4122,7 +4122,7 @@ Andrei Vasilevskiy,2024-01-25,Tampa Bay Lightning,L,1,1,1,0,--,0,20,17,3,0.85,3.
 Joonas Korpisalo,2024-01-25,Ottawa Senators,L,1,1,0,0,--,1,23,20,3,0.87,2.91,61:48,0,0,0,0,0,3708
 Antti Raanta,2024-01-25,Carolina Hurricanes,L,1,1,1,0,--,0,25,23,2,0.92,2.0,59:57,0,0,0,0,0,3597
 Juuse Saros,2024-01-25,Nashville Predators,L,1,1,1,0,--,0,24,22,2,0.917,2.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2024-01-25,New Jersey Devils,L,1,0,0,0,--,0,11,11,0,0.87,0.0,34:17,0,0,0,0,0,2057
+Vítek Vaněček,2024-01-25,New Jersey Devils,L,1,0,0,0,--,0,11,11,0,0.87,0.0,34:17,0,0,0,0,0,2057
 Sam Montembeault,2024-01-25,Montréal Canadiens,L,1,1,1,0,--,0,46,43,3,0.935,3.0,60:00,0,0,1,1,0,3600
 Connor Ingram,2024-01-25,Utah Hockey Club,L,1,1,0,1,--,0,37,31,6,0.838,6.0,60:00,0,0,0,0,0,3600
 Alex Lyon,2024-01-25,Detroit Red Wings,L,1,1,1,0,--,0,30,30,0,1.0,0.0,59:34,1,0,0,0,0,3574
@@ -4153,7 +4153,7 @@ Antti Raanta,2024-01-27,Carolina Hurricanes,L,1,1,1,0,--,0,11,10,1,0.909,1.0,60:
 Cal Petersen,2024-01-27,Philadelphia Flyers,R,1,0,0,0,--,0,14,12,2,0.786,3.0,39:59,0,0,0,0,0,2399
 Tristan Jarry,2024-01-27,Pittsburgh Penguins,L,1,1,1,0,--,0,27,25,2,0.926,1.91,62:43,0,0,0,0,0,3763
 Thatcher Demko,2024-01-27,Vancouver Canucks,L,1,1,1,0,--,0,29,25,4,0.862,3.75,63:56,0,0,0,0,0,3836
-Vitek Vanecek,2024-01-27,New Jersey Devils,L,1,1,0,1,--,0,40,36,4,0.9,4.12,58:17,0,0,0,0,0,3497
+Vítek Vaněček,2024-01-27,New Jersey Devils,L,1,1,0,1,--,0,40,36,4,0.9,4.12,58:17,0,0,0,0,0,3497
 Elvis Merzlikins,2024-01-27,Columbus Blue Jackets,L,1,1,0,0,--,1,34,29,5,0.853,4.69,64:01,0,0,0,0,0,3841
 Kaapo Kahkonen,2024-01-27,San Jose Sharks,L,1,1,0,1,--,0,35,31,4,0.886,4.05,59:12,0,0,0,0,0,3552
 Ilya Samsonov,2024-01-27,Toronto Maple Leafs,L,1,1,1,0,--,0,26,24,2,0.923,2.0,60:00,0,0,0,0,0,3600
@@ -4193,7 +4193,7 @@ Anthony Stolarz,2024-02-06,Florida Panthers,L,1,1,0,1,--,0,25,23,2,0.92,2.1,57:1
 Connor Hellebuyck,2024-02-06,Winnipeg Jets,L,1,1,0,1,--,0,27,24,3,0.889,3.0,60:00,0,0,0,0,0,3600
 Tristan Jarry,2024-02-06,Pittsburgh Penguins,L,1,1,1,0,--,0,23,23,0,1.0,0.0,60:00,1,0,0,0,2,3600
 Thatcher Demko,2024-02-06,Vancouver Canucks,L,1,1,1,0,--,0,24,22,2,0.917,2.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2024-02-06,New Jersey Devils,L,1,1,1,0,--,0,38,35,3,0.921,3.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2024-02-06,New Jersey Devils,L,1,1,1,0,--,0,38,35,3,0.921,3.0,60:00,0,0,0,0,0,3600
 Sam Montembeault,2024-02-06,Montréal Canadiens,L,1,1,1,0,--,0,39,37,2,0.949,2.0,60:00,0,0,0,0,0,3600
 Adin Hill,2024-02-06,Vegas Golden Knights,L,1,1,1,0,--,0,31,30,1,0.968,1.0,60:00,0,0,0,0,0,3600
 Stuart Skinner,2024-02-06,Edmonton Oilers,L,1,1,0,1,--,0,25,23,2,0.92,2.05,58:24,0,0,0,0,0,3504
@@ -4215,7 +4215,7 @@ Sergei Bobrovsky,2024-02-08,Florida Panthers,L,1,1,1,0,--,0,23,21,2,0.913,2.0,60
 Laurent Brossoit,2024-02-08,Winnipeg Jets,L,1,1,0,1,--,0,21,17,4,0.81,4.03,59:30,0,0,0,0,0,3570
 Linus Ullmark,2024-02-08,Boston Bruins,L,1,1,1,0,--,0,17,17,0,1.0,0.0,59:36,1,0,0,0,0,3576
 Thatcher Demko,2024-02-08,Vancouver Canucks,L,1,1,0,1,--,0,24,20,4,0.833,4.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2024-02-08,New Jersey Devils,L,1,1,0,1,--,0,29,25,4,0.862,4.13,58:06,0,0,0,0,0,3486
+Vítek Vaněček,2024-02-08,New Jersey Devils,L,1,1,0,1,--,0,29,25,4,0.862,4.13,58:06,0,0,0,0,0,3486
 Jonas Johansson,2024-02-08,Tampa Bay Lightning,L,1,1,0,1,--,0,24,18,6,0.75,6.06,59:23,0,0,0,0,0,3563
 Ilya Sorokin,2024-02-08,New York Islanders,L,1,1,1,0,--,0,20,18,2,0.9,2.0,60:00,0,0,0,0,0,3600
 Adin Hill,2024-02-08,Vegas Golden Knights,L,1,1,1,0,--,0,22,20,2,0.909,2.0,60:00,0,0,0,0,0,3600
@@ -4239,7 +4239,7 @@ Connor Hellebuyck,2024-02-10,Winnipeg Jets,L,1,1,1,0,--,0,36,35,1,0.972,1.0,60:0
 Cal Petersen,2024-02-10,Philadelphia Flyers,R,1,1,1,0,--,0,19,17,2,0.895,2.0,60:00,0,0,0,0,0,3600
 Juuse Saros,2024-02-10,Nashville Predators,L,1,1,1,0,--,0,31,27,4,0.871,3.9,61:34,0,0,0,0,0,3694
 Tristan Jarry,2024-02-10,Pittsburgh Penguins,L,1,1,0,1,--,0,31,29,2,0.935,2.05,58:35,0,0,0,0,0,3515
-Vitek Vanecek,2024-02-10,New Jersey Devils,L,1,1,0,0,--,1,32,31,1,0.969,0.94,63:40,0,0,0,0,0,3820
+Vítek Vaněček,2024-02-10,New Jersey Devils,L,1,1,0,0,--,1,32,31,1,0.969,0.94,63:40,0,0,0,0,0,3820
 Elvis Merzlikins,2024-02-10,Columbus Blue Jackets,L,1,1,0,1,--,0,36,33,3,0.917,3.08,58:26,0,0,0,0,0,3506
 Sam Montembeault,2024-02-10,Montréal Canadiens,L,1,1,0,1,--,0,38,35,3,0.921,3.08,58:26,0,0,0,0,0,3506
 Joey Daccord,2024-02-10,Seattle Kraken,L,1,1,0,1,--,0,38,35,3,0.921,3.09,58:15,0,0,0,0,0,3495
@@ -4339,7 +4339,7 @@ Spencer Martin,2024-02-17,Carolina Hurricanes,L,1,1,1,0,--,0,30,29,1,0.967,1.0,6
 Thatcher Demko,2024-02-17,Vancouver Canucks,L,1,1,0,1,--,0,28,24,4,0.857,4.24,56:39,0,0,0,0,0,3399
 Elvis Merzlikins,2024-02-17,Columbus Blue Jackets,L,1,1,1,0,--,0,31,28,3,0.903,3.06,58:52,0,0,0,0,0,3532
 Kaapo Kahkonen,2024-02-17,San Jose Sharks,L,1,1,0,1,--,0,41,37,4,0.902,4.02,59:43,0,0,0,0,0,3583
-Dan Vladar,2024-02-17,Calgary Flames,L,1,0,0,0,--,0,9,8,1,0.762,1.8,33:19,0,0,0,0,0,1999
+Daniel Vladar,2024-02-17,Calgary Flames,L,1,0,0,0,--,0,9,8,1,0.762,1.8,33:19,0,0,0,0,0,1999
 Adin Hill,2024-02-17,Vegas Golden Knights,L,1,1,0,1,--,0,28,25,3,0.893,3.1,58:09,0,0,0,0,0,3489
 Filip Gustavsson,2024-02-17,Minnesota Wild,L,1,1,0,0,--,1,28,25,3,0.893,2.93,61:29,0,0,0,0,0,3689
 David Rittich,2024-02-17,Los Angeles Kings,L,1,1,1,0,--,0,32,28,4,0.875,3.78,63:28,0,0,0,0,0,3808
@@ -4439,7 +4439,7 @@ Thatcher Demko,2024-02-24,Vancouver Canucks,L,1,1,1,0,--,0,25,23,2,0.92,1.97,60:
 Ilya Sorokin,2024-02-24,New York Islanders,L,1,1,0,1,--,0,20,17,3,0.85,3.18,56:33,0,0,0,0,0,3393
 Kaapo Kahkonen,2024-02-24,San Jose Sharks,L,1,1,0,1,--,0,34,31,3,0.912,3.05,58:57,0,0,0,0,0,3537
 Igor Shesterkin,2024-02-24,New York Rangers,L,1,1,1,0,--,0,40,39,1,0.975,1.0,60:00,0,0,0,0,0,3600
-Dan Vladar,2024-02-24,Calgary Flames,L,1,1,1,0,--,0,35,32,3,0.914,3.01,59:52,0,0,0,0,0,3592
+Daniel Vladar,2024-02-24,Calgary Flames,L,1,1,1,0,--,0,35,32,3,0.914,3.01,59:52,0,0,0,0,0,3592
 Ilya Samsonov,2024-02-24,Toronto Maple Leafs,L,1,1,1,0,--,0,29,26,3,0.897,3.0,60:00,0,0,0,0,0,3600
 Charlie Lindgren,2024-02-24,Washington Capitals,R,1,1,0,0,--,1,29,26,3,0.897,2.85,63:16,0,0,0,0,0,3796
 Alex Lyon,2024-02-24,Detroit Red Wings,L,1,1,1,0,--,0,23,22,1,0.957,1.0,59:56,0,0,0,0,0,3596
@@ -4671,7 +4671,7 @@ Calvin Pickard,2024-03-10,Edmonton Oilers,L,1,1,1,0,--,0,41,41,0,1.0,0.0,58:44,0
 Frederik Andersen,2024-03-10,Carolina Hurricanes,L,1,1,1,0,--,0,20,18,2,0.9,2.0,60:00,0,0,0,0,0,3600
 Juuse Saros,2024-03-10,Nashville Predators,L,1,1,0,0,--,1,33,29,4,0.879,3.78,63:31,0,0,0,0,0,3811
 Tristan Jarry,2024-03-10,Pittsburgh Penguins,L,1,1,0,1,--,0,42,38,4,0.905,4.05,59:18,0,0,0,0,0,3558
-Dan Vladar,2024-03-10,Calgary Flames,L,1,1,0,1,--,0,40,33,7,0.825,7.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2024-03-10,Calgary Flames,L,1,1,0,1,--,0,40,33,7,0.825,7.0,60:00,0,0,0,0,0,3600
 Connor Ingram,2024-03-10,Utah Hockey Club,L,1,1,0,1,--,0,40,34,6,0.85,6.02,59:49,0,0,0,0,0,3589
 Lukas Dostal,2024-03-10,Anaheim Ducks,L,1,1,0,1,--,0,19,13,6,0.684,6.12,58:49,0,0,0,0,2,3529
 Arvid Soderblom,2024-03-10,Chicago Blackhawks,L,1,1,1,0,--,0,36,32,4,0.889,4.0,60:00,0,0,0,0,0,3600
@@ -4692,7 +4692,7 @@ John Gibson,2024-03-12,Anaheim Ducks,L,1,1,0,1,--,0,26,20,6,0.774,7.42,48:30,0,0
 Joonas Korpisalo,2024-03-12,Ottawa Senators,L,1,1,1,0,--,0,35,34,1,0.971,0.95,63:08,0,0,0,0,0,3788
 Tristan Jarry,2024-03-12,Pittsburgh Penguins,L,1,1,0,0,--,1,39,37,2,0.949,1.93,62:15,0,0,0,0,0,3735
 Igor Shesterkin,2024-03-12,New York Rangers,L,1,1,1,0,--,0,28,28,0,1.0,0.0,60:00,1,0,0,0,0,3600
-Dan Vladar,2024-03-12,Calgary Flames,L,1,1,0,1,--,0,35,29,6,0.842,9.0,40:00,0,0,0,0,0,2400
+Daniel Vladar,2024-03-12,Calgary Flames,L,1,1,0,1,--,0,35,29,6,0.842,9.0,40:00,0,0,0,0,0,2400
 Adin Hill,2024-03-12,Vegas Golden Knights,L,1,1,1,0,--,0,30,26,4,0.867,3.89,61:45,0,0,0,0,0,3705
 Karel Vejmelka,2024-03-12,Utah Hockey Club,R,1,1,0,1,--,0,29,27,2,0.931,2.02,59:21,0,0,0,0,0,3561
 Jake Oettinger,2024-03-12,Dallas Stars,L,1,1,0,1,--,0,30,26,4,0.867,4.19,57:19,0,0,0,0,0,3439
@@ -5261,7 +5261,7 @@ Anthony Stolarz,2024-10-09,Toronto Maple Leafs,L,1,1,0,1,--,0,27,26,1,0.963,1.05
 Connor Hellebuyck,2024-10-09,Winnipeg Jets,L,1,1,1,0,--,0,30,30,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Tristan Jarry,2024-10-09,Pittsburgh Penguins,L,1,1,0,1,--,0,40,34,6,0.85,6.0,60:00,0,0,0,0,0,3600
 Igor Shesterkin,2024-10-09,New York Rangers,L,1,1,1,0,--,0,31,31,0,1.0,0.0,60:00,1,0,0,0,0,3600
-Dan Vladar,2024-10-09,Calgary Flames,L,1,1,1,0,--,0,24,19,5,0.792,4.87,61:33,0,0,0,0,0,3693
+Daniel Vladar,2024-10-09,Calgary Flames,L,1,1,1,0,--,0,24,19,5,0.792,4.87,61:33,0,0,0,0,0,3693
 Sam Montembeault,2024-10-09,Montréal Canadiens,L,1,1,1,0,--,0,48,48,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Adin Hill,2024-10-09,Vegas Golden Knights,L,1,1,1,0,--,0,32,28,4,0.875,4.0,60:00,0,0,0,0,0,3600
 Stuart Skinner,2024-10-09,Edmonton Oilers,L,1,1,0,1,--,0,13,8,5,0.7,9.64,31:08,0,0,0,0,0,1868
@@ -5303,7 +5303,7 @@ Petr Mrazek,2024-10-12,Chicago Blackhawks,L,1,1,1,0,--,0,38,36,2,0.947,2.0,60:00
 Anthony Stolarz,2024-10-12,Toronto Maple Leafs,L,1,1,1,0,--,0,23,21,2,0.913,2.02,59:33,0,0,0,0,0,3573
 Linus Ullmark,2024-10-12,Ottawa Senators,L,1,1,0,1,--,0,26,22,4,0.846,4.26,56:21,0,0,0,0,0,3381
 Juuse Saros,2024-10-12,Nashville Predators,L,1,1,0,1,--,0,21,19,2,0.905,2.09,57:21,0,0,0,0,0,3441
-Vitek Vanecek,2024-10-12,San Jose Sharks,L,1,1,0,1,--,0,29,28,1,0.966,1.03,57:59,0,0,0,0,0,3479
+Vítek Vaněček,2024-10-12,San Jose Sharks,L,1,1,0,1,--,0,29,28,1,0.966,1.03,57:59,0,0,0,0,0,3479
 Igor Shesterkin,2024-10-12,New York Rangers,L,1,1,0,0,--,1,26,20,6,0.769,5.62,64:02,0,0,0,0,0,3842
 Sam Montembeault,2024-10-12,Montréal Canadiens,L,1,1,1,0,--,0,25,24,1,0.96,1.0,60:00,0,0,0,0,0,3600
 Ivan Fedotov,2024-10-12,Philadelphia Flyers,L,1,1,0,1,--,0,31,26,5,0.839,5.12,58:36,0,0,0,0,0,3516
@@ -5322,7 +5322,7 @@ Joel Blomqvist,2024-10-12,Pittsburgh Penguins,L,1,1,0,1,--,0,32,29,3,0.906,3.06,
 James Reimer,2024-10-13,Anaheim Ducks,L,1,1,0,1,--,0,32,29,3,0.906,3.0,60:00,0,0,0,0,0,3600
 Philipp Grubauer,2024-10-13,Seattle Kraken,L,1,1,0,1,--,0,23,21,2,0.913,2.08,57:40,0,0,0,0,0,3460
 Connor Hellebuyck,2024-10-13,Winnipeg Jets,L,1,1,1,0,--,0,27,26,1,0.963,0.99,60:50,0,0,0,0,0,3650
-Dan Vladar,2024-10-13,Calgary Flames,L,1,1,1,0,--,0,26,25,1,0.962,1.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2024-10-13,Calgary Flames,L,1,1,1,0,--,0,26,25,1,0.962,1.0,60:00,0,0,0,0,0,3600
 Ilya Samsonov,2024-10-13,Vegas Golden Knights,L,1,1,1,0,--,0,23,22,1,0.957,1.0,60:00,0,0,0,0,0,3600
 Casey DeSmith,2024-10-13,Dallas Stars,L,1,1,1,0,--,0,25,25,0,1.0,0.0,59:39,1,0,0,0,0,3579
 Filip Gustavsson,2024-10-13,Minnesota Wild,L,1,1,0,0,--,1,35,33,2,0.943,1.97,60:51,0,0,0,0,0,3651
@@ -5375,7 +5375,7 @@ Petr Mrazek,2024-10-17,Chicago Blackhawks,L,1,1,1,0,--,0,22,20,2,0.909,2.0,59:56
 Anton Forsberg,2024-10-17,Ottawa Senators,L,1,1,0,1,--,0,35,32,3,0.914,3.11,57:50,0,0,0,0,0,3470
 Andrei Vasilevskiy,2024-10-17,Tampa Bay Lightning,L,1,1,1,0,--,0,25,22,3,0.88,3.0,60:00,0,0,0,0,0,3600
 Juuse Saros,2024-10-17,Nashville Predators,L,1,1,0,1,--,0,35,32,3,0.914,3.1,57:59,0,0,1,1,0,3479
-Vitek Vanecek,2024-10-17,San Jose Sharks,L,1,1,0,1,--,0,27,23,4,0.852,4.27,56:11,0,0,0,0,0,3371
+Vítek Vaněček,2024-10-17,San Jose Sharks,L,1,1,0,1,--,0,27,23,4,0.852,4.27,56:11,0,0,0,0,0,3371
 Ilya Sorokin,2024-10-17,New York Islanders,L,1,1,0,0,--,1,30,29,1,0.967,0.97,62:04,0,0,0,0,0,3724
 Sam Montembeault,2024-10-17,Montréal Canadiens,L,1,1,0,1,--,0,31,28,3,0.903,3.1,58:05,0,0,0,0,0,3485
 Adin Hill,2024-10-17,Vegas Golden Knights,L,1,1,0,1,--,0,25,21,4,0.84,4.09,58:43,0,0,0,0,0,3523
@@ -5389,7 +5389,7 @@ Joel Hofer,2024-10-17,St. Louis Blues,L,1,1,1,0,--,0,34,34,0,1.0,0.0,62:04,1,0,1
 Devon Levi,2024-10-17,Buffalo Sabres,L,1,1,0,1,--,0,25,19,6,0.76,6.28,57:20,0,0,0,0,0,3440
 Frederik Andersen,2024-10-18,Carolina Hurricanes,L,1,1,1,0,--,0,26,25,1,0.962,1.01,59:29,0,0,0,0,0,3569
 Connor Hellebuyck,2024-10-18,Winnipeg Jets,L,1,1,1,0,--,0,22,19,3,0.864,3.04,59:16,0,0,0,0,0,3556
-Vitek Vanecek,2024-10-18,San Jose Sharks,L,1,0,0,0,--,0,18,15,3,0.778,4.71,38:14,0,0,0,0,0,2294
+Vítek Vaněček,2024-10-18,San Jose Sharks,L,1,0,0,0,--,0,18,15,3,0.778,4.71,38:14,0,0,0,0,0,2294
 Alexandar Georgiev,2024-10-18,Colorado Avalanche,L,1,1,1,0,--,0,19,16,3,0.842,2.8,64:19,0,0,0,0,0,3859
 Lukas Dostal,2024-10-18,Anaheim Ducks,L,1,1,0,0,--,1,49,45,4,0.918,3.91,61:25,0,0,0,0,0,3685
 Joel Blomqvist,2024-10-18,Pittsburgh Penguins,L,1,1,0,1,--,0,38,34,4,0.895,4.0,60:00,0,0,0,0,0,3600
@@ -5401,7 +5401,7 @@ Andrei Vasilevskiy,2024-10-19,Tampa Bay Lightning,L,1,1,0,1,--,0,28,23,5,0.821,5
 Anthony Stolarz,2024-10-19,Toronto Maple Leafs,L,1,1,0,1,--,0,27,25,2,0.926,2.05,58:30,0,0,0,0,0,3510
 Juuse Saros,2024-10-19,Nashville Predators,L,1,1,0,1,--,0,22,19,3,0.864,3.08,58:30,0,0,0,0,0,3510
 Igor Shesterkin,2024-10-19,New York Rangers,L,1,1,1,0,--,0,35,34,1,0.971,1.0,59:48,0,0,0,0,0,3588
-Dan Vladar,2024-10-19,Calgary Flames,L,1,1,0,0,--,1,23,21,2,0.913,1.97,60:48,0,0,0,0,0,3648
+Daniel Vladar,2024-10-19,Calgary Flames,L,1,1,0,0,--,1,23,21,2,0.913,1.97,60:48,0,0,0,0,0,3648
 Ilya Samsonov,2024-10-19,Vegas Golden Knights,L,1,1,0,0,--,1,49,45,4,0.918,3.71,64:43,0,0,0,0,0,3883
 Joey Daccord,2024-10-19,Seattle Kraken,L,1,1,1,0,--,0,22,21,1,0.955,0.99,60:21,0,0,0,0,0,3621
 Connor Ingram,2024-10-19,Utah Hockey Club,L,1,1,1,0,--,0,22,21,1,0.955,0.96,62:23,0,0,0,0,0,3743
@@ -5421,7 +5421,7 @@ Pyotr Kochetkov,2024-10-19,Carolina Hurricanes,L,1,1,0,1,--,0,19,15,4,0.789,4.14
 Arvid Soderblom,2024-10-19,Chicago Blackhawks,L,1,1,0,1,--,0,21,18,3,0.857,3.09,58:15,0,0,0,0,0,3495
 Eric Comrie,2024-10-20,Winnipeg Jets,L,1,1,1,0,--,0,42,39,3,0.929,3.01,59:53,0,0,0,0,0,3593
 Alex Nedeljkovic,2024-10-20,Pittsburgh Penguins,L,1,1,0,1,--,0,36,31,5,0.861,5.05,59:21,0,0,0,0,0,3561
-Vitek Vanecek,2024-10-20,San Jose Sharks,L,1,1,0,1,--,0,21,18,3,0.857,3.13,57:36,0,0,0,0,0,3456
+Vítek Vaněček,2024-10-20,San Jose Sharks,L,1,1,0,1,--,0,21,18,3,0.857,3.13,57:36,0,0,0,0,0,3456
 David Rittich,2024-10-20,Los Angeles Kings,L,1,1,1,0,--,0,14,13,1,0.929,1.0,60:00,0,0,0,0,0,3600
 Lukas Dostal,2024-10-20,Anaheim Ducks,L,1,1,0,1,--,0,34,32,2,0.941,2.02,59:23,0,0,0,0,0,3563
 Justus Annunen,2024-10-20,Colorado Avalanche,L,1,1,1,0,--,0,26,25,1,0.962,1.0,60:00,0,0,0,0,0,3600
@@ -5470,7 +5470,7 @@ Andrei Vasilevskiy,2024-10-24,Tampa Bay Lightning,L,1,1,0,1,--,0,17,14,3,0.824,3
 Connor Hellebuyck,2024-10-24,Winnipeg Jets,L,1,1,1,0,--,0,32,29,3,0.906,2.94,61:19,0,0,0,0,0,3679
 Igor Shesterkin,2024-10-24,New York Rangers,L,1,1,0,1,--,0,29,26,3,0.897,3.16,56:57,0,0,0,0,0,3417
 Mackenzie Blackwood,2024-10-24,San Jose Sharks,L,1,1,0,1,--,0,30,27,3,0.9,3.12,57:44,0,0,0,0,0,3464
-Dan Vladar,2024-10-24,Calgary Flames,L,1,1,0,1,--,0,42,39,3,0.929,3.02,59:34,0,0,0,0,0,3574
+Daniel Vladar,2024-10-24,Calgary Flames,L,1,1,0,1,--,0,42,39,3,0.929,3.02,59:34,0,0,0,0,0,3574
 Karel Vejmelka,2024-10-24,Utah Hockey Club,R,1,1,0,1,--,0,26,21,5,0.808,5.0,60:00,0,0,0,0,0,3600
 Joey Daccord,2024-10-24,Seattle Kraken,L,1,1,0,0,--,1,36,32,4,0.889,3.93,61:06,0,0,0,0,0,3666
 Casey DeSmith,2024-10-24,Dallas Stars,L,1,1,1,0,--,0,27,25,2,0.926,2.0,59:56,0,0,0,0,0,3596
@@ -5498,7 +5498,7 @@ Andrei Vasilevskiy,2024-10-26,Tampa Bay Lightning,L,1,1,1,0,--,0,32,32,0,1.0,0.0
 Anthony Stolarz,2024-10-26,Toronto Maple Leafs,L,1,1,0,0,--,1,34,30,4,0.882,3.88,61:49,0,0,0,0,0,3709
 Eric Comrie,2024-10-26,Winnipeg Jets,L,1,1,1,0,--,0,29,26,3,0.897,3.0,60:00,0,0,0,0,0,3600
 Alex Nedeljkovic,2024-10-26,Pittsburgh Penguins,L,1,1,0,1,--,0,34,30,4,0.882,4.11,58:20,0,0,0,0,0,3500
-Vitek Vanecek,2024-10-26,San Jose Sharks,L,1,1,0,1,--,0,42,35,7,0.833,7.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2024-10-26,San Jose Sharks,L,1,1,0,1,--,0,42,35,7,0.833,7.0,60:00,0,0,0,0,0,3600
 Sam Montembeault,2024-10-26,Montréal Canadiens,L,1,1,1,0,--,0,31,29,2,0.935,2.02,59:33,0,0,0,0,0,3573
 Ilya Samsonov,2024-10-26,Vegas Golden Knights,L,1,1,1,0,--,0,26,23,3,0.885,3.0,60:00,0,0,0,0,0,3600
 Joey Daccord,2024-10-26,Seattle Kraken,L,1,1,0,1,--,0,38,35,3,0.921,3.04,59:11,0,0,0,0,0,3551
@@ -5531,7 +5531,7 @@ Connor Hellebuyck,2024-10-28,Winnipeg Jets,L,1,1,0,1,--,0,35,30,5,0.857,5.05,59:
 Juuse Saros,2024-10-28,Nashville Predators,L,1,1,0,0,--,1,27,24,3,0.889,2.84,63:22,0,0,0,0,0,3802
 Elvis Merzlikins,2024-10-28,Columbus Blue Jackets,L,1,1,1,0,--,0,32,31,1,0.969,1.0,60:00,0,0,0,0,0,3600
 Mackenzie Blackwood,2024-10-28,San Jose Sharks,L,1,1,1,0,--,0,23,19,4,0.826,3.95,60:45,0,0,0,0,0,3645
-Dan Vladar,2024-10-28,Calgary Flames,L,1,1,0,1,--,0,38,33,5,0.868,5.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2024-10-28,Calgary Flames,L,1,1,0,1,--,0,38,33,5,0.868,5.0,60:00,0,0,0,0,0,3600
 Adin Hill,2024-10-28,Vegas Golden Knights,L,1,1,1,0,--,0,16,16,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Connor Ingram,2024-10-28,Utah Hockey Club,L,1,1,0,0,--,1,46,41,5,0.891,4.88,61:26,0,0,0,0,0,3686
 Stuart Skinner,2024-10-28,Edmonton Oilers,L,1,1,0,1,--,0,25,19,6,0.76,6.0,60:00,0,0,0,0,0,3600
@@ -5542,7 +5542,7 @@ Pyotr Kochetkov,2024-10-28,Carolina Hurricanes,L,1,1,1,0,--,0,27,24,3,0.889,2.97
 Marc-Andre Fleury,2024-10-29,Minnesota Wild,L,1,1,1,0,--,0,29,26,3,0.897,3.0,59:59,0,0,0,0,0,3599
 Joonas Korpisalo,2024-10-29,Boston Bruins,L,1,1,0,1,--,0,18,17,1,0.944,1.03,58:24,0,0,0,0,0,3504
 Linus Ullmark,2024-10-29,Ottawa Senators,L,1,1,1,0,--,0,27,26,1,0.963,1.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2024-10-29,San Jose Sharks,L,1,1,1,0,--,0,28,26,2,0.929,2.03,59:08,0,0,0,0,0,3548
+Vítek Vaněček,2024-10-29,San Jose Sharks,L,1,1,1,0,--,0,28,26,2,0.929,2.03,59:08,0,0,0,0,0,3548
 Ilya Sorokin,2024-10-29,New York Islanders,L,1,1,0,1,--,0,21,19,2,0.905,2.03,59:05,0,0,0,0,0,3545
 Igor Shesterkin,2024-10-29,New York Rangers,L,1,1,0,1,--,0,45,41,4,0.911,4.07,58:54,0,0,0,0,0,3534
 Joey Daccord,2024-10-29,Seattle Kraken,L,1,1,1,0,--,0,30,28,2,0.933,2.01,59:40,0,0,0,0,0,3580
@@ -5587,7 +5587,7 @@ Eric Comrie,2024-11-01,Winnipeg Jets,L,1,1,1,0,--,0,22,20,2,0.909,2.0,60:00,0,0,
 Elvis Merzlikins,2024-11-01,Columbus Blue Jackets,L,1,1,0,1,--,0,44,38,6,0.864,6.04,59:38,0,0,0,0,0,3578
 Ilya Sorokin,2024-11-01,New York Islanders,L,1,1,1,0,--,0,35,32,3,0.914,3.0,60:00,0,0,0,0,0,3600
 Igor Shesterkin,2024-11-01,New York Rangers,L,1,1,1,0,--,0,41,40,1,0.976,1.0,60:00,0,0,0,0,0,3600
-Dan Vladar,2024-11-01,Calgary Flames,L,1,1,1,0,--,0,22,22,0,1.0,0.0,59:59,1,0,1,1,0,3599
+Daniel Vladar,2024-11-01,Calgary Flames,L,1,1,1,0,--,0,22,22,0,1.0,0.0,59:59,1,0,1,1,0,3599
 Filip Gustavsson,2024-11-01,Minnesota Wild,L,1,1,1,0,--,0,30,27,3,0.9,3.0,60:00,0,0,0,0,0,3600
 Jake Oettinger,2024-11-01,Dallas Stars,L,1,1,0,1,--,0,28,22,6,0.786,6.0,60:00,0,0,0,0,0,3600
 Devon Levi,2024-11-01,Buffalo Sabres,L,1,1,0,1,--,0,36,32,4,0.889,4.28,56:06,0,0,0,0,0,3366
@@ -5618,7 +5618,7 @@ Connor Hellebuyck,2024-11-03,Winnipeg Jets,L,1,1,1,0,--,0,30,26,4,0.867,4.0,60:0
 Jonas Johansson,2024-11-03,Tampa Bay Lightning,L,1,1,0,1,--,0,32,27,5,0.844,5.16,58:06,0,0,0,0,0,3486
 Ilya Sorokin,2024-11-03,New York Islanders,L,1,1,0,1,--,0,39,35,4,0.897,4.03,59:31,0,0,0,0,0,3571
 Igor Shesterkin,2024-11-03,New York Rangers,L,1,1,1,0,--,0,37,35,2,0.946,2.0,60:00,0,0,0,0,0,3600
-Dan Vladar,2024-11-03,Calgary Flames,L,1,1,0,1,--,0,30,27,3,0.9,3.08,58:21,0,0,0,0,0,3501
+Daniel Vladar,2024-11-03,Calgary Flames,L,1,1,0,1,--,0,30,27,3,0.9,3.08,58:21,0,0,0,0,0,3501
 Joey Daccord,2024-11-03,Seattle Kraken,L,1,1,0,1,--,0,33,31,2,0.939,2.12,56:31,0,0,0,0,0,3391
 Charlie Lindgren,2024-11-03,Washington Capitals,R,1,1,0,1,--,0,44,41,3,0.932,3.07,58:41,0,0,0,0,0,3521
 Filip Gustavsson,2024-11-03,Minnesota Wild,L,1,1,1,0,--,0,28,27,1,0.964,0.97,61:50,0,0,0,0,0,3710
@@ -5638,7 +5638,7 @@ Anthony Stolarz,2024-11-05,Toronto Maple Leafs,L,1,1,1,0,--,0,29,29,0,1.0,0.0,59
 Connor Hellebuyck,2024-11-05,Winnipeg Jets,L,1,1,1,0,--,0,21,21,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Linus Ullmark,2024-11-05,Ottawa Senators,L,1,1,0,1,--,0,34,29,5,0.853,5.0,60:00,0,0,0,0,0,3600
 Alex Nedeljkovic,2024-11-05,Pittsburgh Penguins,L,1,1,0,0,--,1,26,23,3,0.885,2.77,64:54,0,0,0,0,0,3894
-Vitek Vanecek,2024-11-05,San Jose Sharks,L,1,1,1,0,--,0,50,49,1,0.98,0.95,63:03,0,0,1,1,0,3783
+Vítek Vaněček,2024-11-05,San Jose Sharks,L,1,1,1,0,--,0,50,49,1,0.98,0.95,63:03,0,0,1,1,0,3783
 Elvis Merzlikins,2024-11-05,Columbus Blue Jackets,L,1,1,0,0,--,1,27,25,2,0.926,1.91,62:51,0,0,0,0,0,3771
 Ilya Sorokin,2024-11-05,New York Islanders,L,1,1,1,0,--,0,35,32,3,0.914,2.77,65:00,0,0,0,0,0,3900
 Sam Montembeault,2024-11-05,Montréal Canadiens,L,1,1,0,0,--,1,35,32,3,0.914,3.0,60:00,0,0,0,0,0,3600
@@ -5670,7 +5670,7 @@ Andrei Vasilevskiy,2024-11-07,Tampa Bay Lightning,L,1,1,0,0,--,1,31,30,1,0.968,0
 Joonas Korpisalo,2024-11-07,Boston Bruins,L,1,1,1,0,--,0,37,34,3,0.919,2.79,64:35,0,0,0,0,0,3875
 Connor Hellebuyck,2024-11-07,Winnipeg Jets,L,1,1,1,0,--,0,35,35,0,1.0,0.0,59:45,1,0,0,0,0,3585
 Alex Nedeljkovic,2024-11-07,Pittsburgh Penguins,L,1,1,0,1,--,0,18,13,5,0.722,5.01,59:56,0,0,0,0,0,3596
-Vitek Vanecek,2024-11-07,San Jose Sharks,L,1,1,0,1,--,0,30,26,4,0.867,4.05,59:17,0,0,0,0,0,3557
+Vítek Vaněček,2024-11-07,San Jose Sharks,L,1,1,0,1,--,0,30,26,4,0.867,4.05,59:17,0,0,0,0,0,3557
 Igor Shesterkin,2024-11-07,New York Rangers,L,1,1,0,1,--,0,12,7,5,0.727,9.04,33:11,0,0,0,0,0,1991
 Sam Montembeault,2024-11-07,Montréal Canadiens,L,1,1,0,1,--,0,26,22,4,0.846,4.12,58:11,0,0,0,0,0,3491
 Ivan Fedotov,2024-11-07,Philadelphia Flyers,L,1,1,1,0,--,0,23,22,1,0.957,0.92,65:00,0,0,0,0,0,3900
@@ -5702,7 +5702,7 @@ Spencer Martin,2024-11-09,Carolina Hurricanes,L,1,1,0,1,--,0,28,23,5,0.821,5.14,
 Elvis Merzlikins,2024-11-09,Columbus Blue Jackets,L,1,1,0,1,--,0,22,18,4,0.818,4.1,58:36,0,0,0,0,0,3516
 Ilya Sorokin,2024-11-09,New York Islanders,L,1,1,0,0,--,1,33,29,4,0.879,3.83,62:35,0,0,0,0,0,3755
 Ville Husso,2024-11-09,Detroit Red Wings,L,1,1,0,1,--,0,23,20,3,0.87,3.02,59:33,0,0,0,0,0,3573
-Dan Vladar,2024-11-09,Calgary Flames,L,1,1,0,0,--,1,19,17,2,0.895,1.85,65:00,0,0,0,0,0,3900
+Daniel Vladar,2024-11-09,Calgary Flames,L,1,1,0,0,--,1,19,17,2,0.895,1.85,65:00,0,0,0,0,0,3900
 Sam Montembeault,2024-11-09,Montréal Canadiens,L,1,1,0,1,--,0,27,23,4,0.852,4.0,60:00,0,0,0,0,0,3600
 Connor Ingram,2024-11-09,Utah Hockey Club,L,1,1,0,1,--,0,20,17,3,0.85,3.14,57:24,0,0,0,0,0,3444
 Casey DeSmith,2024-11-09,Dallas Stars,L,1,0,0,0,--,0,10,10,0,0.84,0.0,30:39,0,0,0,0,0,1839
@@ -5724,7 +5724,7 @@ Daniil Tarasov,2024-11-10,Columbus Blue Jackets,L,1,1,0,1,--,0,29,26,3,0.897,3.1
 Darcy Kuemper,2024-11-11,Los Angeles Kings,L,1,1,0,1,--,0,27,25,2,0.926,2.07,57:59,0,0,0,0,0,3479
 Juuse Saros,2024-11-11,Nashville Predators,L,1,1,0,0,--,1,32,29,3,0.906,2.87,62:44,0,0,0,0,0,3764
 Alex Nedeljkovic,2024-11-11,Pittsburgh Penguins,L,1,0,0,0,--,0,32,28,4,0.825,4.83,49:44,0,0,0,0,0,2984
-Vitek Vanecek,2024-11-11,San Jose Sharks,L,1,1,0,0,--,1,43,40,3,0.93,2.77,65:00,0,0,0,0,0,3900
+Vítek Vaněček,2024-11-11,San Jose Sharks,L,1,1,0,0,--,1,43,40,3,0.93,2.77,65:00,0,0,0,0,0,3900
 Jake Oettinger,2024-11-11,Dallas Stars,L,1,1,1,0,--,0,21,20,1,0.952,1.01,59:30,0,0,0,0,0,3570
 Ukko-Pekka Luukkonen,2024-11-11,Buffalo Sabres,L,1,1,0,0,--,0,18,14,4,0.727,6.04,39:46,0,0,1,1,0,2386
 Cayden Primeau,2024-11-11,Montréal Canadiens,L,1,1,0,0,--,0,14,9,5,0.722,6.86,43:43,0,0,0,0,0,2623
@@ -5741,7 +5741,7 @@ Linus Ullmark,2024-11-12,Ottawa Senators,L,1,1,1,0,--,0,27,27,0,1.0,0.0,60:00,1,
 Elvis Merzlikins,2024-11-12,Columbus Blue Jackets,L,1,1,0,1,--,0,32,28,4,0.875,4.03,59:31,0,0,0,0,0,3571
 Ilya Sorokin,2024-11-12,New York Islanders,L,1,1,0,0,--,1,42,38,4,0.905,3.89,61:45,0,0,0,0,0,3705
 Igor Shesterkin,2024-11-12,New York Rangers,L,1,1,0,1,--,0,32,27,5,0.844,5.15,58:14,0,0,0,0,0,3494
-Dan Vladar,2024-11-12,Calgary Flames,L,1,1,0,1,--,0,32,29,3,0.906,3.13,57:36,0,0,0,0,0,3456
+Daniel Vladar,2024-11-12,Calgary Flames,L,1,1,0,1,--,0,32,29,3,0.906,3.13,57:36,0,0,0,0,0,3456
 Joey Daccord,2024-11-12,Seattle Kraken,L,1,1,1,0,--,0,40,38,2,0.95,2.0,60:00,0,0,0,0,0,3600
 Stuart Skinner,2024-11-12,Edmonton Oilers,L,1,1,1,0,--,0,22,19,3,0.864,2.91,61:51,0,0,0,0,0,3711
 Jeremy Swayman,2024-11-12,Boston Bruins,L,1,1,1,0,--,0,22,20,2,0.909,2.0,60:00,0,0,0,0,0,3600
@@ -5894,7 +5894,7 @@ Alex Nedeljkovic,2024-11-23,Pittsburgh Penguins,L,1,1,0,1,--,0,30,24,6,0.8,6.01,
 Elvis Merzlikins,2024-11-23,Columbus Blue Jackets,L,1,1,1,0,--,0,36,32,4,0.889,3.72,64:32,0,0,0,0,0,3872
 Ilya Sorokin,2024-11-23,New York Islanders,L,1,1,1,0,--,0,25,24,1,0.96,1.0,60:00,0,0,0,0,0,3600
 Mackenzie Blackwood,2024-11-23,San Jose Sharks,L,1,1,0,1,--,0,30,27,3,0.9,3.04,59:10,0,0,0,0,0,3550
-Dan Vladar,2024-11-23,Calgary Flames,L,1,1,1,0,--,0,23,20,3,0.87,2.78,64:38,0,0,0,0,0,3878
+Daniel Vladar,2024-11-23,Calgary Flames,L,1,1,1,0,--,0,23,20,3,0.87,2.78,64:38,0,0,0,0,0,3878
 Sam Montembeault,2024-11-23,Montréal Canadiens,L,1,1,0,1,--,0,25,20,5,0.786,7.56,39:42,0,0,0,0,0,2382
 Adin Hill,2024-11-23,Vegas Golden Knights,L,1,1,1,0,--,0,17,15,2,0.882,2.0,60:00,0,0,0,0,0,3600
 Karel Vejmelka,2024-11-23,Utah Hockey Club,R,1,1,1,0,--,0,28,27,1,0.964,1.0,59:48,0,0,0,0,0,3588
@@ -5955,7 +5955,7 @@ Elvis Merzlikins,2024-11-27,Columbus Blue Jackets,L,1,1,0,0,--,1,23,19,4,0.826,4
 Ilya Sorokin,2024-11-27,New York Islanders,L,1,1,0,1,--,0,20,15,5,0.75,5.21,57:32,0,0,0,0,0,3452
 Igor Shesterkin,2024-11-27,New York Rangers,L,1,1,0,1,--,0,31,27,4,0.871,4.16,57:42,0,0,0,0,0,3462
 Mackenzie Blackwood,2024-11-27,San Jose Sharks,L,1,1,0,1,--,0,11,7,4,0.636,4.15,57:54,0,0,0,0,0,3474
-Dan Vladar,2024-11-27,Calgary Flames,L,1,1,0,0,--,1,27,25,2,0.926,1.89,63:35,0,0,0,0,0,3815
+Daniel Vladar,2024-11-27,Calgary Flames,L,1,1,0,0,--,1,27,25,2,0.926,1.89,63:35,0,0,0,0,0,3815
 Adin Hill,2024-11-27,Vegas Golden Knights,L,1,1,0,0,--,1,34,33,1,0.971,0.92,65:00,0,0,0,0,0,3900
 Joey Daccord,2024-11-27,Seattle Kraken,L,1,1,0,1,--,0,33,28,5,0.848,5.45,55:03,0,0,0,0,0,3303
 Casey DeSmith,2024-11-27,Dallas Stars,L,1,1,0,1,--,0,26,20,6,0.769,6.06,59:24,0,0,0,0,0,3564
@@ -5980,7 +5980,7 @@ Juuse Saros,2024-11-29,Nashville Predators,L,1,1,0,0,--,1,28,25,3,0.893,2.95,61:
 Tristan Jarry,2024-11-29,Pittsburgh Penguins,L,1,1,1,0,--,0,31,30,1,0.968,1.0,59:55,0,0,0,0,0,3595
 Eric Comrie,2024-11-29,Winnipeg Jets,L,1,1,0,1,--,0,30,26,4,0.867,4.12,58:19,0,0,0,0,0,3499
 Spencer Martin,2024-11-29,Carolina Hurricanes,L,1,1,0,1,--,0,29,24,5,0.828,5.2,57:44,0,0,0,0,0,3464
-Vitek Vanecek,2024-11-29,San Jose Sharks,L,1,1,1,0,--,0,31,26,5,0.839,5.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2024-11-29,San Jose Sharks,L,1,1,1,0,--,0,31,26,5,0.839,5.0,60:00,0,0,0,0,0,3600
 Jonas Johansson,2024-11-29,Tampa Bay Lightning,L,1,1,1,0,--,0,31,29,2,0.935,1.97,61:01,0,0,0,0,0,3661
 Elvis Merzlikins,2024-11-29,Columbus Blue Jackets,L,1,1,1,0,--,0,29,27,2,0.931,2.0,60:00,0,0,0,0,2,3600
 Igor Shesterkin,2024-11-29,New York Rangers,L,1,1,0,1,--,0,34,32,2,0.941,2.07,57:52,0,0,0,0,0,3472
@@ -6006,7 +6006,7 @@ Spencer Martin,2024-11-30,Carolina Hurricanes,L,1,1,0,1,--,0,28,23,5,0.829,5.79,
 Alex Nedeljkovic,2024-11-30,Pittsburgh Penguins,L,1,1,1,0,--,0,32,30,2,0.938,2.02,59:18,0,0,0,0,0,3558
 Ilya Sorokin,2024-11-30,New York Islanders,L,1,1,1,0,--,0,29,29,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Mackenzie Blackwood,2024-11-30,San Jose Sharks,L,1,1,1,0,--,0,38,36,2,0.947,2.0,60:00,0,0,0,0,0,3600
-Dan Vladar,2024-11-30,Calgary Flames,L,1,1,0,1,--,0,43,37,6,0.86,6.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2024-11-30,Calgary Flames,L,1,1,0,1,--,0,43,37,6,0.86,6.0,60:00,0,0,0,0,0,3600
 Sam Montembeault,2024-11-30,Montréal Canadiens,L,1,1,0,1,--,0,28,24,4,0.857,4.02,59:39,0,0,0,0,0,3579
 Ilya Samsonov,2024-11-30,Vegas Golden Knights,L,1,1,0,1,--,0,28,22,6,0.786,6.0,60:00,0,0,0,0,0,3600
 Joey Daccord,2024-11-30,Seattle Kraken,L,1,1,0,1,--,0,23,19,4,0.826,4.24,56:40,0,0,0,0,0,3400
@@ -6043,7 +6043,7 @@ Elvis Merzlikins,2024-12-03,Columbus Blue Jackets,L,1,1,0,1,--,0,21,19,2,0.905,2
 Ilya Sorokin,2024-12-03,New York Islanders,L,1,1,0,0,--,1,27,25,2,0.926,1.92,62:39,0,0,0,0,0,3759
 Ville Husso,2024-12-03,Detroit Red Wings,L,1,1,0,0,--,1,35,32,3,0.914,2.89,62:15,0,0,0,0,0,3735
 Mackenzie Blackwood,2024-12-03,San Jose Sharks,L,1,1,1,0,--,0,28,27,1,0.964,1.0,59:58,0,0,0,0,0,3598
-Dan Vladar,2024-12-03,Calgary Flames,L,1,1,1,0,--,0,16,16,0,1.0,0.0,60:00,1,0,0,0,0,3600
+Daniel Vladar,2024-12-03,Calgary Flames,L,1,1,1,0,--,0,16,16,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Sam Montembeault,2024-12-03,Montréal Canadiens,L,1,1,1,0,--,0,31,30,1,0.968,0.96,62:26,0,0,0,0,0,3746
 Adin Hill,2024-12-03,Vegas Golden Knights,L,1,1,1,0,--,0,28,28,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Joey Daccord,2024-12-03,Seattle Kraken,L,1,1,1,0,--,0,19,17,2,0.895,2.0,60:00,0,0,0,0,0,3600
@@ -6072,7 +6072,7 @@ Linus Ullmark,2024-12-05,Ottawa Senators,L,1,1,1,0,--,0,20,19,1,0.95,1.0,60:00,0
 Ilya Sorokin,2024-12-05,New York Islanders,L,1,1,0,1,--,0,13,9,4,0.833,6.0,40:00,0,0,0,0,0,2400
 Ville Husso,2024-12-05,Detroit Red Wings,L,1,1,0,1,--,0,32,30,2,0.938,2.02,59:22,0,0,0,0,0,3562
 Mackenzie Blackwood,2024-12-05,San Jose Sharks,L,1,0,0,0,--,0,23,20,3,0.771,4.5,40:00,0,0,0,0,0,2400
-Dan Vladar,2024-12-05,Calgary Flames,L,1,1,0,0,--,1,24,20,4,0.833,3.85,62:25,0,0,0,0,0,3745
+Daniel Vladar,2024-12-05,Calgary Flames,L,1,1,0,0,--,1,24,20,4,0.833,3.85,62:25,0,0,0,0,0,3745
 Sam Montembeault,2024-12-05,Montréal Canadiens,L,1,1,1,0,--,0,29,29,0,1.0,0.0,59:56,1,0,0,0,0,3596
 Joey Daccord,2024-12-05,Seattle Kraken,L,1,1,1,0,--,0,29,27,2,0.931,2.0,60:00,0,0,0,0,0,3600
 Ukko-Pekka Luukkonen,2024-12-05,Buffalo Sabres,L,1,1,0,0,--,1,31,28,3,0.903,2.81,63:59,0,0,0,0,0,3839
@@ -6145,10 +6145,10 @@ Connor Hellebuyck,2024-12-10,Winnipeg Jets,L,1,1,1,0,--,0,24,23,1,0.958,1.0,59:4
 Juuse Saros,2024-12-10,Nashville Predators,L,1,1,0,1,--,0,28,24,4,0.857,4.09,58:38,0,0,0,0,0,3518
 Tristan Jarry,2024-12-10,Pittsburgh Penguins,L,1,1,0,1,--,0,26,21,5,0.808,5.05,59:21,0,0,0,0,2,3561
 Thatcher Demko,2024-12-10,Vancouver Canucks,L,1,1,0,0,--,1,25,21,4,0.84,3.95,60:47,0,0,0,0,0,3647
-Vitek Vanecek,2024-12-10,San Jose Sharks,L,1,1,0,1,--,0,28,25,3,0.893,3.09,58:15,0,0,0,0,0,3495
+Vítek Vaněček,2024-12-10,San Jose Sharks,L,1,1,0,1,--,0,28,25,3,0.893,3.09,58:15,0,0,0,0,0,3495
 Elvis Merzlikins,2024-12-10,Columbus Blue Jackets,L,1,1,0,1,--,0,25,20,5,0.8,5.0,60:00,0,0,0,0,0,3600
 Ilya Sorokin,2024-12-10,New York Islanders,L,1,1,0,1,--,0,29,27,2,0.931,2.05,58:40,0,0,0,0,0,3520
-Dan Vladar,2024-12-10,Calgary Flames,L,1,1,1,0,--,0,20,17,3,0.85,3.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2024-12-10,Calgary Flames,L,1,1,1,0,--,0,20,17,3,0.85,3.0,60:00,0,0,0,0,0,3600
 Karel Vejmelka,2024-12-10,Utah Hockey Club,R,1,1,0,0,--,1,38,34,4,0.895,3.71,64:41,0,0,0,0,0,3881
 Joey Daccord,2024-12-10,Seattle Kraken,L,1,1,0,0,--,1,33,32,1,0.97,0.93,64:46,0,0,0,0,0,3886
 Filip Gustavsson,2024-12-10,Minnesota Wild,L,1,1,1,0,--,0,25,21,4,0.84,3.76,63:51,0,0,0,0,0,3831
@@ -6173,7 +6173,7 @@ Joonas Korpisalo,2024-12-12,Boston Bruins,L,1,1,0,1,--,0,20,16,4,0.8,4.15,57:54,
 Connor Hellebuyck,2024-12-12,Winnipeg Jets,L,1,1,0,0,--,1,36,33,3,0.917,2.82,63:47,0,0,0,0,0,3827
 Tristan Jarry,2024-12-12,Pittsburgh Penguins,L,1,1,1,0,--,0,23,21,2,0.913,2.0,60:00,0,0,0,0,0,3600
 Ilya Sorokin,2024-12-12,New York Islanders,L,1,1,1,0,--,0,30,26,4,0.867,4.0,60:00,0,0,0,0,0,3600
-Dan Vladar,2024-12-12,Calgary Flames,L,1,1,0,1,--,0,26,18,8,0.692,8.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2024-12-12,Calgary Flames,L,1,1,0,1,--,0,26,18,8,0.692,8.0,60:00,0,0,0,0,0,3600
 Sam Montembeault,2024-12-12,Montréal Canadiens,L,1,1,0,1,--,0,26,20,6,0.727,7.39,48:41,0,0,0,0,0,2921
 Adin Hill,2024-12-12,Vegas Golden Knights,L,1,1,1,0,--,0,20,18,2,0.9,1.89,63:35,0,0,0,0,0,3815
 Karel Vejmelka,2024-12-12,Utah Hockey Club,R,1,1,1,0,--,0,24,23,1,0.958,1.0,60:00,0,0,0,0,0,3600
@@ -6203,7 +6203,7 @@ Linus Ullmark,2024-12-14,Ottawa Senators,L,1,1,1,0,--,0,27,25,2,0.926,1.94,61:46
 Juuse Saros,2024-12-14,Nashville Predators,L,1,1,0,1,--,0,31,28,3,0.903,3.04,59:09,0,0,0,0,0,3549
 Tristan Jarry,2024-12-14,Pittsburgh Penguins,L,1,1,0,0,--,1,31,28,3,0.903,2.91,61:46,0,0,0,0,0,3706
 Thatcher Demko,2024-12-14,Vancouver Canucks,L,1,1,0,1,--,0,28,23,5,0.821,5.0,59:57,0,0,0,0,0,3597
-Vitek Vanecek,2024-12-14,San Jose Sharks,L,1,1,0,1,--,0,40,36,4,0.9,4.04,59:24,0,0,0,0,0,3564
+Vítek Vaněček,2024-12-14,San Jose Sharks,L,1,1,0,1,--,0,40,36,4,0.9,4.04,59:24,0,0,0,0,0,3564
 Jonas Johansson,2024-12-14,Tampa Bay Lightning,L,1,1,1,0,--,0,22,21,1,0.955,1.0,60:00,0,0,0,0,0,3600
 Ville Husso,2024-12-14,Detroit Red Wings,L,1,1,1,0,--,0,25,23,2,0.92,2.0,60:00,0,0,0,0,0,3600
 Mackenzie Blackwood,2024-12-14,Colorado Avalanche,L,1,1,1,0,--,0,39,37,2,0.949,2.0,60:00,0,0,0,0,0,3600
@@ -6276,7 +6276,7 @@ Juuse Saros,2024-12-19,Nashville Predators,L,1,1,0,0,--,1,20,15,5,0.75,4.92,60:5
 Tristan Jarry,2024-12-19,Pittsburgh Penguins,L,1,1,1,0,--,0,26,22,4,0.846,3.93,61:07,0,0,0,0,0,3667
 Elvis Merzlikins,2024-12-19,Columbus Blue Jackets,L,1,1,1,0,--,0,42,40,2,0.952,2.0,60:00,0,0,0,0,0,3600
 Mackenzie Blackwood,2024-12-19,Colorado Avalanche,L,1,1,1,0,--,0,34,32,2,0.941,2.01,59:43,0,0,0,0,0,3583
-Dan Vladar,2024-12-19,Calgary Flames,L,1,1,0,0,--,1,29,26,3,0.897,2.95,60:55,0,0,0,0,0,3655
+Daniel Vladar,2024-12-19,Calgary Flames,L,1,1,0,0,--,1,29,26,3,0.897,2.95,60:55,0,0,0,0,0,3655
 Adin Hill,2024-12-19,Vegas Golden Knights,L,1,1,1,0,--,0,20,19,1,0.95,1.0,60:00,0,0,0,0,0,3600
 Joey Daccord,2024-12-19,Seattle Kraken,L,1,1,0,1,--,0,24,21,3,0.875,3.19,56:29,0,0,0,0,0,3389
 Stuart Skinner,2024-12-19,Edmonton Oilers,L,1,1,1,0,--,0,26,24,2,0.923,1.97,61:03,0,0,0,0,0,3663
@@ -6291,7 +6291,7 @@ Cam Talbot,2024-12-20,Detroit Red Wings,L,1,1,0,1,--,0,33,29,4,0.879,4.14,58:02,
 Sergei Bobrovsky,2024-12-20,Florida Panthers,L,1,1,1,0,--,0,27,26,1,0.963,0.93,64:43,0,0,0,0,0,3883
 Scott Wedgewood,2024-12-20,Colorado Avalanche,L,1,1,1,0,--,0,32,30,2,0.938,2.0,59:59,0,0,0,0,0,3599
 John Gibson,2024-12-20,Anaheim Ducks,L,1,1,0,1,--,0,22,19,3,0.864,3.12,57:39,0,0,0,0,0,3459
-Matt Murray,2024-12-20,Toronto Maple Leafs,L,1,1,1,0,--,0,27,24,3,0.889,3.0,60:00,0,0,0,0,0,3600
+Matthew Murray,2024-12-20,Toronto Maple Leafs,L,1,1,1,0,--,0,27,24,3,0.889,3.0,60:00,0,0,0,0,0,3600
 Igor Shesterkin,2024-12-20,New York Rangers,L,1,1,1,0,--,0,42,41,1,0.976,1.0,60:00,0,0,0,0,0,3600
 Sam Montembeault,2024-12-20,Montréal Canadiens,L,1,1,1,0,--,0,28,25,3,0.893,3.0,60:00,0,0,0,0,0,3600
 Karel Vejmelka,2024-12-20,Utah Hockey Club,R,1,1,1,0,--,0,29,28,1,0.966,1.0,60:00,0,0,0,0,0,3600
@@ -6381,7 +6381,7 @@ Dustin Tokarski,2024-12-28,Carolina Hurricanes,L,1,1,1,0,--,0,23,21,2,0.913,2.01
 Darcy Kuemper,2024-12-28,Los Angeles Kings,L,1,1,1,0,--,0,27,24,3,0.889,2.85,63:05,0,0,0,0,0,3785
 Philipp Grubauer,2024-12-28,Seattle Kraken,L,1,1,1,0,--,0,22,18,4,0.818,3.98,60:15,0,0,0,0,0,3615
 Andrei Vasilevskiy,2024-12-28,Tampa Bay Lightning,L,1,1,1,0,--,0,44,42,2,0.955,2.0,59:56,0,0,0,0,0,3596
-Matt Murray,2024-12-28,Toronto Maple Leafs,L,1,1,0,1,--,0,31,27,4,0.871,4.09,58:39,0,0,0,0,0,3519
+Matthew Murray,2024-12-28,Toronto Maple Leafs,L,1,1,0,1,--,0,31,27,4,0.871,4.09,58:39,0,0,0,0,0,3519
 Connor Hellebuyck,2024-12-28,Winnipeg Jets,L,1,1,1,0,--,0,35,33,2,0.943,2.0,60:00,0,0,0,0,0,3600
 Tristan Jarry,2024-12-28,Pittsburgh Penguins,L,1,1,0,1,--,0,33,29,5,0.879,5.23,57:21,0,0,0,0,0,3441
 Thatcher Demko,2024-12-28,Vancouver Canucks,L,1,1,0,0,--,1,29,24,5,0.828,4.82,62:15,0,0,0,0,0,3735
@@ -6402,7 +6402,7 @@ Jordan Binnington,2024-12-29,St. Louis Blues,L,1,1,0,1,--,0,16,12,4,0.75,4.25,56
 Marcus Hogberg,2024-12-29,New York Islanders,L,1,1,0,1,--,0,41,38,3,0.927,3.16,57:00,0,0,0,0,0,3420
 Alex Nedeljkovic,2024-12-29,Pittsburgh Penguins,L,1,1,1,0,--,0,31,29,2,0.935,2.02,59:22,0,0,0,0,0,3562
 Jonas Johansson,2024-12-29,Tampa Bay Lightning,L,1,1,0,1,--,0,36,32,4,0.889,4.07,59:02,0,0,0,0,0,3542
-Dan Vladar,2024-12-29,Calgary Flames,L,1,1,0,1,--,0,36,34,2,0.944,2.08,57:38,0,0,0,0,0,3458
+Daniel Vladar,2024-12-29,Calgary Flames,L,1,1,0,1,--,0,36,34,2,0.944,2.08,57:38,0,0,0,0,0,3458
 Sam Montembeault,2024-12-29,Montréal Canadiens,L,1,1,1,0,--,0,23,21,2,0.913,2.0,60:00,0,0,0,0,0,3600
 Ilya Samsonov,2024-12-29,Vegas Golden Knights,L,1,1,1,0,--,0,31,31,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Charlie Lindgren,2024-12-29,Washington Capitals,R,1,1,0,1,--,0,27,23,4,0.852,4.13,58:10,0,0,0,0,0,3490
@@ -6460,7 +6460,7 @@ Andrei Vasilevskiy,2025-01-02,Tampa Bay Lightning,L,1,1,0,1,--,0,25,23,2,0.92,2.
 Connor Hellebuyck,2025-01-02,Winnipeg Jets,L,1,1,0,0,--,1,24,20,4,0.833,3.78,63:34,0,0,0,0,0,3814
 Elvis Merzlikins,2025-01-02,Columbus Blue Jackets,L,1,1,0,1,--,0,26,21,5,0.808,5.05,59:26,0,0,0,0,0,3566
 Ilya Sorokin,2025-01-02,New York Islanders,L,1,1,0,1,--,0,31,29,2,0.935,2.06,58:07,0,0,0,0,0,3487
-Dan Vladar,2025-01-02,Calgary Flames,L,1,1,0,1,--,0,25,21,4,0.84,4.1,58:32,0,0,0,0,0,3512
+Daniel Vladar,2025-01-02,Calgary Flames,L,1,1,0,1,--,0,25,21,4,0.84,4.1,58:32,0,0,0,0,0,3512
 Ilya Samsonov,2025-01-02,Vegas Golden Knights,L,1,1,1,0,--,0,25,23,2,0.92,2.0,60:00,0,0,0,0,0,3600
 Karel Vejmelka,2025-01-02,Utah Hockey Club,R,1,1,1,0,--,0,26,23,3,0.885,3.02,59:34,0,0,0,0,0,3574
 Charlie Lindgren,2025-01-02,Washington Capitals,R,1,1,0,0,--,1,33,30,3,0.909,2.78,64:45,0,0,0,0,0,3885
@@ -6637,7 +6637,7 @@ Tristan Jarry,2025-01-14,Pittsburgh Penguins,L,1,1,0,1,--,0,17,14,3,0.824,3.07,5
 Ville Husso,2025-01-14,Detroit Red Wings,L,1,1,0,1,--,0,23,18,5,0.783,5.15,58:15,0,0,0,0,0,3495
 Igor Shesterkin,2025-01-14,New York Rangers,L,1,1,0,0,--,1,26,23,3,0.885,2.8,64:16,0,0,0,0,0,3856
 Mackenzie Blackwood,2025-01-14,Colorado Avalanche,L,1,1,1,0,--,0,29,27,2,0.931,1.9,63:15,0,0,0,0,0,3795
-Dan Vladar,2025-01-14,Calgary Flames,L,1,1,0,1,--,0,25,23,2,0.92,2.07,58:01,0,0,0,0,0,3481
+Daniel Vladar,2025-01-14,Calgary Flames,L,1,1,0,1,--,0,25,23,2,0.92,2.07,58:01,0,0,0,0,0,3481
 Sam Montembeault,2025-01-14,Montréal Canadiens,L,1,1,1,0,--,0,25,22,3,0.88,3.0,60:00,0,0,0,0,0,3600
 Ilya Samsonov,2025-01-14,Vegas Golden Knights,L,1,1,0,1,--,0,22,18,4,0.818,4.1,58:28,0,0,0,0,0,3508
 Karel Vejmelka,2025-01-14,Utah Hockey Club,R,1,1,0,1,--,0,27,22,5,0.815,5.15,58:18,0,0,0,0,0,3498
@@ -6825,7 +6825,7 @@ Petr Mrazek,2025-01-26,Chicago Blackhawks,L,1,1,0,1,--,0,27,24,3,0.889,3.08,58:2
 Eric Comrie,2025-01-26,Winnipeg Jets,L,1,1,1,0,--,0,22,20,2,0.909,2.0,60:00,0,0,0,0,0,3600
 Igor Shesterkin,2025-01-26,New York Rangers,L,1,1,0,1,--,0,22,17,5,0.773,5.02,59:45,0,0,0,0,0,3585
 Mackenzie Blackwood,2025-01-26,Colorado Avalanche,L,1,1,1,0,--,0,37,33,4,0.892,4.0,60:00,0,0,0,0,0,3600
-Dan Vladar,2025-01-26,Calgary Flames,L,1,1,0,1,--,0,27,22,5,0.815,5.05,59:24,0,0,0,0,0,3564
+Daniel Vladar,2025-01-26,Calgary Flames,L,1,1,0,1,--,0,27,22,5,0.815,5.05,59:24,0,0,0,0,0,3564
 Adin Hill,2025-01-26,Vegas Golden Knights,L,1,1,1,0,--,0,34,33,1,0.971,1.0,60:00,0,0,0,0,0,3600
 Karel Vejmelka,2025-01-26,Utah Hockey Club,R,1,1,0,1,--,0,27,24,3,0.889,3.13,57:36,0,0,0,0,0,3456
 Filip Gustavsson,2025-01-26,Minnesota Wild,L,1,1,1,0,--,0,20,18,2,0.9,2.0,60:00,0,0,0,0,0,3600
@@ -6918,7 +6918,7 @@ Jake Allen,2025-02-02,New Jersey Devils,L,1,1,0,1,--,0,27,23,4,0.882,6.03,39:49,
 Jordan Binnington,2025-02-02,St. Louis Blues,L,1,1,1,0,--,0,25,24,1,0.96,1.0,60:00,0,0,0,0,0,3600
 Elvis Merzlikins,2025-02-02,Columbus Blue Jackets,L,1,1,0,1,--,0,39,34,5,0.872,5.26,57:00,0,0,0,0,0,3420
 Mackenzie Blackwood,2025-02-02,Colorado Avalanche,L,1,1,1,0,--,0,24,24,0,1.0,0.0,59:40,1,0,0,0,0,3580
-Dan Vladar,2025-02-02,Calgary Flames,L,1,1,1,0,--,0,31,29,2,0.935,2.0,60:00,0,0,0,0,2,3600
+Daniel Vladar,2025-02-02,Calgary Flames,L,1,1,1,0,--,0,31,29,2,0.935,2.0,60:00,0,0,0,0,2,3600
 Sam Montembeault,2025-02-02,Montréal Canadiens,L,1,1,0,1,--,0,22,19,3,0.864,3.1,57:59,0,0,0,0,0,3479
 Adin Hill,2025-02-02,Vegas Golden Knights,L,1,1,0,1,--,0,28,24,4,0.857,4.11,58:25,0,0,0,0,0,3505
 Joey Daccord,2025-02-02,Seattle Kraken,L,1,1,0,1,--,0,35,32,3,0.914,3.07,58:40,0,0,0,0,0,3520
@@ -6973,7 +6973,7 @@ Anton Forsberg,2025-02-06,Ottawa Senators,L,1,1,0,1,--,0,30,26,4,0.867,4.18,57:2
 Andrei Vasilevskiy,2025-02-06,Tampa Bay Lightning,L,1,1,1,0,--,0,28,27,1,0.964,1.0,59:49,0,0,1,1,2,3589
 Anthony Stolarz,2025-02-06,Toronto Maple Leafs,L,1,1,1,0,--,0,27,26,1,0.963,1.0,60:00,0,0,0,0,0,3600
 Thatcher Demko,2025-02-06,Vancouver Canucks,L,1,1,1,0,--,0,34,33,1,0.971,0.99,60:33,0,0,0,0,0,3633
-Vitek Vanecek,2025-02-06,San Jose Sharks,L,1,1,0,0,--,1,24,22,2,0.917,2.01,59:46,0,0,0,0,0,3586
+Vítek Vaněček,2025-02-06,San Jose Sharks,L,1,1,0,0,--,1,24,22,2,0.917,2.01,59:46,0,0,0,0,0,3586
 Elvis Merzlikins,2025-02-06,Columbus Blue Jackets,L,1,1,0,0,--,1,33,30,3,0.909,2.79,64:27,0,0,0,0,0,3867
 Mackenzie Blackwood,2025-02-06,Colorado Avalanche,L,1,1,1,0,--,0,29,27,2,0.931,2.0,60:00,0,0,0,0,0,3600
 Adin Hill,2025-02-06,Vegas Golden Knights,L,1,1,1,0,--,0,15,14,1,0.933,1.0,59:54,0,0,0,0,0,3594
@@ -7002,7 +7002,7 @@ Sergei Bobrovsky,2025-02-08,Florida Panthers,L,1,1,1,0,--,0,27,26,1,0.963,1.0,59
 Jordan Binnington,2025-02-08,St. Louis Blues,L,1,1,1,0,--,0,21,16,5,0.762,4.63,64:49,0,0,0,0,0,3889
 Andrei Vasilevskiy,2025-02-08,Tampa Bay Lightning,L,1,1,1,0,--,0,37,34,3,0.919,3.0,60:00,0,0,0,0,0,3600
 Linus Ullmark,2025-02-08,Ottawa Senators,L,1,1,0,1,--,0,47,43,4,0.915,4.14,58:02,0,0,0,0,0,3482
-Vitek Vanecek,2025-02-08,San Jose Sharks,L,1,1,0,1,--,0,34,26,8,0.765,8.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2025-02-08,San Jose Sharks,L,1,1,0,1,--,0,34,26,8,0.765,8.0,60:00,0,0,0,0,0,3600
 Elvis Merzlikins,2025-02-08,Columbus Blue Jackets,L,1,1,0,1,--,0,40,36,4,0.9,4.09,58:37,0,0,0,0,0,3517
 Ilya Sorokin,2025-02-08,New York Islanders,L,1,1,0,1,--,0,32,28,5,0.875,5.06,59:14,0,0,0,0,0,3554
 Sam Montembeault,2025-02-08,Montréal Canadiens,L,1,1,0,1,--,0,22,18,4,0.818,4.0,60:00,0,0,0,0,0,3600
@@ -7077,7 +7077,7 @@ Joel Blomqvist,2025-02-23,Pittsburgh Penguins,L,1,1,0,1,--,0,15,11,4,0.733,4.11,
 Arvid Soderblom,2025-02-23,Chicago Blackhawks,L,1,1,0,1,--,0,29,25,4,0.862,4.18,57:26,0,0,0,0,0,3446
 Darcy Kuemper,2025-02-24,Los Angeles Kings,L,1,1,1,0,--,0,23,21,2,0.913,2.0,60:00,0,0,1,1,0,3600
 Connor Hellebuyck,2025-02-24,Winnipeg Jets,L,1,1,1,0,--,0,18,17,1,0.944,0.99,60:24,0,0,0,0,0,3624
-Vitek Vanecek,2025-02-24,San Jose Sharks,L,1,1,0,0,--,1,35,33,2,0.943,1.95,61:28,0,0,0,0,0,3688
+Vítek Vaněček,2025-02-24,San Jose Sharks,L,1,1,0,0,--,1,35,33,2,0.943,1.95,61:28,0,0,0,0,0,3688
 Ilya Samsonov,2025-02-24,Vegas Golden Knights,L,1,1,0,1,--,0,19,14,5,0.737,5.02,59:43,0,0,0,0,0,3583
 Cam Talbot,2025-02-25,Detroit Red Wings,L,1,1,1,0,--,0,24,22,2,0.917,2.0,60:00,0,0,0,0,0,3600
 Frederik Andersen,2025-02-25,Carolina Hurricanes,L,1,1,0,1,--,0,18,14,4,0.778,4.01,59:48,0,0,0,0,0,3588
@@ -7089,7 +7089,7 @@ Alex Nedeljkovic,2025-02-25,Pittsburgh Penguins,L,1,1,0,1,--,0,38,32,6,0.842,6.0
 Elvis Merzlikins,2025-02-25,Columbus Blue Jackets,L,1,1,1,0,--,0,22,18,4,0.818,4.0,60:00,0,0,0,0,0,3600
 Ilya Sorokin,2025-02-25,New York Islanders,L,1,1,0,1,--,0,11,6,5,0.722,7.5,40:00,0,0,0,0,0,2400
 Igor Shesterkin,2025-02-25,New York Rangers,L,1,1,1,0,--,0,37,36,1,0.973,1.0,60:00,0,0,0,0,0,3600
-Dan Vladar,2025-02-25,Calgary Flames,L,1,1,1,0,--,0,27,26,1,0.963,1.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2025-02-25,Calgary Flames,L,1,1,1,0,--,0,27,26,1,0.963,1.0,60:00,0,0,0,0,0,3600
 Sam Montembeault,2025-02-25,Montréal Canadiens,L,1,1,1,0,--,0,20,20,0,1.0,0.0,59:51,1,0,0,0,0,3591
 Karel Vejmelka,2025-02-25,Utah Hockey Club,R,1,1,1,0,--,0,22,21,1,0.955,1.0,60:00,0,0,0,0,0,3600
 Filip Gustavsson,2025-02-25,Minnesota Wild,L,1,1,0,1,--,0,16,13,3,0.813,3.11,57:54,0,0,0,0,0,3474
@@ -7151,10 +7151,10 @@ Connor Hellebuyck,2025-03-01,Winnipeg Jets,L,1,1,0,0,--,1,32,31,1,0.969,0.92,65:
 Linus Ullmark,2025-03-01,Ottawa Senators,L,1,1,1,0,--,0,37,34,3,0.919,3.02,59:35,0,0,0,0,0,3575
 Juuse Saros,2025-03-01,Nashville Predators,L,1,1,0,1,--,0,35,29,6,0.829,6.13,58:46,0,0,0,0,0,3526
 Alex Nedeljkovic,2025-03-01,Pittsburgh Penguins,L,1,1,0,1,--,0,25,23,2,0.92,2.07,57:54,0,0,0,0,0,3474
-Vitek Vanecek,2025-03-01,San Jose Sharks,L,1,1,0,1,--,0,31,27,4,0.871,4.15,57:52,0,0,0,0,0,3472
+Vítek Vaněček,2025-03-01,San Jose Sharks,L,1,1,0,1,--,0,31,27,4,0.871,4.15,57:52,0,0,0,0,0,3472
 Elvis Merzlikins,2025-03-01,Columbus Blue Jackets,L,1,1,1,0,--,0,46,43,3,0.935,3.0,60:00,0,0,0,0,0,3600
 Ilya Sorokin,2025-03-01,New York Islanders,L,1,1,1,0,--,0,29,25,4,0.862,4.0,60:00,0,1,0,1,0,3600
-Dan Vladar,2025-03-01,Calgary Flames,L,1,1,0,1,--,0,42,39,3,0.929,3.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2025-03-01,Calgary Flames,L,1,1,0,1,--,0,42,39,3,0.929,3.0,60:00,0,0,0,0,0,3600
 Karel Vejmelka,2025-03-01,Utah Hockey Club,R,1,1,0,1,--,0,29,26,3,0.897,3.11,57:54,0,0,0,0,0,3474
 Ivan Fedotov,2025-03-01,Philadelphia Flyers,L,1,1,1,0,--,0,30,29,1,0.967,0.92,65:00,0,0,0,0,0,3900
 Joey Daccord,2025-03-01,Seattle Kraken,L,1,1,1,0,--,0,31,28,3,0.903,3.0,60:00,0,0,0,0,0,3600
@@ -7226,7 +7226,7 @@ Juuse Saros,2025-03-06,Nashville Predators,L,1,1,1,0,--,0,25,22,3,0.88,3.0,60:00
 Eric Comrie,2025-03-06,Winnipeg Jets,L,1,1,1,0,--,0,22,21,1,0.955,1.0,59:50,0,0,0,0,0,3590
 Elvis Merzlikins,2025-03-06,Columbus Blue Jackets,L,1,1,0,1,--,0,35,33,2,0.943,2.01,59:51,0,0,0,0,0,3591
 Mackenzie Blackwood,2025-03-06,Colorado Avalanche,L,1,1,1,0,--,0,34,31,3,0.912,3.02,59:41,0,0,0,0,0,3581
-Dan Vladar,2025-03-06,Calgary Flames,L,1,1,0,0,--,1,27,24,3,0.889,2.8,64:17,0,0,0,0,0,3857
+Daniel Vladar,2025-03-06,Calgary Flames,L,1,1,0,0,--,1,27,24,3,0.889,2.8,64:17,0,0,0,0,0,3857
 Sam Montembeault,2025-03-06,Montréal Canadiens,L,1,1,0,0,--,1,32,29,3,0.906,2.77,64:53,0,0,0,0,0,3893
 Karel Vejmelka,2025-03-06,Utah Hockey Club,R,1,1,1,0,--,0,40,38,2,0.95,2.0,60:00,0,0,0,0,0,3600
 Joey Daccord,2025-03-06,Seattle Kraken,L,1,1,0,1,--,0,33,29,4,0.879,4.19,57:14,0,0,0,0,0,3434
@@ -7254,7 +7254,7 @@ Philipp Grubauer,2025-03-08,Seattle Kraken,L,1,1,1,0,--,0,24,23,1,0.958,1.0,59:5
 Andrei Vasilevskiy,2025-03-08,Tampa Bay Lightning,L,1,1,0,1,--,0,24,21,3,0.875,3.03,59:23,0,0,0,0,0,3563
 Anthony Stolarz,2025-03-08,Toronto Maple Leafs,L,1,1,0,1,--,0,32,27,5,0.844,5.12,58:39,0,0,0,0,0,3519
 Linus Ullmark,2025-03-08,Ottawa Senators,L,1,1,1,0,--,0,23,20,3,0.87,2.97,60:32,0,0,0,0,0,3632
-Vitek Vanecek,2025-03-08,Florida Panthers,L,1,1,1,0,--,0,21,21,0,1.0,0.0,60:00,1,0,0,0,0,3600
+Vítek Vaněček,2025-03-08,Florida Panthers,L,1,1,1,0,--,0,21,21,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Ilya Sorokin,2025-03-08,New York Islanders,L,1,1,1,0,--,0,40,38,2,0.95,2.0,60:00,0,0,0,0,0,3600
 Igor Shesterkin,2025-03-08,New York Rangers,L,1,1,0,0,--,1,37,33,4,0.892,3.98,60:20,0,0,0,0,0,3620
 Mackenzie Blackwood,2025-03-08,Colorado Avalanche,L,1,1,1,0,--,0,21,17,4,0.81,4.03,59:35,0,0,0,0,0,3575
@@ -7379,7 +7379,7 @@ Scott Wedgewood,2025-03-16,Colorado Avalanche,L,1,1,1,0,--,0,22,19,3,0.864,2.97,
 Petr Mrazek,2025-03-16,Detroit Red Wings,L,1,1,1,0,--,0,18,18,0,1.0,0.0,60:00,1,0,0,0,0,3600
 Jordan Binnington,2025-03-16,St. Louis Blues,L,1,1,1,0,--,0,25,23,2,0.92,2.01,59:48,0,0,0,0,0,3588
 Eric Comrie,2025-03-16,Winnipeg Jets,L,1,1,1,0,--,0,15,14,1,0.905,1.16,51:34,0,0,0,0,0,3094
-Vitek Vanecek,2025-03-16,Florida Panthers,L,1,1,0,1,--,0,33,30,3,0.909,3.11,57:52,0,0,0,0,0,3472
+Vítek Vaněček,2025-03-16,Florida Panthers,L,1,1,0,1,--,0,33,30,3,0.909,3.11,57:52,0,0,0,0,0,3472
 Ilya Sorokin,2025-03-16,New York Islanders,L,1,1,1,0,--,0,24,22,2,0.917,2.0,60:00,0,0,0,0,0,3600
 Igor Shesterkin,2025-03-16,New York Rangers,L,1,1,0,1,--,0,23,20,3,0.87,3.15,57:09,0,0,0,0,0,3429
 Ilya Samsonov,2025-03-16,Vegas Golden Knights,L,1,1,0,1,--,0,27,24,3,0.889,3.0,60:00,0,0,0,0,2,3600
@@ -7407,7 +7407,7 @@ Juuse Saros,2025-03-18,Nashville Predators,L,1,1,0,1,--,0,21,17,4,0.81,4.0,60:00
 Tristan Jarry,2025-03-18,Pittsburgh Penguins,L,1,1,0,1,--,0,37,34,3,0.919,3.04,59:15,0,0,0,0,0,3555
 Ilya Sorokin,2025-03-18,New York Islanders,L,1,1,1,0,--,0,21,19,2,0.905,2.0,59:52,0,0,0,0,0,3592
 Igor Shesterkin,2025-03-18,New York Rangers,L,1,1,0,1,--,0,35,33,2,0.943,2.08,57:36,0,0,0,0,0,3456
-Dan Vladar,2025-03-18,Calgary Flames,L,1,1,1,0,--,0,13,12,1,0.923,1.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2025-03-18,Calgary Flames,L,1,1,1,0,--,0,13,12,1,0.923,1.0,60:00,0,0,0,0,0,3600
 Sam Montembeault,2025-03-18,Montréal Canadiens,L,1,1,1,0,--,0,25,22,3,0.88,3.0,60:00,0,0,0,0,0,3600
 Joey Daccord,2025-03-18,Seattle Kraken,L,1,1,1,0,--,0,29,27,2,0.931,2.0,60:00,0,0,0,0,0,3600
 Jake Oettinger,2025-03-18,Dallas Stars,L,1,1,1,0,--,0,25,22,3,0.88,2.9,62:09,0,0,0,0,0,3729
@@ -7457,11 +7457,11 @@ Joonas Korpisalo,2025-03-22,Boston Bruins,L,1,1,0,1,--,0,20,18,2,0.9,2.04,58:56,
 Linus Ullmark,2025-03-22,Ottawa Senators,L,1,1,1,0,--,0,27,25,2,0.926,2.0,60:00,0,0,0,0,0,3600
 Marcus Hogberg,2025-03-22,New York Islanders,L,1,1,0,0,--,1,35,31,4,0.886,3.76,63:53,0,0,0,0,0,3833
 Juuse Saros,2025-03-22,Nashville Predators,L,1,1,1,0,--,0,26,24,2,0.923,2.0,60:00,0,0,0,0,0,3600
-Vitek Vanecek,2025-03-22,Florida Panthers,L,1,1,0,1,--,0,33,27,6,0.818,6.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2025-03-22,Florida Panthers,L,1,1,0,1,--,0,33,27,6,0.818,6.0,60:00,0,0,0,0,0,3600
 Brandon Halverson,2025-03-22,Tampa Bay Lightning,L,1,1,0,1,--,0,24,19,5,0.792,5.18,57:57,0,0,0,0,0,3477
 Igor Shesterkin,2025-03-22,New York Rangers,L,1,1,1,0,--,0,39,36,3,0.923,3.0,60:00,0,0,0,0,2,3600
 Mackenzie Blackwood,2025-03-22,Colorado Avalanche,L,1,1,1,0,--,0,29,25,4,0.862,3.7,64:57,0,0,0,0,0,3897
-Dan Vladar,2025-03-22,Calgary Flames,L,1,1,1,0,--,0,29,26,3,0.897,2.82,63:46,0,0,0,0,0,3826
+Daniel Vladar,2025-03-22,Calgary Flames,L,1,1,1,0,--,0,29,26,3,0.897,2.82,63:46,0,0,0,0,0,3826
 Sam Montembeault,2025-03-22,Montréal Canadiens,L,1,1,0,0,--,1,37,33,4,0.892,3.69,65:00,0,0,0,0,0,3900
 Adin Hill,2025-03-22,Vegas Golden Knights,L,1,1,1,0,--,0,31,28,3,0.903,3.0,60:00,0,0,0,0,0,3600
 Karel Vejmelka,2025-03-22,Utah Hockey Club,R,1,1,1,0,--,0,27,23,4,0.852,4.0,60:00,0,0,0,0,0,3600
@@ -7602,7 +7602,7 @@ Georgi Romanov,2025-03-30,San Jose Sharks,L,1,1,0,1,--,0,36,28,8,0.778,8.0,60:00
 Jacob Markstrom,2025-03-31,New Jersey Devils,L,1,1,1,0,--,0,30,28,2,0.933,1.85,65:00,0,0,0,0,0,3900
 Scott Wedgewood,2025-03-31,Colorado Avalanche,L,1,1,0,0,--,1,27,25,2,0.926,1.86,64:37,0,0,0,0,0,3877
 Philipp Grubauer,2025-03-31,Seattle Kraken,L,1,1,0,1,--,0,30,28,2,0.933,2.07,58:03,0,0,0,0,0,3483
-Dan Vladar,2025-03-31,Calgary Flames,L,1,1,1,0,--,0,30,28,2,0.933,1.85,65:00,0,0,0,0,0,3900
+Daniel Vladar,2025-03-31,Calgary Flames,L,1,1,1,0,--,0,30,28,2,0.933,1.85,65:00,0,0,0,0,0,3900
 Ivan Fedotov,2025-03-31,Philadelphia Flyers,L,1,1,1,0,--,0,29,28,1,0.966,1.0,60:00,0,0,0,0,0,3600
 Casey DeSmith,2025-03-31,Dallas Stars,L,1,1,1,0,--,0,36,35,1,0.972,1.0,60:00,0,0,0,0,0,3600
 Filip Gustavsson,2025-03-31,Minnesota Wild,L,1,1,0,0,--,1,28,26,2,0.929,1.85,65:00,0,0,0,0,0,3900
@@ -7616,7 +7616,7 @@ Andrei Vasilevskiy,2025-04-01,Tampa Bay Lightning,L,1,1,1,0,--,0,29,28,1,0.966,1
 Connor Hellebuyck,2025-04-01,Winnipeg Jets,L,1,1,0,1,--,0,19,16,3,0.842,3.05,58:57,0,0,0,0,2,3537
 Linus Ullmark,2025-04-01,Ottawa Senators,L,1,1,0,1,--,0,21,17,4,0.81,4.22,56:55,0,0,1,1,0,3415
 Juuse Saros,2025-04-01,Nashville Predators,L,1,1,0,1,--,0,26,19,7,0.784,10.5,40:00,0,0,0,0,0,2400
-Vitek Vanecek,2025-04-01,Florida Panthers,L,1,1,0,0,--,1,21,18,3,0.857,2.99,60:10,0,0,0,0,0,3610
+Vítek Vaněček,2025-04-01,Florida Panthers,L,1,1,0,0,--,1,21,18,3,0.857,2.99,60:10,0,0,0,0,0,3610
 Elvis Merzlikins,2025-04-01,Columbus Blue Jackets,L,1,1,1,0,--,0,28,24,4,0.857,4.02,59:38,0,0,0,0,0,3578
 Ilya Sorokin,2025-04-01,New York Islanders,L,1,1,0,1,--,0,23,20,3,0.87,3.02,59:34,0,0,0,0,0,3574
 Sam Montembeault,2025-04-01,Montréal Canadiens,L,1,1,1,0,--,0,27,25,2,0.926,2.02,59:25,0,0,0,0,0,3565
@@ -7692,7 +7692,7 @@ Joonas Korpisalo,2025-04-06,Boston Bruins,L,1,1,0,1,--,0,36,31,5,0.861,5.2,57:42
 Linus Ullmark,2025-04-06,Ottawa Senators,L,1,1,1,0,--,0,29,29,0,1.0,0.0,59:54,1,0,0,0,0,3594
 Juuse Saros,2025-04-06,Nashville Predators,L,1,1,0,1,--,0,17,15,2,0.882,2.09,57:30,0,0,0,0,0,3450
 Alex Nedeljkovic,2025-04-06,Pittsburgh Penguins,L,1,1,0,1,--,0,30,28,2,0.933,2.03,59:07,0,0,0,0,0,3547
-Vitek Vanecek,2025-04-06,Florida Panthers,L,1,1,0,1,--,0,24,22,2,0.917,2.08,57:37,0,0,0,0,0,3457
+Vítek Vaněček,2025-04-06,Florida Panthers,L,1,1,0,1,--,0,24,22,2,0.917,2.08,57:37,0,0,0,0,0,3457
 Elvis Merzlikins,2025-04-06,Columbus Blue Jackets,L,1,0,0,0,--,0,23,22,1,0.897,1.13,53:05,0,0,0,0,0,3185
 Ilya Sorokin,2025-04-06,New York Islanders,L,1,1,1,0,--,0,29,28,1,0.966,1.0,60:00,0,0,0,0,0,3600
 Adin Hill,2025-04-06,Vegas Golden Knights,L,1,1,1,0,--,0,21,19,2,0.905,2.0,60:00,0,0,0,0,0,3600
@@ -7779,7 +7779,7 @@ Jordan Binnington,2025-04-12,St. Louis Blues,L,1,1,0,0,--,1,18,15,3,0.833,2.78,6
 Anthony Stolarz,2025-04-12,Toronto Maple Leafs,L,1,1,1,0,--,0,15,15,0,1.0,0.0,60:29,1,0,0,0,0,3629
 Connor Hellebuyck,2025-04-12,Winnipeg Jets,L,1,1,1,0,--,0,32,28,4,0.875,3.7,64:57,0,0,0,0,0,3897
 Marcus Hogberg,2025-04-12,New York Islanders,L,1,1,0,0,--,1,22,19,3,0.864,2.85,63:11,0,0,0,0,0,3791
-Vitek Vanecek,2025-04-12,Florida Panthers,L,1,1,1,0,--,0,28,26,2,0.929,1.85,65:00,0,0,0,0,0,3900
+Vítek Vaněček,2025-04-12,Florida Panthers,L,1,1,1,0,--,0,28,26,2,0.929,1.85,65:00,0,0,0,0,0,3900
 Igor Shesterkin,2025-04-12,New York Rangers,L,1,1,0,1,--,0,26,21,5,0.808,5.14,58:23,0,0,0,0,0,3503
 Mackenzie Blackwood,2025-04-12,Colorado Avalanche,L,1,1,0,1,--,0,33,28,5,0.848,5.18,57:55,0,0,0,0,0,3475
 Adin Hill,2025-04-12,Vegas Golden Knights,L,1,1,1,0,--,0,17,14,3,0.824,3.0,60:00,0,0,0,0,0,3600
@@ -7830,7 +7830,7 @@ Anton Forsberg,2025-04-15,Ottawa Senators,L,1,1,0,0,--,1,16,12,4,0.75,3.95,60:48
 Jordan Binnington,2025-04-15,St. Louis Blues,L,1,1,1,0,--,0,23,22,1,0.957,1.0,60:00,0,0,0,0,0,3600
 Andrei Vasilevskiy,2025-04-15,Tampa Bay Lightning,L,1,1,1,0,--,0,24,23,1,0.958,1.0,59:56,0,0,0,0,0,3596
 Anthony Stolarz,2025-04-15,Toronto Maple Leafs,L,1,1,1,0,--,0,35,35,0,1.0,0.0,60:00,1,0,0,0,0,3600
-Vitek Vanecek,2025-04-15,Florida Panthers,L,1,1,0,1,--,0,31,26,5,0.839,5.0,60:00,0,0,0,0,0,3600
+Vítek Vaněček,2025-04-15,Florida Panthers,L,1,1,0,1,--,0,31,26,5,0.839,5.0,60:00,0,0,0,0,0,3600
 Ilya Sorokin,2025-04-15,New York Islanders,L,1,1,0,1,--,0,35,33,2,0.943,2.09,57:32,0,0,0,0,0,3452
 Ilya Samsonov,2025-04-15,Vegas Golden Knights,L,1,1,0,0,--,1,28,24,4,0.857,3.71,64:42,0,0,0,0,0,3882
 Karel Vejmelka,2025-04-15,Utah Hockey Club,R,1,1,0,1,--,0,29,23,6,0.793,6.0,60:00,0,0,0,0,0,3600
@@ -7865,7 +7865,7 @@ Marcus Hogberg,2025-04-17,New York Islanders,L,1,1,0,1,--,0,26,20,6,0.769,6.0,60
 Alex Nedeljkovic,2025-04-17,Pittsburgh Penguins,L,1,1,1,0,--,0,20,18,2,0.9,2.0,60:00,0,0,0,0,0,3600
 Jonas Johansson,2025-04-17,Tampa Bay Lightning,L,1,1,0,1,--,0,22,18,4,0.818,4.03,59:33,0,0,0,0,0,3573
 Igor Shesterkin,2025-04-17,New York Rangers,L,1,1,1,0,--,0,27,27,0,1.0,0.0,60:00,1,0,0,0,0,3600
-Dan Vladar,2025-04-17,Calgary Flames,L,1,1,1,0,--,0,31,30,1,0.968,1.0,60:00,0,0,0,0,0,3600
+Daniel Vladar,2025-04-17,Calgary Flames,L,1,1,1,0,--,0,31,30,1,0.968,1.0,60:00,0,0,0,0,0,3600
 Joseph Woll,2025-04-17,Toronto Maple Leafs,L,1,1,1,0,--,0,34,31,3,0.912,3.04,59:18,0,0,0,0,0,3558
 David Rittich,2025-04-17,Los Angeles Kings,L,1,1,0,1,--,0,29,24,5,0.828,5.03,59:36,0,0,0,0,0,3576
 Aleksei Kolosov,2025-04-17,Philadelphia Flyers,L,1,1,0,1,--,0,30,26,4,0.867,4.08,58:49,0,0,0,0,0,3529
