@@ -21,7 +21,7 @@ TIMEOUT = ClientTimeout(total=15)
 MAX_CONCURRENT_REQUESTS = 9
 RETRIES = 3
 
-MAX_GAMES = 1312
+MAX_GAMES = 1312 # there are 1312 games in a full NHL regular season ( 32 * 82 / 2 )
 SLEEP_SEC = 0.1
 
 SEASONS = [2023, 2024, 2025]
@@ -89,9 +89,6 @@ SEASON_STATS = [
     "home_gf_per_game_season", "away_gf_per_game_season", "home_pointPctg_season",
     "away_pointPctg_season", "pointPctg_diff", "home_win_streak", "away_win_streak",
 ]
-
-# Global semaphore for async requests
-# semaphore = asyncio.Semaphore(MAX_CONCURRENT_REQUESTS)
 
 # ===== ASYNC HELPER FUNCTIONS =====
 async def fetch_json(session, url, semaphore):
@@ -294,31 +291,34 @@ def extract_all_goalie_basic_stats(boxscore_data):
 
     home = boxscore_data.get("homeTeam", {})
     away = boxscore_data.get("awayTeam", {})
-    home_players = boxscore_data.get("playerByGameStats", {}).get("homeTeam", {}).get("goalies", [])
-    away_players = boxscore_data.get("playerByGameStats", {}).get("awayTeam", {}).get("goalies", [])
+    home_goalies = boxscore_data.get("playerByGameStats", {}).get("homeTeam", {}).get("goalies", [])
+    away_goalies = boxscore_data.get("playerByGameStats", {}).get("awayTeam", {}).get("goalies", [])
 
-    home_starter_goalie, home_starter_obj = get_starter_goalie(home_players)
-    away_starter_goalie, away_starter_obj = get_starter_goalie(away_players)
+    home_starter_goalie, home_starter_obj = get_starter_goalie(home_goalies)
+    away_starter_goalie, away_starter_obj = get_starter_goalie(away_goalies)
 
-    # Calculate team save percentages
-    if len(home_players) < 2:
-        home_save_pct = home_players[0].get("savePctg", 0.0) if home_players else 0.0
+    # Calculate team save percentages for THIS game
+    # -------------------------------
+    # TODO: Find endpoint that gives TEAM save percentage directly.
+    # -------------------------------
+    if len(home_goalies) < 2:
+        home_save_pct = home_goalies[0].get("savePctg", 0.0) if home_goalies else 0.0
     else:
         home_save_pct = calc_team_save_pct(
-            home_players[0].get("saves", 0) + home_players[1].get("saves", 0),
-            home_players[0].get("shotsAgainst", 0) + home_players[1].get("shotsAgainst", 0)
+            home_goalies[0].get("saves", 0) + home_goalies[1].get("saves", 0),
+            home_goalies[0].get("shotsAgainst", 0) + home_goalies[1].get("shotsAgainst", 0)
         )
 
-    if len(away_players) < 2:
-        away_save_pct = away_players[0].get("savePctg", 0.0) if away_players else 0.0
+    if len(away_goalies) < 2:
+        away_save_pct = away_goalies[0].get("savePctg", 0.0) if away_goalies else 0.0
     else:
         away_save_pct = calc_team_save_pct(
-            away_players[0].get("saves", 0) + away_players[1].get("saves", 0),
-            away_players[0].get("shotsAgainst", 0) + away_players[1].get("shotsAgainst", 0)
+            away_goalies[0].get("saves", 0) + away_goalies[1].get("saves", 0),
+            away_goalies[0].get("shotsAgainst", 0) + away_goalies[1].get("shotsAgainst", 0)
         )
 
-    home_starter_obj = home_players[0] if home_players and home_players[0].get("starter") else (home_players[1] if len(home_players) > 1 else {})
-    away_starter_obj = away_players[0] if away_players and away_players[0].get("starter") else (away_players[1] if len(away_players) > 1 else {})
+    home_starter_obj = home_goalies[0] if home_goalies and home_goalies[0].get("starter") else (home_goalies[1] if len(home_goalies) > 1 else {})
+    away_starter_obj = away_goalies[0] if away_goalies and away_goalies[0].get("starter") else (away_goalies[1] if len(away_goalies) > 1 else {})
 
     home_abbrev = home.get("abbrev", "")
     away_abbrev = away.get("abbrev", "")
@@ -367,7 +367,7 @@ def extract_all_teams_playing_on_date(game_date):
     return all_teams
 
 
-def extract_all_standing_stats(standings_data, playing_teams):
+def extract_all_standings_stats(standings_data, playing_teams):
     """Extract standing stats for teams playing on a date."""
     rows = {}
 
@@ -423,19 +423,21 @@ def step1_fetch_basic_game_info():
     if os.path.exists(CSV_FILE):
         os.remove(CSV_FILE)
 
-    all_rows = []
+    all_seasons_rows = []
     for season in SEASONS:
-        print(f"📅 Fetching season {season}...")
+        print(f"Fetching season {season}...")
+        # This will fetch all games for the season and return a list of dicts with basic stats
         season_rows = asyncio.run(fetch_season_games(season))
-        all_rows.extend(season_rows)
+        # we will append each season's rows to this master list
+        all_seasons_rows.extend(season_rows)
 
-    df = pd.DataFrame(all_rows)
+    df = pd.DataFrame(all_seasons_rows)
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     df.to_csv(CSV_FILE, index=False)
-    print(f"✅ Saved {len(df)} games to {CSV_FILE}")
+    print(f"Saved {len(df)} games to {CSV_FILE}")
 
 
-# ===== STEP 2: COMPUTE ROLLING AVERAGES STATISTICS AND DIFFERENCIALS =====
+# ===== STEP 2: COMPUTE ROLLING AVERAGES STATISTICS AND DIFFERENCIALS OF BASIC STATS =====
 def step2_compute_rolling_averages():
     """Step 2: Compute rolling average statistics for last 5 games."""
     print("\n=== STEP 2: Compute Rolling Averages ===")
@@ -470,10 +472,16 @@ def step2_compute_rolling_averages():
     away_stats["win"] = 1 - away_stats["home_win"]
     away_stats = away_stats.drop(columns=["home_win"])
 
+    # stack home and away stats (rows)
     combined_stats = pd.concat([home_stats, away_stats], ignore_index=True)
     combined_stats = combined_stats.sort_values(by=["team_abbrev", "season", "date"]).reset_index(drop=True)
 
-    # Compute rolling stats
+    # ---------------------
+    # By stacking home and away stats, we can now compute rolling averages per team per season 
+    # This eliminates the home or away factor for team because we are looking at team performance overall
+    # ---------------------
+
+    # Compute rolling stats for last 5 games. Shift by 1 to exclude current game
     combined_stats["gf_per_game_l5"] = combined_stats.groupby(["team_abbrev", "season"])["goals_for"].transform(
         lambda x: x.rolling(5, min_periods=1).mean().shift(1))
     combined_stats["ga_per_game_l5"] = combined_stats.groupby(["team_abbrev", "season"])["goals_against"].transform(
@@ -549,7 +557,7 @@ def step2_compute_rolling_averages():
     cols_to_round = [c for c in df.columns if c.endswith(("_l5"))]
     df[cols_to_round] = df[cols_to_round].round(3)
     df.to_csv(CSV_FILE, index=False)
-    print("✅ Rolling averages computed and saved")
+    print("Rolling averages computed and saved")
 
 
 def step2_compute_goal_diffs():
@@ -557,6 +565,12 @@ def step2_compute_goal_diffs():
     print("=== STEP 2B: Compute Goal/Shot Differences ===")
 
     df = pd.read_csv(CSV_FILE, parse_dates=["date"])
+
+    # Compute goal and shot [ AVERAGE ] differences for last 5 games
+    # ---------------------
+    # TODO: Investigate if using rolling sums instead of averages yields better predictive power
+    # ex. get the difference of TOTAL goals scored in last 5 games instead of average goals per game in last 5 games
+    # ---------------------
 
     df["home_goal_diff_l5"] = df["home_gf_per_game_l5"] - df["away_gf_per_game_l5"]
     df["home_ga_diff_l5"] = df["home_ga_per_game_l5"] - df["away_ga_per_game_l5"]
@@ -569,7 +583,7 @@ def step2_compute_goal_diffs():
 
     df[cols_to_round] = df[cols_to_round].round(3)
     df.to_csv(CSV_FILE, index=False)
-    print("✅ Goal/shot differences computed and saved")
+    print("Goal/shot differences computed and saved")
 
 
 # ===== STEP 3: FETCH GOALIE DATA =====
@@ -586,7 +600,6 @@ async def fetch_all_goalie_data(game_ids):
 
         boxscores = await asyncio.gather(*tasks)
 
-    # Extract stats (CPU-bound, keep it outside async context)
     results = [
         extract_all_goalie_basic_stats(boxscore)
         for boxscore in boxscores
@@ -606,8 +619,10 @@ def step3_fetch_goalie_data():
 
     print(f"Fetching goalie data for {len(game_ids)} games...")
     goalie_data_rows = asyncio.run(fetch_all_goalie_data(game_ids))
+
+    # This dataframe contains goalie stats per game extracted from boxscores
     goalie_df = pd.DataFrame(goalie_data_rows)
-    print(f"✅ Fetched {len(goalie_data_rows)} goalie records")
+    print(f"Fetched {len(goalie_data_rows)} goalie records")
 
     # Prepare goalie long format
     goalie_df["date"] = pd.to_datetime(goalie_df["date"])
@@ -629,6 +644,7 @@ def step3_fetch_goalie_data():
             .transform(lambda x: x.rolling(ROLLING_N, min_periods=1).mean().shift(1))
         )
 
+    # Prepare for merging back to main dataframe
     goalie_l5 = goalie_long[["game_id", "goalie"] + [f"{s}_l5" for s in GOALIE_STATS]]
 
     # Merge home goalie stats
@@ -647,7 +663,7 @@ def step3_fetch_goalie_data():
         how="left"
     ).rename(columns={f"{s}_l5": f"away_goalie_{s}_l5" for s in GOALIE_STATS}).drop(columns=["goalie"])
 
-    # Team save pct L5
+    # Team AVERAGE save pct L5
     team_long = pd.concat(
         [
             goalie_df[["game_id", "date", "season", "home_team_abbrev", "home_save_pct"]]
@@ -679,7 +695,6 @@ def step3_fetch_goalie_data():
     ).rename(columns={"team_save_pct_l5": "away_team_save_pct_l5"}).drop(columns=["team"])
 
     # Merge into main dataframe
-
     goalie_df = (
         goalie_df
         .sort_values("date")
@@ -695,7 +710,7 @@ def step3_fetch_goalie_data():
         validate="one_to_one"
     )
     main_df.to_csv(CSV_FILE, index=False)
-    print("✅ Goalie data merged into main dataframe")
+    print("Goalie data merged into main dataframe")
 
 
 # ===== STEP 4: FETCH SEASON STANDINGS DATA =====
@@ -705,7 +720,7 @@ async def build_season_stats_dataframe():
     semaphore = asyncio.Semaphore(MAX_CONCURRENT_REQUESTS)
     df = pd.read_csv(CSV_FILE, parse_dates=["date"])
 
-    # Group games by date once (HUGE speedup)
+    # Group games by date once
     games_by_date = dict(tuple(df.groupby("date")))
     unique_dates = list(games_by_date.keys())
 
@@ -720,7 +735,8 @@ async def build_season_stats_dataframe():
         # Run requests concurrently (semaphore controls rate)
         standings_results = await asyncio.gather(*tasks)
 
-    standing_rows = []
+    # rows of team standings data for the season to date
+    team_curr_standings_stats = []
 
     for i, (date_val, standings_data) in enumerate(
         zip(unique_dates, standings_results)
@@ -730,12 +746,13 @@ async def build_season_stats_dataframe():
 
         date_str = date_val.strftime("%Y-%m-%d")
 
+        # the standings endpoint returns all teams, we only want those playing on this date
         playing_teams = extract_all_teams_playing_on_date(date_val)
-        standings_by_team = extract_all_standing_stats(
+        standings_by_team = extract_all_standings_stats(
             standings_data, playing_teams
         )
 
-        # Iterate only games on this date
+        # Iterate only games on this date in the main dataframe
         for _, row in games_by_date[date_val].iterrows():
             out_row = {
                 "game_id": row["game_id"],
@@ -749,33 +766,55 @@ async def build_season_stats_dataframe():
                 out_row[f"home_{field}"] = home_stats.get(field)
                 out_row[f"away_{field}"] = away_stats.get(field)
 
-            standing_rows.append(out_row)
+                # ---------------------
+                # In future games when we need to fetch a team's winning streak prior to the current game,
+                # ---------------------
+                if field in ["streakCode", "streakCount"]:
+                    out_row[f"home_{field}_CURR"] = home_stats.get(field)
+                    out_row[f"away_{field}_CURR"] = away_stats.get(field)
 
-        if (i + 1) % 100 == 0:
-            print(f"✅ Processed {i + 1}/{len(unique_dates)} dates")
+            # home and away identifiers
+            out_row["home_teamAbbrev"] = row["home_team_abbrev"]
+            out_row["away_teamAbbrev"] = row["away_team_abbrev"]
 
-    return pd.DataFrame(standing_rows)
+            team_curr_standings_stats.append(out_row)
+
+    return pd.DataFrame(team_curr_standings_stats)
 
 
 def step4_fetch_season_stats():
     """Step 4: Fetch and merge season standings data."""
     print("\n=== STEP 4: Fetch Season Standings Data ===")
 
+    # Load season standings data (asynchronous)
     standing_df = asyncio.run(build_season_stats_dataframe())
 
+    # Ensure correct dtypes
     standing_df["home_gamesPlayed"] = standing_df["home_gamesPlayed"].astype(int)
     standing_df["away_gamesPlayed"] = standing_df["away_gamesPlayed"].astype(int)
 
+    # Basic season-level features
+    # ---------------------------
+    # TODO: Find endpoint that gives SEASON (to date) save percentage directly
+    # Currently we only save save percentage for the team per game and and l5 rolling average of those
+    # ---------------------------
     standing_df["home_win_pct_season"] = (
-        (standing_df["home_homeWins"] + standing_df["home_roadWins"]) / standing_df["home_gamesPlayed"]
+        (standing_df["home_homeWins"] + standing_df["home_roadWins"])
+        / standing_df["home_gamesPlayed"]
     )
 
     standing_df["away_win_pct_season"] = (
-        (standing_df["away_homeWins"] + standing_df["away_roadWins"]) / standing_df["away_gamesPlayed"]
+        (standing_df["away_homeWins"] + standing_df["away_roadWins"])
+        / standing_df["away_gamesPlayed"]
     )
 
-    standing_df["home_home_win_pct"] = standing_df["home_homeWins"] / standing_df["home_homeGamesPlayed"]
-    standing_df["away_away_win_pct"] = standing_df["away_roadWins"] / standing_df["away_roadGamesPlayed"]
+    standing_df["home_home_win_pct"] = (
+        standing_df["home_homeWins"] / standing_df["home_homeGamesPlayed"]
+    )
+
+    standing_df["away_away_win_pct"] = (
+        standing_df["away_roadWins"] / standing_df["away_roadGamesPlayed"]
+    )
 
     standing_df["home_gf_per_game_season"] = standing_df["home_goalsForPctg"]
     standing_df["away_gf_per_game_season"] = standing_df["away_goalsForPctg"]
@@ -784,28 +823,108 @@ def step4_fetch_season_stats():
     standing_df["away_pointPctg_season"] = standing_df["away_pointPctg"]
 
     standing_df["pointPctg_diff"] = (
-        standing_df["home_pointPctg_season"] - standing_df["away_pointPctg_season"]
+        standing_df["home_pointPctg_season"]
+        - standing_df["away_pointPctg_season"]
     )
 
-    standing_df["home_win_streak"] = standing_df.apply(
-        lambda r: (r["home_streakCount"] - 1) if r["home_streakCode"] == "W" else 0, axis=1
+    # ---------------------------
+    # WIN STREAK LOGIC
+    # ---------------------------
+
+    # Sort chronologically so "previous game" is correct
+    standing_df = standing_df.sort_values("date").reset_index(drop=True)
+
+    # Build long-form history per team
+    home_hist = standing_df[
+        ["date", "home_teamAbbrev", "home_streakCount_CURR", "home_streakCode_CURR"]
+    ].rename(columns={
+        "home_teamAbbrev": "team",
+        "home_streakCount_CURR": "streakCount",
+        "home_streakCode_CURR": "streakCode"
+    })
+
+    away_hist = standing_df[
+        ["date", "away_teamAbbrev", "away_streakCount_CURR", "away_streakCode_CURR"]
+    ].rename(columns={
+        "away_teamAbbrev": "team",
+        "away_streakCount_CURR": "streakCount",
+        "away_streakCode_CURR": "streakCode"
+    })
+
+    hist = (
+        pd.concat([home_hist, away_hist])
+        .sort_values(["team", "date"])
+        .reset_index(drop=True)
     )
 
-    standing_df["away_win_streak"] = standing_df.apply(
-        lambda r: (r["away_streakCount"] - 1) if r["away_streakCode"] == "W" else 0, axis=1
+    # Previous-game streak per team
+    hist["prev_streakCount"] = hist.groupby("team")["streakCount"].shift(1)
+    hist["prev_streakCode"] = hist.groupby("team")["streakCode"].shift(1)
+
+    # Merge previous-game info back (home)
+    standing_df = standing_df.merge(
+        hist[["team", "date", "prev_streakCount", "prev_streakCode"]],
+        left_on=["home_teamAbbrev", "date"],
+        right_on=["team", "date"],
+        how="left"
     )
 
+    # Merge previous-game info back (away)
+    standing_df = standing_df.merge(
+        hist[["team", "date", "prev_streakCount", "prev_streakCode"]],
+        left_on=["away_teamAbbrev", "date"],
+        right_on=["team", "date"],
+        how="left",
+        suffixes=("_home", "_away")
+    )
+
+    # --------------------------------------------------
+    # Final win-streak features (exclude current game)
+    # if current streak is a win, subtract 1 from current streak count
+    # else, take previous game's streak if it was a win, else 0 (if prev_streakCode is L or OT)
+    # --------------------------------------------------
+
+    standing_df["home_win_streak"] = np.where(
+        standing_df["home_streakCode_CURR"] == "W",
+        standing_df["home_streakCount_CURR"] - 1,
+        np.where(
+            standing_df["prev_streakCode_home"] == "W",
+            standing_df["prev_streakCount_home"],
+            0
+        )
+    )
+
+    standing_df["away_win_streak"] = np.where(
+        standing_df["away_streakCode_CURR"] == "W",
+        standing_df["away_streakCount_CURR"] - 1,
+        np.where(
+            standing_df["prev_streakCode_away"] == "W",
+            standing_df["prev_streakCount_away"],
+            0
+        )
+    )
+
+    # Cleanup
     standing_df = standing_df.fillna(0)
 
+    # Merge into master CSV
+    standing_df = (
+        standing_df
+        .sort_values("date")
+        .drop_duplicates(subset=["game_id"], keep="last")
+    )
+
     df = pd.read_csv(CSV_FILE, parse_dates=["date"])
+
     df = df.merge(
         standing_df[["game_id"] + SEASON_STATS],
         on="game_id",
         how="left",
         validate="one_to_one"
     )
+
     df.to_csv(CSV_FILE, index=False)
-    print("✅ Season stats data merged and saved")
+    print("Season stats data merged and saved")
 
 # ===== STEP 5: ROUND NUMERIC COLUMNS =====
 def step5_round_numeric_columns():
@@ -815,7 +934,7 @@ def step5_round_numeric_columns():
     df = pd.read_csv(CSV_FILE, parse_dates=["date"])
     df = df.round(3)
     df.to_csv(CSV_FILE, index=False)
-    print("✅ All numeric columns rounded to 3 decimals")
+    print("All numeric columns rounded to 3 decimals")
 
 
 # ===== STEP 6: COMPUTE REST DAYS =====
@@ -880,7 +999,7 @@ def step6_compute_rest_days():
     ).rename(columns={"goalie_rest_days": "away_goalie_rest_days"}).drop(columns=["goalie", "team"])
 
     df.to_csv(CSV_FILE, index=False)
-    print("✅ Rest days computed and saved")
+    print("Rest days computed and saved")
 
 
 # ===== STEP 7: HEAD-TO-HEAD DATA =====
@@ -890,13 +1009,17 @@ def step7_compute_head_to_head():
 
     df = pd.read_csv(CSV_FILE, parse_dates=["date"])
 
-    df["matchup"] = df.apply(
+    # create matchup identifier (e.g., "OTT_TOR")
+    df["matchup"] = df.apply(   
         lambda r: "_".join(sorted([r["home_team_abbrev"], r["away_team_abbrev"]])), axis=1
     )
 
     df = df.sort_values(["season", "date"]).reset_index(drop=True)
 
     # Build head-to-head long format
+    # -----------------------------
+    # This creates a long format dataframe where 2 rows represent the same game, one for each team as "team" and the other as "opponent".
+    # -----------------------------
     h2h_long = pd.concat([
         df[[
             "game_id", "date", "season", "matchup", "home_team_abbrev", "away_team_abbrev", "home_gf", "home_win"
@@ -941,7 +1064,7 @@ def step7_compute_head_to_head():
     df["home_h2h_wins_diff"] = df["home_h2h_wins"] - df["away_h2h_wins"]
 
     df.to_csv(CSV_FILE, index=False)
-    print("✅ Head-to-head data computed and saved")
+    print("Head-to-head data computed and saved")
 
 
 # ===== MAIN FUNCTION =====
