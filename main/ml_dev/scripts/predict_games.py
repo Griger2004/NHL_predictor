@@ -84,6 +84,9 @@ HEAD_TO_HEAD = [
     'away_h2h_gf', 'home_h2h_wins_diff',
 ]
 
+# --------------------------
+# TODO: save hisorical data to a database 
+# --------------------------
 
 # =============================================================================
 # ASYNC API HELPERS
@@ -138,7 +141,7 @@ def extract_name(obj):
         return obj.get("default", "") if "default" in obj else ""
     return str(obj)
 
-# Unfirtunately, it seems that the 'starter' value ony appears post-game.
+# Unfortunately, it seems that the 'starter' value only appears post-game.
 
 # def get_starter_goalie(goalies):
 #     """Get the starting goalie from a list of goalies."""
@@ -209,11 +212,11 @@ async def get_todays_goalies(games):
         if not home_goalie or not away_goalie:
             landing = landing_results[i]
             if landing:
-                # Landing has different structure
+
                 home_team_data = landing.get("matchup", {}).get("goalieComparison", {}).get("homeTeam", {})
                 away_team_data = landing.get("matchup", {}).get("goalieComparison", {}).get("awayTeam", {})
                 
-                # Get expected starters from landing
+                # Get BEST performing goalies from landing
                 if not home_goalie:
                     home_goalie_obj = home_team_data.get("leaders", [{}])[0] if home_team_data.get("leaders") else {}
                     home_goalie = extract_name(home_goalie_obj.get("name", {}))
@@ -350,8 +353,8 @@ def load_model_and_features():
     with open(FEATURES_FILE, 'rb') as f:
         feature_names = pickle.load(f)
     
-    print(f"✓ Model loaded: {type(model).__name__}")
-    print(f"✓ Features loaded: {len(feature_names)} features")
+    print(f"Model loaded: {type(model).__name__}")
+    print(f"Features loaded: {len(feature_names)} features")
     
     return model, feature_names
 
@@ -369,8 +372,8 @@ def load_historical_data():
         )
     
     df = pd.read_csv(HISTORICAL_DATA_FILE, parse_dates=["date"])
-    print(f"✓ Loaded {len(df)} historical games")
-    print(f"✓ Date range: {df['date'].min().date()} to {df['date'].max().date()}")
+    print(f"Loaded {len(df)} historical games")
+    print(f"Date range: {df['date'].min().date()} to {df['date'].max().date()}")
     
     return df
 
@@ -404,6 +407,7 @@ async def get_todays_games(date_str=None):
 
     from datetime import date
 
+    # Extract today's games only out of an entire week schedule
     today_games = next(
         (
             day["games"]
@@ -432,7 +436,7 @@ async def get_todays_games(date_str=None):
     print(f"Found {len(games)} games scheduled for today")
     
     for i, game in enumerate(games, 1):
-        print(f"  {i}. {game['away_team_name']} @ {game['home_team_name']}")
+        print(f"  {i}. {game['away_team_name']} @ {game['home_team_name']} - {game['game_time']}")
     
     return games, standings_data
 
@@ -791,8 +795,5 @@ async def main(date_str=None, threshold=0.5):
 
 
 if __name__ == "__main__":
-    # You can specify a custom date or threshold
-    # date_str = "2026-02-04"  # Or None for today
-    # threshold = 0.60  # Higher threshold = more conservative predictions
-    
+    # threshold = 0.60  # Higher threshold = more conservative predictions    
     asyncio.run(main(date_str=None, threshold=0.5))
