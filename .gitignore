@@ -44,3 +44,6 @@ Thumbs.db  # Windows system files
 
 # Ignore any personal or OS-specific files
 *.iml
+
+# Old data
+archive/

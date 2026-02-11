@@ -26,25 +26,25 @@ RETRIES = 3
 ROLLING_N = 5
 
 # Model files
-MODEL_FILE = "../notebooks/nhl_rf_model.pkl"
-FEATURES_FILE = "../notebooks/feature_names.pkl"
+MODEL_FILE = "../notebooks/models/nhl_rf_model.pkl"
+FEATURES_FILE = "../notebooks/models/feature_names.pkl"
 
 # Historical data file (needed for computing rolling stats)
 HISTORICAL_DATA_FILE = "generated/data/nhl_data.csv"
 
 # Feature definitions (must match training)
 HOME_TEAM_L5_COLS = [
-    'home_gf_per_game_l5', 'home_ga_per_game_l5', 'home_sog_per_game_l5',
+    'home_gf_l5', 'home_ga_l5', 'home_sog_l5',
     'home_wins_l5', 'home_win_pct_l5', 'home_powerplay_pct_l5',
-    'home_penalty_kill_pct_l5', 'home_powerplay_opps_l5', 'home_pk_opps_l5',
+    'home_penalty_kill_pct_l5', 'home_powerplays_l5', 'home_penalty_kills_l5',
     'home_faceoffwin_pct_l5', 'home_pims_l5', 'home_hits_l5',
     'home_blockedshots_l5', 'home_giveaways_l5', 'home_takeaways_l5',
 ]
 
 AWAY_TEAM_L5_COLS = [
-    'away_gf_per_game_l5', 'away_ga_per_game_l5', 'away_sog_per_game_l5',
+    'away_gf_l5', 'away_ga_l5', 'away_sog_l5',
     'away_wins_l5', 'away_win_pct_l5', 'away_powerplay_pct_l5',
-    'away_penalty_kill_pct_l5', 'away_powerplay_opps_l5', 'away_pk_opps_l5',
+    'away_penalty_kill_pct_l5', 'away_powerplays_l5', 'away_penalty_kills_l5',
     'away_faceoffwin_pct_l5', 'away_pims_l5', 'away_hits_l5',
     'away_blockedshots_l5', 'away_giveaways_l5', 'away_takeaways_l5',
 ]
@@ -477,15 +477,15 @@ def get_team_last_5_stats(df, team_abbrev, current_date, season):
         stats.setdefault('pk', []).append(game.get(f'{prefix}_pk', 0))
     
     result = {}
-    result['gf_per_game_l5'] = np.mean(stats.get('gf', [0]))
-    result['ga_per_game_l5'] = np.mean(stats.get('ga', [0]))
-    result['sog_per_game_l5'] = np.mean(stats.get('sog', [0]))
+    result['gf_l5'] = np.mean(stats.get('gf', [0]))
+    result['ga_l5'] = np.mean(stats.get('ga', [0]))
+    result['sog_l5'] = np.mean(stats.get('sog', [0]))
     result['wins_l5'] = np.sum(stats.get('wins', [0]))
     result['win_pct_l5'] = np.mean(stats.get('wins', [0]))
     result['powerplay_pct_l5'] = np.mean(stats.get('powerplay_pct', [0]))
     result['penalty_kill_pct_l5'] = np.mean(stats.get('pk_pct', [0]))
-    result['powerplay_opps_l5'] = np.sum(stats.get('powerplays', [0]))
-    result['pk_opps_l5'] = np.sum(stats.get('pk', [0]))
+    result['powerplays_l5'] = np.sum(stats.get('powerplays', [0]))
+    result['penalty_kills_l5'] = np.sum(stats.get('pk', [0]))
     result['faceoffwin_pct_l5'] = np.mean(stats.get('faceoffwin_pct', [0]))
     result['pims_l5'] = np.mean(stats.get('pims', [0]))
     result['hits_l5'] = np.mean(stats.get('hits', [0]))
@@ -644,9 +644,9 @@ def build_feature_row(game, df, standings_data, goalies_dict):
     features['pointPctg_diff'] = home_season.get('pointPctg_season', 0) - away_season.get('pointPctg_season', 0)
     
     # Differentials
-    features['home_goal_diff_l5'] = home_l5.get('gf_per_game_l5', 0) - away_l5.get('gf_per_game_l5', 0)
-    features['home_ga_diff_l5'] = home_l5.get('ga_per_game_l5', 0) - away_l5.get('ga_per_game_l5', 0)
-    features['home_shot_diff_l5'] = home_l5.get('sog_per_game_l5', 0) - away_l5.get('sog_per_game_l5', 0)
+    features['home_goal_diff_l5'] = home_l5.get('gf_l5', 0) - away_l5.get('gf_l5', 0)
+    features['home_ga_diff_l5'] = home_l5.get('ga_l5', 0) - away_l5.get('ga_l5', 0)
+    features['home_shot_diff_l5'] = home_l5.get('sog_l5', 0) - away_l5.get('sog_l5', 0)
     
     # Rest days
     features['home_rest_days'] = home_rest
