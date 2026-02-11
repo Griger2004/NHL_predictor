@@ -1105,7 +1105,7 @@ def main():
     try:
         step1_fetch_basic_game_info()
         step2_compute_rolling_averages()
-        step2_compute_stats_diffs
+        step2_compute_stats_diffs()
         step3_fetch_goalie_data()
         step4_fetch_season_stats()
         step5_compute_rest_days()
