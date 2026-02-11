@@ -26,25 +26,25 @@ RETRIES = 3
 ROLLING_N = 5
 
 # Model files
-MODEL_FILE = "../notebooks/nhl_rf_model.pkl"
-FEATURES_FILE = "../notebooks/feature_names.pkl"
+MODEL_FILE = "../notebooks/models/nhl_rf_model.pkl"
+FEATURES_FILE = "../notebooks/models/feature_names.pkl"
 
 # Historical data file (needed for computing rolling stats)
 HISTORICAL_DATA_FILE = "generated/data/nhl_data.csv"
 
 # Feature definitions (must match training)
 HOME_TEAM_L5_COLS = [
-    'home_gf_per_game_l5', 'home_ga_per_game_l5', 'home_sog_per_game_l5',
+    'home_gf_l5', 'home_ga_l5', 'home_sog_l5',
     'home_wins_l5', 'home_win_pct_l5', 'home_powerplay_pct_l5',
-    'home_penalty_kill_pct_l5', 'home_powerplay_opps_l5', 'home_pk_opps_l5',
+    'home_penalty_kill_pct_l5', 'home_powerplays_l5', 'home_penalty_kills_l5',
     'home_faceoffwin_pct_l5', 'home_pims_l5', 'home_hits_l5',
     'home_blockedshots_l5', 'home_giveaways_l5', 'home_takeaways_l5',
 ]
 
 AWAY_TEAM_L5_COLS = [
-    'away_gf_per_game_l5', 'away_ga_per_game_l5', 'away_sog_per_game_l5',
+    'away_gf_l5', 'away_ga_l5', 'away_sog_l5',
     'away_wins_l5', 'away_win_pct_l5', 'away_powerplay_pct_l5',
-    'away_penalty_kill_pct_l5', 'away_powerplay_opps_l5', 'away_pk_opps_l5',
+    'away_penalty_kill_pct_l5', 'away_powerplays_l5', 'away_penalty_kills_l5',
     'away_faceoffwin_pct_l5', 'away_pims_l5', 'away_hits_l5',
     'away_blockedshots_l5', 'away_giveaways_l5', 'away_takeaways_l5',
 ]
