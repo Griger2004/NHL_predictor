@@ -34,32 +34,32 @@ HISTORICAL_DATA_FILE = "generated/data/nhl_data.csv"
 
 # Feature definitions (must match training)
 HOME_TEAM_L5_COLS = [
-    'home_gf_l5', 'home_ga_l5', 'home_sog_l5',
-    'home_wins_l5', 'home_win_pct_l5', 'home_powerplay_pct_l5',
-    'home_penalty_kill_pct_l5', 'home_powerplays_l5', 'home_penalty_kills_l5',
-    'home_faceoffwin_pct_l5', 'home_pims_l5', 'home_hits_l5',
-    'home_blockedshots_l5', 'home_giveaways_l5', 'home_takeaways_l5',
+    'home_gf_ewm', 'home_ga_ewm', 'home_sog_ewm',
+    'home_wins_l5', 'home_win_pct_ewm', 'home_powerplay_pct_ewm',
+    'home_penalty_kill_pct_ewm', 'home_powerplays_l5', 'home_penalty_kills_l5',
+    'home_faceoffwin_pct_ewm', 'home_pims_ewm', 'home_hits_ewm',
+    'home_blockedshots_ewm', 'home_giveaways_ewm', 'home_takeaways_ewm',
 ]
 
 AWAY_TEAM_L5_COLS = [
-    'away_gf_l5', 'away_ga_l5', 'away_sog_l5',
-    'away_wins_l5', 'away_win_pct_l5', 'away_powerplay_pct_l5',
-    'away_penalty_kill_pct_l5', 'away_powerplays_l5', 'away_penalty_kills_l5',
-    'away_faceoffwin_pct_l5', 'away_pims_l5', 'away_hits_l5',
-    'away_blockedshots_l5', 'away_giveaways_l5', 'away_takeaways_l5',
+    'away_gf_ewm', 'away_ga_ewm', 'away_sog_ewm',
+    'away_wins_l5', 'away_win_pct_ewm', 'away_powerplay_pct_ewm',
+    'away_penalty_kill_pct_ewm', 'away_powerplays_l5', 'away_penalty_kills_l5',
+    'away_faceoffwin_pct_ewm', 'away_pims_ewm', 'away_hits_ewm',
+    'away_blockedshots_ewm', 'away_giveaways_ewm', 'away_takeaways_ewm',
 ]
 
 GOALIE_L5_COLS = [
-    'home_goalie_save_pct_l5', 'home_goalie_ga_l5', 'home_goalie_saves_l5',
-    'home_goalie_ev_sa_l5', 'home_goalie_pp_sa_l5', 'home_goalie_sh_sa_l5',
-    'home_goalie_ev_ga_l5', 'home_goalie_pp_ga_l5', 
-    'away_goalie_save_pct_l5', 'away_goalie_ga_l5', 'away_goalie_saves_l5',
-    'away_goalie_ev_sa_l5', 'away_goalie_pp_sa_l5', 'away_goalie_sh_sa_l5',
-    'away_goalie_ev_ga_l5', 'away_goalie_pp_ga_l5',
+    'home_goalie_save_pct_ewm', 'home_goalie_ga_ewm', 'home_goalie_saves_ewm',
+    'home_goalie_ev_sa_ewm', 'home_goalie_pp_sa_ewm', 'home_goalie_sh_sa_ewm',
+    'home_goalie_ev_ga_ewm', 'home_goalie_pp_ga_ewm', 
+    'away_goalie_save_pct_ewm', 'away_goalie_ga_ewm', 'away_goalie_saves_ewm',
+    'away_goalie_ev_sa_ewm', 'away_goalie_pp_sa_ewm', 'away_goalie_sh_sa_ewm',
+    'away_goalie_ev_ga_ewm', 'away_goalie_pp_ga_ewm',
 ]
 
 TEAM_GOALIE_PERFORMANCE = [
-    'home_team_save_pct_l5', 'away_team_save_pct_l5',
+    'home_team_save_pct_ewm', 'away_team_save_pct_ewm',
 ]
 
 SEASON_COLS = [
@@ -70,7 +70,7 @@ SEASON_COLS = [
 ]
 
 DIFF_COLS = [
-    'home_goal_diff_l5', 'home_ga_diff_l5', 'home_shot_diff_l5',
+    'home_goal_diff_ewm', 'home_ga_diff_ewm', 'home_shot_diff_ewm',
 ]
 
 STREAKS_AND_REST = [

@@ -77,11 +77,11 @@ GOALIE_MERGE_COLS = [
     "away_goalie_powerPlayShotsAgainst", "home_goalie_shorthandedShotsAgainst",
     "away_goalie_shorthandedShotsAgainst", "home_goalie_evenStrengthGoalsAgainst",
     "away_goalie_evenStrengthGoalsAgainst", "home_goalie_powerPlayGoalsAgainst",
-    "away_goalie_powerPlayGoalsAgainst", "home_goalie_save_pct_l5", "home_goalie_ga_l5",
-    "home_goalie_saves_l5", "home_goalie_ev_sa_l5", "home_goalie_pp_sa_l5", "home_goalie_sh_sa_l5",
-    "home_goalie_ev_ga_l5", "home_goalie_pp_ga_l5", "away_goalie_save_pct_l5", "away_goalie_ga_l5",
-    "away_goalie_saves_l5", "away_goalie_ev_sa_l5", "away_goalie_pp_sa_l5", "away_goalie_sh_sa_l5",
-    "away_goalie_ev_ga_l5", "away_goalie_pp_ga_l5", "home_team_save_pct_l5", "away_team_save_pct_l5",
+    "away_goalie_powerPlayGoalsAgainst", "home_goalie_save_pct_ewm", "home_goalie_ga_ewm",
+    "home_goalie_saves_ewm", "home_goalie_ev_sa_ewm", "home_goalie_pp_sa_ewm", "home_goalie_sh_sa_ewm",
+    "home_goalie_ev_ga_ewm", "home_goalie_pp_ga_ewm", "away_goalie_save_pct_ewm", "away_goalie_ga_ewm",
+    "away_goalie_saves_ewm", "away_goalie_ev_sa_ewm", "away_goalie_pp_sa_ewm", "away_goalie_sh_sa_ewm",
+    "away_goalie_ev_ga_ewm", "away_goalie_pp_ga_ewm", "home_team_save_pct_ewm", "away_team_save_pct_ewm",
 ]
 
 SEASON_STATS = [
@@ -501,35 +501,43 @@ def step2_compute_rolling_averages():
     combined = combined.sort_values(by=["team_abbrev", "season", "date"]).reset_index(drop=True)
 
     stats_to_roll = {
-        'gf_l5': 'gf',
-        'ga_l5': 'ga',
-        'sog_l5': 'sog',
+        'gf_ewm': 'gf',
+        'ga_ewm': 'ga',
+        'sog_ewm': 'sog',
         'wins_l5': 'win',
-        'powerplay_pct_l5': 'powerplay_pct',
-        'penalty_kill_pct_l5': 'pk_pct',
+        'powerplay_pct_ewm': 'powerplay_pct',
+        'penalty_kill_pct_ewm': 'pk_pct',
         'powerplays_l5': 'powerplays',
         'penalty_kills_l5': 'penalty_kills',
-        'faceoffwin_pct_l5': 'faceoffwin_pct',
-        'pims_l5': 'pims',
-        'hits_l5': 'hits',
-        'blockedshots_l5': 'blockedshots',
-        'giveaways_l5': 'giveaways',
-        'takeaways_l5': 'takeaways'
+        'faceoffwin_pct_ewm': 'faceoffwin_pct',
+        'pims_ewm': 'pims',
+        'hits_ewm': 'hits',
+        'blockedshots_ewm': 'blockedshots',
+        'giveaways_ewm': 'giveaways',
+        'takeaways_ewm': 'takeaways'
     }
 
+    alpha = 0.3
+
     for new_col, source_col in stats_to_roll.items():
-        if new_col in ['wins_l5', 'powerplays_l5', 'penalty_kills_l5']:
+        if new_col in ['wins_l5']:
             # Sum for counting stats
             combined[new_col] = (
                 combined.groupby("team_abbrev")[source_col]
                 .transform(lambda x: x.rolling(window=5, min_periods=1).sum().shift(1))
             )
+        elif new_col in ['powerplays_l5', 'penalty_kills_l5']:
+            # rolling averages per game
+            combined[new_col] = (
+                combined.groupby("team_abbrev")[source_col]
+                .transform(lambda s: s.rolling(5).mean().shift(1))
+            )
         else:
             # Mean for rate stats
             combined[new_col] = (
-                combined.groupby("team_abbrev")[source_col]
-                .transform(lambda x: x.rolling(5, min_periods=1).mean().shift(1))
-            )
+            combined.groupby("team_abbrev")[source_col]
+            .transform(lambda x: x.shift(1).ewm(alpha=alpha, adjust=False).mean())
+        )
 
     # This was only needed when min_periods was used in rolling to avoid NaNs for first few games of the season.
     # We just hard code 5 games now so this is no longer necessary, 
@@ -544,7 +552,7 @@ def step2_compute_rolling_averages():
     # Merge back to main df
     # -------------------------
 
-    merge_cols = ["date", "team_abbrev"] + [c for c in combined.columns if c.endswith("_l5")]
+    merge_cols = ["date", "team_abbrev"] + [c for c in combined.columns if c.endswith("_l5") or c.endswith("_ewm")]
 
     df = df.merge(
         combined[merge_cols],
@@ -553,7 +561,7 @@ def step2_compute_rolling_averages():
         how="left"
     ).drop(columns=["team_abbrev"])
 
-    df = df.rename(columns={c: f"home_{c}" for c in df.columns if c.endswith("_l5")})
+    df = df.rename(columns={c: f"home_{c}" for c in df.columns if c.endswith("_l5") or c.endswith("_ewm")})
 
     df = df.merge(
         combined[merge_cols],
@@ -564,11 +572,11 @@ def step2_compute_rolling_averages():
 
     df = df.rename(columns={
         c: f"away_{c}" for c in df.columns
-        if c.endswith("_l5") and not c.startswith("home_")
+        if (c.endswith("_l5") or c.endswith("_ewm")) and not c.startswith("home_")
     })
 
     # Round
-    l5_cols = [c for c in df.columns if c.endswith("_l5")]
+    l5_cols = [c for c in df.columns if c.endswith("_l5") or c.endswith("_ewm")]
     df[l5_cols] = df[l5_cols].round(3)
 
     df.to_csv(CSV_FILE, index=False)
@@ -589,14 +597,14 @@ def step2_compute_stats_diffs():
     # ex. get the difference of TOTAL goals scored in last 5 games instead of average goals per game in last 5 games
     # ---------------------
 
-    df["home_goal_diff_l5"] = df["home_gf_l5"] - df["away_gf_l5"]
-    df["home_ga_diff_l5"] = df["home_ga_l5"] - df["away_ga_l5"]
-    df["home_shot_diff_l5"] = df["home_sog_l5"] - df["away_sog_l5"]
+    df["home_goal_diff_ewm"] = df["home_gf_ewm"] - df["away_gf_ewm"]
+    df["home_ga_diff_ewm"] = df["home_ga_ewm"] - df["away_ga_ewm"]
+    df["home_shot_diff_ewm"] = df["home_sog_ewm"] - df["away_sog_ewm"]
 
 
     cols_to_round = [
-        "home_gf_l5", "away_gf_l5", "home_ga_l5", "away_ga_l5",
-        "home_sog_l5", "away_sog_l5", "home_goal_diff_l5", "home_ga_diff_l5", "home_shot_diff_l5",
+        "home_gf_ewm", "away_gf_ewm", "home_ga_ewm", "away_ga_ewm",
+        "home_sog_ewm", "away_sog_ewm", "home_goal_diff_ewm", "home_ga_diff_ewm", "home_shot_diff_ewm",
     ]
 
     df[cols_to_round] = df[cols_to_round].round(3)
@@ -656,14 +664,15 @@ def step3_fetch_goalie_data():
     )
 
     # Compute rolling stats for goalies
+    alpha = 0.3
     for stat in GOALIE_STATS:
-        goalie_long[f"{stat}_l5"] = (
-            goalie_long.groupby(["goalie"])[stat]
-            .transform(lambda x: x.rolling(ROLLING_N, min_periods=1).mean().shift(1))
+        goalie_long[f"{stat}_ewm"] = (
+            goalie_long.groupby("goalie")[stat]
+            .transform(lambda x: x.shift(1).ewm(alpha=alpha, adjust=False).mean())
         )
 
     # Prepare for merging back to main dataframe
-    goalie_l5 = goalie_long[["game_id", "goalie"] + [f"{s}_l5" for s in GOALIE_STATS]]
+    goalie_l5 = goalie_long[["game_id", "goalie"] + [f"{s}_ewm" for s in GOALIE_STATS]]
 
     # Merge home goalie stats
     goalie_df = goalie_df.merge(
@@ -671,7 +680,7 @@ def step3_fetch_goalie_data():
         left_on=["game_id", "home_goalie_starter"],
         right_on=["game_id", "goalie"],
         how="left"
-    ).rename(columns={f"{s}_l5": f"home_goalie_{s}_l5" for s in GOALIE_STATS}).drop(columns=["goalie"])
+    ).rename(columns={f"{s}_ewm": f"home_goalie_{s}_ewm" for s in GOALIE_STATS}).drop(columns=["goalie"])
 
     # Merge away goalie stats
     goalie_df = goalie_df.merge(
@@ -679,9 +688,9 @@ def step3_fetch_goalie_data():
         left_on=["game_id", "away_goalie_starter"],
         right_on=["game_id", "goalie"],
         how="left"
-    ).rename(columns={f"{s}_l5": f"away_goalie_{s}_l5" for s in GOALIE_STATS}).drop(columns=["goalie"])
+    ).rename(columns={f"{s}_ewm": f"away_goalie_{s}_ewm" for s in GOALIE_STATS}).drop(columns=["goalie"])
 
-    # Team AVERAGE save pct L5
+    # Team AVERAGE save pct EWM
     team_long = pd.concat(
         [
             goalie_df[["game_id", "date", "season", "home_team_abbrev", "home_save_pct"]]
@@ -692,25 +701,25 @@ def step3_fetch_goalie_data():
         ignore_index=True
     ).sort_values(["team", "season", "date"]).reset_index(drop=True)
 
-    team_long["team_save_pct_l5"] = (
-        team_long.groupby(["team"])["save_pct"]
-        .transform(lambda x: x.rolling(ROLLING_N, min_periods=1).mean().shift(1))
+    team_long["team_save_pct_ewm"] = (
+        team_long.groupby("team")["save_pct"]
+        .transform(lambda x: x.shift(1).ewm(alpha=alpha, adjust=False).mean())
     )
 
     # Merge team stats back
     goalie_df = goalie_df.merge(
-        team_long[["game_id", "team", "team_save_pct_l5"]],
+        team_long[["game_id", "team", "team_save_pct_ewm"]],
         left_on=["game_id", "home_team_abbrev"],
         right_on=["game_id", "team"],
         how="left"
-    ).rename(columns={"team_save_pct_l5": "home_team_save_pct_l5"}).drop(columns=["team"])
+    ).rename(columns={"team_save_pct_ewm": "home_team_save_pct_ewm"}).drop(columns=["team"])
 
     goalie_df = goalie_df.merge(
-        team_long[["game_id", "team", "team_save_pct_l5"]],
+        team_long[["game_id", "team", "team_save_pct_ewm"]],
         left_on=["game_id", "away_team_abbrev"],
         right_on=["game_id", "team"],
         how="left"
-    ).rename(columns={"team_save_pct_l5": "away_team_save_pct_l5"}).drop(columns=["team"])
+    ).rename(columns={"team_save_pct_ewm": "away_team_save_pct_ewm"}).drop(columns=["team"])
 
     # Merge into main dataframe
     goalie_df = (
@@ -813,7 +822,7 @@ def step4_fetch_season_stats():
     # Basic season-level features
     # ---------------------------
     # TODO: Find endpoint that gives SEASON (to date) save percentage directly
-    # Currently we only save save percentage for the team per game and and l5 rolling average of those
+    # Currently we only save save percentage for the team per game and and l5/ewm rolling average of those
     # ---------------------------
     standing_df["home_win_pct_season"] = (
         (standing_df["home_homeWins"] + standing_df["home_roadWins"])
