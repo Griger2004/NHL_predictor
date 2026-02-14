@@ -9,195 +9,44 @@ import csv
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import asyncio
-import aiohttp
-from aiohttp import ClientTimeout
 
-# ===== CONSTANTS =====
-API_BASE_URL = "https://api-web.nhle.com"
-OUTPUT_DIR = "generated/data/"
-CSV_FILE = f"{OUTPUT_DIR}/nhl_data.csv"
+from api.client import ApiClient
 
-TIMEOUT = ClientTimeout(total=15)
-MAX_CONCURRENT_REQUESTS = 9
-RETRIES = 3
+from config import (
+    API_BASE_URL,
+    OUTPUT_DIR,
+    CSV_FILE,
+    TIMEOUT,
+    MAX_CONCURRENT_REQUESTS,
+    RETRIES,
+    MAX_GAMES,
+    SLEEP_SEC,
+    SEASONS,
+    FIELDNAMES,
+    ROLLING_N,
+    STANDINGS_FIELDS,
+    HOME_RENAME,
+    AWAY_RENAME,
+    GOALIE_STATS,
+    GOALIE_MERGE_COLS,
+    SEASON_STATS,
+    MAIN_STATS_TO_BE_BLEND,
+    HOME_TEAM_STATS_COLS,
+    AWAY_TEAM_STATS_COLS,
+)
 
-MAX_GAMES = 1312 # there are 1312 games in a full NHL regular season ( 32 * 82 / 2 )
-SLEEP_SEC = 0.1
-
-SEASONS = [2022, 2023, 2024, 2025]
-
-FIELDNAMES = [
-    "game_id", "date", "season", "home_team", "away_team",
-    "home_team_abbrev", "away_team_abbrev", "home_win",
-    "home_gf", "away_gf", "home_ga", "away_ga", "home_sog", "away_sog",
-    "home_faceoffwin_pct", "away_faceoffwin_pct", "home_powerplays", "away_powerplays",
-    "home_powerplay_pct", "away_powerplay_pct", "home_penalty_kill_pct", "away_penalty_kill_pct", 
-    "home_pims", "away_pims", "home_hits", "away_hits", "home_blockedshots", "away_blockedshots",
-    "home_takeaways", "away_takeaways", "home_giveaways", "away_giveaways"
-]
-
-ROLLING_N = 5
-
-STANDINGS_FIELDS = [
-    "pointPctg", "gamesPlayed", "goalsForPctg", "homeGamesPlayed", "homeWins",
-    "homeLosses", "roadGamesPlayed", "roadWins", "roadLosses", "streakCode", "streakCount",
-]
-
-HOME_RENAME = {
-    "home_goalie_starter": "goalie",
-    "home_goalie_save_pct": "save_pct",
-    "home_goalie_ga": "ga",
-    "home_goalie_saves": "saves",
-    "home_goalie_evenStrengthShotsAgainst": "ev_sa",
-    "home_goalie_powerPlayShotsAgainst": "pp_sa",
-    "home_goalie_shorthandedShotsAgainst": "sh_sa",
-    "home_goalie_evenStrengthGoalsAgainst": "ev_ga",
-    "home_goalie_powerPlayGoalsAgainst": "pp_ga",
-}
-
-AWAY_RENAME = {
-    "away_goalie_starter": "goalie",
-    "away_goalie_save_pct": "save_pct",
-    "away_goalie_ga": "ga",
-    "away_goalie_saves": "saves",
-    "away_goalie_evenStrengthShotsAgainst": "ev_sa",
-    "away_goalie_powerPlayShotsAgainst": "pp_sa",
-    "away_goalie_shorthandedShotsAgainst": "sh_sa",
-    "away_goalie_evenStrengthGoalsAgainst": "ev_ga",
-    "away_goalie_powerPlayGoalsAgainst": "pp_ga",
-}
-
-GOALIE_STATS = ["save_pct", "ga", "saves", "ev_sa", "pp_sa", "sh_sa", "ev_ga", "pp_ga"]
-
-GOALIE_MERGE_COLS = [
-    "game_id", "home_goalie_starter", "away_goalie_starter", "home_save_pct", "away_save_pct",
-    "home_goalie_save_pct", "away_goalie_save_pct", "home_goalie_ga", "away_goalie_ga",
-    "home_goalie_saves", "away_goalie_saves", "home_goalie_evenStrengthShotsAgainst",
-    "away_goalie_evenStrengthShotsAgainst", "home_goalie_powerPlayShotsAgainst",
-    "away_goalie_powerPlayShotsAgainst", "home_goalie_shorthandedShotsAgainst",
-    "away_goalie_shorthandedShotsAgainst", "home_goalie_evenStrengthGoalsAgainst",
-    "away_goalie_evenStrengthGoalsAgainst", "home_goalie_powerPlayGoalsAgainst",
-    "away_goalie_powerPlayGoalsAgainst", "home_goalie_save_pct_ewm", "home_goalie_ga_ewm",
-    "home_goalie_saves_ewm", "home_goalie_ev_sa_ewm", "home_goalie_pp_sa_ewm", "home_goalie_sh_sa_ewm",
-    "home_goalie_ev_ga_ewm", "home_goalie_pp_ga_ewm", "away_goalie_save_pct_ewm", "away_goalie_ga_ewm",
-    "away_goalie_saves_ewm", "away_goalie_ev_sa_ewm", "away_goalie_pp_sa_ewm", "away_goalie_sh_sa_ewm",
-    "away_goalie_ev_ga_ewm", "away_goalie_pp_ga_ewm", "home_team_save_pct_ewm", "away_team_save_pct_ewm",
-]
-
-SEASON_STATS = [
-    "home_win_pct_season", "away_win_pct_season", "home_home_win_pct", "away_away_win_pct",
-    "home_gf_per_game_season", "away_gf_per_game_season", "home_pointPctg_season",
-    "away_pointPctg_season", "pointPctg_diff", "home_win_streak", "away_win_streak",
-]
-
-MAIN_STATS_TO_BE_BLEND = [
-    "gf", "ga", "sog", "faceoffwin_pct", "powerplays", "powerplay_pct", 
-    "pk", "pk_pct", "pims", "hits", "blockedshots", "takeaways", "giveaways",
-]
-
-# ===== ASYNC HELPER FUNCTIONS =====
-async def fetch_json(session, url, semaphore):
-    async with semaphore:
-        for attempt in range(RETRIES):
-            try:
-                async with session.get(url) as resp:
-                    if resp.status == 200:
-                        return await resp.json()
-                    elif resp.status in (429, 500, 502, 503, 504):
-                        await asyncio.sleep(2 ** attempt)
-                    else:
-                        return None
-            except Exception:
-                await asyncio.sleep(2 ** attempt)
-    return None
-
-
-# ====== API FETCHING FUNCTIONS ======
-async def fetch_game_story_async(session, game_id, semaphore):
-    url = f"{API_BASE_URL}/v1/wsc/game-story/{game_id}"
-    return await fetch_json(session, url, semaphore)
-
-
-async def fetch_boxscores(session, gid, semaphore):
-    url = f"{API_BASE_URL}/v1/gamecenter/{gid}/boxscore"
-    return await fetch_json(session, url, semaphore)
-
-
-async def fetch_standings_info(session, date, semaphore):
-    url = f"{API_BASE_URL}/v1/standings/{date}"
-    return await fetch_json(session, url, semaphore)
-
-
-
-# ===== STAT EXTRACTION HELPER FUNCTIONS =====
-def get_num_powerplays(powerplay_str):
-    """Extract power play goals and opportunities from string."""
-    if not powerplay_str:
-        return 0, 0
-    try:
-        goals, opps = map(int, powerplay_str.split("/"))
-        return goals, opps
-    except ValueError:
-        return 0, 0
-
-
-def calc_num_penalty_kills(powerplays_against, ppg_against):
-    """Calculate penalty kills from power play stats."""
-    return powerplays_against - ppg_against
-
-
-def calc_penalty_kill_pct(powerplays, ppg_against):
-    """Calculate penalty kill percentage."""
-    if powerplays == 0:
-        return 0.0
-    pk_successes = powerplays - ppg_against
-    return round((pk_successes / powerplays) * 100, 2)
-
-
-def extract_name(obj):
-    """Extract name from nested object."""
-    if not obj:
-        return ""
-    if isinstance(obj, dict):
-        return obj.get("default", "") if "default" in obj else ""
-    return str(obj)
-
-
-def extract_category_stat(stats, category):
-    """Extract category stats for home and away teams."""
-    for stat in stats:
-        if stat.get("category") == category:
-            return stat.get("homeValue", 0), stat.get("awayValue", 0)
-    return 0, 0
-
-
-def calc_team_save_pct(saves, shots_against):
-    """Calculate team save percentage."""
-    if shots_against == 0:
-        return 0.0
-    return round((saves / shots_against), 3)
-
-
-def extract_fractional_stat(stat_str):
-    """Extract fractional stat (e.g., '5/10' -> 0.5)."""
-    if not stat_str:
-        return 0.0
-    try:
-        numerator, denominator = map(int, stat_str.split("/"))
-        if denominator == 0:
-            return 0.0
-        return round(numerator / denominator, 3)
-    except ValueError:
-        return 0.0
-
-
-def get_starter_goalie(goalies):
-    """Get the starting goalie from a list of goalies."""
-    if not goalies:
-        return "", None
-    starter = next((g for g in goalies if g.get("starter")), goalies[0])
-    return extract_name(starter.get("name", {})), starter
-
+from utils.helpers import (
+    get_num_powerplays,
+    calc_num_penalty_kills,
+    calc_penalty_kill_pct,
+    extract_name,
+    extract_category_stat,
+    calc_team_save_pct,
+    extract_fractional_stat,
+    get_starter_goalie,
+    extract_all_teams_playing_on_date,
+    extract_all_standings_stats,
+)
 
 # ===== MAIN STAT EXTRACTION FUNCTIONS =====
 def extract_all_basic_team_stats(game_data):
@@ -363,47 +212,25 @@ def extract_all_basic_goalie_stats(boxscore_data):
     return row
 
 
-def extract_all_teams_playing_on_date(game_date):
-    """Extract all teams playing on a specific date."""
-    df = pd.read_csv(CSV_FILE, parse_dates=["date"])
-    teams_home = df[df["date"] == game_date]["home_team_abbrev"].unique().tolist()
-    teams_away = df[df["date"] == game_date]["away_team_abbrev"].unique().tolist()
-    all_teams = set(teams_home + teams_away)
-    return all_teams
 
-
-def extract_all_standings_stats(standings_data, playing_teams):
-    """Extract standing stats for teams playing on a date."""
-    rows = {}
-
-    for team in standings_data.get("standings", []):
-        abbrev = team.get("teamAbbrev", {}).get("default", "")
-
-        if abbrev == "ARI":
-            abbrev = "UTA"
-
-        if abbrev not in playing_teams:
-            continue
-
-        rows[abbrev] = {field: team.get(field) for field in STANDINGS_FIELDS}
-
-    return rows
-
-
-# ===== STEP 1: FETCH BASIC GAME INFO =====
+# ===== FOR STEP 1: FETCH BASIC GAME INFO =====
 async def fetch_season_games(season):
     """Fetch all games for a season."""
     game_ids = [f"{season}02{str(game_num).zfill(4)}" for game_num in range(1, MAX_GAMES + 1)]
     rows = []
 
-    semaphore = asyncio.Semaphore(MAX_CONCURRENT_REQUESTS)
-
-    async with aiohttp.ClientSession(timeout=TIMEOUT) as session:
+    async with ApiClient(
+        API_BASE_URL,
+        TIMEOUT,
+        MAX_CONCURRENT_REQUESTS,
+        RETRIES,
+    ) as client:
         for i in range(0, len(game_ids), MAX_CONCURRENT_REQUESTS):
             batch = game_ids[i:i + MAX_CONCURRENT_REQUESTS]
-            tasks = [fetch_game_story_async(session, gid, semaphore) 
-                     for gid in batch
-                    ]
+            tasks = [
+                client.get_json(f"/v1/wsc/game-story/{gid}")
+                for gid in batch
+            ]
             results = await asyncio.gather(*tasks)
 
             for game_data in results:
@@ -415,215 +242,23 @@ async def fetch_season_games(season):
                 else:
                     rows.append(row)
 
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(SLEEP_SEC)
 
     return rows
 
-
-def step1_fetch_basic_game_info():
-    """Step 1: Fetch basic game information for all seasons."""
-    print("\n=== STEP 1: Fetch Basic Game Info ===")
-
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-    if os.path.exists(CSV_FILE):
-        os.remove(CSV_FILE)
-
-    all_seasons_rows = []
-    for season in SEASONS:
-        print(f"Fetching season {season}...")
-        # This will fetch all games for the season and return a list of dicts with basic stats
-        season_rows = asyncio.run(fetch_season_games(season))
-        # we will append each season's rows to this master list
-        all_seasons_rows.extend(season_rows)
-
-    df = pd.DataFrame(all_seasons_rows)
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-    df.to_csv(CSV_FILE, index=False)
-    print(f"Saved {len(df)} games to {CSV_FILE}")
-
-
-# ===== STEP 2: COMPUTE ROLLING AVERAGES STATISTICS AND DIFFERENCIALS OF BASIC STATS =====
-def step2_compute_rolling_averages():
-    """Step 2: Compute rolling average statistics for last 5 games."""
-    print("\n=== STEP 2: Compute Rolling Averages ===")
-
-    df = pd.read_csv(CSV_FILE, parse_dates=["date"])
-
-    home_stats = df[[
-        "date", "season", "home_team_abbrev", "home_gf", "home_ga", "home_sog", "home_win",
-        "home_powerplay_pct", "home_pk_pct", "home_powerplays", "home_pk",
-        "home_faceoffwin_pct", "home_pims", "home_hits", "home_blockedshots",
-        "home_giveaways", "home_takeaways"
-    ]].rename(columns={
-        "home_team_abbrev": "team_abbrev",
-        "home_gf": "gf",
-        "home_ga": "ga",
-        "home_sog": "sog",
-        "home_win": "win",
-        "home_powerplay_pct": "powerplay_pct",
-        "home_pk_pct": "pk_pct",
-        "home_powerplays": "powerplays",
-        "home_pk": "penalty_kills",
-        "home_faceoffwin_pct": "faceoffwin_pct",
-        "home_pims": "pims",
-        "home_hits": "hits",
-        "home_blockedshots": "blockedshots",
-        "home_giveaways": "giveaways",
-        "home_takeaways": "takeaways"
-    })
-
-    away_stats = df[[
-        "date", "season", "away_team_abbrev", "away_gf", "away_ga", "away_sog", "home_win",
-        "away_powerplay_pct", "away_pk_pct", "away_powerplays", "away_pk",
-        "away_faceoffwin_pct", "away_pims", "away_hits", "away_blockedshots",
-        "away_giveaways", "away_takeaways"
-    ]].rename(columns={
-        "away_team_abbrev": "team_abbrev",
-        "away_gf": "gf",
-        "away_ga": "ga",
-        "away_sog": "sog",
-        "away_powerplay_pct": "powerplay_pct",
-        "away_pk_pct": "pk_pct",
-        "away_powerplays": "powerplays",
-        "away_pk": "penalty_kills",
-        "away_faceoffwin_pct": "faceoffwin_pct",
-        "away_pims": "pims",
-        "away_hits": "hits",
-        "away_blockedshots": "blockedshots",
-        "away_giveaways": "giveaways",
-        "away_takeaways": "takeaways"
-    })
-
-    away_stats["win"] = 1 - away_stats["home_win"]
-    away_stats.drop(columns=["home_win"], inplace=True)
-
-    combined = pd.concat([home_stats, away_stats], ignore_index=True)
-    combined = combined.sort_values(by=["team_abbrev", "season", "date"]).reset_index(drop=True)
-
-    stats_to_roll = {
-        'gf_ewm': 'gf',
-        'ga_ewm': 'ga',
-        'sog_ewm': 'sog',
-        'wins_l5': 'win',
-        'powerplay_pct_ewm': 'powerplay_pct',
-        'penalty_kill_pct_ewm': 'pk_pct',
-        'powerplays_l5': 'powerplays',
-        'penalty_kills_l5': 'penalty_kills',
-        'faceoffwin_pct_ewm': 'faceoffwin_pct',
-        'pims_ewm': 'pims',
-        'hits_ewm': 'hits',
-        'blockedshots_ewm': 'blockedshots',
-        'giveaways_ewm': 'giveaways',
-        'takeaways_ewm': 'takeaways'
-    }
-
-    alpha = 0.3
-
-    for new_col, source_col in stats_to_roll.items():
-        if new_col in ['wins_l5']:
-            # Sum for counting stats
-            combined[new_col] = (
-                combined.groupby("team_abbrev")[source_col]
-                .transform(lambda x: x.rolling(window=5, min_periods=1).sum().shift(1))
-            )
-        elif new_col in ['powerplays_l5', 'penalty_kills_l5']:
-            # rolling averages per game
-            combined[new_col] = (
-                combined.groupby("team_abbrev")[source_col]
-                .transform(lambda s: s.rolling(5).mean().shift(1))
-            )
-        else:
-            # Mean for rate stats
-            combined[new_col] = (
-            combined.groupby("team_abbrev")[source_col]
-            .transform(lambda x: x.shift(1).ewm(alpha=alpha, adjust=False).mean())
-        )
-
-    # This was only needed when min_periods was used in rolling to avoid NaNs for first few games of the season.
-    # We just hard code 5 games now so this is no longer necessary, 
-    # but we will keep it here just in case we want to revert back to min_periods=1 in the future.
-    combined["games_l5"] = (
-        combined.groupby("team_abbrev")["win"]
-        .transform(lambda x: x.rolling(5, min_periods=1).count().shift(1))
-    )
-    combined["win_pct_l5"] = combined["wins_l5"] / combined["games_l5"]
-
-    # -------------------------
-    # Merge back to main df
-    # -------------------------
-
-    merge_cols = ["date", "team_abbrev"] + [c for c in combined.columns if c.endswith("_l5") or c.endswith("_ewm")]
-
-    df = df.merge(
-        combined[merge_cols],
-        left_on=["home_team_abbrev", "date"],
-        right_on=["team_abbrev", "date"],
-        how="left"
-    ).drop(columns=["team_abbrev"])
-
-    df = df.rename(columns={c: f"home_{c}" for c in df.columns if c.endswith("_l5") or c.endswith("_ewm")})
-
-    df = df.merge(
-        combined[merge_cols],
-        left_on=["away_team_abbrev", "date"],
-        right_on=["team_abbrev", "date"],
-        how="left"
-    ).drop(columns=["team_abbrev"])
-
-    df = df.rename(columns={
-        c: f"away_{c}" for c in df.columns
-        if (c.endswith("_l5") or c.endswith("_ewm")) and not c.startswith("home_")
-    })
-
-    # Round
-    l5_cols = [c for c in df.columns if c.endswith("_l5") or c.endswith("_ewm")]
-    df[l5_cols] = df[l5_cols].round(3)
-
-    df.to_csv(CSV_FILE, index=False)
-
-    print("EWM rolling averages computed and saved.")
-
-
-
-def step2_compute_stats_diffs():
-    """Step 2B: Compute goal and shot differences."""
-    print("=== STEP 2B: Compute Goal/Shot Differences ===")
-
-    df = pd.read_csv(CSV_FILE, parse_dates=["date"])
-
-    # Compute goal and shot [ AVERAGE ] differences for last 5 games
-    # ---------------------
-    # TODO: Investigate if using rolling sums instead of averages yields better predictive power
-    # ex. get the difference of TOTAL goals scored in last 5 games instead of average goals per game in last 5 games
-    # ---------------------
-
-    df["home_goal_diff_ewm"] = df["home_gf_ewm"] - df["away_gf_ewm"]
-    df["home_ga_diff_ewm"] = df["home_ga_ewm"] - df["away_ga_ewm"]
-    df["home_shot_diff_ewm"] = df["home_sog_ewm"] - df["away_sog_ewm"]
-
-
-    cols_to_round = [
-        "home_gf_ewm", "away_gf_ewm", "home_ga_ewm", "away_ga_ewm",
-        "home_sog_ewm", "away_sog_ewm", "home_goal_diff_ewm", "home_ga_diff_ewm", "home_shot_diff_ewm",
-    ]
-
-    df[cols_to_round] = df[cols_to_round].round(3)
-    df.to_csv(CSV_FILE, index=False)
-    print("Goal/shot differences computed and saved")
-
-
-# ===== STEP 3: FETCH GOALIE DATA =====
+# ===== FOR STEP 3: FETCH GOALIE RAW DATA =====
 async def fetch_all_goalie_data(game_ids):
     """Fetch goalie data for all games (optimized)."""
-    semaphore = asyncio.Semaphore(MAX_CONCURRENT_REQUESTS)
-
-    async with aiohttp.ClientSession(timeout=TIMEOUT) as session:
-
+    async with ApiClient(
+        API_BASE_URL,
+        TIMEOUT,
+        MAX_CONCURRENT_REQUESTS,
+        RETRIES,
+    ) as client:
         tasks = [
-            fetch_boxscores(session, game_id, semaphore)
+            client.get_json(f"/v1/gamecenter/{game_id}/boxscore")
             for game_id in game_ids
         ]
-
         boxscores = await asyncio.gather(*tasks)
 
     results = [
@@ -636,129 +271,26 @@ async def fetch_all_goalie_data(game_ids):
 
 
 
-def step3_fetch_goalie_data():
-    """Step 3: Fetch goalie performance data."""
-    print("\n=== STEP 3: Fetch Goalie Performance Data ===")
-
-    df = pd.read_csv(CSV_FILE, parse_dates=["date"])
-    game_ids = df["game_id"].tolist()
-
-    print(f"Fetching goalie data for {len(game_ids)} games...")
-    goalie_data_rows = asyncio.run(fetch_all_goalie_data(game_ids))
-
-    # This dataframe contains goalie stats per game extracted from boxscores
-    goalie_df = pd.DataFrame(goalie_data_rows)
-    print(f"Fetched {len(goalie_data_rows)} goalie records")
-
-    # Prepare goalie long format
-    goalie_df["date"] = pd.to_datetime(goalie_df["date"])
-    goalie_df = goalie_df.sort_values("date").reset_index(drop=True)
-
-    home_goalies = goalie_df[["game_id", "date", "season", *HOME_RENAME.keys()]].rename(columns=HOME_RENAME)
-    away_goalies = goalie_df[["game_id", "date", "season", *AWAY_RENAME.keys()]].rename(columns=AWAY_RENAME)
-
-    goalie_long = (
-        pd.concat([home_goalies, away_goalies], ignore_index=True)
-        .sort_values(["goalie", "season", "date"])
-        .reset_index(drop=True)
-    )
-
-    # Compute rolling stats for goalies
-    alpha = 0.3
-    for stat in GOALIE_STATS:
-        goalie_long[f"{stat}_ewm"] = (
-            goalie_long.groupby("goalie")[stat]
-            .transform(lambda x: x.shift(1).ewm(alpha=alpha, adjust=False).mean())
-        )
-
-    # Prepare for merging back to main dataframe
-    goalie_l5 = goalie_long[["game_id", "goalie"] + [f"{s}_ewm" for s in GOALIE_STATS]]
-
-    # Merge home goalie stats
-    goalie_df = goalie_df.merge(
-        goalie_l5,
-        left_on=["game_id", "home_goalie_starter"],
-        right_on=["game_id", "goalie"],
-        how="left"
-    ).rename(columns={f"{s}_ewm": f"home_goalie_{s}_ewm" for s in GOALIE_STATS}).drop(columns=["goalie"])
-
-    # Merge away goalie stats
-    goalie_df = goalie_df.merge(
-        goalie_l5,
-        left_on=["game_id", "away_goalie_starter"],
-        right_on=["game_id", "goalie"],
-        how="left"
-    ).rename(columns={f"{s}_ewm": f"away_goalie_{s}_ewm" for s in GOALIE_STATS}).drop(columns=["goalie"])
-
-    # Team AVERAGE save pct EWM
-    team_long = pd.concat(
-        [
-            goalie_df[["game_id", "date", "season", "home_team_abbrev", "home_save_pct"]]
-            .rename(columns={"home_team_abbrev": "team", "home_save_pct": "save_pct"}),
-            goalie_df[["game_id", "date", "season", "away_team_abbrev", "away_save_pct"]]
-            .rename(columns={"away_team_abbrev": "team", "away_save_pct": "save_pct"}),
-        ],
-        ignore_index=True
-    ).sort_values(["team", "season", "date"]).reset_index(drop=True)
-
-    team_long["team_save_pct_ewm"] = (
-        team_long.groupby("team")["save_pct"]
-        .transform(lambda x: x.shift(1).ewm(alpha=alpha, adjust=False).mean())
-    )
-
-    # Merge team stats back
-    goalie_df = goalie_df.merge(
-        team_long[["game_id", "team", "team_save_pct_ewm"]],
-        left_on=["game_id", "home_team_abbrev"],
-        right_on=["game_id", "team"],
-        how="left"
-    ).rename(columns={"team_save_pct_ewm": "home_team_save_pct_ewm"}).drop(columns=["team"])
-
-    goalie_df = goalie_df.merge(
-        team_long[["game_id", "team", "team_save_pct_ewm"]],
-        left_on=["game_id", "away_team_abbrev"],
-        right_on=["game_id", "team"],
-        how="left"
-    ).rename(columns={"team_save_pct_ewm": "away_team_save_pct_ewm"}).drop(columns=["team"])
-
-    # Merge into main dataframe
-    goalie_df = (
-        goalie_df
-        .sort_values("date")
-        .groupby("game_id", as_index=False)
-        .first()
-    )
-
-    main_df = pd.read_csv(CSV_FILE, parse_dates=["date"])
-    main_df = main_df.merge(
-        goalie_df[GOALIE_MERGE_COLS],
-        on="game_id",
-        how="left",
-        validate="one_to_one"
-    )
-    main_df.to_csv(CSV_FILE, index=False)
-    print("Goalie data merged into main dataframe")
 
 
-# ===== STEP 4: FETCH SEASON STANDINGS DATA =====
-async def build_season_stats_dataframe():
-    """Fetch standings data for all dates in the dataset"""
-
-    semaphore = asyncio.Semaphore(MAX_CONCURRENT_REQUESTS)
-    df = pd.read_csv(CSV_FILE, parse_dates=["date"])
+# ===== FOR STEP 4: FETCH SEASON STANDINGS DATA =====
+async def build_season_stats_dataframe(df):
+    """Fetch standings data for all dates in the dataset."""
 
     # Group games by date once
     games_by_date = dict(tuple(df.groupby("date")))
     unique_dates = list(games_by_date.keys())
 
-    async with aiohttp.ClientSession(timeout=TIMEOUT) as session:
-
+    async with ApiClient(
+        API_BASE_URL,
+        TIMEOUT,
+        MAX_CONCURRENT_REQUESTS,
+        RETRIES,
+    ) as client:
         tasks = [
-            fetch_standings_info(session, date_val.strftime("%Y-%m-%d"), semaphore)
+            client.get_json(f"/v1/standings/{date_val.strftime('%Y-%m-%d')}")
             for date_val in unique_dates
         ]
-
-        # Run requests concurrently
         standings_results = await asyncio.gather(*tasks)
 
     # rows of team standings data for the season to date
@@ -773,7 +305,7 @@ async def build_season_stats_dataframe():
         date_str = date_val.strftime("%Y-%m-%d")
 
         # the standings endpoint returns all teams, we only want those playing on this date
-        playing_teams = extract_all_teams_playing_on_date(date_val)
+        playing_teams = extract_all_teams_playing_on_date(date_val, df=df)
         standings_by_team = extract_all_standings_stats(
             standings_data, playing_teams
         )
@@ -808,319 +340,582 @@ async def build_season_stats_dataframe():
     return pd.DataFrame(team_curr_standings_stats)
 
 
-def step4_fetch_season_stats():
-    """Step 4: Fetch and merge season standings data."""
-    print("\n=== STEP 4: Fetch Season Standings Data ===")
 
-    # Load season standings data (asynchronous)
-    standing_df = asyncio.run(build_season_stats_dataframe())
 
-    # Ensure correct dtypes
-    standing_df["home_gamesPlayed"] = standing_df["home_gamesPlayed"].astype(int)
-    standing_df["away_gamesPlayed"] = standing_df["away_gamesPlayed"].astype(int)
+# ==========================================
+# MAIN PIPELINE CLASS
+# ==========================================
 
-    # Basic season-level features
-    # ---------------------------
-    # TODO: Find endpoint that gives SEASON (to date) save percentage directly
-    # Currently we only save save percentage for the team per game and and l5/ewm rolling average of those
-    # ---------------------------
-    standing_df["home_win_pct_season"] = (
-        (standing_df["home_homeWins"] + standing_df["home_roadWins"])
-        / standing_df["home_gamesPlayed"]
-    )
 
-    standing_df["away_win_pct_season"] = (
-        (standing_df["away_homeWins"] + standing_df["away_roadWins"])
-        / standing_df["away_gamesPlayed"]
-    )
 
-    standing_df["home_home_win_pct"] = (
-        standing_df["home_homeWins"] / standing_df["home_homeGamesPlayed"]
-    )
 
-    standing_df["away_away_win_pct"] = (
-        standing_df["away_roadWins"] / standing_df["away_roadGamesPlayed"]
-    )
+class NHLPipeline:
+    def __init__(self):
+        self.df = None
 
-    standing_df["home_gf_per_game_season"] = standing_df["home_goalsForPctg"]
-    standing_df["away_gf_per_game_season"] = standing_df["away_goalsForPctg"]
+    def fetch_games(self):
+        """Step 1: Fetch basic game information for all seasons."""
+        print("\n=== STEP 1: Fetch Basic Game Info ===")
 
-    standing_df["home_pointPctg_season"] = standing_df["home_pointPctg"]
-    standing_df["away_pointPctg_season"] = standing_df["away_pointPctg"]
+        os.makedirs(OUTPUT_DIR, exist_ok=True)
+        if os.path.exists(CSV_FILE):
+            os.remove(CSV_FILE)
 
-    standing_df["pointPctg_diff"] = (
-        standing_df["home_pointPctg_season"]
-        - standing_df["away_pointPctg_season"]
-    )
+        all_seasons_rows = []
+        for season in SEASONS:
+            print(f"Fetching season {season}...")
+            season_rows = asyncio.run(fetch_season_games(season))
+            all_seasons_rows.extend(season_rows)
 
-    # ---------------------------
-    # WIN STREAK LOGIC
-    # ---------------------------
+        df = pd.DataFrame(all_seasons_rows)
+        df["date"] = pd.to_datetime(df["date"])
+        self.df = df
+        print(f"Fetched {len(df)} games")
 
-    standing_df = standing_df.sort_values("date").reset_index(drop=True)
+    def add_team_rolling_features(self):
+        """Step 2: Compute rolling average statistics and differentials."""
+        if self.df is None:
+            raise ValueError("No data loaded. Run fetch_games() first.")
 
-    # Build long-form history per team
-    home_hist = standing_df[
-        ["date", "home_teamAbbrev", "home_streakCount_CURR", "home_streakCode_CURR"]
-    ].rename(columns={
-        "home_teamAbbrev": "team",
-        "home_streakCount_CURR": "streakCount",
-        "home_streakCode_CURR": "streakCode"
-    })
+        print("\n=== STEP 2: Compute Rolling Averages ===")
+        df = self.df.copy()
 
-    away_hist = standing_df[
-        ["date", "away_teamAbbrev", "away_streakCount_CURR", "away_streakCode_CURR"]
-    ].rename(columns={
-        "away_teamAbbrev": "team",
-        "away_streakCount_CURR": "streakCount",
-        "away_streakCode_CURR": "streakCode"
-    })
+        home_stats = df[HOME_TEAM_STATS_COLS].rename(columns={
+            "home_team_abbrev": "team_abbrev",
+            "home_gf": "gf",
+            "home_ga": "ga",
+            "home_sog": "sog",
+            "home_win": "win",
+            "home_powerplay_pct": "powerplay_pct",
+            "home_pk_pct": "pk_pct",
+            "home_powerplays": "powerplays",
+            "home_pk": "penalty_kills",
+            "home_faceoffwin_pct": "faceoffwin_pct",
+            "home_pims": "pims",
+            "home_hits": "hits",
+            "home_blockedshots": "blockedshots",
+            "home_giveaways": "giveaways",
+            "home_takeaways": "takeaways",
+        })
 
-    hist = (
-        pd.concat([home_hist, away_hist])
-        .sort_values(["team", "date"])
-        .reset_index(drop=True)
-    )
+        away_stats = df[AWAY_TEAM_STATS_COLS].rename(columns={
+            "away_team_abbrev": "team_abbrev",
+            "away_gf": "gf",
+            "away_ga": "ga",
+            "away_sog": "sog",
+            "away_powerplay_pct": "powerplay_pct",
+            "away_pk_pct": "pk_pct",
+            "away_powerplays": "powerplays",
+            "away_pk": "penalty_kills",
+            "away_faceoffwin_pct": "faceoffwin_pct",
+            "away_pims": "pims",
+            "away_hits": "hits",
+            "away_blockedshots": "blockedshots",
+            "away_giveaways": "giveaways",
+            "away_takeaways": "takeaways",
+        })
 
-    # Previous-game streak per team
-    hist["prev_streakCount"] = hist.groupby("team")["streakCount"].shift(1)
-    hist["prev_streakCode"] = hist.groupby("team")["streakCode"].shift(1)
+        away_stats["win"] = 1 - away_stats["home_win"]
+        away_stats.drop(columns=["home_win"], inplace=True)
 
-    # Merge previous-game info back (home)
-    standing_df = standing_df.merge(
-        hist[["team", "date", "prev_streakCount", "prev_streakCode"]],
-        left_on=["home_teamAbbrev", "date"],
-        right_on=["team", "date"],
-        how="left"
-    )
+        combined = pd.concat([home_stats, away_stats], ignore_index=True)
+        combined = combined.sort_values(by=["team_abbrev", "season", "date"]).reset_index(drop=True)
 
-    # Merge previous-game info back (away)
-    standing_df = standing_df.merge(
-        hist[["team", "date", "prev_streakCount", "prev_streakCode"]],
-        left_on=["away_teamAbbrev", "date"],
-        right_on=["team", "date"],
-        how="left",
-        suffixes=("_home", "_away")
-    )
+        stats_to_roll = {
+            "gf_ewm": "gf",
+            "ga_ewm": "ga",
+            "sog_ewm": "sog",
+            "wins_l5": "win",
+            "powerplay_pct_ewm": "powerplay_pct",
+            "penalty_kill_pct_ewm": "pk_pct",
+            "powerplays_l5": "powerplays",
+            "penalty_kills_l5": "penalty_kills",
+            "faceoffwin_pct_ewm": "faceoffwin_pct",
+            "pims_ewm": "pims",
+            "hits_ewm": "hits",
+            "blockedshots_ewm": "blockedshots",
+            "giveaways_ewm": "giveaways",
+            "takeaways_ewm": "takeaways",
+        }
 
-    # --------------------------------------------------
-    # Final win-streak features (exclude current game)
-    # if current streak is a win, subtract 1 from current streak count
-    # else, take previous game's streak if it was a win, else 0 (if prev_streakCode is L or OT)
-    # --------------------------------------------------
+        alpha = 0.3
 
-    standing_df["home_win_streak"] = np.where(
-        standing_df["home_streakCode_CURR"] == "W",
-        standing_df["home_streakCount_CURR"] - 1,
-        np.where(
-            standing_df["prev_streakCode_home"] == "W",
-            standing_df["prev_streakCount_home"],
-            0
+        for new_col, source_col in stats_to_roll.items():
+            if new_col in ["wins_l5"]:
+                combined[new_col] = (
+                    combined.groupby("team_abbrev")[source_col]
+                    .transform(lambda x: x.rolling(window=5, min_periods=1).sum().shift(1))
+                )
+            elif new_col in ["powerplays_l5", "penalty_kills_l5"]:
+                combined[new_col] = (
+                    combined.groupby("team_abbrev")[source_col]
+                    .transform(lambda s: s.rolling(5).mean().shift(1))
+                )
+            else:
+                combined[new_col] = (
+                    combined.groupby("team_abbrev")[source_col]
+                    .transform(lambda x: x.shift(1).ewm(alpha=alpha, adjust=False).mean())
+                )
+
+        combined["games_l5"] = (
+            combined.groupby("team_abbrev")["win"]
+            .transform(lambda x: x.rolling(5, min_periods=1).count().shift(1))
         )
-    )
+        combined["win_pct_l5"] = combined["wins_l5"] / combined["games_l5"]
 
-    standing_df["away_win_streak"] = np.where(
-        standing_df["away_streakCode_CURR"] == "W",
-        standing_df["away_streakCount_CURR"] - 1,
-        np.where(
-            standing_df["prev_streakCode_away"] == "W",
-            standing_df["prev_streakCount_away"],
-            0
+        merge_cols = ["date", "team_abbrev"] + [
+            c for c in combined.columns if c.endswith("_l5") or c.endswith("_ewm")
+        ]
+
+        df = df.merge(
+            combined[merge_cols],
+            left_on=["home_team_abbrev", "date"],
+            right_on=["team_abbrev", "date"],
+            how="left"
+        ).drop(columns=["team_abbrev"])
+
+        df = df.rename(columns={
+            c: f"home_{c}" for c in df.columns if c.endswith("_l5") or c.endswith("_ewm")
+        })
+
+        df = df.merge(
+            combined[merge_cols],
+            left_on=["away_team_abbrev", "date"],
+            right_on=["team_abbrev", "date"],
+            how="left"
+        ).drop(columns=["team_abbrev"])
+
+        df = df.rename(columns={
+            c: f"away_{c}" for c in df.columns
+            if (c.endswith("_l5") or c.endswith("_ewm")) and not c.startswith("home_")
+        })
+
+        l5_cols = [c for c in df.columns if c.endswith("_l5") or c.endswith("_ewm")]
+        df[l5_cols] = df[l5_cols].round(3)
+        print("EWM rolling averages computed.")
+
+        print("=== STEP 2B: Compute Goal/Shot Differences ===")
+        df["home_goal_diff_ewm"] = df["home_gf_ewm"] - df["away_gf_ewm"]
+        df["home_ga_diff_ewm"] = df["home_ga_ewm"] - df["away_ga_ewm"]
+        df["home_shot_diff_ewm"] = df["home_sog_ewm"] - df["away_sog_ewm"]
+
+        diff_cols_to_round = [
+            "home_gf_ewm",
+            "away_gf_ewm",
+            "home_ga_ewm",
+            "away_ga_ewm",
+            "home_sog_ewm",
+            "away_sog_ewm",
+            "home_goal_diff_ewm",
+            "home_ga_diff_ewm",
+            "home_shot_diff_ewm",
+        ]
+        df[diff_cols_to_round] = df[diff_cols_to_round].round(3)
+        print("Goal/shot differences computed.")
+
+        self.df = df
+
+    def add_goalie_features(self):
+        """Step 3: Fetch goalie data, compute EWMs, and merge."""
+        if self.df is None:
+            raise ValueError("No data loaded. Run fetch_games() first.")
+
+        print("\n=== STEP 3: Fetch Goalie Raw Data ===")
+        game_ids = self.df["game_id"].tolist()
+        print(f"Fetching goalie data for {len(game_ids)} games...")
+        goalie_data_rows = asyncio.run(fetch_all_goalie_data(game_ids))
+
+        goalie_df = pd.DataFrame(goalie_data_rows)
+        if goalie_df.empty:
+            raise ValueError("Goalie raw data is empty. No goalie records fetched.")
+
+        goalie_df["date"] = pd.to_datetime(goalie_df["date"])
+        print(f"Fetched {len(goalie_data_rows)} goalie records")
+
+        print("\n=== STEP 3B: Compute Goalie EWMs And Merge ===")
+
+        goalie_df = goalie_df.sort_values("date").reset_index(drop=True)
+
+        home_goalies = goalie_df[["game_id", "date", "season", *HOME_RENAME.keys()]].rename(columns=HOME_RENAME)
+        away_goalies = goalie_df[["game_id", "date", "season", *AWAY_RENAME.keys()]].rename(columns=AWAY_RENAME)
+
+        goalie_long = (
+            pd.concat([home_goalies, away_goalies], ignore_index=True)
+            .sort_values(["goalie", "season", "date"])
+            .reset_index(drop=True)
         )
-    )
 
-    # Cleanup
-    standing_df = standing_df.fillna(0)
+        alpha = 0.3
+        for stat in GOALIE_STATS:
+            goalie_long[f"{stat}_ewm"] = (
+                goalie_long.groupby("goalie")[stat]
+                .transform(lambda x: x.shift(1).ewm(alpha=alpha, adjust=False).mean())
+            )
 
-    # Merge into master CSV
-    standing_df = (
-        standing_df
-        .sort_values("date")
-        .drop_duplicates(subset=["game_id"], keep="last")
-    )
+        goalie_l5 = goalie_long[["game_id", "goalie"] + [f"{s}_ewm" for s in GOALIE_STATS]]
 
-    df = pd.read_csv(CSV_FILE, parse_dates=["date"])
+        goalie_df = goalie_df.merge(
+            goalie_l5,
+            left_on=["game_id", "home_goalie_starter"],
+            right_on=["game_id", "goalie"],
+            how="left"
+        ).rename(columns={f"{s}_ewm": f"home_goalie_{s}_ewm" for s in GOALIE_STATS}).drop(columns=["goalie"])
 
-    df = df.merge(
-        standing_df[["game_id"] + SEASON_STATS],
-        on="game_id",
-        how="left",
-        validate="one_to_one"
-    )
+        goalie_df = goalie_df.merge(
+            goalie_l5,
+            left_on=["game_id", "away_goalie_starter"],
+            right_on=["game_id", "goalie"],
+            how="left"
+        ).rename(columns={f"{s}_ewm": f"away_goalie_{s}_ewm" for s in GOALIE_STATS}).drop(columns=["goalie"])
 
-    df.to_csv(CSV_FILE, index=False)
-    print("Season stats data merged and saved")
+        team_long = pd.concat(
+            [
+                goalie_df[["game_id", "date", "season", "home_team_abbrev", "home_save_pct"]]
+                .rename(columns={"home_team_abbrev": "team", "home_save_pct": "save_pct"}),
+                goalie_df[["game_id", "date", "season", "away_team_abbrev", "away_save_pct"]]
+                .rename(columns={"away_team_abbrev": "team", "away_save_pct": "save_pct"}),
+            ],
+            ignore_index=True
+        ).sort_values(["team", "season", "date"]).reset_index(drop=True)
+
+        team_long["team_save_pct_ewm"] = (
+            team_long.groupby("team")["save_pct"]
+            .transform(lambda x: x.shift(1).ewm(alpha=alpha, adjust=False).mean())
+        )
+
+        goalie_df = goalie_df.merge(
+            team_long[["game_id", "team", "team_save_pct_ewm"]],
+            left_on=["game_id", "home_team_abbrev"],
+            right_on=["game_id", "team"],
+            how="left"
+        ).rename(columns={"team_save_pct_ewm": "home_team_save_pct_ewm"}).drop(columns=["team"])
+
+        goalie_df = goalie_df.merge(
+            team_long[["game_id", "team", "team_save_pct_ewm"]],
+            left_on=["game_id", "away_team_abbrev"],
+            right_on=["game_id", "team"],
+            how="left"
+        ).rename(columns={"team_save_pct_ewm": "away_team_save_pct_ewm"}).drop(columns=["team"])
+
+        goalie_df = (
+            goalie_df
+            .sort_values("date")
+            .groupby("game_id", as_index=False)
+            .first()
+        )
+
+        main_df = self.df
+        main_df = main_df.merge(
+            goalie_df[GOALIE_MERGE_COLS],
+            on="game_id",
+            how="left",
+            validate="one_to_one"
+        )
+        self.df = main_df
+        print("Goalie data merged into main dataframe")
+
+    def add_standings_features(self):
+        """Step 4: Fetch and merge season standings data."""
+        if self.df is None:
+            raise ValueError("No data loaded. Run fetch_games() first.")
+
+        print("\n=== STEP 4: Fetch Season Standings Data ===")
+        standing_df = asyncio.run(build_season_stats_dataframe(self.df))
+
+        standing_df["home_gamesPlayed"] = standing_df["home_gamesPlayed"].astype(int)
+        standing_df["away_gamesPlayed"] = standing_df["away_gamesPlayed"].astype(int)
+
+        standing_df["home_win_pct_season"] = (
+            (standing_df["home_homeWins"] + standing_df["home_roadWins"])
+            / standing_df["home_gamesPlayed"]
+        )
+
+        standing_df["away_win_pct_season"] = (
+            (standing_df["away_homeWins"] + standing_df["away_roadWins"])
+            / standing_df["away_gamesPlayed"]
+        )
+
+        standing_df["home_home_win_pct"] = (
+            standing_df["home_homeWins"] / standing_df["home_homeGamesPlayed"]
+        )
+
+        standing_df["away_away_win_pct"] = (
+            standing_df["away_roadWins"] / standing_df["away_roadGamesPlayed"]
+        )
+
+        standing_df["home_gf_per_game_season"] = standing_df["home_goalsForPctg"]
+        standing_df["away_gf_per_game_season"] = standing_df["away_goalsForPctg"]
+
+        standing_df["home_pointPctg_season"] = standing_df["home_pointPctg"]
+        standing_df["away_pointPctg_season"] = standing_df["away_pointPctg"]
+
+        standing_df["pointPctg_diff"] = (
+            standing_df["home_pointPctg_season"]
+            - standing_df["away_pointPctg_season"]
+        )
+
+        standing_df = standing_df.sort_values("date").reset_index(drop=True)
+
+        home_hist = standing_df[[
+            "date", "home_teamAbbrev", "home_streakCount_CURR", "home_streakCode_CURR"
+        ]].rename(columns={
+            "home_teamAbbrev": "team",
+            "home_streakCount_CURR": "streakCount",
+            "home_streakCode_CURR": "streakCode",
+        })
+
+        away_hist = standing_df[[
+            "date", "away_teamAbbrev", "away_streakCount_CURR", "away_streakCode_CURR"
+        ]].rename(columns={
+            "away_teamAbbrev": "team",
+            "away_streakCount_CURR": "streakCount",
+            "away_streakCode_CURR": "streakCode",
+        })
+
+        hist = (
+            pd.concat([home_hist, away_hist])
+            .sort_values(["team", "date"])
+            .reset_index(drop=True)
+        )
+
+        hist["prev_streakCount"] = hist.groupby("team")["streakCount"].shift(1)
+        hist["prev_streakCode"] = hist.groupby("team")["streakCode"].shift(1)
+
+        standing_df = standing_df.merge(
+            hist[["team", "date", "prev_streakCount", "prev_streakCode"]],
+            left_on=["home_teamAbbrev", "date"],
+            right_on=["team", "date"],
+            how="left"
+        )
+
+        standing_df = standing_df.merge(
+            hist[["team", "date", "prev_streakCount", "prev_streakCode"]],
+            left_on=["away_teamAbbrev", "date"],
+            right_on=["team", "date"],
+            how="left",
+            suffixes=("_home", "_away")
+        )
+
+        standing_df["home_win_streak"] = np.where(
+            standing_df["home_streakCode_CURR"] == "W",
+            standing_df["home_streakCount_CURR"] - 1,
+            np.where(
+                standing_df["prev_streakCode_home"] == "W",
+                standing_df["prev_streakCount_home"],
+                0
+            )
+        )
+
+        standing_df["away_win_streak"] = np.where(
+            standing_df["away_streakCode_CURR"] == "W",
+            standing_df["away_streakCount_CURR"] - 1,
+            np.where(
+                standing_df["prev_streakCode_away"] == "W",
+                standing_df["prev_streakCount_away"],
+                0
+            )
+        )
+
+        standing_df = standing_df.fillna(0)
+        standing_df = (
+            standing_df
+            .sort_values("date")
+            .drop_duplicates(subset=["game_id"], keep="last")
+        )
+
+        df = self.df
+        df = df.merge(
+            standing_df[["game_id"] + SEASON_STATS],
+            on="game_id",
+            how="left",
+            validate="one_to_one"
+        )
+
+        self.df = df
+        print("Season stats data merged.")
+
+    def add_rest_days(self):
+        """Step 5: Compute team and goalie rest days."""
+        if self.df is None:
+            raise ValueError("No data loaded. Run fetch_games() first.")
+
+        print("\n=== STEP 5: Compute Rest Days ===")
+        df = self.df.copy()
+
+        home_games = df[["date", "season", "home_team_abbrev"]].rename(
+            columns={"home_team_abbrev": "team"}
+        )
+        away_games = df[["date", "season", "away_team_abbrev"]].rename(
+            columns={"away_team_abbrev": "team"}
+        )
+        team_games = pd.concat([home_games, away_games], ignore_index=True)
+        team_games = team_games.sort_values(["team", "date"])
+
+        team_games["team_rest_days"] = (
+            team_games.groupby(["team"])["date"].diff().dt.days - 1
+        )
+
+        df = df.merge(
+            team_games[["team", "season", "date", "team_rest_days"]],
+            left_on=["home_team_abbrev", "season", "date"],
+            right_on=["team", "season", "date"],
+            how="left"
+        ).rename(columns={"team_rest_days": "home_rest_days"}).drop(columns=["team"])
+
+        df = df.merge(
+            team_games[["team", "season", "date", "team_rest_days"]],
+            left_on=["away_team_abbrev", "season", "date"],
+            right_on=["team", "season", "date"],
+            how="left"
+        ).rename(columns={"team_rest_days": "away_rest_days"}).drop(columns=["team"])
+
+        home_goalie_games = df[[
+            "date", "season", "home_team_abbrev", "home_goalie_starter"
+        ]].rename(columns={"home_team_abbrev": "team", "home_goalie_starter": "goalie"})
+
+        away_goalie_games = df[[
+            "date", "season", "away_team_abbrev", "away_goalie_starter"
+        ]].rename(columns={"away_team_abbrev": "team", "away_goalie_starter": "goalie"})
+
+        goalie_games = pd.concat([home_goalie_games, away_goalie_games], ignore_index=True)
+        goalie_games = goalie_games.sort_values(["goalie", "team", "season", "date"])
+
+        goalie_games["goalie_rest_days"] = (
+            goalie_games.groupby(["goalie", "team"])["date"].diff().dt.days - 1
+        )
+
+        df = df.merge(
+            goalie_games[["goalie", "team", "season", "date", "goalie_rest_days"]],
+            left_on=["home_goalie_starter", "home_team_abbrev", "season", "date"],
+            right_on=["goalie", "team", "season", "date"],
+            how="left"
+        ).rename(columns={"goalie_rest_days": "home_goalie_rest_days"}).drop(columns=["goalie", "team"])
+
+        df = df.merge(
+            goalie_games[["goalie", "team", "season", "date", "goalie_rest_days"]],
+            left_on=["away_goalie_starter", "away_team_abbrev", "season", "date"],
+            right_on=["goalie", "team", "season", "date"],
+            how="left"
+        ).rename(columns={"goalie_rest_days": "away_goalie_rest_days"}).drop(columns=["goalie", "team"])
+
+        self.df = df
+        print("Rest days computed.")
+
+    def add_head_to_head(self):
+        """Step 6: Compute head-to-head statistics."""
+        if self.df is None:
+            raise ValueError("No data loaded. Run fetch_games() first.")
+
+        print("\n=== STEP 6: Compute Head-to-Head Data ===")
+        df = self.df.copy()
+
+        df["matchup"] = df.apply(
+            lambda r: "_".join(sorted([r["home_team_abbrev"], r["away_team_abbrev"]])), axis=1
+        )
+
+        df = df.sort_values(["season", "date"]).reset_index(drop=True)
+
+        h2h_long = pd.concat([
+            df[[
+                "game_id", "date", "season", "matchup", "home_team_abbrev", "away_team_abbrev", "home_gf", "home_win"
+            ]]
+            .rename(columns={
+                "home_team_abbrev": "team",
+                "away_team_abbrev": "opponent",
+                "home_gf": "gf",
+                "home_win": "win",
+            }),
+            df[[
+                "game_id", "date", "season", "matchup", "away_team_abbrev", "home_team_abbrev", "away_gf", "home_win"
+            ]]
+            .assign(win=lambda x: 1 - x["home_win"])
+            .rename(columns={
+                "away_team_abbrev": "team",
+                "home_team_abbrev": "opponent",
+                "away_gf": "gf",
+            })
+            .drop(columns="home_win"),
+        ], ignore_index=True)
+
+        h2h_long = h2h_long.sort_values(["season", "matchup", "date"])
+
+        h2h_long["h2h_wins"] = (
+            h2h_long.groupby(["season", "matchup", "team"])["win"]
+            .transform(lambda s: s.cumsum().shift(1))
+            .fillna(0)
+        )
+
+        h2h_long["h2h_gf"] = (
+            h2h_long.groupby(["season", "matchup", "team"])["gf"]
+            .transform(lambda s: s.expanding().mean().shift(1))
+            .fillna(0)
+        ).round(3)
+
+        home_stats = h2h_long.rename(columns={
+            "team": "home_team_abbrev",
+            "h2h_wins": "home_h2h_wins",
+            "h2h_gf": "home_h2h_gf",
+        })[["game_id", "home_team_abbrev", "home_h2h_wins", "home_h2h_gf"]]
+
+        away_stats = h2h_long.rename(columns={
+            "team": "away_team_abbrev",
+            "h2h_wins": "away_h2h_wins",
+            "h2h_gf": "away_h2h_gf",
+        })[["game_id", "away_team_abbrev", "away_h2h_wins", "away_h2h_gf"]]
+
+        df = df.merge(home_stats, on=["game_id", "home_team_abbrev"], how="left")
+        df = df.merge(away_stats, on=["game_id", "away_team_abbrev"], how="left")
+
+        df["home_h2h_wins_diff"] = df["home_h2h_wins"] - df["away_h2h_wins"]
+
+        self.df = df
+        print("Head-to-head data computed.")
+
+    def save(self, drop_first_season=True, round_numeric=True):
+        """Save the current dataframe to CSV, optionally applying final cleanup steps."""
+        if self.df is None:
+            raise ValueError("No data to save. Run the pipeline steps first.")
+
+        df = self.df
+
+        if drop_first_season:
+            print("\n=== STEP 7: Drop First Season of Data ===")
+            initial_count = len(df)
+            df = df[df["season"] != 20222023].reset_index(drop=True)
+            final_count = len(df)
+            print(
+                f"Dropped {initial_count - final_count} games from the first season. Remaining games: {final_count}"
+            )
+
+        if round_numeric:
+            print("\n=== STEP 8: Round Numeric Columns ===")
+            df = df.round(3)
+            print("All numeric columns rounded to 3 decimals")
+
+        os.makedirs(OUTPUT_DIR, exist_ok=True)
+        df.to_csv(CSV_FILE, index=False)
+        self.df = df
+        print(f"Saved {len(df)} games to {CSV_FILE}")
+
+    def run(self):
+        """Run the entire pipeline."""
+        self.fetch_games()
+        self.add_team_rolling_features()
+        self.add_goalie_features()
+        self.add_standings_features()
+        self.add_rest_days()
+        self.add_head_to_head()
+        self.save()
 
 
-# ===== STEP 5: COMPUTE REST DAYS =====
-def step5_compute_rest_days():
-    """Step 5: Compute team and goalie rest days."""
-    print("\n=== STEP 5: Compute Rest Days ===")
-
-    df = pd.read_csv(CSV_FILE, parse_dates=["date"])
-
-    # Team rest days
-    home_games = df[["date", "season", "home_team_abbrev"]].rename(columns={"home_team_abbrev": "team"})
-    away_games = df[["date", "season", "away_team_abbrev"]].rename(columns={"away_team_abbrev": "team"})
-    team_games = pd.concat([home_games, away_games], ignore_index=True)
-    team_games = team_games.sort_values(["team", "date"])
-
-    team_games["team_rest_days"] = (
-        team_games.groupby(["team"])["date"].diff().dt.days - 1
-    )
-
-    df = df.merge(
-        team_games[["team", "season", "date", "team_rest_days"]],
-        left_on=["home_team_abbrev", "season", "date"],
-        right_on=["team", "season", "date"],
-        how="left"
-    ).rename(columns={"team_rest_days": "home_rest_days"}).drop(columns=["team"])
-
-    df = df.merge(
-        team_games[["team", "season", "date", "team_rest_days"]],
-        left_on=["away_team_abbrev", "season", "date"],
-        right_on=["team", "season", "date"],
-        how="left"
-    ).rename(columns={"team_rest_days": "away_rest_days"}).drop(columns=["team"])
-
-    # Goalie rest days
-    home_goalie_games = df[[
-        "date", "season", "home_team_abbrev", "home_goalie_starter"
-    ]].rename(columns={"home_team_abbrev": "team", "home_goalie_starter": "goalie"})
-
-    away_goalie_games = df[[
-        "date", "season", "away_team_abbrev", "away_goalie_starter"
-    ]].rename(columns={"away_team_abbrev": "team", "away_goalie_starter": "goalie"})
-
-    goalie_games = pd.concat([home_goalie_games, away_goalie_games], ignore_index=True)
-    goalie_games = goalie_games.sort_values(["goalie", "team", "season", "date"])
-
-    goalie_games["goalie_rest_days"] = (
-        goalie_games.groupby(["goalie", "team"])["date"].diff().dt.days - 1
-    )
-
-    df = df.merge(
-        goalie_games[["goalie", "team", "season", "date", "goalie_rest_days"]],
-        left_on=["home_goalie_starter", "home_team_abbrev", "season", "date"],
-        right_on=["goalie", "team", "season", "date"],
-        how="left"
-    ).rename(columns={"goalie_rest_days": "home_goalie_rest_days"}).drop(columns=["goalie", "team"])
-
-    df = df.merge(
-        goalie_games[["goalie", "team", "season", "date", "goalie_rest_days"]],
-        left_on=["away_goalie_starter", "away_team_abbrev", "season", "date"],
-        right_on=["goalie", "team", "season", "date"],
-        how="left"
-    ).rename(columns={"goalie_rest_days": "away_goalie_rest_days"}).drop(columns=["goalie", "team"])
-
-    df.to_csv(CSV_FILE, index=False)
-    print("Rest days computed and saved")
-
-
-# ===== STEP 6: HEAD-TO-HEAD DATA =====
-def step6_compute_head_to_head():
-    """Step 6: Compute head-to-head statistics."""
-    print("\n=== STEP 6: Compute Head-to-Head Data ===")
-
-    df = pd.read_csv(CSV_FILE, parse_dates=["date"])
-
-    # create matchup identifier (e.g., "OTT_TOR")
-    df["matchup"] = df.apply(   
-        lambda r: "_".join(sorted([r["home_team_abbrev"], r["away_team_abbrev"]])), axis=1
-    )
-
-    df = df.sort_values(["season", "date"]).reset_index(drop=True)
-
-    # Build head-to-head long format
-    # -----------------------------
-    # This creates a long format dataframe where 2 rows represent the same game, one for each team as "team" and the other as "opponent".
-    # -----------------------------
-    h2h_long = pd.concat([
-        df[[
-            "game_id", "date", "season", "matchup", "home_team_abbrev", "away_team_abbrev", "home_gf", "home_win"
-        ]]
-        .rename(columns={
-            "home_team_abbrev": "team", "away_team_abbrev": "opponent", "home_gf": "gf", "home_win": "win"
-        }),
-
-        df[[
-            "game_id", "date", "season", "matchup", "away_team_abbrev", "home_team_abbrev", "away_gf", "home_win"
-        ]]
-        .assign(win=lambda x: 1 - x["home_win"])
-        .rename(columns={"away_team_abbrev": "team", "home_team_abbrev": "opponent", "away_gf": "gf"})
-        .drop(columns="home_win")
-    ], ignore_index=True)
-
-    h2h_long = h2h_long.sort_values(["season", "matchup", "date"])
-
-    h2h_long["h2h_wins"] = (
-        h2h_long.groupby(["season", "matchup", "team"])["win"]
-        .transform(lambda s: s.cumsum().shift(1))
-        .fillna(0)
-    )
-
-    h2h_long["h2h_gf"] = (
-        h2h_long.groupby(["season", "matchup", "team"])["gf"]
-        .transform(lambda s: s.expanding().mean().shift(1))
-        .fillna(0)
-    ).round(3)
-
-    home_stats = h2h_long.rename(columns={
-        "team": "home_team_abbrev", "h2h_wins": "home_h2h_wins", "h2h_gf": "home_h2h_gf"
-    })[["game_id", "home_team_abbrev", "home_h2h_wins", "home_h2h_gf"]]
-
-    away_stats = h2h_long.rename(columns={
-        "team": "away_team_abbrev", "h2h_wins": "away_h2h_wins", "h2h_gf": "away_h2h_gf"
-    })[["game_id", "away_team_abbrev", "away_h2h_wins", "away_h2h_gf"]]
-
-    df = df.merge(home_stats, on=["game_id", "home_team_abbrev"], how="left")
-    df = df.merge(away_stats, on=["game_id", "away_team_abbrev"], how="left")
-
-    df["home_h2h_wins_diff"] = df["home_h2h_wins"] - df["away_h2h_wins"]
-
-    df.to_csv(CSV_FILE, index=False)
-    print("Head-to-head data computed and saved")
-
-def step7_drop_first_season():
-    """Step 7: Drop first season of data (2022-2023)"""
-    print("\n=== STEP 7: Drop First Season of Data ===")
-
-    df = pd.read_csv(CSV_FILE, parse_dates=["date"])
-    initial_count = len(df)
-    df = df[df["season"] != 20222023].reset_index(drop=True)
-    final_count = len(df)
-    df.to_csv(CSV_FILE, index=False)
-
-    print(f"Dropped {initial_count - final_count} games from the first season. Remaining games: {final_count}")
-
-
-# ===== STEP 8: ROUND NUMERIC COLUMNS =====
-def step8_round_numeric_columns():
-    """Step 8: Round all numeric columns to 3 decimal places."""
-    print("\n=== STEP 8: Round Numeric Columns ===")
-
-    df = pd.read_csv(CSV_FILE, parse_dates=["date"])
-    df = df.round(3)
-    df.to_csv(CSV_FILE, index=False)
-    print("All numeric columns rounded to 3 decimals")
-
-# ===== MAIN FUNCTION =====
-def main():
-    """Main execution function."""
+if __name__ == "__main__":
     print("\n" + "=" * 60)
     print("NHL PREDICTOR - DATA SCRAPER")
     print("=" * 60)
 
     try:
-        step1_fetch_basic_game_info()
-        step2_compute_rolling_averages()
-        step2_compute_stats_diffs()
-        step3_fetch_goalie_data()
-        step4_fetch_season_stats()
-        step5_compute_rest_days()
-        step6_compute_head_to_head()
-        step7_drop_first_season()
-        step8_round_numeric_columns()
+        pipeline = NHLPipeline()
+        pipeline.run()
 
         print("\n" + "=" * 60)
         print("ALL STEPS COMPLETED SUCCESSFULLY!")
@@ -1130,7 +925,3 @@ def main():
         print(f"\nERROR: {str(e)}")
         import traceback
         traceback.print_exc()
-
-
-if __name__ == "__main__":
-    main()
