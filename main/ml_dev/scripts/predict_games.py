@@ -9,11 +9,12 @@ import pandas as pd
 import numpy as np
 import requests
 import asyncio
-import aiohttp
 from aiohttp import ClientTimeout
 from datetime import datetime, timedelta
 import warnings
 warnings.filterwarnings('ignore')
+
+from api.client import ApiClient
 
 # =============================================================================
 # CONFIGURATION
@@ -89,47 +90,6 @@ HEAD_TO_HEAD = [
 # --------------------------
 
 # =============================================================================
-# ASYNC API HELPERS
-# =============================================================================
-
-async def fetch_json(session, url, semaphore):
-    """Fetch JSON data from URL with retry logic."""
-    async with semaphore:
-        for attempt in range(RETRIES):
-            try:
-                async with session.get(url) as resp:
-                    if resp.status == 200:
-                        return await resp.json()
-                    elif resp.status in (429, 500, 502, 503, 504):
-                        await asyncio.sleep(2 ** attempt)
-                    else:
-                        return None
-            except Exception:
-                await asyncio.sleep(2 ** attempt)
-    return None
-
-
-async def fetch_schedule(session, date_str, semaphore):
-    """Fetch schedule for a specific date."""
-    url = f"{API_BASE_URL}/v1/schedule/{date_str}"
-    return await fetch_json(session, url, semaphore)
-
-async def fetch_standings(session, date_str, semaphore):
-    """Fetch standings for a specific date."""
-    url = f"{API_BASE_URL}/v1/standings/{date_str}"
-    return await fetch_json(session, url, semaphore)
-
-async def fetch_boxscores(session, gid, semaphore):
-    """Fetch boxscore for a game."""
-    url = f"{API_BASE_URL}/v1/gamecenter/{gid}/boxscore"
-    return await fetch_json(session, url, semaphore)
-
-async def fetch_landings(session, gid, semaphore):
-    """Fetch landing page for a game (has expected starters for future games)."""
-    url = f"{API_BASE_URL}/v1/gamecenter/{gid}/landing"
-    return await fetch_json(session, url, semaphore)
-
-# =============================================================================
 # GOALIE DATA HELPERS
 # =============================================================================
 
@@ -177,16 +137,24 @@ async def get_todays_goalies(games):
     print("FETCHING TODAY'S STARTING GOALIES")
     print("="*60)
     
-    semaphore = asyncio.Semaphore(MAX_CONCURRENT_REQUESTS)
     goalies_dict = {}
     
-    async with aiohttp.ClientSession(timeout=TIMEOUT) as session:
-        # Try boxscore first (for live/completed games)
-        boxscore_tasks = [fetch_boxscores(session, game['game_id'], semaphore) for game in games]
+    async with ApiClient(
+        API_BASE_URL,
+        TIMEOUT,
+        MAX_CONCURRENT_REQUESTS,
+        RETRIES,
+    ) as client:
+        boxscore_tasks = [
+            client.get_json(f"/v1/gamecenter/{game['game_id']}/boxscore")
+            for game in games
+        ]
         boxscore_results = await asyncio.gather(*boxscore_tasks)
         
-        # Try landing for games without boxscore data (future games)
-        landing_tasks = [fetch_landings(session, game['game_id'], semaphore) for game in games]
+        landing_tasks = [
+            client.get_json(f"/v1/gamecenter/{game['game_id']}/landing")
+            for game in games
+        ]
         landing_results = await asyncio.gather(*landing_tasks)
     
     for i, game in enumerate(games):
@@ -393,11 +361,14 @@ async def get_todays_games(date_str=None):
     
     print(f"Date: {date_str}")
     
-    semaphore = asyncio.Semaphore(MAX_CONCURRENT_REQUESTS)
-    
-    async with aiohttp.ClientSession(timeout=TIMEOUT) as session:
-        schedule_data = await fetch_schedule(session, date_str, semaphore)
-        standings_data = await fetch_standings(session, date_str, semaphore)
+    async with ApiClient(
+        API_BASE_URL,
+        TIMEOUT,
+        MAX_CONCURRENT_REQUESTS,
+        RETRIES,
+    ) as client:
+        schedule_data = await client.get_json(f"/v1/schedule/{date_str}")
+        standings_data = await client.get_json(f"/v1/standings/{date_str}")
     
     if not schedule_data or "gameWeek" not in schedule_data:
         print("No games found for today")

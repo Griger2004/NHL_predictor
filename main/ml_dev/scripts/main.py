@@ -9,125 +9,31 @@ import csv
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import asyncio
-import aiohttp
-from aiohttp import ClientTimeout
 
-# ===== CONSTANTS =====
-API_BASE_URL = "https://api-web.nhle.com"
-OUTPUT_DIR = "generated/data/"
-CSV_FILE = f"{OUTPUT_DIR}/nhl_data.csv"
+from api.client import ApiClient
 
-TIMEOUT = ClientTimeout(total=15)
-MAX_CONCURRENT_REQUESTS = 9
-RETRIES = 3
-
-MAX_GAMES = 1312 # there are 1312 games in a full NHL regular season ( 32 * 82 / 2 )
-SLEEP_SEC = 0.1
-
-SEASONS = [2022, 2023, 2024, 2025]
-
-FIELDNAMES = [
-    "game_id", "date", "season", "home_team", "away_team",
-    "home_team_abbrev", "away_team_abbrev", "home_win",
-    "home_gf", "away_gf", "home_ga", "away_ga", "home_sog", "away_sog",
-    "home_faceoffwin_pct", "away_faceoffwin_pct", "home_powerplays", "away_powerplays",
-    "home_powerplay_pct", "away_powerplay_pct", "home_penalty_kill_pct", "away_penalty_kill_pct", 
-    "home_pims", "away_pims", "home_hits", "away_hits", "home_blockedshots", "away_blockedshots",
-    "home_takeaways", "away_takeaways", "home_giveaways", "away_giveaways"
-]
-
-ROLLING_N = 5
-
-STANDINGS_FIELDS = [
-    "pointPctg", "gamesPlayed", "goalsForPctg", "homeGamesPlayed", "homeWins",
-    "homeLosses", "roadGamesPlayed", "roadWins", "roadLosses", "streakCode", "streakCount",
-]
-
-HOME_RENAME = {
-    "home_goalie_starter": "goalie",
-    "home_goalie_save_pct": "save_pct",
-    "home_goalie_ga": "ga",
-    "home_goalie_saves": "saves",
-    "home_goalie_evenStrengthShotsAgainst": "ev_sa",
-    "home_goalie_powerPlayShotsAgainst": "pp_sa",
-    "home_goalie_shorthandedShotsAgainst": "sh_sa",
-    "home_goalie_evenStrengthGoalsAgainst": "ev_ga",
-    "home_goalie_powerPlayGoalsAgainst": "pp_ga",
-}
-
-AWAY_RENAME = {
-    "away_goalie_starter": "goalie",
-    "away_goalie_save_pct": "save_pct",
-    "away_goalie_ga": "ga",
-    "away_goalie_saves": "saves",
-    "away_goalie_evenStrengthShotsAgainst": "ev_sa",
-    "away_goalie_powerPlayShotsAgainst": "pp_sa",
-    "away_goalie_shorthandedShotsAgainst": "sh_sa",
-    "away_goalie_evenStrengthGoalsAgainst": "ev_ga",
-    "away_goalie_powerPlayGoalsAgainst": "pp_ga",
-}
-
-GOALIE_STATS = ["save_pct", "ga", "saves", "ev_sa", "pp_sa", "sh_sa", "ev_ga", "pp_ga"]
-
-GOALIE_MERGE_COLS = [
-    "game_id", "home_goalie_starter", "away_goalie_starter", "home_save_pct", "away_save_pct",
-    "home_goalie_save_pct", "away_goalie_save_pct", "home_goalie_ga", "away_goalie_ga",
-    "home_goalie_saves", "away_goalie_saves", "home_goalie_evenStrengthShotsAgainst",
-    "away_goalie_evenStrengthShotsAgainst", "home_goalie_powerPlayShotsAgainst",
-    "away_goalie_powerPlayShotsAgainst", "home_goalie_shorthandedShotsAgainst",
-    "away_goalie_shorthandedShotsAgainst", "home_goalie_evenStrengthGoalsAgainst",
-    "away_goalie_evenStrengthGoalsAgainst", "home_goalie_powerPlayGoalsAgainst",
-    "away_goalie_powerPlayGoalsAgainst", "home_goalie_save_pct_ewm", "home_goalie_ga_ewm",
-    "home_goalie_saves_ewm", "home_goalie_ev_sa_ewm", "home_goalie_pp_sa_ewm", "home_goalie_sh_sa_ewm",
-    "home_goalie_ev_ga_ewm", "home_goalie_pp_ga_ewm", "away_goalie_save_pct_ewm", "away_goalie_ga_ewm",
-    "away_goalie_saves_ewm", "away_goalie_ev_sa_ewm", "away_goalie_pp_sa_ewm", "away_goalie_sh_sa_ewm",
-    "away_goalie_ev_ga_ewm", "away_goalie_pp_ga_ewm", "home_team_save_pct_ewm", "away_team_save_pct_ewm",
-]
-
-SEASON_STATS = [
-    "home_win_pct_season", "away_win_pct_season", "home_home_win_pct", "away_away_win_pct",
-    "home_gf_per_game_season", "away_gf_per_game_season", "home_pointPctg_season",
-    "away_pointPctg_season", "pointPctg_diff", "home_win_streak", "away_win_streak",
-]
-
-MAIN_STATS_TO_BE_BLEND = [
-    "gf", "ga", "sog", "faceoffwin_pct", "powerplays", "powerplay_pct", 
-    "pk", "pk_pct", "pims", "hits", "blockedshots", "takeaways", "giveaways",
-]
-
-# ===== ASYNC HELPER FUNCTIONS =====
-async def fetch_json(session, url, semaphore):
-    async with semaphore:
-        for attempt in range(RETRIES):
-            try:
-                async with session.get(url) as resp:
-                    if resp.status == 200:
-                        return await resp.json()
-                    elif resp.status in (429, 500, 502, 503, 504):
-                        await asyncio.sleep(2 ** attempt)
-                    else:
-                        return None
-            except Exception:
-                await asyncio.sleep(2 ** attempt)
-    return None
-
-
-# ====== API FETCHING FUNCTIONS ======
-async def fetch_game_story_async(session, game_id, semaphore):
-    url = f"{API_BASE_URL}/v1/wsc/game-story/{game_id}"
-    return await fetch_json(session, url, semaphore)
-
-
-async def fetch_boxscores(session, gid, semaphore):
-    url = f"{API_BASE_URL}/v1/gamecenter/{gid}/boxscore"
-    return await fetch_json(session, url, semaphore)
-
-
-async def fetch_standings_info(session, date, semaphore):
-    url = f"{API_BASE_URL}/v1/standings/{date}"
-    return await fetch_json(session, url, semaphore)
-
-
+from config import (
+    API_BASE_URL,
+    OUTPUT_DIR,
+    CSV_FILE,
+    TIMEOUT,
+    MAX_CONCURRENT_REQUESTS,
+    RETRIES,
+    MAX_GAMES,
+    SLEEP_SEC,
+    SEASONS,
+    FIELDNAMES,
+    ROLLING_N,
+    STANDINGS_FIELDS,
+    HOME_RENAME,
+    AWAY_RENAME,
+    GOALIE_STATS,
+    GOALIE_MERGE_COLS,
+    SEASON_STATS,
+    MAIN_STATS_TO_BE_BLEND,
+    HOME_TEAM_STATS_COLS,
+    AWAY_TEAM_STATS_COLS,
+)
 
 # ===== STAT EXTRACTION HELPER FUNCTIONS =====
 def get_num_powerplays(powerplay_str):
@@ -396,14 +302,18 @@ async def fetch_season_games(season):
     game_ids = [f"{season}02{str(game_num).zfill(4)}" for game_num in range(1, MAX_GAMES + 1)]
     rows = []
 
-    semaphore = asyncio.Semaphore(MAX_CONCURRENT_REQUESTS)
-
-    async with aiohttp.ClientSession(timeout=TIMEOUT) as session:
+    async with ApiClient(
+        API_BASE_URL,
+        TIMEOUT,
+        MAX_CONCURRENT_REQUESTS,
+        RETRIES,
+    ) as client:
         for i in range(0, len(game_ids), MAX_CONCURRENT_REQUESTS):
             batch = game_ids[i:i + MAX_CONCURRENT_REQUESTS]
-            tasks = [fetch_game_story_async(session, gid, semaphore) 
-                     for gid in batch
-                    ]
+            tasks = [
+                client.get_json(f"/v1/wsc/game-story/{gid}")
+                for gid in batch
+            ]
             results = await asyncio.gather(*tasks)
 
             for game_data in results:
@@ -415,7 +325,7 @@ async def fetch_season_games(season):
                 else:
                     rows.append(row)
 
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(SLEEP_SEC)
 
     return rows
 
@@ -449,12 +359,7 @@ def step2_compute_rolling_averages():
 
     df = pd.read_csv(CSV_FILE, parse_dates=["date"])
 
-    home_stats = df[[
-        "date", "season", "home_team_abbrev", "home_gf", "home_ga", "home_sog", "home_win",
-        "home_powerplay_pct", "home_pk_pct", "home_powerplays", "home_pk",
-        "home_faceoffwin_pct", "home_pims", "home_hits", "home_blockedshots",
-        "home_giveaways", "home_takeaways"
-    ]].rename(columns={
+    home_stats = df[HOME_TEAM_STATS_COLS].rename(columns={
         "home_team_abbrev": "team_abbrev",
         "home_gf": "gf",
         "home_ga": "ga",
@@ -469,15 +374,10 @@ def step2_compute_rolling_averages():
         "home_hits": "hits",
         "home_blockedshots": "blockedshots",
         "home_giveaways": "giveaways",
-        "home_takeaways": "takeaways"
+        "home_takeaways": "takeaways",
     })
 
-    away_stats = df[[
-        "date", "season", "away_team_abbrev", "away_gf", "away_ga", "away_sog", "home_win",
-        "away_powerplay_pct", "away_pk_pct", "away_powerplays", "away_pk",
-        "away_faceoffwin_pct", "away_pims", "away_hits", "away_blockedshots",
-        "away_giveaways", "away_takeaways"
-    ]].rename(columns={
+    away_stats = df[AWAY_TEAM_STATS_COLS].rename(columns={
         "away_team_abbrev": "team_abbrev",
         "away_gf": "gf",
         "away_ga": "ga",
@@ -491,7 +391,7 @@ def step2_compute_rolling_averages():
         "away_hits": "hits",
         "away_blockedshots": "blockedshots",
         "away_giveaways": "giveaways",
-        "away_takeaways": "takeaways"
+        "away_takeaways": "takeaways",
     })
 
     away_stats["win"] = 1 - away_stats["home_win"]
@@ -602,28 +502,35 @@ def step2_compute_stats_diffs():
     df["home_shot_diff_ewm"] = df["home_sog_ewm"] - df["away_sog_ewm"]
 
 
-    cols_to_round = [
-        "home_gf_ewm", "away_gf_ewm", "home_ga_ewm", "away_ga_ewm",
-        "home_sog_ewm", "away_sog_ewm", "home_goal_diff_ewm", "home_ga_diff_ewm", "home_shot_diff_ewm",
+    diff_cols_to_round = [
+        "home_gf_ewm",
+        "away_gf_ewm",
+        "home_ga_ewm",
+        "away_ga_ewm",
+        "home_sog_ewm",
+        "away_sog_ewm",
+        "home_goal_diff_ewm",
+        "home_ga_diff_ewm",
+        "home_shot_diff_ewm",
     ]
-
-    df[cols_to_round] = df[cols_to_round].round(3)
+    df[diff_cols_to_round] = df[diff_cols_to_round].round(3)
     df.to_csv(CSV_FILE, index=False)
     print("Goal/shot differences computed and saved")
 
 
-# ===== STEP 3: FETCH GOALIE DATA =====
+# ===== STEP 3: FETCH GOALIE RAW DATA =====
 async def fetch_all_goalie_data(game_ids):
     """Fetch goalie data for all games (optimized)."""
-    semaphore = asyncio.Semaphore(MAX_CONCURRENT_REQUESTS)
-
-    async with aiohttp.ClientSession(timeout=TIMEOUT) as session:
-
+    async with ApiClient(
+        API_BASE_URL,
+        TIMEOUT,
+        MAX_CONCURRENT_REQUESTS,
+        RETRIES,
+    ) as client:
         tasks = [
-            fetch_boxscores(session, game_id, semaphore)
+            client.get_json(f"/v1/gamecenter/{game_id}/boxscore")
             for game_id in game_ids
         ]
-
         boxscores = await asyncio.gather(*tasks)
 
     results = [
@@ -636,9 +543,9 @@ async def fetch_all_goalie_data(game_ids):
 
 
 
-def step3_fetch_goalie_data():
-    """Step 3: Fetch goalie performance data."""
-    print("\n=== STEP 3: Fetch Goalie Performance Data ===")
+def step3_fetch_goalie_raw_data():
+    """Step 3: Fetch goalie performance data (raw rows only)."""
+    print("\n=== STEP 3: Fetch Goalie Raw Data ===")
 
     df = pd.read_csv(CSV_FILE, parse_dates=["date"])
     game_ids = df["game_id"].tolist()
@@ -650,8 +557,19 @@ def step3_fetch_goalie_data():
     goalie_df = pd.DataFrame(goalie_data_rows)
     print(f"Fetched {len(goalie_data_rows)} goalie records")
 
+    return goalie_df
+
+
+# ===== STEP 3B: COMPUTE GOALIE EWMS AND MERGE =====
+def step3b_compute_goalie_ewm_and_merge():
+    """Step 3B: Compute goalie/team EWMs and merge into main data."""
+    print("\n=== STEP 3B: Compute Goalie EWMs And Merge ===")
+
+    goalie_df = step3_fetch_goalie_raw_data()
+    if goalie_df is None or goalie_df.empty:
+        raise ValueError("Goalie raw data is empty. Run step3_fetch_goalie_raw_data() first.")
+
     # Prepare goalie long format
-    goalie_df["date"] = pd.to_datetime(goalie_df["date"])
     goalie_df = goalie_df.sort_values("date").reset_index(drop=True)
 
     home_goalies = goalie_df[["game_id", "date", "season", *HOME_RENAME.keys()]].rename(columns=HOME_RENAME)
@@ -693,10 +611,12 @@ def step3_fetch_goalie_data():
     # Team AVERAGE save pct EWM
     team_long = pd.concat(
         [
-            goalie_df[["game_id", "date", "season", "home_team_abbrev", "home_save_pct"]]
-            .rename(columns={"home_team_abbrev": "team", "home_save_pct": "save_pct"}),
-            goalie_df[["game_id", "date", "season", "away_team_abbrev", "away_save_pct"]]
-            .rename(columns={"away_team_abbrev": "team", "away_save_pct": "save_pct"}),
+            goalie_df[
+                ["game_id", "date", "season", "home_team_abbrev", "home_save_pct"]
+            ].rename(columns={"home_team_abbrev": "team", "home_save_pct": "save_pct"}),
+            goalie_df[
+                ["game_id", "date", "season", "away_team_abbrev", "away_save_pct"]
+            ].rename(columns={"away_team_abbrev": "team", "away_save_pct": "save_pct"}),
         ],
         ignore_index=True
     ).sort_values(["team", "season", "date"]).reset_index(drop=True)
@@ -744,21 +664,22 @@ def step3_fetch_goalie_data():
 async def build_season_stats_dataframe():
     """Fetch standings data for all dates in the dataset"""
 
-    semaphore = asyncio.Semaphore(MAX_CONCURRENT_REQUESTS)
     df = pd.read_csv(CSV_FILE, parse_dates=["date"])
 
     # Group games by date once
     games_by_date = dict(tuple(df.groupby("date")))
     unique_dates = list(games_by_date.keys())
 
-    async with aiohttp.ClientSession(timeout=TIMEOUT) as session:
-
+    async with ApiClient(
+        API_BASE_URL,
+        TIMEOUT,
+        MAX_CONCURRENT_REQUESTS,
+        RETRIES,
+    ) as client:
         tasks = [
-            fetch_standings_info(session, date_val.strftime("%Y-%m-%d"), semaphore)
+            client.get_json(f"/v1/standings/{date_val.strftime('%Y-%m-%d')}")
             for date_val in unique_dates
         ]
-
-        # Run requests concurrently
         standings_results = await asyncio.gather(*tasks)
 
     # rows of team standings data for the season to date
@@ -960,8 +881,12 @@ def step5_compute_rest_days():
     df = pd.read_csv(CSV_FILE, parse_dates=["date"])
 
     # Team rest days
-    home_games = df[["date", "season", "home_team_abbrev"]].rename(columns={"home_team_abbrev": "team"})
-    away_games = df[["date", "season", "away_team_abbrev"]].rename(columns={"away_team_abbrev": "team"})
+    home_games = df[["date", "season", "home_team_abbrev"]].rename(
+        columns={"home_team_abbrev": "team"}
+    )
+    away_games = df[["date", "season", "away_team_abbrev"]].rename(
+        columns={"away_team_abbrev": "team"}
+    )
     team_games = pd.concat([home_games, away_games], ignore_index=True)
     team_games = team_games.sort_values(["team", "date"])
 
@@ -1040,15 +965,21 @@ def step6_compute_head_to_head():
             "game_id", "date", "season", "matchup", "home_team_abbrev", "away_team_abbrev", "home_gf", "home_win"
         ]]
         .rename(columns={
-            "home_team_abbrev": "team", "away_team_abbrev": "opponent", "home_gf": "gf", "home_win": "win"
+            "home_team_abbrev": "team",
+            "away_team_abbrev": "opponent",
+            "home_gf": "gf",
+            "home_win": "win",
         }),
-
         df[[
             "game_id", "date", "season", "matchup", "away_team_abbrev", "home_team_abbrev", "away_gf", "home_win"
         ]]
         .assign(win=lambda x: 1 - x["home_win"])
-        .rename(columns={"away_team_abbrev": "team", "home_team_abbrev": "opponent", "away_gf": "gf"})
-        .drop(columns="home_win")
+        .rename(columns={
+            "away_team_abbrev": "team",
+            "home_team_abbrev": "opponent",
+            "away_gf": "gf",
+        })
+        .drop(columns="home_win"),
     ], ignore_index=True)
 
     h2h_long = h2h_long.sort_values(["season", "matchup", "date"])
@@ -1066,11 +997,15 @@ def step6_compute_head_to_head():
     ).round(3)
 
     home_stats = h2h_long.rename(columns={
-        "team": "home_team_abbrev", "h2h_wins": "home_h2h_wins", "h2h_gf": "home_h2h_gf"
+        "team": "home_team_abbrev",
+        "h2h_wins": "home_h2h_wins",
+        "h2h_gf": "home_h2h_gf",
     })[["game_id", "home_team_abbrev", "home_h2h_wins", "home_h2h_gf"]]
 
     away_stats = h2h_long.rename(columns={
-        "team": "away_team_abbrev", "h2h_wins": "away_h2h_wins", "h2h_gf": "away_h2h_gf"
+        "team": "away_team_abbrev",
+        "h2h_wins": "away_h2h_wins",
+        "h2h_gf": "away_h2h_gf",
     })[["game_id", "away_team_abbrev", "away_h2h_wins", "away_h2h_gf"]]
 
     df = df.merge(home_stats, on=["game_id", "home_team_abbrev"], how="left")
@@ -1115,7 +1050,7 @@ def main():
         step1_fetch_basic_game_info()
         step2_compute_rolling_averages()
         step2_compute_stats_diffs()
-        step3_fetch_goalie_data()
+        step3b_compute_goalie_ewm_and_merge()
         step4_fetch_season_stats()
         step5_compute_rest_days()
         step6_compute_head_to_head()
