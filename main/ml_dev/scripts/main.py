@@ -171,9 +171,6 @@ def extract_all_basic_goalie_stats(boxscore_data):
             away_goalies[0].get("shotsAgainst", 0) + away_goalies[1].get("shotsAgainst", 0)
         )
 
-    home_starter_obj = home_goalies[0] if home_goalies and home_goalies[0].get("starter") else (home_goalies[1] if len(home_goalies) > 1 else {})
-    away_starter_obj = away_goalies[0] if away_goalies and away_goalies[0].get("starter") else (away_goalies[1] if len(away_goalies) > 1 else {})
-
     home_abbrev = home.get("abbrev", "")
     away_abbrev = away.get("abbrev", "")
 
@@ -219,6 +216,8 @@ async def fetch_season_games(season):
     game_ids = [f"{season}02{str(game_num).zfill(4)}" for game_num in range(1, MAX_GAMES + 1)]
     rows = []
 
+    season_done = False
+
     async with ApiClient(
         API_BASE_URL,
         TIMEOUT,
@@ -226,6 +225,9 @@ async def fetch_season_games(season):
         RETRIES,
     ) as client:
         for i in range(0, len(game_ids), MAX_CONCURRENT_REQUESTS):
+            if season_done:
+                break
+
             batch = game_ids[i:i + MAX_CONCURRENT_REQUESTS]
             tasks = [
                 client.get_json(f"/v1/wsc/game-story/{gid}")
@@ -238,6 +240,7 @@ async def fetch_season_games(season):
                     continue
                 row = extract_all_basic_team_stats(game_data)
                 if row is None:
+                    season_done = True
                     break
                 else:
                     rows.append(row)
@@ -752,7 +755,7 @@ class NHLPipeline:
         team_games = team_games.sort_values(["team", "date"])
 
         team_games["team_rest_days"] = (
-            team_games.groupby(["team"])["date"].diff().dt.days - 1
+            team_games.groupby(["team", "season"])["date"].diff().dt.days - 1
         )
 
         df = df.merge(
@@ -781,7 +784,7 @@ class NHLPipeline:
         goalie_games = goalie_games.sort_values(["goalie", "team", "season", "date"])
 
         goalie_games["goalie_rest_days"] = (
-            goalie_games.groupby(["goalie", "team"])["date"].diff().dt.days - 1
+            goalie_games.groupby(["goalie", "team", "season"])["date"].diff().dt.days - 1
         )
 
         df = df.merge(

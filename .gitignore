@@ -42,6 +42,9 @@ dist/
 .DS_Store  # MacOS system files
 Thumbs.db  # Windows system files
 
+# Ignore claude files
+.claude/
+
 # Ignore any personal or OS-specific files
 *.iml
 
