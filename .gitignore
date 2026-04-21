@@ -44,6 +44,7 @@ Thumbs.db  # Windows system files
 
 # Ignore claude files
 .claude/
+CLAUDE.md
 
 # Ignore any personal or OS-specific files
 *.iml
