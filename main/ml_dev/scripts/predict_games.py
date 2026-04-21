@@ -101,110 +101,124 @@ def extract_name(obj):
         return obj.get("default", "") if "default" in obj else ""
     return str(obj)
 
-# Unfortunately, it seems that the 'starter' value only appears post-game.
-
-# def get_starter_goalie(goalies):
-#     """Get the starting goalie from a list of goalies."""
-#     if not goalies:
-#         return ""
-#     starter = next((g for g in goalies if g.get("starter")), goalies[0] if goalies else None)
-#     if not starter:
-#         return ""
-#     return extract_name(starter.get("name", {}))
-
 def get_starter_goalie(goalies):
-    """Get the starting goalie based on highest TOI."""
+    """Get the starting goalie based on highest TOI (for live games)."""
     if not goalies:
         return ""
 
     def toi_to_seconds(toi):
         if not toi:
             return 0
-        minutes, seconds = toi.split(":")
-        return int(minutes) * 60 + int(seconds)
+        parts = toi.split(":")
+        return int(parts[0]) * 60 + int(parts[1])
 
-    starter = max(
-        goalies,
-        key=lambda g: toi_to_seconds(g.get("toi", "00:00"))
-    )
-
+    starter = max(goalies, key=lambda g: toi_to_seconds(g.get("toi", "00:00")))
     return extract_name(starter.get("name", {}))
 
 
-async def get_todays_goalies(games):
-    """Fetch today's starting goalies - tries boxscore first, then landing."""
+def _goalie_name_from_roster_spot(spot):
+    """Build full name from a rosterSpots entry (first + last)."""
+    first = spot.get("firstName", {})
+    last = spot.get("lastName", {})
+    first_str = first.get("default", "") if isinstance(first, dict) else str(first)
+    last_str = last.get("default", "") if isinstance(last, dict) else str(last)
+    return f"{first_str} {last_str}".strip()
+
+
+def _starter_from_roster_spots(spots):
+    """Find starting goalie from rosterSpots (available once lineup is submitted pre-game).
+    Trusts startingLineup flag; falls back to the sole dressed goalie if unambiguous."""
+    goalies = [s for s in spots if s.get("positionCode") == "G"]
+    for g in goalies:
+        if g.get("startingLineup"):
+            return _goalie_name_from_roster_spot(g)
+    if len(goalies) == 1:
+        return _goalie_name_from_roster_spot(goalies[0])
+    return None
+
+
+def get_most_starts_goalie(df, team_abbrev, current_date, season):
+    """Return the goalie with the most starts for a team this season before current_date.
+    Best available proxy when the starting lineup hasn't been announced yet."""
+    season_games = df[
+        ((df['home_team_abbrev'] == team_abbrev) | (df['away_team_abbrev'] == team_abbrev)) &
+        (df['date'] < current_date) &
+        (df['season'] == season)
+    ]
+    home_g = season_games[season_games['home_team_abbrev'] == team_abbrev]['home_goalie_starter']
+    away_g = season_games[season_games['away_team_abbrev'] == team_abbrev]['away_goalie_starter']
+    all_starts = pd.concat([home_g, away_g]).dropna()
+    if all_starts.empty:
+        return None
+    return all_starts.value_counts().index[0]
+
+
+async def get_todays_goalies(games, df):
+    """Fetch today's starting goalies using a 3-tier approach:
+    1. LIVE: highest TOI from playerByGameStats
+    2. PRE (lineup submitted): startingLineup flag in rosterSpots
+    3. FUT (lineup not announced): most starts this season from historical data
+    """
     print("\n" + "="*60)
     print("FETCHING TODAY'S STARTING GOALIES")
     print("="*60)
-    
+
     goalies_dict = {}
-    
-    async with ApiClient(
-        API_BASE_URL,
-        TIMEOUT,
-        MAX_CONCURRENT_REQUESTS,
-        RETRIES,
-    ) as client:
-        boxscore_tasks = [
+
+    async with ApiClient(API_BASE_URL, TIMEOUT, MAX_CONCURRENT_REQUESTS, RETRIES) as client:
+        boxscore_results = await asyncio.gather(*[
             client.get_json(f"/v1/gamecenter/{game['game_id']}/boxscore")
             for game in games
-        ]
-        boxscore_results = await asyncio.gather(*boxscore_tasks)
-        
-        landing_tasks = [
-            client.get_json(f"/v1/gamecenter/{game['game_id']}/landing")
-            for game in games
-        ]
-        landing_results = await asyncio.gather(*landing_tasks)
-    
+        ])
+
     for i, game in enumerate(games):
         gid = game['game_id']
         home_team = game['home_team']
         away_team = game['away_team']
-        
+        current_date = pd.to_datetime(game['date'])
+        season = game['season']
+
         home_goalie = None
         away_goalie = None
-        
-        # Try to get from boxscore first
+
         boxscore = boxscore_results[i]
         if boxscore:
-            home_players = boxscore.get("playerByGameStats", {}).get("homeTeam", {}).get("goalies", [])
-            away_players = boxscore.get("playerByGameStats", {}).get("awayTeam", {}).get("goalies", [])
-            
-            if home_players:
-                home_goalie = get_starter_goalie(home_players)
-            if away_players:
-                away_goalie = get_starter_goalie(away_players)
-        
-        # If boxscore didn't have goalies, try landing
-        if not home_goalie or not away_goalie:
-            landing = landing_results[i]
-            if landing:
+            # Tier 1: LIVE — use highest TOI from in-game stats
+            home_stats = boxscore.get("playerByGameStats", {}).get("homeTeam", {}).get("goalies", [])
+            away_stats = boxscore.get("playerByGameStats", {}).get("awayTeam", {}).get("goalies", [])
+            if home_stats:
+                home_goalie = get_starter_goalie(home_stats)
+            if away_stats:
+                away_goalie = get_starter_goalie(away_stats)
 
-                home_team_data = landing.get("matchup", {}).get("goalieComparison", {}).get("homeTeam", {})
-                away_team_data = landing.get("matchup", {}).get("goalieComparison", {}).get("awayTeam", {})
-                
-                # Get BEST performing goalies from landing
-                if not home_goalie:
-                    home_goalie_obj = home_team_data.get("leaders", [{}])[0] if home_team_data.get("leaders") else {}
-                    home_goalie = extract_name(home_goalie_obj.get("name", {}))
-                
-                if not away_goalie:
-                    away_goalie_obj = away_team_data.get("leaders", [{}])[0] if away_team_data.get("leaders") else {}
-                    away_goalie = extract_name(away_goalie_obj.get("name", {}))
-        
+            # Tier 2: PRE — lineup submitted, read rosterSpots with startingLineup flag
+            if not home_goalie:
+                home_goalie = _starter_from_roster_spots(
+                    boxscore.get("homeTeam", {}).get("rosterSpots", [])
+                )
+            if not away_goalie:
+                away_goalie = _starter_from_roster_spots(
+                    boxscore.get("awayTeam", {}).get("rosterSpots", [])
+                )
+
+        # Tier 3: FUT — lineup not announced, use most-started goalie this season
+        if not home_goalie:
+            home_goalie = get_most_starts_goalie(df, home_team, current_date, season)
+        if not away_goalie:
+            away_goalie = get_most_starts_goalie(df, away_team, current_date, season)
+
         goalies_dict[gid] = {
             "game_id": gid,
             "home_team": home_team,
             "away_team": away_team,
-            "home_goalie": home_goalie if home_goalie else "Unknown",
-            "away_goalie": away_goalie if away_goalie else "Unknown",
+            "home_goalie": home_goalie or "Unknown",
+            "away_goalie": away_goalie or "Unknown",
         }
-        
+
         print(f"  {away_team} @ {home_team}")
         print(f"    Away Goalie: {goalies_dict[gid]['away_goalie']}")
         print(f"    Home Goalie: {goalies_dict[gid]['home_goalie']}")
-    
+
     return goalies_dict
 
 
@@ -553,6 +567,14 @@ def get_h2h_stats(df, home_team, away_team, current_date, season):
     }
 
 
+def get_goalie_league_avg_ewm(df, season):
+    """Return season-average EWM values for all goalie EWM columns.
+    Used as a neutral prior when a goalie has no prior history (debut)."""
+    cols = GOALIE_L5_COLS + TEAM_GOALIE_PERFORMANCE
+    season_df = df[df["season"] == season]
+    return {col: season_df[col].mean() for col in cols if col in season_df.columns}
+
+
 def build_feature_row(game, df, standings_data, goalies_dict):
     """Build complete feature row for a single game."""
     current_date = pd.to_datetime(game['date'])
@@ -639,10 +661,11 @@ def build_feature_row(game, df, standings_data, goalies_dict):
     features['home_team_save_pct_l5'] = home_team_save_pct
     features['away_team_save_pct_l5'] = away_team_save_pct
     
-    # Fill in any missing goalie features with 0
+    # Fill any missing goalie EWM features with the season mean as a prior
+    league_avg = get_goalie_league_avg_ewm(df, season)
     for feat in GOALIE_L5_COLS + TEAM_GOALIE_PERFORMANCE + ['home_goalie_rest_days', 'away_goalie_rest_days']:
         if feat not in features:
-            features[feat] = 0
+            features[feat] = league_avg.get(feat, 3 if 'rest_days' in feat else 0)
     
     return features
 
@@ -747,7 +770,7 @@ async def main(date_str=None, threshold=0.5):
             return
         
         # Fetch goalie information
-        goalies_dict = await get_todays_goalies(games)
+        goalies_dict = await get_todays_goalies(games, df)
         
         # Make predictions
         predictions = make_predictions(model, feature_names, games, df, standings_data, goalies_dict, threshold)

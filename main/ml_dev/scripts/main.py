@@ -20,7 +20,6 @@ from config import (
     MAX_CONCURRENT_REQUESTS,
     RETRIES,
     MAX_GAMES,
-    SLEEP_SEC,
     SEASONS,
     FIELDNAMES,
     ROLLING_N,
@@ -225,24 +224,19 @@ async def fetch_season_games(season):
         MAX_CONCURRENT_REQUESTS,
         RETRIES,
     ) as client:
-        for i in range(0, len(game_ids), MAX_CONCURRENT_REQUESTS):
-            batch = game_ids[i:i + MAX_CONCURRENT_REQUESTS]
-            tasks = [
-                client.get_json(f"/v1/wsc/game-story/{gid}")
-                for gid in batch
-            ]
-            results = await asyncio.gather(*tasks)
+        tasks = [
+            client.get_json(f"/v1/wsc/game-story/{gid}")
+            for gid in game_ids
+        ]
+        results = await asyncio.gather(*tasks)
 
-            for game_data in results:
-                if not game_data:
-                    continue
-                row = extract_all_basic_team_stats(game_data)
-                if row is None:
-                    break
-                else:
-                    rows.append(row)
-
-            await asyncio.sleep(SLEEP_SEC)
+    for game_data in results:
+        if not game_data:
+            continue
+        row = extract_all_basic_team_stats(game_data)
+        if row is None:
+            break
+        rows.append(row)
 
     return rows
 
@@ -361,11 +355,12 @@ class NHLPipeline:
         if os.path.exists(CSV_FILE):
             os.remove(CSV_FILE)
 
-        all_seasons_rows = []
-        for season in SEASONS:
-            print(f"Fetching season {season}...")
-            season_rows = asyncio.run(fetch_season_games(season))
-            all_seasons_rows.extend(season_rows)
+        async def fetch_all_seasons():
+            results = await asyncio.gather(*[fetch_season_games(s) for s in SEASONS])
+            return [row for season_rows in results for row in season_rows]
+
+        print(f"Fetching {len(SEASONS)} seasons concurrently...")
+        all_seasons_rows = asyncio.run(fetch_all_seasons())
 
         df = pd.DataFrame(all_seasons_rows)
         df["date"] = pd.to_datetime(df["date"])
@@ -443,13 +438,13 @@ class NHLPipeline:
         for new_col, source_col in stats_to_roll.items():
             if new_col in ["wins_l5"]:
                 combined[new_col] = (
-                    combined.groupby("team_abbrev")[source_col]
+                    combined.groupby(["team_abbrev", "season"])[source_col]
                     .transform(lambda x: x.rolling(window=5, min_periods=1).sum().shift(1))
                 )
             elif new_col in ["powerplays_l5", "penalty_kills_l5"]:
                 combined[new_col] = (
-                    combined.groupby("team_abbrev")[source_col]
-                    .transform(lambda s: s.rolling(5).mean().shift(1))
+                    combined.groupby(["team_abbrev", "season"])[source_col]
+                    .transform(lambda s: s.rolling(5, min_periods=1).mean().shift(1))
                 )
             else:
                 combined[new_col] = (
@@ -458,7 +453,7 @@ class NHLPipeline:
                 )
 
         combined["games_l5"] = (
-            combined.groupby("team_abbrev")["win"]
+            combined.groupby(["team_abbrev", "season"])["win"]
             .transform(lambda x: x.rolling(5, min_periods=1).count().shift(1))
         )
         combined["win_pct_l5"] = combined["wins_l5"] / combined["games_l5"]
@@ -612,6 +607,16 @@ class NHLPipeline:
             validate="one_to_one"
         )
         self.df = main_df
+
+        # Fill debut goalie NaN EWM stats with season-level mean as a neutral prior
+        goalie_ewm_cols = [
+            c for c in self.df.columns
+            if ("home_goalie" in c or "away_goalie" in c) and c.endswith("_ewm")
+        ]
+        for col in goalie_ewm_cols:
+            season_means = self.df.groupby("season")[col].transform("mean")
+            self.df[col] = self.df[col].fillna(season_means)
+
         print("Goalie data merged into main dataframe")
 
     def add_standings_features(self):
@@ -749,11 +754,12 @@ class NHLPipeline:
             columns={"away_team_abbrev": "team"}
         )
         team_games = pd.concat([home_games, away_games], ignore_index=True)
-        team_games = team_games.sort_values(["team", "date"])
+        team_games = team_games.sort_values(["team", "season", "date"])
 
         team_games["team_rest_days"] = (
-            team_games.groupby(["team"])["date"].diff().dt.days - 1
+            team_games.groupby(["team", "season"])["date"].diff().dt.days - 1
         )
+        team_games["team_rest_days"] = team_games["team_rest_days"].fillna(3)
 
         df = df.merge(
             team_games[["team", "season", "date", "team_rest_days"]],
@@ -781,8 +787,9 @@ class NHLPipeline:
         goalie_games = goalie_games.sort_values(["goalie", "team", "season", "date"])
 
         goalie_games["goalie_rest_days"] = (
-            goalie_games.groupby(["goalie", "team"])["date"].diff().dt.days - 1
+            goalie_games.groupby(["goalie", "team", "season"])["date"].diff().dt.days - 1
         )
+        goalie_games["goalie_rest_days"] = goalie_games["goalie_rest_days"].fillna(3)
 
         df = df.merge(
             goalie_games[["goalie", "team", "season", "date", "goalie_rest_days"]],
