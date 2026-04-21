@@ -34,7 +34,7 @@ TEAM_EWM_MAP = {
     'ga_ewm': 'ga',
     'sog_ewm': 'sog',
     'powerplay_pct_ewm': 'powerplay_pct',
-    'penalty_kill_pct_ewm': 'pk_pct',
+    'pk_pct_ewm': 'pk_pct',
     'faceoffwin_pct_ewm': 'faceoffwin_pct',
     'pims_ewm': 'pims',
     'hits_ewm': 'hits',
@@ -66,7 +66,7 @@ HISTORICAL_DATA_FILE = "generated/data/nhl_data.csv"
 HOME_TEAM_L5_COLS = [
     'home_gf_ewm', 'home_ga_ewm', 'home_sog_ewm',
     'home_wins_l5', 'home_win_pct_l5', 'home_powerplay_pct_ewm',
-    'home_penalty_kill_pct_ewm', 'home_powerplays_l5', 'home_penalty_kills_l5',
+    'home_pk_pct_ewm', 'home_powerplays_l5', 'home_penalty_kills_l5',
     'home_faceoffwin_pct_ewm', 'home_pims_ewm', 'home_hits_ewm',
     'home_blockedshots_ewm', 'home_giveaways_ewm', 'home_takeaways_ewm',
 ]
@@ -74,7 +74,7 @@ HOME_TEAM_L5_COLS = [
 AWAY_TEAM_L5_COLS = [
     'away_gf_ewm', 'away_ga_ewm', 'away_sog_ewm',
     'away_wins_l5', 'away_win_pct_l5', 'away_powerplay_pct_ewm',
-    'away_penalty_kill_pct_ewm', 'away_powerplays_l5', 'away_penalty_kills_l5',
+    'away_pk_pct_ewm', 'away_powerplays_l5', 'away_penalty_kills_l5',
     'away_faceoffwin_pct_ewm', 'away_pims_ewm', 'away_hits_ewm',
     'away_blockedshots_ewm', 'away_giveaways_ewm', 'away_takeaways_ewm',
 ]
