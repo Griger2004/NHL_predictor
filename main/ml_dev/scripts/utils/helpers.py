@@ -76,7 +76,7 @@ def get_starter_goalie(goalies):
     Returns (goalie_name, goalie_object).
     """
     if not goalies:
-        return "", None
+        return "", {}
 
     starter = next((g for g in goalies if g.get("starter")), goalies[0])
     return extract_name(starter.get("name", {})), starter
