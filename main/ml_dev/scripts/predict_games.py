@@ -25,6 +25,35 @@ TIMEOUT = ClientTimeout(total=15)
 MAX_CONCURRENT_REQUESTS = 9
 RETRIES = 3
 ROLLING_N = 5
+EWM_ALPHA = 0.3
+EWM_CARRY_WEIGHT = 0.7
+
+# Maps EWM feature suffix → raw stat column suffix in nhl_data.csv
+TEAM_EWM_MAP = {
+    'gf_ewm': 'gf',
+    'ga_ewm': 'ga',
+    'sog_ewm': 'sog',
+    'powerplay_pct_ewm': 'powerplay_pct',
+    'penalty_kill_pct_ewm': 'pk_pct',
+    'faceoffwin_pct_ewm': 'faceoffwin_pct',
+    'pims_ewm': 'pims',
+    'hits_ewm': 'hits',
+    'blockedshots_ewm': 'blockedshots',
+    'giveaways_ewm': 'giveaways',
+    'takeaways_ewm': 'takeaways',
+}
+
+# Maps goalie EWM suffix → raw stat column suffix in nhl_data.csv
+GOALIE_EWM_TO_RAW = {
+    'save_pct_ewm': 'save_pct',
+    'ga_ewm': 'ga',
+    'saves_ewm': 'saves',
+    'ev_sa_ewm': 'evenStrengthShotsAgainst',
+    'pp_sa_ewm': 'powerPlayShotsAgainst',
+    'sh_sa_ewm': 'shorthandedShotsAgainst',
+    'ev_ga_ewm': 'evenStrengthGoalsAgainst',
+    'pp_ga_ewm': 'powerPlayGoalsAgainst',
+}
 
 # Model files
 MODEL_FILE = "../notebooks/models/nhl_rf_model.pkl"
@@ -36,7 +65,7 @@ HISTORICAL_DATA_FILE = "generated/data/nhl_data.csv"
 # Feature definitions (must match training)
 HOME_TEAM_L5_COLS = [
     'home_gf_ewm', 'home_ga_ewm', 'home_sog_ewm',
-    'home_wins_l5', 'home_win_pct_ewm', 'home_powerplay_pct_ewm',
+    'home_wins_l5', 'home_win_pct_l5', 'home_powerplay_pct_ewm',
     'home_penalty_kill_pct_ewm', 'home_powerplays_l5', 'home_penalty_kills_l5',
     'home_faceoffwin_pct_ewm', 'home_pims_ewm', 'home_hits_ewm',
     'home_blockedshots_ewm', 'home_giveaways_ewm', 'home_takeaways_ewm',
@@ -44,7 +73,7 @@ HOME_TEAM_L5_COLS = [
 
 AWAY_TEAM_L5_COLS = [
     'away_gf_ewm', 'away_ga_ewm', 'away_sog_ewm',
-    'away_wins_l5', 'away_win_pct_ewm', 'away_powerplay_pct_ewm',
+    'away_wins_l5', 'away_win_pct_l5', 'away_powerplay_pct_ewm',
     'away_penalty_kill_pct_ewm', 'away_powerplays_l5', 'away_penalty_kills_l5',
     'away_faceoffwin_pct_ewm', 'away_pims_ewm', 'away_hits_ewm',
     'away_blockedshots_ewm', 'away_giveaways_ewm', 'away_takeaways_ewm',
@@ -222,53 +251,59 @@ async def get_todays_goalies(games, df):
     return goalies_dict
 
 
-def get_goalie_last_5_stats(df, goalie_name, current_date, season, team_abbrev):
-    """Get last 5 games stats for a goalie."""
+def get_goalie_ewm_stats(df, goalie_name, current_date, season, team_abbrev):
+    """
+    Compute EWM stats for a goalie going into today's game.
+
+    Looks up the goalie's last start in historical data, reads the stored EWM,
+    and updates it with that game's actual stat. Applies regression-to-mean at
+    season boundaries (70% last-season final EWM, 30% prior-season league avg).
+    """
     if not goalie_name or goalie_name == "Unknown":
         return {}
-    
-    # Find games where this goalie was the starter for this team
+
+    current_date = pd.to_datetime(current_date)
+
     goalie_games = df[
         (((df['home_team_abbrev'] == team_abbrev) & (df['home_goalie_starter'] == goalie_name)) |
          ((df['away_team_abbrev'] == team_abbrev) & (df['away_goalie_starter'] == goalie_name))) &
-        (df['date'] < current_date) &
-        (df['season'] == season)
-    ].sort_values('date', ascending=False).head(5)
-    
+        (df['date'] < current_date)
+    ].sort_values('date')
+
     if len(goalie_games) == 0:
         return {}
-    
-    # Aggregate stats from last 5 games
-    stats = {
-        'save_pct': [],
-        'ga': [],
-        'saves': [],
-        'ev_sa': [],
-        'pp_sa': [],
-        'sh_sa': [],
-        'ev_ga': [],
-        'pp_ga': []
-    }
-    
-    for _, game in goalie_games.iterrows():
-        is_home = game['home_goalie_starter'] == goalie_name
-        prefix = 'home' if is_home else 'away'
-        
-        # Collect goalie stats
-        stats['save_pct'].append(game.get(f'{prefix}_goalie_save_pct', 0))
-        stats['ga'].append(game.get(f'{prefix}_goalie_ga', 0))
-        stats['saves'].append(game.get(f'{prefix}_goalie_saves', 0))
-        stats['ev_sa'].append(game.get(f'{prefix}_goalie_evenStrengthShotsAgainst', 0))
-        stats['pp_sa'].append(game.get(f'{prefix}_goalie_powerPlayShotsAgainst', 0))
-        stats['sh_sa'].append(game.get(f'{prefix}_goalie_shorthandedShotsAgainst', 0))
-        stats['ev_ga'].append(game.get(f'{prefix}_goalie_evenStrengthGoalsAgainst', 0))
-        stats['pp_ga'].append(game.get(f'{prefix}_goalie_powerPlayGoalsAgainst', 0))
-    
-    # Calculate averages
+
+    last_game = goalie_games.iloc[-1]
+    is_home = last_game['home_goalie_starter'] == goalie_name
+    prefix = 'home' if is_home else 'away'
+    last_game_season = last_game['season']
+
     result = {}
-    for key in stats.keys():
-        result[f'{key}_l5'] = np.mean(stats[key]) if stats[key] else 0
-    
+
+    for ewm_suffix, raw_suffix in GOALIE_EWM_TO_RAW.items():
+        ewm_col = f'{prefix}_goalie_{ewm_suffix}'
+        raw_col = f'{prefix}_goalie_{raw_suffix}'
+
+        stored_ewm = last_game.get(ewm_col, np.nan)
+        last_stat = last_game.get(raw_col, np.nan)
+
+        if pd.isna(stored_ewm):
+            current_ewm = float(last_stat) if not pd.isna(last_stat) else np.nan
+        else:
+            current_ewm = EWM_ALPHA * float(last_stat) + (1 - EWM_ALPHA) * float(stored_ewm)
+
+        # Season boundary: regression-to-mean
+        if last_game_season != season and not pd.isna(current_ewm):
+            prev = df[df['season'] == last_game_season]
+            league_avg = pd.concat([
+                prev[f'home_goalie_{raw_suffix}'].dropna() if f'home_goalie_{raw_suffix}' in prev.columns else pd.Series(dtype=float),
+                prev[f'away_goalie_{raw_suffix}'].dropna() if f'away_goalie_{raw_suffix}' in prev.columns else pd.Series(dtype=float),
+            ]).mean()
+            if not pd.isna(league_avg):
+                current_ewm = EWM_CARRY_WEIGHT * current_ewm + (1 - EWM_CARRY_WEIGHT) * float(league_avg)
+
+        result[ewm_suffix] = round(float(current_ewm), 3) if not pd.isna(current_ewm) else 0
+
     return result
 
 
@@ -293,24 +328,42 @@ def get_goalie_rest_days(df, goalie_name, current_date, season, team_abbrev):
     return max(rest_days, 0)
 
 
-def get_team_save_pct_l5(df, team_abbrev, current_date, season):
-    """Get team's last 5 games save percentage."""
-    team_games = df[
+def get_team_save_pct_ewm(df, team_abbrev, current_date, season):
+    """Compute EWM team save percentage for today's game."""
+    current_date = pd.to_datetime(current_date)
+
+    all_team_games = df[
         ((df['home_team_abbrev'] == team_abbrev) | (df['away_team_abbrev'] == team_abbrev)) &
-        (df['date'] < current_date) &
-        (df['season'] == season)
-    ].sort_values('date', ascending=False).head(5)
-    
-    if len(team_games) == 0:
+        (df['date'] < current_date)
+    ].sort_values('date')
+
+    if len(all_team_games) == 0:
         return 0
-    
-    save_pcts = []
-    for _, game in team_games.iterrows():
-        is_home = game['home_team_abbrev'] == team_abbrev
-        prefix = 'home' if is_home else 'away'
-        save_pcts.append(game.get(f'{prefix}_save_pct', 0))
-    
-    return np.mean(save_pcts) if save_pcts else 0
+
+    last_game = all_team_games.iloc[-1]
+    is_home = last_game['home_team_abbrev'] == team_abbrev
+    prefix = 'home' if is_home else 'away'
+    last_game_season = last_game['season']
+
+    stored_ewm = last_game.get(f'{prefix}_team_save_pct_ewm', np.nan)
+    last_stat = last_game.get(f'{prefix}_save_pct', np.nan)
+
+    if pd.isna(stored_ewm):
+        current_ewm = float(last_stat) if not pd.isna(last_stat) else np.nan
+    else:
+        current_ewm = EWM_ALPHA * float(last_stat) + (1 - EWM_ALPHA) * float(stored_ewm)
+
+    # Season boundary: regression-to-mean
+    if last_game_season != season and not pd.isna(current_ewm):
+        prev = df[df['season'] == last_game_season]
+        league_avg = pd.concat([
+            prev['home_save_pct'].dropna() if 'home_save_pct' in prev.columns else pd.Series(dtype=float),
+            prev['away_save_pct'].dropna() if 'away_save_pct' in prev.columns else pd.Series(dtype=float),
+        ]).mean()
+        if not pd.isna(league_avg):
+            current_ewm = EWM_CARRY_WEIGHT * current_ewm + (1 - EWM_CARRY_WEIGHT) * float(league_avg)
+
+    return round(float(current_ewm), 3) if not pd.isna(current_ewm) else 0
 
 
 # =============================================================================
@@ -429,55 +482,76 @@ async def get_todays_games(date_str=None):
 # COMPUTE FEATURES FOR TODAY'S GAMES
 # =============================================================================
 
-def get_team_last_5_stats(df, team_abbrev, current_date, season):
-    """Get last 5 games stats for a team."""
-    team_games = df[
+def get_team_ewm_stats(df, team_abbrev, current_date, season):
+    """
+    Compute EWM and rolling features for a team going into today's game.
+
+    EWM stats are looked up from the team's last historical game and updated
+    with that game's actual result. At a season boundary, regression-to-mean
+    is applied: 70% last-season final EWM + 30% prior-season league average.
+
+    Rolling L5 features (wins, powerplays, penalty_kills) remain season-bounded
+    simple windows to match training.
+    """
+    current_date = pd.to_datetime(current_date)
+
+    all_team_games = df[
+        ((df['home_team_abbrev'] == team_abbrev) | (df['away_team_abbrev'] == team_abbrev)) &
+        (df['date'] < current_date)
+    ].sort_values('date')
+
+    if len(all_team_games) == 0:
+        return {}
+
+    last_game = all_team_games.iloc[-1]
+    is_home = last_game['home_team_abbrev'] == team_abbrev
+    prefix = 'home' if is_home else 'away'
+    last_game_season = last_game['season']
+
+    result = {}
+
+    # EWM features: look up stored EWM, apply one update step
+    for ewm_key, raw_key in TEAM_EWM_MAP.items():
+        stored_ewm = last_game.get(f'{prefix}_{ewm_key}', np.nan)
+        last_stat = last_game.get(f'{prefix}_{raw_key}', np.nan)
+
+        if pd.isna(stored_ewm):
+            current_ewm = float(last_stat) if not pd.isna(last_stat) else np.nan
+        else:
+            current_ewm = EWM_ALPHA * float(last_stat) + (1 - EWM_ALPHA) * float(stored_ewm)
+
+        # Season boundary: regression-to-mean
+        if last_game_season != season and not pd.isna(current_ewm):
+            prev = df[df['season'] == last_game_season]
+            league_avg = pd.concat([
+                prev[f'home_{raw_key}'].dropna(),
+                prev[f'away_{raw_key}'].dropna()
+            ]).mean() if f'home_{raw_key}' in prev.columns else np.nan
+            if not pd.isna(league_avg):
+                current_ewm = EWM_CARRY_WEIGHT * current_ewm + (1 - EWM_CARRY_WEIGHT) * float(league_avg)
+
+        result[ewm_key] = round(float(current_ewm), 3) if not pd.isna(current_ewm) else 0
+
+    # Rolling L5 features (season-bounded)
+    season_games = df[
         ((df['home_team_abbrev'] == team_abbrev) | (df['away_team_abbrev'] == team_abbrev)) &
         (df['date'] < current_date) &
         (df['season'] == season)
     ].sort_values('date', ascending=False).head(5)
-    
-    if len(team_games) == 0:
-        return {}
-    
-    stats = {}
-    
-    for _, game in team_games.iterrows():
-        is_home = game['home_team_abbrev'] == team_abbrev
-        prefix = 'home' if is_home else 'away'
-        
-        for stat in ['gf', 'ga', 'sog', 'powerplay_pct', 'pk_pct', 
-                     'faceoffwin_pct', 'pims', 'hits', 'blockedshots', 
-                     'giveaways', 'takeaways']:
-            col = f'{prefix}_{stat}'
-            if col in game:
-                stats.setdefault(stat, []).append(game[col])
-        
-        if is_home:
-            stats.setdefault('wins', []).append(game['home_win'])
-        else:
-            stats.setdefault('wins', []).append(1 - game['home_win'])
-        
-        stats.setdefault('powerplays', []).append(game.get(f'{prefix}_powerplays', 0))
-        stats.setdefault('pk', []).append(game.get(f'{prefix}_pk', 0))
-    
-    result = {}
-    result['gf_l5'] = np.mean(stats.get('gf', [0]))
-    result['ga_l5'] = np.mean(stats.get('ga', [0]))
-    result['sog_l5'] = np.mean(stats.get('sog', [0]))
-    result['wins_l5'] = np.sum(stats.get('wins', [0]))
-    result['win_pct_l5'] = np.mean(stats.get('wins', [0]))
-    result['powerplay_pct_l5'] = np.mean(stats.get('powerplay_pct', [0]))
-    result['penalty_kill_pct_l5'] = np.mean(stats.get('pk_pct', [0]))
-    result['powerplays_l5'] = np.sum(stats.get('powerplays', [0]))
-    result['penalty_kills_l5'] = np.sum(stats.get('pk', [0]))
-    result['faceoffwin_pct_l5'] = np.mean(stats.get('faceoffwin_pct', [0]))
-    result['pims_l5'] = np.mean(stats.get('pims', [0]))
-    result['hits_l5'] = np.mean(stats.get('hits', [0]))
-    result['blockedshots_l5'] = np.mean(stats.get('blockedshots', [0]))
-    result['giveaways_l5'] = np.mean(stats.get('giveaways', [0]))
-    result['takeaways_l5'] = np.mean(stats.get('takeaways', [0]))
-    
+
+    wins, powerplays, penalty_kills = [], [], []
+    for _, game in season_games.iterrows():
+        is_h = game['home_team_abbrev'] == team_abbrev
+        p = 'home' if is_h else 'away'
+        wins.append(float(game['home_win']) if is_h else 1 - float(game['home_win']))
+        powerplays.append(game.get(f'{p}_powerplays', 0))
+        penalty_kills.append(game.get(f'{p}_pk', 0))
+
+    result['wins_l5'] = sum(wins)
+    result['win_pct_l5'] = np.mean(wins) if wins else 0
+    result['powerplays_l5'] = np.mean(powerplays) if powerplays else 0
+    result['penalty_kills_l5'] = np.mean(penalty_kills) if penalty_kills else 0
+
     return result
 
 
@@ -593,80 +667,80 @@ def build_feature_row(game, df, standings_data, goalies_dict):
     print(f"    Home Goalie: {home_goalie}")
     print(f"    Away Goalie: {away_goalie}")
     
-    # Get last 5 games stats
-    home_l5 = get_team_last_5_stats(df, home_team, current_date, season)
-    away_l5 = get_team_last_5_stats(df, away_team, current_date, season)
-    
-    # Get season stats
+    # EWM + rolling stats
+    home_ewm = get_team_ewm_stats(df, home_team, current_date, season)
+    away_ewm = get_team_ewm_stats(df, away_team, current_date, season)
+
+    # Season stats
     home_season = get_season_stats(standings_data, home_team)
     away_season = get_season_stats(standings_data, away_team)
-    
-    # Get rest days
+
+    # Rest days
     home_rest = get_rest_days(df, home_team, current_date, season)
     away_rest = get_rest_days(df, away_team, current_date, season)
-    
-    # Get H2H stats
+
+    # H2H stats
     h2h = get_h2h_stats(df, home_team, away_team, current_date, season)
-    
-    # Get goalie stats
-    home_goalie_l5 = get_goalie_last_5_stats(df, home_goalie, current_date, season, home_team)
-    away_goalie_l5 = get_goalie_last_5_stats(df, away_goalie, current_date, season, away_team)
+
+    # Goalie stats
+    home_goalie_ewm = get_goalie_ewm_stats(df, home_goalie, current_date, season, home_team)
+    away_goalie_ewm = get_goalie_ewm_stats(df, away_goalie, current_date, season, away_team)
     home_goalie_rest = get_goalie_rest_days(df, home_goalie, current_date, season, home_team)
     away_goalie_rest = get_goalie_rest_days(df, away_goalie, current_date, season, away_team)
-    
-    # Get team save pct
-    home_team_save_pct = get_team_save_pct_l5(df, home_team, current_date, season)
-    away_team_save_pct = get_team_save_pct_l5(df, away_team, current_date, season)
-    
+
+    # Team save pct EWM
+    home_team_save_pct = get_team_save_pct_ewm(df, home_team, current_date, season)
+    away_team_save_pct = get_team_save_pct_ewm(df, away_team, current_date, season)
+
     # Build feature dictionary
     features = {}
-    
-    # Last 5 games stats
-    for key, val in home_l5.items():
+
+    # Team EWM + rolling features (keys already match model: gf_ewm, wins_l5, etc.)
+    for key, val in home_ewm.items():
         features[f'home_{key}'] = val
-    for key, val in away_l5.items():
+    for key, val in away_ewm.items():
         features[f'away_{key}'] = val
-    
+
     # Season stats
     for key, val in home_season.items():
         features[f'home_{key}'] = val
     for key, val in away_season.items():
         features[f'away_{key}'] = val
-    
+
     # Point percentage difference
     features['pointPctg_diff'] = home_season.get('pointPctg_season', 0) - away_season.get('pointPctg_season', 0)
-    
-    # Differentials
-    features['home_goal_diff_l5'] = home_l5.get('gf_l5', 0) - away_l5.get('gf_l5', 0)
-    features['home_ga_diff_l5'] = home_l5.get('ga_l5', 0) - away_l5.get('ga_l5', 0)
-    features['home_shot_diff_l5'] = home_l5.get('sog_l5', 0) - away_l5.get('sog_l5', 0)
-    
+
+    # Differentials (EWM-based to match training features)
+    features['home_goal_diff_ewm'] = home_ewm.get('gf_ewm', 0) - away_ewm.get('gf_ewm', 0)
+    features['home_ga_diff_ewm'] = home_ewm.get('ga_ewm', 0) - away_ewm.get('ga_ewm', 0)
+    features['home_shot_diff_ewm'] = home_ewm.get('sog_ewm', 0) - away_ewm.get('sog_ewm', 0)
+
     # Rest days
     features['home_rest_days'] = home_rest
     features['away_rest_days'] = away_rest
-    
+
     # H2H
     features.update(h2h)
-    
-    # Goalie stats
-    for key, val in home_goalie_l5.items():
+
+    # Goalie EWM stats (keys: save_pct_ewm, ga_ewm, … → home_goalie_save_pct_ewm, …)
+    for key, val in home_goalie_ewm.items():
         features[f'home_goalie_{key}'] = val
-    for key, val in away_goalie_l5.items():
+    for key, val in away_goalie_ewm.items():
         features[f'away_goalie_{key}'] = val
-    
+
     features['home_goalie_rest_days'] = home_goalie_rest
     features['away_goalie_rest_days'] = away_goalie_rest
-    
-    # Team save pct
-    features['home_team_save_pct_l5'] = home_team_save_pct
-    features['away_team_save_pct_l5'] = away_team_save_pct
-    
-    # Fill any missing goalie EWM features with the season mean as a prior
+
+    # Team save pct EWM
+    features['home_team_save_pct_ewm'] = home_team_save_pct
+    features['away_team_save_pct_ewm'] = away_team_save_pct
+
+    # Fill any missing goalie EWM features with the season mean as a neutral prior
     league_avg = get_goalie_league_avg_ewm(df, season)
     for feat in GOALIE_L5_COLS + TEAM_GOALIE_PERFORMANCE + ['home_goalie_rest_days', 'away_goalie_rest_days']:
         if feat not in features:
             features[feat] = league_avg.get(feat, 3 if 'rest_days' in feat else 0)
-    
+
     return features
 
 

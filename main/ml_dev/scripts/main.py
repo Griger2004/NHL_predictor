@@ -1,5 +1,6 @@
 import os
 import asyncio
+import time
 import numpy as np
 import pandas as pd
 
@@ -188,6 +189,69 @@ def extract_all_basic_goalie_stats(boxscore_data):
     }
 
 
+# ===== EWM HELPERS =====
+
+_EWM_CARRY_WEIGHT = 0.7  # 70% last-season form, 30% toward league mean (FiveThirtyEight-style)
+
+
+def _ewm_with_season_regression(df, entity_col, season_col, stat_col, alpha=0.3):
+    """
+    Compute shift(1) EWM with regression-to-mean at season boundaries.
+
+    For each entity's first game of a new season the EWM is seeded with:
+        0.7 * final_ewm_of_prev_season + 0.3 * prev_season_league_avg
+    instead of carrying the raw value across seasons (leakage) or resetting
+    to NaN (throws away all historical signal).
+
+    df must be sorted by [entity_col, season_col, "date"] before calling.
+    Returns a float Series aligned to df.index.
+    """
+    result = pd.Series(np.nan, index=df.index, dtype=float)
+    seasons = sorted(df[season_col].unique())
+    league_avg_by_season = df.groupby(season_col)[stat_col].mean()
+
+    for _, entity_df in df.groupby(entity_col, sort=False):
+        entity_df = entity_df.sort_values([season_col, "date"])
+        prev_final_ewm = np.nan
+
+        for season in seasons:
+            mask = entity_df[season_col] == season
+            if not mask.any():
+                continue
+
+            group = entity_df[mask]
+            values = group[stat_col].to_numpy(dtype=float)
+            idx = group.index
+
+            # Seed for this season's first game
+            if np.isnan(prev_final_ewm):
+                seed = np.nan
+            else:
+                lg_avg = float(
+                    league_avg_by_season[season]
+                    if season in league_avg_by_season.index
+                    else league_avg_by_season.mean()
+                )
+                seed = _EWM_CARRY_WEIGHT * prev_final_ewm + (1 - _EWM_CARRY_WEIGHT) * lg_avg
+
+            # shift(1) semantics: ewm_vals[i] is the EWM *before* game i
+            ewm_vals = np.full(len(values), np.nan)
+            current_ewm = seed
+
+            for i, v in enumerate(values):
+                ewm_vals[i] = current_ewm
+                if not np.isnan(v):
+                    current_ewm = (
+                        v if np.isnan(current_ewm)
+                        else alpha * v + (1 - alpha) * current_ewm
+                    )
+
+            result.loc[idx] = ewm_vals
+            prev_final_ewm = current_ewm
+
+    return result
+
+
 # ===== PIPELINE =====
 
 class NHLPipeline:
@@ -201,10 +265,16 @@ class NHLPipeline:
         if self.df is None:
             raise ValueError("No data loaded. Run fetch_games() first.")
 
+    @staticmethod
+    def _format_elapsed(seconds):
+        mins, secs = divmod(seconds, 60)
+        return f"{int(mins)}m {secs:.2f}s" if mins >= 1 else f"{secs:.2f}s"
+
     # --- Async fetch helpers ---
 
     async def _fetch_season_games(self, season):
         game_ids = [f"{season}02{str(n).zfill(4)}" for n in range(1, MAX_GAMES + 1)]
+        print(f"  - Season {season}: requesting up to {len(game_ids)} regular-season game IDs...")
         async with self._api_client() as client:
             results = await asyncio.gather(*[
                 client.get_json(f"/v1/wsc/game-story/{gid}") for gid in game_ids
@@ -217,6 +287,7 @@ class NHLPipeline:
             if row is None:
                 break
             rows.append(row)
+        print(f"  - Season {season}: kept {len(rows)} completed games")
         return rows
 
     async def _fetch_all_goalie_data(self, game_ids):
@@ -269,22 +340,28 @@ class NHLPipeline:
     def fetch_games(self):
         """Step 1: Fetch basic game info for all seasons."""
         print("\n=== STEP 1: Fetch Basic Game Info ===")
+        step_start = time.perf_counter()
 
         os.makedirs(OUTPUT_DIR, exist_ok=True)
+        print(f"Output directory ready: {OUTPUT_DIR}")
         if os.path.exists(CSV_FILE):
             os.remove(CSV_FILE)
+            print(f"Removed existing output file: {CSV_FILE}")
+        else:
+            print(f"No existing output file found at: {CSV_FILE}")
 
         async def _run():
             results = await asyncio.gather(*[self._fetch_season_games(s) for s in SEASONS])
             return [row for season_rows in results for row in season_rows]
 
-        print(f"Fetching {len(SEASONS)} seasons concurrently...")
+        total_requested = len(SEASONS) * MAX_GAMES
         all_rows = asyncio.run(_run())
 
         df = pd.DataFrame(all_rows)
         df["date"] = pd.to_datetime(df["date"])
         self.df = df
-        print(f"Fetched {len(df)} games")
+        print(f"Fetched {len(df)} completed games")
+        print(f"Step 1 completed in {self._format_elapsed(time.perf_counter() - step_start)}")
 
     def add_team_rolling_features(self):
         """Step 2: Compute rolling averages and differentials."""
@@ -366,9 +443,8 @@ class NHLPipeline:
                     .transform(lambda s: s.rolling(5, min_periods=1).mean().shift(1))
                 )
             else:
-                combined[new_col] = (
-                    combined.groupby("team_abbrev")[source_col]
-                    .transform(lambda x: x.shift(1).ewm(alpha=alpha, adjust=False).mean())
+                combined[new_col] = _ewm_with_season_regression(
+                    combined, "team_abbrev", "season", source_col, alpha=alpha
                 )
 
         combined["games_l5"] = (
@@ -441,9 +517,8 @@ class NHLPipeline:
         )
 
         for stat in GOALIE_STATS:
-            goalie_long[f"{stat}_ewm"] = (
-                goalie_long.groupby("goalie")[stat]
-                .transform(lambda x: x.shift(1).ewm(alpha=alpha, adjust=False).mean())
+            goalie_long[f"{stat}_ewm"] = _ewm_with_season_regression(
+                goalie_long, "goalie", "season", stat, alpha=alpha
             )
 
         goalie_l5 = goalie_long[["game_id", "goalie"] + [f"{s}_ewm" for s in GOALIE_STATS]]
@@ -468,9 +543,8 @@ class NHLPipeline:
             .rename(columns={"away_team_abbrev": "team", "away_save_pct": "save_pct"}),
         ], ignore_index=True).sort_values(["team", "season", "date"]).reset_index(drop=True)
 
-        team_long["team_save_pct_ewm"] = (
-            team_long.groupby("team")["save_pct"]
-            .transform(lambda x: x.shift(1).ewm(alpha=alpha, adjust=False).mean())
+        team_long["team_save_pct_ewm"] = _ewm_with_season_regression(
+            team_long, "team", "season", "save_pct", alpha=alpha
         )
 
         goalie_df = (
@@ -694,13 +768,27 @@ class NHLPipeline:
 
     def run(self):
         """Run the full pipeline end to end."""
-        self.fetch_games()
-        self.add_team_rolling_features()
-        self.add_goalie_features()
-        self.add_standings_features()
-        self.add_rest_days()
-        self.add_head_to_head()
-        self.save()
+        print("\n=== PIPELINE TIMING ===")
+        pipeline_start = time.perf_counter()
+
+        steps = [
+            ("Step 1 - Fetch games", self.fetch_games),
+            ("Step 2 - Team rolling features", self.add_team_rolling_features),
+            ("Step 3 - Goalie features", self.add_goalie_features),
+            ("Step 4 - Standings features", self.add_standings_features),
+            ("Step 5 - Rest days", self.add_rest_days),
+            ("Step 6 - Head-to-head", self.add_head_to_head),
+            ("Step 7/8 - Save output", self.save),
+        ]
+
+        for label, func in steps:
+            started = time.perf_counter()
+            func()
+            elapsed = time.perf_counter() - started
+            print(f"{label} took {self._format_elapsed(elapsed)}")
+
+        total_elapsed = time.perf_counter() - pipeline_start
+        print(f"Total pipeline runtime: {self._format_elapsed(total_elapsed)}")
 
 
 if __name__ == "__main__":
