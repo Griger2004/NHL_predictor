@@ -748,7 +748,7 @@ def build_feature_row(game, df, standings_data, goalies_dict):
 # MAKE PREDICTIONS
 # =============================================================================
 
-def make_predictions(model, feature_names, games, df, standings_data, goalies_dict, threshold=0.5):
+def make_predictions(model, feature_names, games, df, standings_data, goalies_dict, threshold=0.52):
     """Generate predictions for all games."""
     print("\n" + "="*60)
     print("GENERATING PREDICTIONS")
@@ -864,4 +864,4 @@ async def main(date_str=None, threshold=0.5):
 
 if __name__ == "__main__":
     # threshold = 0.60  # Higher threshold = more conservative predictions    
-    asyncio.run(main(date_str=None, threshold=0.5))
+    asyncio.run(main(date_str=None, threshold=0.52))

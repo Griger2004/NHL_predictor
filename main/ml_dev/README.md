@@ -297,6 +297,15 @@ The following raw game stats are present in the CSV but excluded from model trai
 | `faceoffwin_pct` (raw) | Game-time stat; EWM version is used instead |
 | All other per-game raw stats | Same reasoning — only EWM transformations are features |
 
+### Data Leakage Prevention
+
+All temporal features are designed so that `feature[i]` uses only information from games `[0..i-1]`:
+
+- **EWM:** `_ewm_with_season_regression` stores `ewm_vals[i] = cur` *before* updating `cur` from `values[i]`.
+- **L5 rolling:** groupby transform applies `.shift(1)` before the rolling window.
+- **H2H:** `cumsum().shift(1)` and `expanding().mean().shift(1)` in step 6.
+- **Standings risk:** `/v1/standings/{game_date}` is called per game date. If the NHL API returns end-of-day standings (after that day's games complete), `win_pct_season` and `pointPctg` features would carry a small leakage. To eliminate this risk, change `add_standings_features()` to fetch with `date - 1`.
+
 ---
 
 ## Cold Start & Missing Data Handling

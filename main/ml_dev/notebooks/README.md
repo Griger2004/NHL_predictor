@@ -112,47 +112,67 @@ The grid search is run with `TimeSeriesSplit(n_splits=3)` on the training set (S
 
 ---
 
+## Data Leakage Audit
+
+The notebook runs a leakage check every time it executes (cell 4). Four categories are verified:
+
+| Check | How |
+|---|---|
+| No post-game outcome columns in features | Explicit allowlist checked against `X.columns` |
+| EWM features are pre-game | `_ewm_with_season_regression` stores `ewm[i]` before updating from `game[i]` |
+| L5 and H2H features are pre-game | `.shift(1)` applied in pipeline groupby transforms |
+| Goalie/team rest days are pre-game | Computed from prior games only, season-bounded |
+
+**Known risk:** Season standings features are fetched via `/v1/standings/{game_date}`. If the NHL API returns end-of-day standings (including that day's games), `win_pct_season` and `pointPctg` would carry a small leakage. To fix, re-fetch with `date - 1` in `add_standings_features()` in [main.py](../scripts/main.py).
+
+**NaN handling:** L5 features are NaN for the first 1–4 games of each season (no prior window). These rows are dropped, not imputed — global or season median imputation would average across train and test sets.
+
+---
+
 ## Model Evaluation
 
 ### Final Test Results (Season 3 — Fully Held Out)
 
 The model is retrained on the full training set (Seasons 1+2) with the best hyperparameters, then evaluated once on Season 3. This score is the honest estimate of generalization performance.
 
-| Metric | Value |
-|---|---|
-| **Accuracy** | **67.18%** |
-| Naive baseline (always home) | 54.19% |
-| Precision — home win (class 1) | 65% |
-| Recall — home win (class 1) | 80% |
-| F1-score — home win (class 1) | 0.72 |
-| Precision — away win (class 0) | 73% |
-| Recall — away win (class 0) | 53% |
-| F1-score — away win (class 0) | 0.61 |
+| Metric | Default (0.50) | Tuned (0.52) | Baseline | Delta (tuned) |
+|---|---|---|---|---|
+| **Accuracy** | 67.18% | **67.80%** | 54.19% (always home) | +13.61 pp |
+| **ROC-AUC** | ~0.73 | ~0.73 | 0.50 (random) | +0.23 |
+| **MCC** | 0.3456 | **0.3545** | 0.00 (chance) | +0.35 |
+| **Brier Score** | ~0.212 | ~0.212 | ~0.248 (base rate) | −0.036 |
+| False Positives | 292 | **260** | — | −32 |
+| False Negatives | 132 | 156 | — | +24 |
 
-### Confusion Matrix (Season 3 Test Set, 1,292 games)
+**Metric interpretation:**
+- **Accuracy:** 55–70% is the practical ceiling for game-level NHL prediction; 67–68% is competitive.
+- **ROC-AUC:** Threshold-independent discrimination. Above 0.70 is solid for sports prediction.
+- **MCC:** Accounts for the 54/46 class imbalance — unlike accuracy it doesn't inflate when one class dominates. Above 0.30 indicates the model is genuinely useful.
+- **Brier Score / Brier Skill Score:** Measures probability calibration quality. BSS > 0 means the model's probabilities beat the naive "always predict 54%" baseline. RF probabilities are often over-confident; use `CalibratedClassifierCV(method='isotonic')` if the calibration curve bows below the diagonal.
 
-```
-                     Predicted Home Win    Predicted Away Win
-Actual Home Win           544 (TP)              132 (FN)
-Actual Away Win           292 (FP)              324 (TN)
-```
+### Threshold Tuning
 
-**Interpretation:**
+The default 0.50 threshold is biased toward predicting home wins because the 54% base rate clusters probabilities just above 0.50. This produced FP=292 vs FN=132 — the model was calling home wins too aggressively.
 
-The model has higher recall for home wins (80%) than for away wins (53%). It is good at catching home wins but misses a fair number of away wins. This is partly a product of the data distribution (more home wins exist to train on) and partly reflects genuine difficulty — away wins are more upset-like and harder to anticipate.
+**Method:** Sweep thresholds 0.40–0.70 on the validation set (S2, using fold1_model trained on S1 only). Select the threshold that maximises macro-F1 on S2. Apply that threshold to S3 — the test set is never used to pick the cutoff.
 
-The 73% precision on away wins is actually better than home win precision (65%), meaning when the model does predict an away win, it is more often right. Away win predictions are rarer and more confident.
+**Result:** Optimal threshold = **0.52**. At this threshold on S3:
+- FP: 292 → 260 (−32 fewer wrong home-win calls)
+- FN: 132 → 156 (+24 missed home wins accepted as trade-off)
+- Accuracy: 67.18% → 67.80%; MCC: 0.3456 → 0.3545
+
+At the tuned threshold: Home Win precision=0.67, recall=0.77; Away Win precision=0.70, recall=0.58. The away-win recall improvement reflects the rebalancing effect of the higher threshold.
 
 ### Cross-Season Validation Summary
 
-| Fold | Train | Test | Accuracy |
-|---|---|---|---|
-| Fold 1 | Season 1 | Season 2 | 69.04% |
-| Fold 2 | Seasons 1+2 | Season 3 | 66.80% |
-| Mean | — | — | 67.92% |
-| **Final test** | **Seasons 1+2** | **Season 3 (held out)** | **67.18%** |
+| Fold | Train | Test | Threshold | Accuracy | ROC-AUC | MCC |
+|---|---|---|---|---|---|---|
+| Fold 1 | Season 1 | Season 2 | 0.50 | 69.04% | — | — |
+| Fold 2 | Seasons 1+2 | Season 3 | 0.50 | 66.80% | — | — |
+| **Final test** | **Seasons 1+2** | **Season 3** | **0.50** | **67.18%** | **~0.73** | **0.346** |
+| **Final test (tuned)** | **Seasons 1+2** | **Season 3** | **0.52** | **67.80%** | **~0.73** | **0.355** |
 
-The slight drop from Fold 1 to Fold 2 is expected and healthy — it reflects the model encountering genuine year-to-year variance rather than overfitting.
+The slight drop from Fold 1 to Fold 2 is expected — it reflects genuine year-to-year variance rather than overfitting.
 
 ---
 
@@ -208,11 +228,11 @@ These tests exist because silent feature engineering bugs are the most dangerous
 
 | Improvement | Expected Impact | Notes |
 |---|---|---|
-| XGBoost or LightGBM | Moderate | Generally outperform RF on tabular data; worth a direct comparison |
-| Probability calibration (Platt scaling / isotonic regression) | Low–Moderate | RF probabilities can be poorly calibrated; calibration improves log-loss |
-| SHAP values | Explainability only | Per-prediction feature attribution for inspecting individual games |
-| Vegas line as feature | High | Betting lines aggregate enormous information; may outweigh many engineered features |
-| Expected goals (xG) | Moderate | More predictive than shot count alone; requires a separate model or data source |
-| Player-level injury flags | Moderate–High | Missing star players is high-signal; currently not captured |
-| Larger hyperparameter grid | Low | Current grid is shallow; Bayesian optimization could find better configurations |
-| Ensemble (RF + XGB + LR) | Low–Moderate | Stacking can squeeze out a few percentage points |
+| Gradient boosting (XGBoost/LightGBM) | High | Learn feature interactions; generally beat RF on tabular sports data |
+| Probability calibration | Medium | RF over-confidence; use `CalibratedClassifierCV(method='isotonic')` on a held-out fold |
+| `class_weight='balanced'` | Medium | Improves MCC and away-win recall at some cost to home-win precision |
+| Feature engineering | Medium | Back-to-back flag, goalie-vs-offense interaction, late-season flag (game > 60) |
+| More training data (2019–2023) | Medium | ~4,000 more games; stabilises EWM and goalie priors |
+| Permutation-based feature pruning | Low–Medium | Drop near-zero features to reduce overfitting with 71 features / ~2,500 train games |
+| Standings leakage fix | Low–Medium | Re-fetch standings with `date - 1`; re-run pipeline to confirm no metric change |
+| Bayesian hyperparameter search | Low | Current 36-combo grid is shallow; optuna/hyperopt find better configurations |
