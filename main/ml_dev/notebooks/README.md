@@ -118,7 +118,7 @@ The notebook runs a leakage check every time it executes (cell 4). Four categori
 
 | Check | How |
 |---|---|
-| No post-game outcome columns in features | Explicit allowlist checked against `X.columns` |
+| No post-game outcome columns in features | Blocklist-style assertion verifies no forbidden post-game outcome columns are present in `X.columns` |
 | EWM features are pre-game | `_ewm_with_season_regression` stores `ewm[i]` before updating from `game[i]` |
 | L5 and H2H features are pre-game | `.shift(1)` applied in pipeline groupby transforms |
 | Goalie/team rest days are pre-game | Computed from prior games only, season-bounded |
