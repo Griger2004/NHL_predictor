@@ -27,6 +27,7 @@ RETRIES = 3
 ROLLING_N = 5
 EWM_ALPHA = 0.3
 EWM_CARRY_WEIGHT = 0.7
+DEFAULT_PREDICTION_THRESHOLD = 0.52
 
 # Maps EWM feature suffix → raw stat column suffix in nhl_data.csv
 TEAM_EWM_MAP = {
@@ -748,7 +749,7 @@ def build_feature_row(game, df, standings_data, goalies_dict):
 # MAKE PREDICTIONS
 # =============================================================================
 
-def make_predictions(model, feature_names, games, df, standings_data, goalies_dict, threshold=0.52):
+def make_predictions(model, feature_names, games, df, standings_data, goalies_dict, threshold=DEFAULT_PREDICTION_THRESHOLD):
     """Generate predictions for all games."""
     print("\n" + "="*60)
     print("GENERATING PREDICTIONS")
@@ -794,7 +795,7 @@ def make_predictions(model, feature_names, games, df, standings_data, goalies_di
     return predictions
 
 
-def display_predictions(predictions, threshold=0.5):
+def display_predictions(predictions, threshold=DEFAULT_PREDICTION_THRESHOLD):
     """Display predictions in a nice format."""
     print("\n" + "="*60)
     print("TODAY'S NHL PREDICTIONS")
@@ -825,7 +826,7 @@ def display_predictions(predictions, threshold=0.5):
 # MAIN FUNCTION
 # =============================================================================
 
-async def main(date_str=None, threshold=0.5):
+async def main(date_str=None, threshold=DEFAULT_PREDICTION_THRESHOLD):
     """Main prediction workflow."""
     print("\n" + "="*60)
     print("NHL GAME PREDICTOR")
@@ -864,4 +865,4 @@ async def main(date_str=None, threshold=0.5):
 
 if __name__ == "__main__":
     # threshold = 0.60  # Higher threshold = more conservative predictions    
-    asyncio.run(main(date_str=None, threshold=0.52))
+    asyncio.run(main(date_str=None))
