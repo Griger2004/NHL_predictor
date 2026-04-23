@@ -8,6 +8,21 @@ export const BASE_URL = import.meta.env.MODE === "development"
 
 const todayStr = () => new Date().toISOString().slice(0, 10)
 
+const localDateStr = (d) => {
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${y}-${m}-${day}`
+}
+
+const dateLabel = (dateStr) => {
+  const today = localDateStr(new Date())
+  const yesterday = localDateStr(new Date(Date.now() - 86400000))
+  if (dateStr === today) return 'Today'
+  if (dateStr === yesterday) return 'Yesterday'
+  return new Date(dateStr + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+}
+
 function App() {
   const [games, setGames] = useState([])
   const [predictions, setPredictions] = useState([])
@@ -79,6 +94,19 @@ function App() {
     }
   }
 
+  const gamesByDate = games.reduce((acc, g) => {
+    ;(acc[g.date] ??= []).push(g)
+    return acc
+  }, {})
+
+  const predsByDate = predictions.reduce((acc, p) => {
+    ;(acc[p.date] ??= []).push(p)
+    return acc
+  }, {})
+
+  const gameDates = Object.keys(gamesByDate).sort().reverse()
+  const predDates = Object.keys(predsByDate).sort().reverse()
+
   return (
     <div>
       <h1>
@@ -97,16 +125,21 @@ function App() {
       )}
 
       {gamesError && <div className='error-banner'>⚠ {gamesError}</div>}
-      <ul>
-        {games.map((game, index) => (
-          <li key={index}>
-            {game.away_team_name} ({game.away_team}) <b>@</b> {game.home_team_name} ({game.home_team})
-            <span className='game_time'>
-              {new Date(game.game_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-            </span>
-          </li>
-        ))}
-      </ul>
+      {gameDates.map(date => (
+        <div key={date}>
+          <h3 className='date-section-header'>{dateLabel(date)}</h3>
+          <ul>
+            {gamesByDate[date].map((game, i) => (
+              <li key={i}>
+                {game.away_team_name} ({game.away_team}) <b>@</b> {game.home_team_name} ({game.home_team})
+                <span className='game_time'>
+                  {new Date(game.game_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
       {loadingGames && <div className='spinner' />}
       <button
         onClick={fetchPrediction}

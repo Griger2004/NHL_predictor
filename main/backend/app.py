@@ -4,7 +4,7 @@ import subprocess
 import os
 import json
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from db import (
     init_db, upsert_game, upsert_final_result,
@@ -128,35 +128,40 @@ def predict():
 @app.route('/api/games', methods=['GET'])
 def get_games():
     try:
-        today_str = datetime.now().strftime("%Y-%m-%d")
+        today = datetime.now()
+        yesterday = today - timedelta(days=1)
+        today_str = today.strftime("%Y-%m-%d")
+        yesterday_str = yesterday.strftime("%Y-%m-%d")
+
+        # Requesting yesterday's schedule returns a gameWeek spanning yesterday→today+
         response = requests.get(
-            f'https://api-web.nhle.com/v1/schedule/{today_str}',
+            f'https://api-web.nhle.com/v1/schedule/{yesterday_str}',
             timeout=10,
         )
         response.raise_for_status()
         data = response.json()
 
-        today_games = next(
-            (day["games"] for day in data.get("gameWeek", []) if day.get("date") == today_str),
-            [],
-        )
-
-        games = [
-            {
-                "game_id": game.get("id"),
-                "away_team": game.get("awayTeam", {}).get("abbrev"),
-                "home_team": game.get("homeTeam", {}).get("abbrev"),
-                "away_team_name": game.get("awayTeam", {}).get("placeName", {}).get("default", ""),
-                "home_team_name": game.get("homeTeam", {}).get("placeName", {}).get("default", ""),
-                "away_team_full_name": (game.get("awayTeam", {}).get("placeName", {}).get("default", "") + " " + game.get("awayTeam", {}).get("commonName", {}).get("default", "")).strip(),
-                "home_team_full_name": (game.get("homeTeam", {}).get("placeName", {}).get("default", "") + " " + game.get("homeTeam", {}).get("commonName", {}).get("default", "")).strip(),
-                "game_time": game.get("startTimeUTC"),
-                "game_state": game.get("gameState"),
-                "home_score": game.get("homeTeam", {}).get("score", 0),
-                "away_score": game.get("awayTeam", {}).get("score", 0),
-            }
-            for game in today_games
-        ]
+        target_dates = {yesterday_str, today_str}
+        games = []
+        for day in data.get("gameWeek", []):
+            date = day.get("date")
+            if date not in target_dates:
+                continue
+            for game in day.get("games", []):
+                games.append({
+                    "game_id": game.get("id"),
+                    "date": date,
+                    "away_team": game.get("awayTeam", {}).get("abbrev"),
+                    "home_team": game.get("homeTeam", {}).get("abbrev"),
+                    "away_team_name": game.get("awayTeam", {}).get("placeName", {}).get("default", ""),
+                    "home_team_name": game.get("homeTeam", {}).get("placeName", {}).get("default", ""),
+                    "away_team_full_name": (game.get("awayTeam", {}).get("placeName", {}).get("default", "") + " " + game.get("awayTeam", {}).get("commonName", {}).get("default", "")).strip(),
+                    "home_team_full_name": (game.get("homeTeam", {}).get("placeName", {}).get("default", "") + " " + game.get("homeTeam", {}).get("commonName", {}).get("default", "")).strip(),
+                    "game_time": game.get("startTimeUTC"),
+                    "game_state": game.get("gameState"),
+                    "home_score": game.get("homeTeam", {}).get("score", 0),
+                    "away_score": game.get("awayTeam", {}).get("score", 0),
+                })
 
         return jsonify({"games": games})
 
