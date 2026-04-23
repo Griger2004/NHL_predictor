@@ -75,6 +75,8 @@ def get_games():
                 "home_team": game.get("homeTeam", {}).get("abbrev"),
                 "away_team_name": game.get("awayTeam", {}).get("placeName", {}).get("default", ""),
                 "home_team_name": game.get("homeTeam", {}).get("placeName", {}).get("default", ""),
+                "away_team_full_name": (game.get("awayTeam", {}).get("placeName", {}).get("default", "") + " " + game.get("awayTeam", {}).get("commonName", {}).get("default", "")).strip(),
+                "home_team_full_name": (game.get("homeTeam", {}).get("placeName", {}).get("default", "") + " " + game.get("homeTeam", {}).get("commonName", {}).get("default", "")).strip(),
                 "game_time": game.get("startTimeUTC"),
                 "game_state": game.get("gameState"),
                 "home_score": game.get("homeTeam", {}).get("score", 0),
