@@ -70,6 +70,7 @@ function App() {
       >
         {loadingPredictions ? 'Predicting...' : 'Generate'}
       </button>
+      {loadingPredictions && <div className='spinner' />}
       {predictions.length > 0 && (
         <div>
           <h2>Predictions</h2>
