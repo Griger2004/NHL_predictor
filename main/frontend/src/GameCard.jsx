@@ -15,7 +15,7 @@ function GameCard({ prediction: pred }) {
         <span>Home {goalieLabel}: <strong>{pred.home_goalie}</strong></span>
       </div>
       <div className='result'>
-        <span className='winner-label'>Predicted winner: {winner}</span>
+        <span className='winner-label'>Predicted winner: <strong>{winner}</strong></span>
       </div>
       <div className='prob-bar'>
         <span className='prob-bar-away' style={{ width: `${awayProb}%` }}>

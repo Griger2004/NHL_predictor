@@ -78,6 +78,25 @@ li {
   margin: 16px auto;
 }
 
+.error-banner {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+  background: rgba(229, 57, 53, 0.08);
+  border: 1px solid rgba(229, 57, 53, 0.25);
+  border-left: 3px solid #e53935;
+  border-radius: 6px;
+  color: #ef9a9a;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  margin: 8px auto;
+}
+
+.predictions-error-banner {
+  margin-top: 46px;
+}
+
 .game-card {
   border: 1px solid #333;
   border-radius: 8px;

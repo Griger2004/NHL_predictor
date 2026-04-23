@@ -13,14 +13,15 @@ function App() {
   const [predictions, setPredictions] = useState([])
   const [loadingGames, setLoadingGames] = useState(false)
   const [loadingPredictions, setLoadingPredictions] = useState(false)
-  const [error, setError] = useState(null)
+  const [gamesError, setGamesError] = useState(null)
+  const [predictionsError, setPredictionsError] = useState(null)
 
   useEffect(() => {
     fetchGames()
   }, []) //will run once on mount
 
   const fetchGames = async () => {
-    setError(null)
+    setGamesError(null)
     setLoadingGames(true)
     try {
       const response = await fetch(BASE_URL + "/games")
@@ -28,14 +29,14 @@ function App() {
       const data = await response.json()
       setGames(data.games)
     } catch (err) {
-      setError(err.message)
+      setGamesError(err instanceof TypeError ? "Unable to load games. Check your connection and try refreshing." : err.message)
     } finally {
       setLoadingGames(false)
     }
   }
 
   const fetchPrediction = async () => {
-    setError(null)
+    setPredictionsError(null)
     setLoadingPredictions(true)
     try {
       const response = await fetch(BASE_URL + "/predict")
@@ -43,7 +44,7 @@ function App() {
       const data = await response.json()
       setPredictions(data.predictions)
     } catch (err) {
-      setError(err.message)
+      setPredictionsError(err instanceof TypeError ? "Unable to generate predictions. Check your connection and try again." : err.message)
     } finally {
       setLoadingPredictions(false)
     }
@@ -52,7 +53,7 @@ function App() {
   return (
     <div>
       <h1>NHL Games <span style={{fontSize: '0.55em', fontWeight: 400, color: '#aaa', verticalAlign: 'middle'}}>{new Date().toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</span></h1>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {gamesError && <div className='error-banner'>⚠ {gamesError}</div>}
       <ul>
         {games.map((game, index) => (
           <li key={index}>
@@ -63,6 +64,7 @@ function App() {
           </li>
         ))}
       </ul>
+      {loadingGames && <div className='spinner' />}
       <button
         onClick={fetchPrediction}
         className='generate_btn'
@@ -71,6 +73,7 @@ function App() {
         {loadingPredictions ? 'Predicting...' : 'Generate'}
       </button>
       {loadingPredictions && <div className='spinner' />}
+      {predictionsError && <div className='error-banner predictions-error-banner'>⚠ {predictionsError}</div>}
       {predictions.length > 0 && (
         <div>
           <h2>Predictions</h2>
