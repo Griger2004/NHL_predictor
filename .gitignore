@@ -51,3 +51,6 @@ CLAUDE.md
 
 # Old data
 archive/
+
+# Database files
+*.db
