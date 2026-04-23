@@ -817,7 +817,7 @@ def display_predictions(predictions, threshold=DEFAULT_PREDICTION_THRESHOLD):
     
     # Save to CSV
     df_pred = pd.DataFrame(predictions)
-    output_file = f"predictions_{predictions[0]['date']}.csv"
+    output_file = f"./predictions/predictions_{predictions[0]['date']}.csv"
     df_pred.to_csv(output_file, index=False)
     print(f"✓ Predictions saved to: {output_file}")
 
