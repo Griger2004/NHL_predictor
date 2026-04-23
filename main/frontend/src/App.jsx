@@ -84,7 +84,11 @@ function App() {
           </div>
           <ul>
             {predictions.map((pred, index) => (
-              <GameCard key={index} prediction={pred} />
+              <GameCard
+                key={index}
+                prediction={pred}
+                gameStatus={games.find(g => g.game_id === pred.game_id)}
+              />
             ))}
           </ul>
         </div>

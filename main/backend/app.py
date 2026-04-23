@@ -76,6 +76,9 @@ def get_games():
                 "away_team_name": game.get("awayTeam", {}).get("placeName", {}).get("default", ""),
                 "home_team_name": game.get("homeTeam", {}).get("placeName", {}).get("default", ""),
                 "game_time": game.get("startTimeUTC"),
+                "game_state": game.get("gameState"),
+                "home_score": game.get("homeTeam", {}).get("score", 0),
+                "away_score": game.get("awayTeam", {}).get("score", 0),
             }
             for game in today_games
         ]

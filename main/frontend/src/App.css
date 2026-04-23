@@ -104,6 +104,92 @@ li {
   margin-bottom: 12px;
   background: #1a1a1a;
   text-align: left;
+  position: relative;
+}
+
+.game-card.finished {
+  border-color: #222;
+  padding-right: 90px;
+}
+
+.game-card.finished .matchup,
+.game-card.finished .goalies,
+.game-card.finished .prob-bar {
+  opacity: 0.32;
+}
+
+.game-card.finished .away-team-text {
+  color: #bdbdbd;
+}
+
+.game-card.finished .home-team-text {
+  color: #5c5c5c;
+}
+
+.game-card.finished .winner-label,
+.game-card.finished .goalies,
+.game-card.finished .result {
+  color: #8f8f8f;
+}
+
+.game-card.finished .winner-label {
+  opacity: 0.32;
+}
+
+.game-card.finished .actual-winner-label {
+  opacity: 1;
+}
+
+@keyframes correct-glow {
+  0%, 100% { box-shadow: 0 0 5px 1px rgba(76, 175, 80, 0.3); }
+  50%       { box-shadow: 0 0 5px 4px rgba(76, 175, 80, 0.65); }
+}
+
+.game-card.correct {
+  border-color: #4caf50;
+  animation: correct-glow 2.0s ease-in-out infinite;
+}
+
+.game-card.finished .prob-bar-away {
+  background: #7c7c7c;
+  color: #d8d8d8;
+}
+
+.game-card.finished .prob-bar-home {
+  background: #5f5f5f;
+  color: #d8d8d8;
+}
+
+.scoreboard {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.scoreboard-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.scoreboard-score {
+  color: #fff;
+  font-size: 1rem;
+  min-width: 16px;
+  text-align: right;
+}
+
+.actual-winner-label {
+  color: #4caf50;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
 .matchup {
