@@ -885,15 +885,11 @@ def _get_stored_goalie_states(game_id):
         return {}
 
 
-def _goalie_changed(stored, current_name, current_tier):
-    """Return True if the goalie name changed or tier was upgraded from FUT."""
+def _goalie_changed(stored, current_name):
+    """Return True if this game has never been predicted or the goalie name changed."""
     if not stored:
         return True
-    if stored["goalie_name"] != current_name:
-        return True
-    if stored["detection_tier"] == "FUT" and current_tier in ("PRE", "LIVE"):
-        return True
-    return False
+    return stored["goalie_name"] != current_name
 
 
 def save_predictions_to_db(predictions, goalies_dict, model_version=None):
@@ -1005,12 +1001,8 @@ async def main(date_str=None, threshold=DEFAULT_PREDICTION_THRESHOLD,
             gid = game["game_id"]
             g = goalies_dict[gid]
             stored = _get_stored_goalie_states(gid)
-            home_changed = _goalie_changed(
-                stored.get("home"), g["home_goalie"], g["home_goalie_tier"]
-            )
-            away_changed = _goalie_changed(
-                stored.get("away"), g["away_goalie"], g["away_goalie_tier"]
-            )
+            home_changed = _goalie_changed(stored.get("home"), g["home_goalie"])
+            away_changed = _goalie_changed(stored.get("away"), g["away_goalie"])
             if home_changed or away_changed:
                 games_to_predict.append(game)
             else:

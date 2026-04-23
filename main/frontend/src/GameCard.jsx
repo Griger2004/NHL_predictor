@@ -58,8 +58,8 @@ function GameCard({ prediction: pred, gameStatus, history = [] }) {
             {statusLabel}
           </span>
         )}
-        {wasRepredicted && (
-          <span className='repredicted-badge'>Goalie updated</span>
+        {goalieChanges.length > 0 && (
+          <span className='repredicted-badge'>Goalies updated</span>
         )}
       </div>
       <div className='goalies'>

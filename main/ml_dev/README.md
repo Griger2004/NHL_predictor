@@ -409,7 +409,7 @@ FROM goalie_states
 WHERE game_id = :game_id AND side = :side
 ```
 
-If the stored goalie name differs from the currently identified starter, or the detection tier has upgraded (e.g. `FUT` → `PRE`), the game is marked for reprediction. Games where the goalie is unchanged are skipped entirely.
+If the stored goalie name differs from the currently identified starter, the game is marked for reprediction. Games where the goalie name is unchanged are skipped entirely — a tier upgrade alone (e.g. `FUT` → `LIVE`) does not trigger reprediction, because the feature vector is identical when the name hasn't changed.
 
 #### Writes
 
@@ -452,13 +452,12 @@ For each game_id in the input list:
     3. Compare:
          changed = (no stored record)
                 OR (stored_name != current_name)
-                OR (stored_tier == 'FUT' AND current_tier IN ('PRE', 'LIVE'))
     4. If changed → build feature vector → run inference → INSERT predictions
        If unchanged → skip (no new prediction row)
     5. UPSERT goalie_states with current name + tier
 ```
 
-The tier upgrade condition (`FUT` → `PRE`) is intentional: even if the same goalie is confirmed by lineup submission, the prediction is re-run because the model may produce a slightly different confidence with a confirmed starter vs. a probabilistic guess.
+Only a name change triggers reprediction. A tier upgrade alone (e.g. `FUT` → `LIVE` when the same goalie is confirmed) does not — all features are derived from the historical DB by goalie name, so the feature vector and model output would be identical.
 
 ---
 

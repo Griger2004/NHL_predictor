@@ -71,7 +71,7 @@ Detection tiers reflect confidence:
 - `PRE` — goalie flagged `startingLineup=True` in the NHL API (1–2 hours before puck drop)
 - `LIVE` — goalie with highest time-on-ice from the boxscore (most accurate, during/after game)
 
-A reprediction is triggered if the stored name differs from the current name, or if the tier upgraded (e.g. `FUT` → `PRE`). This is evaluated entirely inside `predict_games.py`.
+A reprediction is triggered only if the stored goalie name differs from the current name. A tier upgrade alone (e.g. `FUT` → `LIVE`) does not trigger reprediction — all features are derived from the historical DB by goalie name, so the feature vector and model output would be identical. This is evaluated entirely inside `predict_games.py`.
 
 #### `predictions`
 
@@ -191,8 +191,8 @@ Returns today's schedule directly from the NHL API without hitting the database.
 ### `GET /api/predictions/history?date=YYYY-MM-DD`
 
 Returns all prediction rows for a date, including repredictions. The frontend uses this to:
-- Detect if `history.length > 1` (goalie was updated mid-day)
-- Show which goalie changed between prediction runs
+- Detect if any goalie name changed between consecutive prediction runs
+- Show a "Goalies updated since pre-game" badge and a from → to diff when a change is detected
 
 ---
 
