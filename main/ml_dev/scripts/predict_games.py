@@ -427,21 +427,34 @@ def load_model_and_features():
 
 
 def load_historical_data():
-    """Load historical data for computing rolling stats."""
+    """Load historical data from DB (preferred) or CSV fallback."""
     print("\n" + "="*60)
     print("LOADING HISTORICAL DATA")
     print("="*60)
-    
+
+    if DB_AVAILABLE:
+        try:
+            df = pd.read_sql(
+                "SELECT * FROM nhl_game_data ORDER BY date",
+                _db_engine,
+                parse_dates=["date"],
+            )
+            if len(df) > 0:
+                print(f"Loaded {len(df)} historical games from DB")
+                print(f"Date range: {df['date'].min().date()} to {df['date'].max().date()}")
+                return df
+        except Exception as e:
+            print(f"  DB load failed ({e}), falling back to CSV")
+
     if not os.path.exists(HISTORICAL_DATA_FILE):
         raise FileNotFoundError(
             f"Historical data file not found: {HISTORICAL_DATA_FILE}\n"
-            "Please run your data scraper first to generate this file."
+            "Run main.py to generate it, or run migrate_csv_to_db.py to populate the DB."
         )
-    
+
     df = pd.read_csv(HISTORICAL_DATA_FILE, parse_dates=["date"])
-    print(f"Loaded {len(df)} historical games")
+    print(f"Loaded {len(df)} historical games from CSV")
     print(f"Date range: {df['date'].min().date()} to {df['date'].max().date()}")
-    
     return df
 
 

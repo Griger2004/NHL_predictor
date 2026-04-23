@@ -5,6 +5,24 @@ import numpy as np
 import pandas as pd
 
 from api.client import ApiClient
+
+# DB setup — writes nhl_game_data table after each pipeline run
+try:
+    from sqlalchemy import create_engine as _create_engine
+    _SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
+    _PROJECT_DIR = os.path.abspath(os.path.join(_SCRIPTS_DIR, '..', '..'))
+    _DEFAULT_DB_URL = f"sqlite:///{os.path.join(_PROJECT_DIR, 'nhl_predictions.db')}"
+
+    def _build_db_engine():
+        url = os.environ.get("DATABASE_URL", _DEFAULT_DB_URL)
+        if url.startswith("postgres://"):
+            url = url.replace("postgres://", "postgresql://", 1)
+        return _create_engine(url, pool_pre_ping=True)
+
+    _db_engine = _build_db_engine()
+    DB_AVAILABLE = True
+except ImportError:
+    DB_AVAILABLE = False
 from config import (
     API_BASE_URL, OUTPUT_DIR, CSV_FILE, TIMEOUT, MAX_CONCURRENT_REQUESTS,
     RETRIES, MAX_GAMES, SEASONS, STANDINGS_FIELDS, HOME_RENAME, AWAY_RENAME,
@@ -552,6 +570,17 @@ class NHLPipeline:
         df.to_csv(CSV_FILE, index=False)
         self.df = df
         print(f"Saved {len(df)} games to {CSV_FILE}")
+
+        if DB_AVAILABLE:
+            try:
+                df_db = df.drop(columns=["matchup"], errors="ignore")
+                df_db.to_sql(
+                    "nhl_game_data", _db_engine,
+                    if_exists="replace", index=False,
+                )
+                print(f"Saved {len(df_db)} games to nhl_game_data DB table")
+            except Exception as e:
+                print(f"  Warning: DB write failed — {e}")
 
     def run(self):
         """Run the full pipeline end to end."""
