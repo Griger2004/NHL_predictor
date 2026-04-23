@@ -128,7 +128,7 @@ function App() {
       {gameDates.map(date => (
         <div key={date}>
           <h3 className='date-section-header'>{dateLabel(date)}</h3>
-          <ul>
+          <ul className={dateLabel(date) === 'Yesterday' ? 'games-yesterday' : 'games-today'}>
             {gamesByDate[date].map((game, i) => (
               <li key={i}>
                 {game.away_team_name} ({game.away_team}) <b>@</b> {game.home_team_name} ({game.home_team})

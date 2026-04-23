@@ -35,8 +35,8 @@ li {
 }
 
 .generate_btn:not(:disabled):hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
 
 .generate_btn:not(:disabled):active {
@@ -96,6 +96,15 @@ li {
 .predictions-error-banner {
   margin-top: 46px;
 }
+
+.games-yesterday {
+  font-size: 0.8rem;
+  opacity: 0.4;
+}
+
+/* .games-yesterday:hover {
+  opacity: 0.4;
+} */
 
 .game-card {
   border: 1px solid #333;

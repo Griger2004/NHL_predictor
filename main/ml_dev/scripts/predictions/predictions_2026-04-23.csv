@@ -1,0 +1,2 @@
+game_id,date,time,away_team,home_team,away_team_name,home_team_name,away_goalie,home_goalie,pred_home_win,prob_home_win,prob_away_win,confidence
+2025030133,2026-04-23,2026-04-23T23:30:00Z,CAR,OTT,Carolina,Ottawa,F. Andersen,L. Ullmark,1,0.5242321996087531,0.4757678003912469,0.5242321996087531
