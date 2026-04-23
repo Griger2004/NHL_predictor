@@ -4,6 +4,8 @@ Fetches today's NHL games and predicts outcomes using trained Random Forest mode
 """
 
 import os
+import sys
+import json
 import pickle
 import pandas as pd
 import numpy as np
@@ -15,6 +17,25 @@ import warnings
 warnings.filterwarnings('ignore')
 
 from api.client import ApiClient
+
+# DB setup — uses same SQLite file as the Flask backend
+_SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
+_PROJECT_DIR = os.path.abspath(os.path.join(_SCRIPTS_DIR, '..', '..'))
+_DEFAULT_DB_URL = f"sqlite:///{os.path.join(_PROJECT_DIR, 'nhl_predictions.db')}"
+
+try:
+    from sqlalchemy import create_engine, text as sa_text
+
+    def _build_db_engine():
+        url = os.environ.get("DATABASE_URL", _DEFAULT_DB_URL)
+        if url.startswith("postgres://"):
+            url = url.replace("postgres://", "postgresql://", 1)
+        return create_engine(url, pool_pre_ping=True)
+
+    _db_engine = _build_db_engine()
+    DB_AVAILABLE = True
+except ImportError:
+    DB_AVAILABLE = False
 
 # =============================================================================
 # CONFIGURATION
@@ -210,6 +231,8 @@ async def get_todays_goalies(games, df):
 
         home_goalie = None
         away_goalie = None
+        home_tier = "FUT"
+        away_tier = "FUT"
 
         boxscore = boxscore_results[i]
         if boxscore:
@@ -218,18 +241,24 @@ async def get_todays_goalies(games, df):
             away_stats = boxscore.get("playerByGameStats", {}).get("awayTeam", {}).get("goalies", [])
             if home_stats:
                 home_goalie = get_starter_goalie(home_stats)
+                home_tier = "LIVE"
             if away_stats:
                 away_goalie = get_starter_goalie(away_stats)
+                away_tier = "LIVE"
 
             # Tier 2: PRE — lineup submitted, read rosterSpots with startingLineup flag
             if not home_goalie:
                 home_goalie = _starter_from_roster_spots(
                     boxscore.get("homeTeam", {}).get("rosterSpots", [])
                 )
+                if home_goalie:
+                    home_tier = "PRE"
             if not away_goalie:
                 away_goalie = _starter_from_roster_spots(
                     boxscore.get("awayTeam", {}).get("rosterSpots", [])
                 )
+                if away_goalie:
+                    away_tier = "PRE"
 
         # Tier 3: FUT — lineup not announced, use most-started goalie this season
         if not home_goalie:
@@ -243,6 +272,8 @@ async def get_todays_goalies(games, df):
             "away_team": away_team,
             "home_goalie": home_goalie or "Unknown",
             "away_goalie": away_goalie or "Unknown",
+            "home_goalie_tier": home_tier,
+            "away_goalie_tier": away_tier,
         }
 
         print(f"  {away_team} @ {home_team}")
@@ -396,21 +427,34 @@ def load_model_and_features():
 
 
 def load_historical_data():
-    """Load historical data for computing rolling stats."""
+    """Load historical data from DB (preferred) or CSV fallback."""
     print("\n" + "="*60)
     print("LOADING HISTORICAL DATA")
     print("="*60)
-    
+
+    if DB_AVAILABLE:
+        try:
+            df = pd.read_sql(
+                "SELECT * FROM nhl_game_data ORDER BY date",
+                _db_engine,
+                parse_dates=["date"],
+            )
+            if len(df) > 0:
+                print(f"Loaded {len(df)} historical games from DB")
+                print(f"Date range: {df['date'].min().date()} to {df['date'].max().date()}")
+                return df
+        except Exception as e:
+            print(f"  DB load failed ({e}), falling back to CSV")
+
     if not os.path.exists(HISTORICAL_DATA_FILE):
         raise FileNotFoundError(
             f"Historical data file not found: {HISTORICAL_DATA_FILE}\n"
-            "Please run your data scraper first to generate this file."
+            "Run main.py to generate it, or run migrate_csv_to_db.py to populate the DB."
         )
-    
+
     df = pd.read_csv(HISTORICAL_DATA_FILE, parse_dates=["date"])
-    print(f"Loaded {len(df)} historical games")
+    print(f"Loaded {len(df)} historical games from CSV")
     print(f"Date range: {df['date'].min().date()} to {df['date'].max().date()}")
-    
     return df
 
 
@@ -823,10 +867,110 @@ def display_predictions(predictions, threshold=DEFAULT_PREDICTION_THRESHOLD):
 
 
 # =============================================================================
+# DATABASE HELPERS
+# =============================================================================
+
+def _get_stored_goalie_states(game_id):
+    """Return {side: {goalie_name, detection_tier}} from DB, or empty dict."""
+    if not DB_AVAILABLE:
+        return {}
+    try:
+        with _db_engine.connect() as conn:
+            rows = conn.execute(sa_text("""
+                SELECT side, goalie_name, detection_tier
+                FROM goalie_states WHERE game_id = :gid
+            """), {"gid": game_id}).mappings().all()
+            return {r["side"]: dict(r) for r in rows}
+    except Exception:
+        return {}
+
+
+def _goalie_changed(stored, current_name, current_tier):
+    """Return True if the goalie name changed or tier was upgraded from FUT."""
+    if not stored:
+        return True
+    if stored["goalie_name"] != current_name:
+        return True
+    if stored["detection_tier"] == "FUT" and current_tier in ("PRE", "LIVE"):
+        return True
+    return False
+
+
+def save_predictions_to_db(predictions, goalies_dict, model_version=None):
+    """Write new predictions and goalie states to DB."""
+    if not DB_AVAILABLE:
+        return
+    try:
+        with _db_engine.begin() as conn:
+            for pred in predictions:
+                gid = pred["game_id"]
+                g = goalies_dict[gid]
+                home_tier = g.get("home_goalie_tier", "FUT")
+                away_tier = g.get("away_goalie_tier", "FUT")
+
+                # Ensure game row exists
+                conn.execute(sa_text("""
+                    INSERT INTO games
+                        (game_id, game_date, season, home_team, away_team,
+                         home_team_name, away_team_name, game_time_utc)
+                    VALUES
+                        (:gid, :date, :season, :home_team, :away_team,
+                         :home_team_name, :away_team_name, :time)
+                    ON CONFLICT(game_id) DO UPDATE SET updated_at = datetime('now')
+                """), {
+                    "gid": gid, "date": pred["date"],
+                    "season": pred.get("season"),
+                    "home_team": pred["home_team"], "away_team": pred["away_team"],
+                    "home_team_name": pred["home_team_name"],
+                    "away_team_name": pred["away_team_name"],
+                    "time": pred.get("time"),
+                })
+
+                conn.execute(sa_text("""
+                    INSERT INTO predictions
+                        (game_id, home_goalie, away_goalie,
+                         home_goalie_tier, away_goalie_tier,
+                         pred_home_win, prob_home_win, prob_away_win, confidence,
+                         model_version)
+                    VALUES
+                        (:gid, :hg, :ag, :hgt, :agt,
+                         :phw, :prob_h, :prob_a, :conf, :mv)
+                """), {
+                    "gid": gid,
+                    "hg": pred["home_goalie"], "ag": pred["away_goalie"],
+                    "hgt": home_tier, "agt": away_tier,
+                    "phw": pred["pred_home_win"],
+                    "prob_h": pred["prob_home_win"],
+                    "prob_a": pred["prob_away_win"],
+                    "conf": pred["confidence"],
+                    "mv": model_version or os.path.basename(MODEL_FILE),
+                })
+
+                # Upsert goalie states for change detection on next call
+                for side, name, tier in [
+                    ("home", pred["home_goalie"], home_tier),
+                    ("away", pred["away_goalie"], away_tier),
+                ]:
+                    conn.execute(sa_text("""
+                        INSERT INTO goalie_states (game_id, side, goalie_name, detection_tier)
+                        VALUES (:gid, :side, :name, :tier)
+                        ON CONFLICT(game_id, side) DO UPDATE SET
+                            goalie_name    = excluded.goalie_name,
+                            detection_tier = excluded.detection_tier,
+                            recorded_at    = datetime('now')
+                    """), {"gid": gid, "side": side, "name": name, "tier": tier})
+
+        print(f"✓ {len(predictions)} prediction(s) saved to DB")
+    except Exception as e:
+        print(f"  Warning: DB write failed — {e}")
+
+
+# =============================================================================
 # MAIN FUNCTION
 # =============================================================================
 
-async def main(date_str=None, threshold=DEFAULT_PREDICTION_THRESHOLD):
+async def main(date_str=None, threshold=DEFAULT_PREDICTION_THRESHOLD,
+               game_ids_filter=None):
     """Main prediction workflow."""
     print("\n" + "="*60)
     print("NHL GAME PREDICTOR")
@@ -836,27 +980,61 @@ async def main(date_str=None, threshold=DEFAULT_PREDICTION_THRESHOLD):
         # Load model and data
         model, feature_names = load_model_and_features()
         df = load_historical_data()
-        
+
         # Fetch today's games
         games, standings_data = await get_todays_games(date_str)
-        
+
         if not games:
             print("\nNo games to predict today!")
             return
-        
-        # Fetch goalie information
+
+        # Apply caller-supplied filter (list of game_ids from app.py)
+        if game_ids_filter is not None:
+            allowed = set(game_ids_filter)
+            games = [g for g in games if g["game_id"] in allowed]
+            if not games:
+                print("\nAll filtered games are already up to date — nothing to predict.")
+                return
+
+        # Fetch goalie information (tiers now included in goalies_dict)
         goalies_dict = await get_todays_goalies(games, df)
-        
-        # Make predictions
-        predictions = make_predictions(model, feature_names, games, df, standings_data, goalies_dict, threshold)
-        
-        # Display results
+
+        # Skip games where goalie hasn't changed since last prediction
+        games_to_predict = []
+        for game in games:
+            gid = game["game_id"]
+            g = goalies_dict[gid]
+            stored = _get_stored_goalie_states(gid)
+            home_changed = _goalie_changed(
+                stored.get("home"), g["home_goalie"], g["home_goalie_tier"]
+            )
+            away_changed = _goalie_changed(
+                stored.get("away"), g["away_goalie"], g["away_goalie_tier"]
+            )
+            if home_changed or away_changed:
+                games_to_predict.append(game)
+            else:
+                print(f"  Skipping {g['away_team']} @ {g['home_team']} — goalie unchanged")
+
+        if not games_to_predict:
+            print("\nAll games are up to date — no repredictions needed.")
+            return
+
+        # Make predictions for changed/new games only
+        predictions = make_predictions(
+            model, feature_names, games_to_predict, df, standings_data, goalies_dict, threshold
+        )
+
+        # Write to DB before display (so app.py can reload)
+        save_predictions_to_db(predictions, goalies_dict)
+
+        # Display results and write CSV
         display_predictions(predictions, threshold)
-        
+
         print("\n" + "="*60)
         print("PREDICTION COMPLETE!")
         print("="*60)
-        
+
     except Exception as e:
         print(f"\nERROR: {str(e)}")
         import traceback
@@ -864,5 +1042,13 @@ async def main(date_str=None, threshold=DEFAULT_PREDICTION_THRESHOLD):
 
 
 if __name__ == "__main__":
-    # threshold = 0.60  # Higher threshold = more conservative predictions    
-    asyncio.run(main(date_str=None))
+    # Optional: receive a JSON list of game_ids that need reprediction
+    # e.g. python predict_games.py '[2025030143, 2025030163]'
+    game_ids_filter = None
+    if len(sys.argv) > 1:
+        try:
+            game_ids_filter = json.loads(sys.argv[1])
+        except (json.JSONDecodeError, IndexError):
+            pass
+
+    asyncio.run(main(date_str=None, game_ids_filter=game_ids_filter))

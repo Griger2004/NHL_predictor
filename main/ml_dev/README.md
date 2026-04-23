@@ -356,3 +356,178 @@ Lineup availability changes depending on how far in advance you're predicting.
 | H2H scope | Current season only | Cross-season rosters differ too much; stale matchup history adds noise |
 | Target variable | Binary home win | Interpretable, directly actionable; regression (goal differential) adds complexity for marginal gain |
 | Data leakage prevention | `.shift(1)` on all cumulative stats; EWM updated after, not during, each game | Ensures features represent only information available before the game |
+
+---
+
+## Database Integration
+
+### How the ML Pipeline Reads and Writes the Database
+
+The ML scripts interact with the same SQLite database (`main/nhl_predictions.db`) used by the Flask backend. There are two distinct phases of database interaction: the one-time historical data load and the daily prediction run.
+
+---
+
+### Phase 1 — Historical Data Load (`migrate_csv_to_db.py`)
+
+`main.py` generates a flat CSV (`scripts/generated/data/nhl_data.csv`) containing every historical game with all 71 engineered features. This is a one-time operation that does not touch the database.
+
+After the CSV is generated, `main/backend/migrate_csv_to_db.py` loads it into the `nhl_game_data` table:
+
+```
+main.py → nhl_data.csv → migrate_csv_to_db.py → nhl_game_data table
+```
+
+The `nhl_game_data` table has one row per historical game and one column per engineered feature. It is the source `predict_games.py` queries to compute rolling stats, goalie EWMs, rest days, and head-to-head records for today's feature vectors.
+
+**Why a database instead of reading the CSV directly?**
+
+- Faster startup for the prediction subprocess (indexed SQL queries vs. full CSV parse)
+- Enables future querying across games without loading everything into memory
+- `predict_games.py` tries the DB first and falls back to the CSV if the table is unavailable
+
+---
+
+### Phase 2 — Daily Predictions (`predict_games.py`)
+
+`predict_games.py` is invoked as a subprocess by the Flask backend on every `/api/predict` call. It receives a JSON list of game IDs to predict and writes three things to the database:
+
+#### Reads
+
+```sql
+-- Load historical feature data
+SELECT * FROM nhl_game_data
+WHERE season = :season
+ORDER BY game_date
+```
+
+This dataset drives all feature computation: EWM lookups, L5 rolling windows, goalie rest days, head-to-head records.
+
+```sql
+-- Check if goalie has changed since last prediction
+SELECT goalie_name, detection_tier
+FROM goalie_states
+WHERE game_id = :game_id AND side = :side
+```
+
+If the stored goalie name differs from the currently identified starter, or the detection tier has upgraded (e.g. `FUT` → `PRE`), the game is marked for reprediction. Games where the goalie is unchanged are skipped entirely.
+
+#### Writes
+
+**`predictions` table** — one INSERT per game that needed a prediction:
+
+```python
+INSERT INTO predictions (
+    game_id, predicted_at,
+    home_goalie, away_goalie, home_goalie_tier, away_goalie_tier,
+    pred_home_win, prob_home_win, prob_away_win, confidence,
+    model_version
+) VALUES (...)
+```
+
+Multiple rows per game are expected. The Flask backend always queries for `MAX(id)` per `game_id` to get the latest prediction. The history of all rows is preserved and exposed via the `/api/predictions/history` endpoint so the frontend can show goalie change diffs.
+
+**`goalie_states` table** — one UPSERT per side per game:
+
+```python
+INSERT INTO goalie_states (game_id, side, goalie_name, detection_tier, recorded_at)
+VALUES (...)
+ON CONFLICT(game_id, side) DO UPDATE SET
+    goalie_name    = excluded.goalie_name,
+    detection_tier = excluded.detection_tier,
+    recorded_at    = excluded.recorded_at
+```
+
+This is what the next run will compare against to detect changes. The record is always overwritten with the current run's goalie name and tier.
+
+**`games` table** — the Flask backend writes to this before invoking the subprocess (via `upsert_game()`). `predict_games.py` may also insert a games row if one doesn't exist yet for a given game ID, but this is a safety fallback.
+
+---
+
+### Goalie Change Detection — Full Logic
+
+```
+For each game_id in the input list:
+    1. Identify current starter (3-tier: LIVE > PRE > FUT)
+    2. SELECT stored goalie from goalie_states WHERE game_id AND side
+    3. Compare:
+         changed = (no stored record)
+                OR (stored_name != current_name)
+                OR (stored_tier == 'FUT' AND current_tier IN ('PRE', 'LIVE'))
+    4. If changed → build feature vector → run inference → INSERT predictions
+       If unchanged → skip (no new prediction row)
+    5. UPSERT goalie_states with current name + tier
+```
+
+The tier upgrade condition (`FUT` → `PRE`) is intentional: even if the same goalie is confirmed by lineup submission, the prediction is re-run because the model may produce a slightly different confidence with a confirmed starter vs. a probabilistic guess.
+
+---
+
+### Full Data Flow Diagram
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ ONE-TIME: Historical Data Collection                        │
+├─────────────────────────────────────────────────────────────┤
+│ ml_dev/scripts/main.py                                      │
+│   └── Fetch 3,877+ games from NHL API (Seasons 2022–2025)  │
+│   └── Engineer 71 features per game                        │
+│   └── Write: scripts/generated/data/nhl_data.csv           │
+│                                                              │
+│ main/backend/migrate_csv_to_db.py                           │
+│   └── Read: nhl_data.csv                                   │
+│   └── Write: nhl_game_data table                           │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ ONE-TIME: Model Training                                    │
+├─────────────────────────────────────────────────────────────┤
+│ ml_dev/notebooks/ts_predict.ipynb                           │
+│   └── Load: nhl_data.csv                                   │
+│   └── Train: Random Forest (300 trees, 71 features)        │
+│   └── Validate: season-expanding cross-validation          │
+│   └── Save: notebooks/models/nhl_rf_model.pkl              │
+│   └── Save: notebooks/models/feature_names.pkl             │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ DAILY: Prediction Pipeline                                  │
+├─────────────────────────────────────────────────────────────┤
+│                                                              │
+│  React Frontend                                             │
+│    └── User clicks "Generate Predictions"                   │
+│                                                              │
+│  Flask Backend (app.py: GET /api/predict)                   │
+│    ├── Fetch: NHL API schedule                              │
+│    ├── Write: games table (upsert all games)                │
+│    ├── Write: game_results table (for FINAL/OFF games)      │
+│    └── Subprocess: predict_games.py [game_ids]             │
+│                                                              │
+│  predict_games.py                                           │
+│    ├── Load: nhl_rf_model.pkl + feature_names.pkl          │
+│    ├── Read: nhl_game_data table (historical stats)        │
+│    ├── Fetch: NHL API (schedule, boxscores, standings)      │
+│    ├── Identify goalies (LIVE > PRE > FUT tier)            │
+│    ├── Read: goalie_states table (detect changes)          │
+│    ├── For changed games:                                   │
+│    │     Build 71-feature vector                           │
+│    │     Run model.predict_proba(X)                        │
+│    │     Write: predictions table (INSERT)                  │
+│    └── Write: goalie_states table (UPSERT)                 │
+│                                                              │
+│  Flask Backend (continued)                                  │
+│    ├── Read: predictions table (MAX(id) per game_id)       │
+│    └── Return JSON to frontend                              │
+│                                                              │
+│  React Frontend                                             │
+│    ├── Fetch: /api/predictions/history (all rows)          │
+│    ├── Fetch: /api/predictions/accuracy                    │
+│    └── Render: GameCard per game                           │
+│                                                              │
+└─────────────────────────────────────────────────────────────┘
+
+Database tables written per day:
+  games          ← upserted every /api/predict call
+  game_results   ← inserted once per completed game
+  predictions    ← inserted once per prediction run per changed game
+  goalie_states  ← upserted once per prediction run per game side
+```

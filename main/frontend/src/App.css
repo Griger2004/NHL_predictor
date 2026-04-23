@@ -321,3 +321,54 @@ li {
   white-space: nowrap;
   overflow: hidden;
 }
+
+/* Accuracy stat line */
+.accuracy-stat {
+  font-size: 0.8rem;
+  color: #777;
+  margin: -8px 0 16px;
+}
+
+.accuracy-pct {
+  color: #4db6ac;
+}
+
+.accuracy-detail {
+  color: #555;
+}
+
+/* Reprediction badge */
+.repredicted-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #ff9800;
+  border: 1px solid rgba(255, 152, 0, 0.35);
+  border-radius: 4px;
+  padding: 1px 6px;
+  margin-left: 4px;
+}
+
+/* Goalie change history */
+.goalie-changes {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.75rem;
+  color: #777;
+  margin-bottom: 6px;
+}
+
+.goalie-change-row {
+  display: block;
+}
+
+.goalie-old {
+  color: #888;
+  text-decoration: line-through;
+}
+
+.goalie-new {
+  color: #ff9800;
+  font-weight: 600;
+}
