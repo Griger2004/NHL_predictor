@@ -51,7 +51,7 @@ function App() {
 
   return (
     <div>
-      <h1>NHL Games</h1>
+      <h1>NHL Games <span style={{fontSize: '0.55em', fontWeight: 400, color: '#aaa', verticalAlign: 'middle'}}>{new Date().toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</span></h1>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <ul>
         {games.map((game, index) => (
@@ -74,6 +74,11 @@ function App() {
       {predictions.length > 0 && (
         <div>
           <h2>Predictions</h2>
+          <div className='prediction-notes'>
+            <p className='prediction-note'>Not affected by live stats. Predictions are purely based on <span style={{color: '#4db6ac'}}>historical</span> data. Use for pre-game or start-game analysis.</p>
+            <p className='prediction-note'>Note that pre-game predictions rely on the team's <span style={{color: '#4db6ac'}}>default</span> goalie which may not reflect the actual goalie for the game.</p>
+            <p className='prediction-note'>Please allow until actual game <span style={{color: '#4db6ac'}}>start</span> to update correct goalie information.</p>
+          </div>
           <ul>
             {predictions.map((pred, index) => (
               <GameCard key={index} prediction={pred} />

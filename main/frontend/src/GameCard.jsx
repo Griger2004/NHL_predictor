@@ -8,7 +8,7 @@ function GameCard({ prediction: pred }) {
   return (
     <li className='game-card'>
       <div className='matchup'>
-        {pred.away_team} <b>@</b> {pred.home_team}
+        <span className='away-team-text'>{pred.away_team}</span> <b>@</b> <span className='home-team-text'>{pred.home_team}</span>
       </div>
       <div className='goalies'>
         <span>Away {goalieLabel}: <strong>{pred.away_goalie}</strong></span>
@@ -16,8 +16,6 @@ function GameCard({ prediction: pred }) {
       </div>
       <div className='result'>
         <span className='winner-label'>Predicted winner: {winner}</span>
-        {' | '}
-        <span>Confidence: {(pred.confidence * 100).toFixed(1)}%</span>
       </div>
       <div className='prob-bar'>
         <span className='prob-bar-away' style={{ width: `${awayProb}%` }}>

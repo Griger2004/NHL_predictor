@@ -22,13 +22,46 @@ li {
   margin-bottom:5px;
 }
 
+@keyframes rainbow-spin {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
 .generate_btn {
   margin-top: 10px;
+  position: relative;
+  z-index: 0;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.generate_btn:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.generate_btn:not(:disabled):active {
+  transform: translateY(0px);
+  box-shadow: none;
+}
+
+.generate_btn::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #e53935, #ff9800, #fdd835, #4caf50, #1e88e5, #7b1fa2, #e53935);
+  background-size: 200% 100%;
+  animation: rainbow-spin 3s linear infinite;
+  z-index: -1;
 }
 
 .generate_btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.generate_btn:disabled::before {
+  animation: none;
 }
 
 @keyframes spin {
@@ -59,6 +92,16 @@ li {
   margin-bottom: 6px;
 }
 
+.away-team-text {
+  color: #e53935;
+  font-weight: 600;
+}
+
+.home-team-text {
+  color: #1e88e5;
+  font-weight: 600;
+}
+
 .goalies {
   display: flex;
   flex-direction: column;
@@ -85,6 +128,23 @@ li {
   color: #aaa;
 }
 
+.prediction-notes {
+  max-width: 720px;
+  margin: 0 auto 12px;
+  text-align: center;
+}
+
+.prediction-note {
+  margin: 0;
+  font-size: 0.73rem;
+  line-height: 1.4;
+  color: #8f8f8f;
+}
+
+.prediction-note + .prediction-note {
+  margin-top: 4px;
+}
+
 .prob-bar {
   display: flex;
   width: 100%;
@@ -98,7 +158,7 @@ li {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #b71c1c;
+  background: #e53935;
   color: #fff;
   white-space: nowrap;
   overflow: hidden;
@@ -108,7 +168,7 @@ li {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #1565c0;
+  background: #1e88e5;
   color: #fff;
   white-space: nowrap;
   overflow: hidden;
