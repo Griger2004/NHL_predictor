@@ -52,5 +52,10 @@ CLAUDE.md
 # Old data
 archive/
 
+# Debug files
+/predictions/
+/generated/data/
+/generated/backend_data/
+
 # Database files
 *.db
