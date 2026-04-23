@@ -267,6 +267,15 @@ li {
   color: #aaa;
 }
 
+.date-section-header {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 20px 0 6px;
+}
+
 .prediction-notes {
   max-width: 720px;
   margin: 0 auto 12px;

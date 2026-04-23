@@ -8,6 +8,21 @@ export const BASE_URL = import.meta.env.MODE === "development"
 
 console.log(BASE_URL)
 
+const localDateStr = (d) => {
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${y}-${m}-${day}`
+}
+
+const dateLabel = (dateStr) => {
+  const today = localDateStr(new Date())
+  const yesterday = localDateStr(new Date(Date.now() - 86400000))
+  if (dateStr === today) return 'Today'
+  if (dateStr === yesterday) return 'Yesterday'
+  return new Date(dateStr + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+}
+
 function App() {
   const [games, setGames] = useState([])
   const [predictions, setPredictions] = useState([])
@@ -18,7 +33,7 @@ function App() {
 
   useEffect(() => {
     fetchGames()
-  }, []) //will run once on mount
+  }, [])
 
   const fetchGames = async () => {
     setGamesError(null)
@@ -50,20 +65,38 @@ function App() {
     }
   }
 
+  const gamesByDate = games.reduce((acc, g) => {
+    ;(acc[g.date] ??= []).push(g)
+    return acc
+  }, {})
+
+  const predsByDate = predictions.reduce((acc, p) => {
+    ;(acc[p.date] ??= []).push(p)
+    return acc
+  }, {})
+
+  const gameDates = Object.keys(gamesByDate).sort().reverse()
+  const predDates = Object.keys(predsByDate).sort().reverse()
+
   return (
     <div>
       <h1>NHL Games <span style={{fontSize: '0.55em', fontWeight: 400, color: '#aaa', verticalAlign: 'middle'}}>{new Date().toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</span></h1>
       {gamesError && <div className='error-banner'>⚠ {gamesError}</div>}
-      <ul>
-        {games.map((game, index) => (
-          <li key={index}>
-            {game.away_team_name} ({game.away_team}) <b>@</b> {game.home_team_name} ({game.home_team})
-            <span className='game_time'>
-              {new Date(game.game_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-            </span>
-          </li>
-        ))}
-      </ul>
+      {gameDates.map(date => (
+        <div key={date}>
+          <h3 className='date-section-header'>{dateLabel(date)}</h3>
+          <ul>
+            {gamesByDate[date].map((game, i) => (
+              <li key={i}>
+                {game.away_team_name} ({game.away_team}) <b>@</b> {game.home_team_name} ({game.home_team})
+                <span className='game_time'>
+                  {new Date(game.game_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
       {loadingGames && <div className='spinner' />}
       <button
         onClick={fetchPrediction}
@@ -82,15 +115,20 @@ function App() {
             <p className='prediction-note'>Note that pre-game predictions rely on the team's <span style={{color: '#4db6ac'}}>default</span> goalie which may not reflect the actual goalie for the game.</p>
             <p className='prediction-note'>Please allow until actual game <span style={{color: '#4db6ac'}}>start</span> to update correct goalie information.</p>
           </div>
-          <ul>
-            {predictions.map((pred, index) => (
-              <GameCard
-                key={index}
-                prediction={pred}
-                gameStatus={games.find(g => g.game_id === pred.game_id)}
-              />
-            ))}
-          </ul>
+          {predDates.map(date => (
+            <div key={date}>
+              <h3 className='date-section-header'>{dateLabel(date)}</h3>
+              <ul>
+                {predsByDate[date].map((pred, i) => (
+                  <GameCard
+                    key={i}
+                    prediction={pred}
+                    gameStatus={games.find(g => g.game_id === pred.game_id)}
+                  />
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       )}
     </div>
