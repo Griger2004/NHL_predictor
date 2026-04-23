@@ -1,92 +1,87 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, jsonify
 from flask_cors import CORS
-import pickle
 import pandas as pd
 import subprocess
-import json
 import os
+import requests
+from datetime import datetime
+
+BACKEND_DIR     = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT    = os.path.abspath(os.path.join(BACKEND_DIR, '..'))
+
+VENV_PYTHON     = os.path.join(PROJECT_ROOT, 'nhl_venv', 'Scripts', 'python.exe')
+ML_SCRIPTS_DIR  = os.path.join(PROJECT_ROOT, 'ml_dev', 'scripts')
+PREDICT_SCRIPT  = os.path.join(ML_SCRIPTS_DIR, 'predict_games.py')
+PREDICTIONS_DIR      = os.path.join(ML_SCRIPTS_DIR, 'predictions')
+HISTORICAL_DATA_FILE = os.path.join(ML_SCRIPTS_DIR, 'generated', 'data', 'nhl_data.csv')
 
 # Initialize Flask app
 app = Flask(__name__)
 CORS(app)
 
-# frontend_folder = os.path.join(os.getcwd(),"..","frontend")
-# dist_folder = os.path.join(frontend_folder,"dist")
+@app.route('/api/health', methods=['GET'])
+def health():
+    missing = [p for p in [VENV_PYTHON, PREDICT_SCRIPT, HISTORICAL_DATA_FILE] if not os.path.exists(p)]
+    if missing:
+        return jsonify({"status": "degraded", "missing": missing})
+    return jsonify({"status": "ok"})
 
-# #serve static files from the "dist" folder under the "frontend" directory
-# @app.route("/",defaults={"filename":""})
-# @app.route("/<path:filename>")
-# def index(filename):
-#     if not filename:
-#         filename = "index.html"
-#     return send_from_directory(dist_folder,filename)
-
-# Load the trained model
-with open('./model/model.pkl', 'rb') as f:
-    model = pickle.load(f)
-
-# Define the prediction endpoint
 @app.route('/api/predict', methods=['GET'])
 def predict():
     try:
+        date_str = datetime.now().strftime("%Y-%m-%d")
+        csv_path = os.path.join(PREDICTIONS_DIR, f"predictions_{date_str}.csv")
 
-        with open('./data/schedule.json', 'r') as f:
-            games = json.load(f)
+        result = subprocess.run(
+            [VENV_PYTHON, PREDICT_SCRIPT],
+            capture_output=True, text=True,
+            cwd=ML_SCRIPTS_DIR,
+            timeout=120,
+        )
 
-        if not games:
-            return jsonify({"message": "There are no games today"}), 204
-        
-        required_features = [
-            'team_code', 'opp_code',
-            'rest_days_home', 'rest_days_away', 'home_AVG_gf/gp', 'away_AVG_gf/gp',
-            'home_AVG_ga/gp', 'away_AVG_ga/gp', 'home_AVG_pp%', 'away_AVG_pp%',
-            'home_AVG_fow%', 'away_AVG_fow%'
-        ]
-        
-        predictions = []
-        for game in games:
-            prediction_data = {feature: game.get(feature, None) for feature in required_features}
-            input_df = pd.DataFrame([prediction_data])
-            
-            if input_df.isnull().values.any():
-                continue  # Skip games with missing features
+        if result.returncode != 0:
+            return jsonify({"error": result.stderr}), 500
 
-            prediction = model.predict(input_df)[0]
-            probability = model.predict_proba(input_df)[0].tolist()
-            winner = game['home'] if prediction == 1 else game['away']
+        df = pd.read_csv(csv_path)
+        return jsonify({"predictions": df.to_dict(orient='records')})
 
-            predictions.append({
-                "home": game['home'],
-                "away": game['away'],
-                "prediction": winner,
-                "probabilities": probability
-            })
-
-        return jsonify({"predictions": predictions})
-
+    except FileNotFoundError as e:
+        return jsonify({"error": str(e)}), 500
+    except subprocess.TimeoutExpired:
+        return jsonify({"error": "Prediction script timed out after 120 seconds"}), 500
     except Exception as e:
-        return jsonify({'error': str(e)}), 400
-    
-# Define the prediction endpoint
+        return jsonify({"error": str(e)}), 500
+
 @app.route('/api/games', methods=['GET'])
 def get_games():
     try:
+        today_str = datetime.now().strftime("%Y-%m-%d")
+        response = requests.get(
+            f'https://api-web.nhle.com/v1/schedule/{today_str}',
+            timeout=10,
+        )
+        response.raise_for_status()
+        data = response.json()
 
-        venv_python = r"C:\Users\riger\Desktop\NHL_predictor\main\nhl_venv\Scripts\python.exe"
+        today_games = next(
+            (day["games"] for day in data.get("gameWeek", []) if day.get("date") == today_str),
+            [],
+        )
 
-        result = subprocess.run(['python', './scripts/get_games.py'], check=True, capture_output=True, text=True)
-        print(result.stdout) 
-        
-        with open('./data/schedule.json', 'r') as f:
-            games_data = json.load(f)
-            
-        return jsonify({"games": games_data})
-        
-    except subprocess.CalledProcessError as e:
-        print(f"Error running subprocess: {e.stderr}")  # Log any error
-        return jsonify({"error": "Error executing get_games.py"}), 500
-    except FileNotFoundError:
-        return jsonify({"error": "schedule.json file not found"}), 500
+        games = [
+            {
+                "game_id": game.get("id"),
+                "away_team": game.get("awayTeam", {}).get("abbrev"),
+                "home_team": game.get("homeTeam", {}).get("abbrev"),
+                "away_team_name": game.get("awayTeam", {}).get("placeName", {}).get("default", ""),
+                "home_team_name": game.get("homeTeam", {}).get("placeName", {}).get("default", ""),
+                "game_time": game.get("startTimeUTC"),
+            }
+            for game in today_games
+        ]
+
+        return jsonify({"games": games})
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
     
