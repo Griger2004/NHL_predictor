@@ -6,11 +6,13 @@ export const BASE_URL = import.meta.env.MODE === "development"
   ? import.meta.env.VITE_API_URL
   : import.meta.env.VITE_API_URL_PROD;
 
-console.log(BASE_URL)
+const todayStr = () => new Date().toISOString().slice(0, 10)
 
 function App() {
   const [games, setGames] = useState([])
   const [predictions, setPredictions] = useState([])
+  const [predictionHistory, setPredictionHistory] = useState({}) // game_id → attempts[]
+  const [accuracy, setAccuracy] = useState(null)
   const [loadingGames, setLoadingGames] = useState(false)
   const [loadingPredictions, setLoadingPredictions] = useState(false)
   const [gamesError, setGamesError] = useState(null)
@@ -18,7 +20,8 @@ function App() {
 
   useEffect(() => {
     fetchGames()
-  }, []) //will run once on mount
+    fetchAccuracy()
+  }, [])
 
   const fetchGames = async () => {
     setGamesError(null)
@@ -35,6 +38,17 @@ function App() {
     }
   }
 
+  const fetchAccuracy = async () => {
+    try {
+      const resp = await fetch(BASE_URL + "/predictions/accuracy")
+      if (!resp.ok) return
+      const data = await resp.json()
+      if (data.accuracy?.total_games > 0) setAccuracy(data.accuracy)
+    } catch {
+      // non-critical — silently ignore
+    }
+  }
+
   const fetchPrediction = async () => {
     setPredictionsError(null)
     setLoadingPredictions(true)
@@ -43,6 +57,21 @@ function App() {
       if (!response.ok) throw new Error("Failed to predict games")
       const data = await response.json()
       setPredictions(data.predictions)
+
+      // Refresh accuracy after new predictions are written
+      fetchAccuracy()
+
+      // Fetch prediction history to detect goalie changes
+      const histResp = await fetch(`${BASE_URL}/predictions/history?date=${todayStr()}`)
+      if (histResp.ok) {
+        const histData = await histResp.json()
+        const byGame = {}
+        histData.history.forEach(h => {
+          if (!byGame[h.game_id]) byGame[h.game_id] = []
+          byGame[h.game_id].push(h)
+        })
+        setPredictionHistory(byGame)
+      }
     } catch (err) {
       setPredictionsError(err instanceof TypeError ? "Unable to generate predictions. Check your connection and try again." : err.message)
     } finally {
@@ -52,7 +81,21 @@ function App() {
 
   return (
     <div>
-      <h1>NHL Games <span style={{fontSize: '0.55em', fontWeight: 400, color: '#aaa', verticalAlign: 'middle'}}>{new Date().toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</span></h1>
+      <h1>
+        NHL Games{' '}
+        <span style={{ fontSize: '0.55em', fontWeight: 400, color: '#aaa', verticalAlign: 'middle' }}>
+          {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+        </span>
+      </h1>
+
+      {accuracy && (
+        <p className="accuracy-stat">
+          Model accuracy:{' '}
+          <strong className="accuracy-pct">{accuracy.accuracy_pct}%</strong>
+          <span className="accuracy-detail"> · {accuracy.correct}/{accuracy.total_games} finalized games</span>
+        </p>
+      )}
+
       {gamesError && <div className='error-banner'>⚠ {gamesError}</div>}
       <ul>
         {games.map((game, index) => (
@@ -78,9 +121,9 @@ function App() {
         <div>
           <h2>Predictions</h2>
           <div className='prediction-notes'>
-            <p className='prediction-note'>Not affected by live stats. Predictions are purely based on <span style={{color: '#4db6ac'}}>historical</span> data. Use for pre-game or start-game analysis.</p>
-            <p className='prediction-note'>Note that pre-game predictions rely on the team's <span style={{color: '#4db6ac'}}>default</span> goalie which may not reflect the actual goalie for the game.</p>
-            <p className='prediction-note'>Please allow until actual game <span style={{color: '#4db6ac'}}>start</span> to update correct goalie information.</p>
+            <p className='prediction-note'>Not affected by live stats. Predictions are purely based on <span style={{ color: '#4db6ac' }}>historical</span> data. Use for pre-game or start-game analysis.</p>
+            <p className='prediction-note'>Note that pre-game predictions rely on the team's <span style={{ color: '#4db6ac' }}>default</span> goalie which may not reflect the actual goalie for the game.</p>
+            <p className='prediction-note'>Please allow until actual game <span style={{ color: '#4db6ac' }}>start</span> to update correct goalie information.</p>
           </div>
           <ul>
             {predictions.map((pred, index) => (
@@ -88,6 +131,7 @@ function App() {
                 key={index}
                 prediction={pred}
                 gameStatus={games.find(g => g.game_id === pred.game_id)}
+                history={predictionHistory[pred.game_id] || []}
               />
             ))}
           </ul>

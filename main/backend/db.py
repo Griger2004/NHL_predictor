@@ -1,9 +1,14 @@
 import os
 from sqlalchemy import create_engine, text
+from dotenv import load_dotenv
+
+load_dotenv()  # Load environment variables from .env file
 
 BACKEND_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.abspath(os.path.join(BACKEND_DIR, ".."))
 _DEFAULT_DB_URL = f"sqlite:///{os.path.join(PROJECT_DIR, 'nhl_predictions.db')}"
+
+DATABSE_URL = os.environ.get("DATABASE_URL", _DEFAULT_DB_URL)
 
 
 def _make_engine():
