@@ -255,7 +255,7 @@ function App() {
                 history={predictionHistory[pred.game_id] || []}
               />
             )) : (
-              <p>No games have finished yet.</p>
+              activeResultsTab === 'today' ? <p>No games have finished yet.</p> : <p>No results available.</p>
             )}
           </ul>
         </div>
