@@ -107,6 +107,11 @@ function App() {
   const gameDates = Object.keys(gamesByDate).sort().reverse()
   const predDates = Object.keys(predsByDate).sort().reverse()
 
+  const handleGenerateClick = () => {
+    if (loadingPredictions || loadingGames) return
+    fetchPrediction()
+  }
+
   return (
     <div>
       <h1>
@@ -142,13 +147,13 @@ function App() {
       ))}
       {loadingGames && <div className='spinner' />}
       <button
-        onClick={fetchPrediction}
-        className='generate_btn'
-        disabled={loadingPredictions || loadingGames}
+        onClick={handleGenerateClick}
+        className={`generate_btn${loadingPredictions ? ' predicting' : ''}`}
+        disabled={loadingGames}
+        aria-disabled={loadingGames || loadingPredictions}
       >
-        {loadingPredictions ? 'Predicting...' : 'Generate'}
+        {loadingPredictions ? <span className='predicting-text'>Predicting<span className='dots'><span>.</span><span>.</span><span>.</span></span></span> : 'Generate'}
       </button>
-      {loadingPredictions && <div className='spinner' />}
       {predictionsError && <div className='error-banner predictions-error-banner'>⚠ {predictionsError}</div>}
       {predictions.length > 0 && (
         <div>

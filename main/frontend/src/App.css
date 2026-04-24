@@ -64,6 +64,10 @@ li {
   animation: none;
 }
 
+.generate_btn:focus {
+  outline: none;
+}
+
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
@@ -76,6 +80,51 @@ li {
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
   margin: 16px auto;
+}
+
+@keyframes dot-pulse {
+  0%, 80%, 100% { opacity: 0; }
+  40%           { opacity: 1; }
+}
+
+.predicting-text .dots span {
+  opacity: 0;
+  animation: dot-pulse 1.4s ease-in-out infinite;
+  color: #fff;
+}
+
+/* .predicting-text {
+  color: #000;
+} */
+
+.generate_btn.predicting {
+  opacity: 1;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.generate_btn.predicting::before {
+  animation: none;
+}
+
+.generate_btn.predicting:hover,
+.generate_btn.predicting:active {
+  transform: none;
+  box-shadow: none;
+}
+
+.generate_btn.predicting:not(:disabled):hover,
+.generate_btn.predicting:not(:disabled):active {
+  transform: none;
+  box-shadow: none;
+}
+.predicting-text .dots span:nth-child(1) { animation-delay: 0s; }
+.predicting-text .dots span:nth-child(2) { animation-delay: 0.2s; }
+.predicting-text .dots span:nth-child(3) { animation-delay: 0.4s; }
+
+.generate_btn.predicting:disabled {
+  opacity: 1;
+  cursor: not-allowed;
 }
 
 .error-banner {
