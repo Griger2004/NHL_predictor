@@ -334,6 +334,50 @@ li.game-finished {
   color: #aaa;
 }
 
+.yesterday-group {
+  font-size: 0.88em;
+  opacity: 0.65;
+}
+
+.results-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 4px;
+}
+
+.results-nav-arrow {
+  background: none;
+  border: none;
+  color: #777;
+  font-size: 1.6rem;
+  font-weight: 300;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+  line-height: 1;
+}
+
+.results-nav-arrow:not(:disabled):hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.results-nav-arrow:disabled {
+  color: #333;
+  cursor: default;
+}
+
+.results-tab-label {
+  font-size: 0.72rem;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 14px;
+}
+
 .date-section-header {
   font-size: 0.8rem;
   font-weight: 600;

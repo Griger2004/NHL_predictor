@@ -7,6 +7,7 @@ export const BASE_URL = import.meta.env.MODE === "development"
   : import.meta.env.VITE_API_URL_PROD;
 
 const todayStr = () => localDateStr(new Date())
+const yesterdayStr = () => localDateStr(new Date(Date.now() - 86400000))
 
 const localDateStr = (d) => {
   const y = d.getFullYear()
@@ -26,8 +27,10 @@ const dateLabel = (dateStr) => {
 function App() {
   const [games, setGames] = useState([])
   const [predictions, setPredictions] = useState([])
+  const [yesterdayPredictions, setYesterdayPredictions] = useState([])
   const [predictionHistory, setPredictionHistory] = useState({}) // game_id → attempts[]
   const [hasGenerated, setHasGenerated] = useState(false)
+  const [resultsTab, setResultsTab] = useState(null) // null = smart default
   const [loadingGames, setLoadingGames] = useState(false)
   const [loadingPredictions, setLoadingPredictions] = useState(false)
   const [gamesError, setGamesError] = useState(null)
@@ -64,16 +67,33 @@ function App() {
 
   const fetchExistingPredictions = async () => {
     try {
-      const resp = await fetch(`${BASE_URL}/predictions/today?date=${todayStr()}`)
-      if (!resp.ok) return
-      const data = await resp.json()
-      if (data.predictions?.length > 0) {
-        setPredictions(data.predictions)
-        const histResp = await fetch(`${BASE_URL}/predictions/history?date=${todayStr()}`)
-        if (histResp.ok) {
-          const histData = await histResp.json()
-          setPredictionHistory(buildHistoryMap(histData))
-        }
+      const today = todayStr()
+      const yesterday = yesterdayStr()
+
+      const [todayResp, yestResp] = await Promise.all([
+        fetch(`${BASE_URL}/predictions/today?date=${today}`),
+        fetch(`${BASE_URL}/predictions/today?date=${yesterday}`),
+      ])
+
+      let hasPredictions = false
+      if (todayResp.ok) {
+        const d = await todayResp.json()
+        if (d.predictions?.length > 0) { setPredictions(d.predictions); hasPredictions = true }
+      }
+      if (yestResp.ok) {
+        const d = await yestResp.json()
+        if (d.predictions?.length > 0) { setYesterdayPredictions(d.predictions); hasPredictions = true }
+      }
+
+      if (hasPredictions) {
+        const [todayHistResp, yestHistResp] = await Promise.all([
+          fetch(`${BASE_URL}/predictions/history?date=${today}`),
+          fetch(`${BASE_URL}/predictions/history?date=${yesterday}`),
+        ])
+        let allHistory = []
+        if (todayHistResp.ok) { const d = await todayHistResp.json(); allHistory = [...allHistory, ...(d.history || [])] }
+        if (yestHistResp.ok) { const d = await yestHistResp.json(); allHistory = [...allHistory, ...(d.history || [])] }
+        if (allHistory.length > 0) setPredictionHistory(buildHistoryMap({ history: allHistory }))
       }
     } catch {
       // non-critical — silently ignore
@@ -89,13 +109,17 @@ function App() {
       const data = await response.json()
       setPredictions(data.predictions)
       setHasGenerated(true)
+      setResultsTab(null)
 
-      // Fetch prediction history to detect goalie changes
-      const histResp = await fetch(`${BASE_URL}/predictions/history?date=${todayStr()}`)
-      if (histResp.ok) {
-        const histData = await histResp.json()
-        setPredictionHistory(buildHistoryMap(histData))
-      }
+      // Fetch prediction history for both dates to detect goalie changes
+      const [todayHistResp, yestHistResp] = await Promise.all([
+        fetch(`${BASE_URL}/predictions/history?date=${todayStr()}`),
+        fetch(`${BASE_URL}/predictions/history?date=${yesterdayStr()}`),
+      ])
+      let allHistory = []
+      if (todayHistResp.ok) { const d = await todayHistResp.json(); allHistory = [...allHistory, ...(d.history || [])] }
+      if (yestHistResp.ok) { const d = await yestHistResp.json(); allHistory = [...allHistory, ...(d.history || [])] }
+      if (allHistory.length > 0) setPredictionHistory(buildHistoryMap({ history: allHistory }))
     } catch (err) {
       setPredictionsError(err instanceof TypeError ? "Unable to generate predictions. Check your connection and try again." : err.message)
     } finally {
@@ -110,16 +134,25 @@ function App() {
 
   const gameDates = Object.keys(gamesByDate).sort().reverse()
 
+  const allPredictions = [...predictions, ...yesterdayPredictions]
+
   const isGameFinished = (gameId) => {
     const liveGame = games.find(g => g.game_id === gameId)
     if (liveGame) return liveGame.game_state === 'FINAL' || liveGame.game_state === 'OFF'
     // Fall back to the stored game_state in the prediction (for page-load before games API responds)
-    const pred = predictions.find(p => p.game_id === gameId)
+    const pred = allPredictions.find(p => p.game_id === gameId)
     return pred?.game_state === 'FINAL' || pred?.game_state === 'OFF'
   }
 
-  const finishedPredictions = predictions.filter(p => isGameFinished(p.game_id))
-  const activePredictions = predictions.filter(p => !isGameFinished(p.game_id))
+  const finishedPredictions = allPredictions.filter(p => isGameFinished(p.game_id))
+  const activePredictions = allPredictions.filter(p => !isGameFinished(p.game_id))
+
+  const hasAnyTodayFinished = finishedPredictions.some(p => p.date === todayStr())
+  const hasAnyYesterdayFinished = finishedPredictions.some(p => p.date === yesterdayStr())
+  const activeResultsTab = resultsTab ?? (hasAnyTodayFinished ? 'today' : 'yesterday')
+  const visibleResults = finishedPredictions.filter(p =>
+    p.date === (activeResultsTab === 'today' ? todayStr() : yesterdayStr())
+  )
 
   const handleGenerateClick = () => {
     if (loadingPredictions || loadingGames) return
@@ -165,7 +198,7 @@ function App() {
       </button>
       {predictionsError && <div className='error-banner predictions-error-banner'>⚠ {predictionsError}</div>}
 
-      {hasGenerated && activePredictions.length > 0 && (
+      {activePredictions.length > 0 && (hasGenerated || activePredictions.some(p => p.date < todayStr())) && (
         <div>
           <h2>Predictions</h2>
           <div className='prediction-notes'>
@@ -173,24 +206,48 @@ function App() {
             <p className='prediction-note'>Note that pre-game predictions rely on the team's <span style={{ color: '#4db6ac' }}>default</span> goalie which may not reflect the actual goalie for the game.</p>
             <p className='prediction-note'>Please allow until actual game <span style={{ color: '#4db6ac' }}>start</span> to update correct goalie information.</p>
           </div>
-          <ul>
-            {activePredictions.map((pred, index) => (
-              <GameCard
-                key={index}
-                prediction={pred}
-                gameStatus={games.find(g => g.game_id === pred.game_id)}
-                history={predictionHistory[pred.game_id] || []}
-              />
-            ))}
-          </ul>
+          {Object.entries(
+            activePredictions.reduce((acc, p) => { (acc[p.date] ??= []).push(p); return acc }, {})
+          ).sort(([a], [b]) => b.localeCompare(a)).map(([date, preds]) => (
+            <div key={date} className={date === yesterdayStr() ? 'date-group yesterday-group' : 'date-group'}>
+              {activePredictions.some(p => p.date !== preds[0].date) && (
+                <h3 className='date-section-header'>{dateLabel(date)}</h3>
+              )}
+              <ul>
+                {preds.map((pred, index) => (
+                  <GameCard
+                    key={index}
+                    prediction={pred}
+                    gameStatus={games.find(g => g.game_id === pred.game_id)}
+                    history={predictionHistory[pred.game_id] || []}
+                  />
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       )}
 
       {finishedPredictions.length > 0 && (
-        <div>
-          <h2>Results</h2>
+        <div style={{ marginTop: '48px' }}>
+          <div className='results-nav'>
+            <button
+              className='results-nav-arrow'
+              onClick={() => setResultsTab('yesterday')}
+              disabled={activeResultsTab === 'yesterday' || !hasAnyYesterdayFinished}
+              aria-label="Yesterday's results"
+            >&lt;</button>
+            <h2 style={{ margin: 0 }}>Results</h2>
+            <button
+              className='results-nav-arrow'
+              onClick={() => setResultsTab('today')}
+              disabled={!hasAnyTodayFinished || activeResultsTab === 'today'}
+              aria-label="Today's results"
+            >&gt;</button>
+          </div>
+          <p className='results-tab-label'>{activeResultsTab === 'today' ? 'Today' : 'Yesterday'}</p>
           <ul>
-            {finishedPredictions.map((pred, index) => (
+            {visibleResults.map((pred, index) => (
               <GameCard
                 key={index}
                 prediction={pred}
