@@ -3,6 +3,9 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .home_away_label {
@@ -484,4 +487,13 @@ li.game-finished {
 .goalie-new {
   color: #ff9800;
   font-weight: 600;
+}
+
+.app-footer {
+  margin-top: auto;
+  padding: 20px 0 8px;
+  border-top: 1px solid #222;
+  font-size: 0.72rem;
+  color: #444;
+  letter-spacing: 0.04em;
 }

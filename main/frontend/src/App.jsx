@@ -205,6 +205,7 @@ function App() {
             <p className='prediction-note'>Not affected by live stats. Predictions are purely based on <span style={{ color: '#4db6ac' }}>historical</span> data. Use for pre-game or start-game analysis.</p>
             <p className='prediction-note'>Note that pre-game predictions rely on the team's <span style={{ color: '#4db6ac' }}>default</span> goalie which may not reflect the actual goalie for the game.</p>
             <p className='prediction-note'>Please allow until actual game <span style={{ color: '#4db6ac' }}>start</span> to update correct goalie information.</p>
+            <p className='prediction-note'>Although shown, model is not tuned for playoff scenarios. Mainly use this application for <span style={{ color: '#4db6ac' }}>regular</span> season predictions.</p>
           </div>
           {Object.entries(
             activePredictions.reduce((acc, p) => { (acc[p.date] ??= []).push(p); return acc }, {})
