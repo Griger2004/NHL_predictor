@@ -151,6 +151,11 @@ li {
   opacity: 0.4;
 }
 
+li.game-finished {
+  text-decoration: line-through;
+  opacity: 0.45;
+}
+
 /* .games-yesterday:hover {
   opacity: 0.4;
 } */
@@ -196,6 +201,10 @@ li {
 
 .game-card.finished .actual-winner-label {
   opacity: 1;
+}
+
+.game-card.finished .goalie-changes {
+  opacity: 0.32;
 }
 
 @keyframes correct-glow {
