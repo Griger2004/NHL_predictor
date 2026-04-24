@@ -241,20 +241,22 @@ function App() {
             <button
               className='results-nav-arrow'
               onClick={() => setResultsTab('today')}
-              disabled={!hasAnyTodayFinished || activeResultsTab === 'today'}
+              disabled={activeResultsTab === 'today'}
               aria-label="Today's results"
             >&gt;</button>
           </div>
           <p className='results-tab-label'>{activeResultsTab === 'today' ? 'Today' : 'Yesterday'}</p>
           <ul>
-            {visibleResults.map((pred, index) => (
+            {visibleResults.length > 0 ? visibleResults.map((pred, index) => (
               <GameCard
                 key={index}
                 prediction={pred}
                 gameStatus={games.find(g => g.game_id === pred.game_id)}
                 history={predictionHistory[pred.game_id] || []}
               />
-            ))}
+            )) : (
+              <p>No games have finished yet.</p>
+            )}
           </ul>
         </div>
       )}
