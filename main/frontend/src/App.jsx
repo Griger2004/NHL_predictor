@@ -6,7 +6,7 @@ export const BASE_URL = import.meta.env.MODE === "development"
   ? import.meta.env.VITE_API_URL
   : import.meta.env.VITE_API_URL_PROD;
 
-const todayStr = () => new Date().toISOString().slice(0, 10)
+const todayStr = () => localDateStr(new Date())
 
 const localDateStr = (d) => {
   const y = d.getFullYear()
@@ -27,7 +27,7 @@ function App() {
   const [games, setGames] = useState([])
   const [predictions, setPredictions] = useState([])
   const [predictionHistory, setPredictionHistory] = useState({}) // game_id → attempts[]
-  const [accuracy, setAccuracy] = useState(null)
+  const [hasGenerated, setHasGenerated] = useState(false)
   const [loadingGames, setLoadingGames] = useState(false)
   const [loadingPredictions, setLoadingPredictions] = useState(false)
   const [gamesError, setGamesError] = useState(null)
@@ -35,7 +35,7 @@ function App() {
 
   useEffect(() => {
     fetchGames()
-    fetchAccuracy()
+    fetchExistingPredictions()
   }, [])
 
   const fetchGames = async () => {
@@ -53,12 +53,28 @@ function App() {
     }
   }
 
-  const fetchAccuracy = async () => {
+  const buildHistoryMap = (histData) => {
+    const byGame = {}
+    histData.history.forEach(h => {
+      if (!byGame[h.game_id]) byGame[h.game_id] = []
+      byGame[h.game_id].push(h)
+    })
+    return byGame
+  }
+
+  const fetchExistingPredictions = async () => {
     try {
-      const resp = await fetch(BASE_URL + "/predictions/accuracy")
+      const resp = await fetch(`${BASE_URL}/predictions/today?date=${todayStr()}`)
       if (!resp.ok) return
       const data = await resp.json()
-      if (data.accuracy?.total_games > 0) setAccuracy(data.accuracy)
+      if (data.predictions?.length > 0) {
+        setPredictions(data.predictions)
+        const histResp = await fetch(`${BASE_URL}/predictions/history?date=${todayStr()}`)
+        if (histResp.ok) {
+          const histData = await histResp.json()
+          setPredictionHistory(buildHistoryMap(histData))
+        }
+      }
     } catch {
       // non-critical — silently ignore
     }
@@ -72,20 +88,13 @@ function App() {
       if (!response.ok) throw new Error("Failed to predict games")
       const data = await response.json()
       setPredictions(data.predictions)
-
-      // Refresh accuracy after new predictions are written
-      fetchAccuracy()
+      setHasGenerated(true)
 
       // Fetch prediction history to detect goalie changes
       const histResp = await fetch(`${BASE_URL}/predictions/history?date=${todayStr()}`)
       if (histResp.ok) {
         const histData = await histResp.json()
-        const byGame = {}
-        histData.history.forEach(h => {
-          if (!byGame[h.game_id]) byGame[h.game_id] = []
-          byGame[h.game_id].push(h)
-        })
-        setPredictionHistory(byGame)
+        setPredictionHistory(buildHistoryMap(histData))
       }
     } catch (err) {
       setPredictionsError(err instanceof TypeError ? "Unable to generate predictions. Check your connection and try again." : err.message)
@@ -99,13 +108,18 @@ function App() {
     return acc
   }, {})
 
-  const predsByDate = predictions.reduce((acc, p) => {
-    ;(acc[p.date] ??= []).push(p)
-    return acc
-  }, {})
-
   const gameDates = Object.keys(gamesByDate).sort().reverse()
-  const predDates = Object.keys(predsByDate).sort().reverse()
+
+  const isGameFinished = (gameId) => {
+    const liveGame = games.find(g => g.game_id === gameId)
+    if (liveGame) return liveGame.game_state === 'FINAL' || liveGame.game_state === 'OFF'
+    // Fall back to the stored game_state in the prediction (for page-load before games API responds)
+    const pred = predictions.find(p => p.game_id === gameId)
+    return pred?.game_state === 'FINAL' || pred?.game_state === 'OFF'
+  }
+
+  const finishedPredictions = predictions.filter(p => isGameFinished(p.game_id))
+  const activePredictions = predictions.filter(p => !isGameFinished(p.game_id))
 
   const handleGenerateClick = () => {
     if (loadingPredictions || loadingGames) return
@@ -121,27 +135,22 @@ function App() {
         </span>
       </h1>
 
-      {accuracy && (
-        <p className="accuracy-stat">
-          Model accuracy:{' '}
-          <strong className="accuracy-pct">{accuracy.accuracy_pct}%</strong>
-          <span className="accuracy-detail"> · {accuracy.correct}/{accuracy.total_games} finalized games</span>
-        </p>
-      )}
-
       {gamesError && <div className='error-banner'>⚠ {gamesError}</div>}
       {gameDates.map(date => (
         <div key={date}>
           <h3 className='date-section-header'>{dateLabel(date)}</h3>
           <ul className={dateLabel(date) === 'Yesterday' ? 'games-yesterday' : 'games-today'}>
-            {gamesByDate[date].map((game, i) => (
-              <li key={i}>
-                {game.away_team_name} ({game.away_team}) <b>@</b> {game.home_team_name} ({game.home_team})
-                <span className='game_time'>
-                  {new Date(game.game_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                </span>
-              </li>
-            ))}
+            {gamesByDate[date].map((game, i) => {
+              const finished = game.game_state === 'FINAL' || game.game_state === 'OFF'
+              return (
+                <li key={i} className={finished ? 'game-finished' : ''}>
+                  {game.away_team_name} ({game.away_team}) <b>@</b> {game.home_team_name} ({game.home_team})
+                  <span className='game_time'>
+                    {new Date(game.game_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </span>
+                </li>
+              )
+            })}
           </ul>
         </div>
       ))}
@@ -155,7 +164,8 @@ function App() {
         {loadingPredictions ? <span className='predicting-text'>Predicting<span className='dots'><span>.</span><span>.</span><span>.</span></span></span> : 'Generate'}
       </button>
       {predictionsError && <div className='error-banner predictions-error-banner'>⚠ {predictionsError}</div>}
-      {predictions.length > 0 && (
+
+      {hasGenerated && activePredictions.length > 0 && (
         <div>
           <h2>Predictions</h2>
           <div className='prediction-notes'>
@@ -164,7 +174,23 @@ function App() {
             <p className='prediction-note'>Please allow until actual game <span style={{ color: '#4db6ac' }}>start</span> to update correct goalie information.</p>
           </div>
           <ul>
-            {predictions.map((pred, index) => (
+            {activePredictions.map((pred, index) => (
+              <GameCard
+                key={index}
+                prediction={pred}
+                gameStatus={games.find(g => g.game_id === pred.game_id)}
+                history={predictionHistory[pred.game_id] || []}
+              />
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {finishedPredictions.length > 0 && (
+        <div>
+          <h2>Results</h2>
+          <ul>
+            {finishedPredictions.map((pred, index) => (
               <GameCard
                 key={index}
                 prediction={pred}

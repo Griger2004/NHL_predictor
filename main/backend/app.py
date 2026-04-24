@@ -113,6 +113,7 @@ def predict():
                 "prob_home_win":  float(r["prob_home_win"]),
                 "prob_away_win":  float(r["prob_away_win"]),
                 "confidence":     float(r["confidence"]),
+                "game_state":     r.get("game_state"),
             }
             for r in rows
         ]
@@ -165,6 +166,36 @@ def get_games():
 
         return jsonify({"games": games})
 
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route('/api/predictions/today', methods=['GET'])
+def get_today_predictions():
+    """Return the latest predictions for a date without running the ML pipeline."""
+    date_str = request.args.get('date', datetime.now().strftime('%Y-%m-%d'))
+    try:
+        rows = get_predictions_for_date(date_str)
+        predictions = [
+            {
+                "game_id":        r["game_id"],
+                "date":           r["game_date"],
+                "time":           r["game_time_utc"],
+                "away_team":      r["away_team"],
+                "home_team":      r["home_team"],
+                "away_team_name": r.get("away_team_name", ""),
+                "home_team_name": r.get("home_team_name", ""),
+                "away_goalie":    r["away_goalie"],
+                "home_goalie":    r["home_goalie"],
+                "pred_home_win":  r["pred_home_win"],
+                "prob_home_win":  float(r["prob_home_win"]),
+                "prob_away_win":  float(r["prob_away_win"]),
+                "confidence":     float(r["confidence"]),
+                "game_state":     r.get("game_state"),
+            }
+            for r in rows
+        ]
+        return jsonify({"predictions": predictions})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
