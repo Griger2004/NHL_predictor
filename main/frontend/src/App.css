@@ -1,3 +1,17 @@
+:root {
+  --color-away: #b39ddb;
+  --color-away-bar: #9575cd;
+  --color-home: #7db8d4;
+  --color-home-bar: #5a9fc2;
+  --color-success: #4caf50;
+  --color-live: #ef5350;
+  --color-warning: #ff9800;
+  --color-accent: #4db6ac;
+  --color-error: #e53935;
+  --color-bg-card: #1a1a1a;
+  --color-border: #333;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -8,13 +22,6 @@
   flex-direction: column;
 }
 
-.home_away_label {
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  justify-content: space-evenly;
-}
-
 ul {
   list-style: none;
   padding: 0;
@@ -22,8 +29,10 @@ ul {
 }
 
 li {
-  margin-bottom:5px;
+  margin-bottom: 5px;
 }
+
+/* ── Generate button ── */
 
 @keyframes rainbow-spin {
   0%   { background-position: 0% 50%; }
@@ -52,7 +61,7 @@ li {
   position: absolute;
   inset: -2px;
   border-radius: inherit;
-  background: linear-gradient(90deg, #e53935, #ff9800, #fdd835, #4caf50, #1e88e5, #7b1fa2, #e53935);
+  background: linear-gradient(90deg, var(--color-error), var(--color-warning), #fdd835, var(--color-success), #1e88e5, #7b1fa2, var(--color-error));
   background-size: 200% 100%;
   animation: rainbow-spin 3s linear infinite;
   z-index: -1;
@@ -70,6 +79,26 @@ li {
 .generate_btn:focus {
   outline: none;
 }
+
+.generate_btn.predicting {
+  opacity: 1;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.generate_btn.predicting::before,
+.generate_btn.predicting:not(:disabled):hover,
+.generate_btn.predicting:not(:disabled):active {
+  animation: none;
+  transform: none;
+  box-shadow: none;
+}
+
+.generate_btn.predicting:disabled {
+  opacity: 1;
+}
+
+/* ── Loading ── */
 
 @keyframes spin {
   to { transform: rotate(360deg); }
@@ -96,39 +125,11 @@ li {
   color: #fff;
 }
 
-/* .predicting-text {
-  color: #000;
-} */
-
-.generate_btn.predicting {
-  opacity: 1;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-.generate_btn.predicting::before {
-  animation: none;
-}
-
-.generate_btn.predicting:hover,
-.generate_btn.predicting:active {
-  transform: none;
-  box-shadow: none;
-}
-
-.generate_btn.predicting:not(:disabled):hover,
-.generate_btn.predicting:not(:disabled):active {
-  transform: none;
-  box-shadow: none;
-}
 .predicting-text .dots span:nth-child(1) { animation-delay: 0s; }
 .predicting-text .dots span:nth-child(2) { animation-delay: 0.2s; }
 .predicting-text .dots span:nth-child(3) { animation-delay: 0.4s; }
 
-.generate_btn.predicting:disabled {
-  opacity: 1;
-  cursor: not-allowed;
-}
+/* ── Error banner ── */
 
 .error-banner {
   display: flex;
@@ -137,7 +138,7 @@ li {
   gap: 8px;
   background: rgba(229, 57, 53, 0.08);
   border: 1px solid rgba(229, 57, 53, 0.25);
-  border-left: 3px solid #e53935;
+  border-left: 3px solid var(--color-error);
   border-radius: 6px;
   color: #ef9a9a;
   padding: 10px 14px;
@@ -149,6 +150,8 @@ li {
   margin-top: 46px;
 }
 
+/* ── Game schedule ── */
+
 .games-yesterday {
   font-size: 0.8rem;
   opacity: 0.4;
@@ -159,16 +162,29 @@ li.game-finished {
   opacity: 0.45;
 }
 
-/* .games-yesterday:hover {
-  opacity: 0.4;
-} */
+/* ── Page title date ── */
+
+.page-title-date {
+  font-size: 0.55em;
+  font-weight: 400;
+  color: #aaa;
+  vertical-align: middle;
+}
+
+/* ── Accent text (prediction notes) ── */
+
+.accent {
+  color: var(--color-accent);
+}
+
+/* ── Game card ── */
 
 .game-card {
-  border: 1px solid #333;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 12px 16px;
   margin-bottom: 12px;
-  background: #1a1a1a;
+  background: var(--color-bg-card);
   text-align: left;
   position: relative;
 }
@@ -216,8 +232,8 @@ li.game-finished {
 }
 
 .game-card.correct {
-  border-color: #4caf50;
-  animation: correct-glow 2.0s ease-in-out infinite;
+  border-color: var(--color-success);
+  animation: correct-glow 2s ease-in-out infinite;
 }
 
 .game-card.finished .prob-bar-away {
@@ -229,6 +245,8 @@ li.game-finished {
   background: #5f5f5f;
   color: #d8d8d8;
 }
+
+/* ── Scoreboard ── */
 
 .scoreboard {
   position: absolute;
@@ -256,11 +274,7 @@ li.game-finished {
   text-align: right;
 }
 
-.actual-winner-label {
-  color: #4caf50;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
+/* ── Matchup ── */
 
 .matchup {
   font-size: 1rem;
@@ -270,6 +284,18 @@ li.game-finished {
   gap: 6px;
 }
 
+.away-team-text {
+  color: var(--color-away);
+  font-weight: 600;
+}
+
+.home-team-text {
+  color: var(--color-home);
+  font-weight: 600;
+}
+
+/* ── Status badge ── */
+
 .game-status-badge {
   display: inline-flex;
   align-items: center;
@@ -277,13 +303,12 @@ li.game-finished {
   font-size: 0.7rem;
   font-weight: 500;
   color: #fff;
-  opacity: 1;
   letter-spacing: 0.04em;
   margin-left: 4px;
 }
 
 .game-status-badge.live {
-  color: #ef5350;
+  color: var(--color-live);
 }
 
 @keyframes live-pulse {
@@ -296,20 +321,12 @@ li.game-finished {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #ef5350;
+  background: var(--color-live);
   animation: live-pulse 1.4s ease-in-out infinite;
   flex-shrink: 0;
 }
 
-.away-team-text {
-  color: #b39ddb;
-  font-weight: 600;
-}
-
-.home-team-text {
-  color: #7db8d4;
-  font-weight: 600;
-}
+/* ── Goalies ── */
 
 .goalies {
   display: flex;
@@ -320,6 +337,8 @@ li.game-finished {
   gap: 2px;
 }
 
+/* ── Result ── */
+
 .result {
   font-size: 0.9rem;
   margin-bottom: 8px;
@@ -327,9 +346,17 @@ li.game-finished {
 }
 
 .winner-label {
-  color: #4caf50;
+  color: var(--color-success);
   font-weight: 600;
 }
+
+.actual-winner-label {
+  color: var(--color-success);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* ── Game time ── */
 
 .game_time {
   margin-left: 12px;
@@ -337,10 +364,11 @@ li.game-finished {
   color: #aaa;
 }
 
-/* .yesterday-group {
-  font-size: 0.88em;
-  opacity: 0.65;
-} */
+/* ── Results section ── */
+
+.results-section {
+  margin-top: 48px;
+}
 
 .results-nav {
   display: flex;
@@ -348,6 +376,10 @@ li.game-finished {
   justify-content: center;
   gap: 16px;
   margin-bottom: 4px;
+}
+
+.results-nav h2 {
+  margin: 0;
 }
 
 .results-nav-arrow {
@@ -381,6 +413,8 @@ li.game-finished {
   margin: 0 0 14px;
 }
 
+/* ── Section headers ── */
+
 .date-section-header {
   font-size: 0.8rem;
   font-weight: 600;
@@ -389,6 +423,8 @@ li.game-finished {
   letter-spacing: 0.1em;
   margin: 20px 0 6px;
 }
+
+/* ── Prediction notes ── */
 
 .prediction-notes {
   max-width: 720px;
@@ -407,6 +443,8 @@ li.game-finished {
   margin-top: 4px;
 }
 
+/* ── Probability bar ── */
+
 .prob-bar {
   display: flex;
   width: 100%;
@@ -420,8 +458,8 @@ li.game-finished {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #9575cd;
-  color: #1a1a1a;
+  background: var(--color-away-bar);
+  color: var(--color-bg-card);
   font-weight: bold;
   white-space: nowrap;
   overflow: hidden;
@@ -431,41 +469,26 @@ li.game-finished {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #5a9fc2;
-  color: #1a1a1a;
+  background: var(--color-home-bar);
+  color: var(--color-bg-card);
   font-weight: bold;
   white-space: nowrap;
   overflow: hidden;
 }
 
-/* Accuracy stat line */
-.accuracy-stat {
-  font-size: 0.8rem;
-  color: #777;
-  margin: -8px 0 16px;
-}
+/* ── Reprediction / goalie changes ── */
 
-.accuracy-pct {
-  color: #4db6ac;
-}
-
-.accuracy-detail {
-  color: #555;
-}
-
-/* Reprediction badge */
 .repredicted-badge {
   font-size: 0.65rem;
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: #ff9800;
+  color: var(--color-warning);
   border: 1px solid rgba(255, 152, 0, 0.35);
   border-radius: 4px;
   padding: 1px 6px;
   margin-left: 4px;
 }
 
-/* Goalie change history */
 .goalie-changes {
   display: flex;
   flex-direction: column;
@@ -485,9 +508,11 @@ li.game-finished {
 }
 
 .goalie-new {
-  color: #ff9800;
+  color: var(--color-warning);
   font-weight: 600;
 }
+
+/* ── Footer ── */
 
 .app-footer {
   margin-top: auto;
@@ -496,4 +521,30 @@ li.game-finished {
   font-size: 0.72rem;
   color: #444;
   letter-spacing: 0.04em;
+}
+
+/* ── Mobile ── */
+
+@media (max-width: 640px) {
+  #root {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  .game-card.finished {
+    padding-right: 16px;
+  }
+
+  .scoreboard {
+    position: static;
+    text-align: left;
+    margin-bottom: 8px;
+  }
+
+  .scoreboard-row {
+    justify-content: flex-start;
+  }
 }

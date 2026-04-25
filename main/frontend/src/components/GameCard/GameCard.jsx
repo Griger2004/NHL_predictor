@@ -1,40 +1,27 @@
+import { FINISHED_STATES, LIVE_STATES, STATUS_LABELS } from '../../constants/gameStates'
+import { getGoalieChanges } from '../../utils/gameUtils'
+
 function GameCard({ prediction: pred, gameStatus, history = [] }) {
   const homeFullName = gameStatus?.home_team_full_name || pred.home_team_name
   const awayFullName = gameStatus?.away_team_full_name || pred.away_team_name
   const winner = pred.pred_home_win === 1 ? homeFullName : awayFullName
   const homeProb = (pred.prob_home_win * 100).toFixed(1)
   const awayProb = (pred.prob_away_win * 100).toFixed(1)
+
   const gameStarted = new Date() > new Date(pred.time)
   const goalieLabel = gameStarted ? 'Goalie' : 'Goalie (unconfirmed)'
 
-  const isFinished = gameStatus?.game_state === 'FINAL' || gameStatus?.game_state === 'OFF'
-  const isLive = gameStatus?.game_state === 'LIVE' || gameStatus?.game_state === 'CRIT'
+  const state = gameStatus?.game_state
+  const isFinished = FINISHED_STATES.has(state)
+  const isLive = LIVE_STATES.has(state)
+
   const actualWinner = isFinished
     ? (gameStatus.home_score > gameStatus.away_score ? homeFullName : awayFullName)
     : null
   const predCorrect = isFinished && winner === actualWinner
+  const statusLabel = STATUS_LABELS[state] ?? null
 
-  const statusLabel = {
-    FUT: 'Upcoming', PRE: 'Pre-Game', LIVE: 'Live', CRIT: 'Live',
-    FINAL: 'Final', OFF: 'Final',
-  }[gameStatus?.game_state] ?? null
-
-  // Reprediction: detect goalie changes across prediction attempts
-  const wasRepredicted = history.length > 1
-  const goalieChanges = wasRepredicted
-    ? (() => {
-        const changes = []
-        for (let i = 1; i < history.length; i++) {
-          const prev = history[i - 1]
-          const curr = history[i]
-          if (prev.home_goalie !== curr.home_goalie)
-            changes.push({ side: pred.home_team, from: prev.home_goalie, to: curr.home_goalie })
-          if (prev.away_goalie !== curr.away_goalie)
-            changes.push({ side: pred.away_team, from: prev.away_goalie, to: curr.away_goalie })
-        }
-        return changes
-      })()
-    : []
+  const goalieChanges = getGoalieChanges(history, pred.home_team, pred.away_team)
 
   return (
     <li className={`game-card${isFinished ? ' finished' : ''}${predCorrect ? ' correct' : ''}`}>
@@ -51,7 +38,9 @@ function GameCard({ prediction: pred, gameStatus, history = [] }) {
         </div>
       )}
       <div className='matchup'>
-        <span className='away-team-text'>{pred.away_team}</span> <b>@</b> <span className='home-team-text'>{pred.home_team}</span>
+        <span className='away-team-text'>{pred.away_team}</span>{' '}
+        <b>@</b>{' '}
+        <span className='home-team-text'>{pred.home_team}</span>
         {statusLabel && (
           <span className={`game-status-badge${isLive ? ' live' : ''}`}>
             {isLive && <span className='live-dot' />}
