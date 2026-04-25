@@ -212,7 +212,7 @@ function App() {
           ).sort(([a], [b]) => b.localeCompare(a)).map(([date, preds]) => (
             <div key={date} className={date === yesterdayStr() ? 'date-group yesterday-group' : 'date-group'}>
               {activePredictions.some(p => p.date !== preds[0].date) && (
-                <h3 className='date-section-header'>{dateLabel(date)}</h3>
+                <h3 className='date-section-header'>{dateLabel(date) === 'Yesterday' ? 'Yesterday (live)' : 'Today'}</h3>
               )}
               <ul>
                 {preds.map((pred, index) => (

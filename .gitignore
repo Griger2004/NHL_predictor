@@ -55,6 +55,7 @@ archive/
 # Debug files
 /generated/data/
 /generated/backend_data/
+predictions/
 
 # Database files
 *.db

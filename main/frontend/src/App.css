@@ -337,10 +337,10 @@ li.game-finished {
   color: #aaa;
 }
 
-.yesterday-group {
+/* .yesterday-group {
   font-size: 0.88em;
   opacity: 0.65;
-}
+} */
 
 .results-nav {
   display: flex;
