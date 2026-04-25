@@ -87,7 +87,7 @@ function App() {
       <button
         onClick={handleGenerateClick}
         className={`generate_btn${loadingPredictions ? ' predicting' : ''}`}
-        disabled={loadingGames}
+        disabled={loadingGames || loadingPredictions}
         aria-disabled={loadingGames || loadingPredictions}
       >
         {loadingPredictions
@@ -157,7 +157,7 @@ function App() {
                     history={predictionHistory[pred.game_id] || []}
                   />
                 ))
-              : <p>{activeResultsTab === 'today' ? 'No games have finished yet.' : 'No results available.'}</p>
+              : <li>{activeResultsTab === 'today' ? 'No games have finished yet.' : 'No results available.'}</li>
             }
           </ul>
         </div>

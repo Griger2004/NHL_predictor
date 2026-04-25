@@ -90,10 +90,14 @@ export function useNHLData() {
       setHasGenerated(true)
       setResultsTab(null)
 
-      const today = todayStr()
-      const yesterday = yesterdayStr()
-      const history = await fetchAllHistory(today, yesterday)
-      if (history.length > 0) setPredictionHistory(buildHistoryMap(history))
+      try {
+        const today = todayStr()
+        const yesterday = yesterdayStr()
+        const history = await fetchAllHistory(today, yesterday)
+        if (history.length > 0) setPredictionHistory(buildHistoryMap(history))
+      } catch {
+        // Best effort to update history: prediction generation already succeeded, so silently ignore any errors here
+      }
     } catch (err) {
       setPredictionsError(
         err instanceof TypeError
