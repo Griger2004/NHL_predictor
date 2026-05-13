@@ -1,5 +1,6 @@
 import './App.css'
 import GameCard from './components/GameCard/GameCard'
+import GameResultCard from './components/GameCard/GameResultCard'
 import { useNHLData } from './hooks/useNHLData'
 import { todayStr, yesterdayStr, dateLabel } from './utils/dates'
 import { FINISHED_STATES } from './constants/gameStates'
@@ -41,11 +42,23 @@ function App() {
   const finishedPredictions = allPredictions.filter(p => isGameFinished(p.game_id))
   const activePredictions = allPredictions.filter(p => !isGameFinished(p.game_id))
 
-  const hasAnyTodayFinished = finishedPredictions.some(p => p.date === today)
-  const hasAnyYesterdayFinished = finishedPredictions.some(p => p.date === yesterday)
+  const finishedUnpredicted = games.filter(g =>
+    FINISHED_STATES.has(g.game_state) &&
+    !allPredictions.some(p => p.game_id === g.game_id)
+  )
+
+  const hasAnyTodayFinished =
+    finishedPredictions.some(p => p.date === today) ||
+    finishedUnpredicted.some(g => g.date === today)
+  const hasAnyYesterdayFinished =
+    finishedPredictions.some(p => p.date === yesterday) ||
+    finishedUnpredicted.some(g => g.date === yesterday)
   const activeResultsTab = resultsTab ?? (hasAnyTodayFinished ? 'today' : 'yesterday')
   const visibleResults = finishedPredictions.filter(p =>
     p.date === (activeResultsTab === 'today' ? today : yesterday)
+  )
+  const visibleUnpredicted = finishedUnpredicted.filter(g =>
+    g.date === (activeResultsTab === 'today' ? today : yesterday)
   )
 
   const handleGenerateClick = () => {
@@ -129,7 +142,7 @@ function App() {
         </div>
       )}
 
-      {finishedPredictions.length > 0 && (
+      {(finishedPredictions.length > 0 || finishedUnpredicted.length > 0) && (
         <div className='results-section'>
           <div className='results-nav'>
             <button
@@ -148,16 +161,21 @@ function App() {
           </div>
           <p className='results-tab-label'>{activeResultsTab === 'today' ? 'Today' : 'Yesterday'}</p>
           <ul>
-            {visibleResults.length > 0
-              ? visibleResults.map(pred => (
-                  <GameCard
-                    key={pred.game_id}
-                    prediction={pred}
-                    gameStatus={games.find(g => g.game_id === pred.game_id)}
-                    history={predictionHistory[pred.game_id] || []}
-                  />
-                ))
-              : <li>{activeResultsTab === 'today' ? 'No games have finished yet.' : 'No results available.'}</li>
+            {visibleResults.length === 0 && visibleUnpredicted.length === 0
+              ? <li>{activeResultsTab === 'today' ? 'No games have finished yet.' : 'No results available.'}</li>
+              : <>
+                  {visibleResults.map(pred => (
+                    <GameCard
+                      key={pred.game_id}
+                      prediction={pred}
+                      gameStatus={games.find(g => g.game_id === pred.game_id)}
+                      history={predictionHistory[pred.game_id] || []}
+                    />
+                  ))}
+                  {visibleUnpredicted.map(game => (
+                    <GameResultCard key={game.game_id} game={game} />
+                  ))}
+                </>
             }
           </ul>
         </div>

@@ -356,6 +356,11 @@ li.game-finished {
   font-size: 0.9rem;
 }
 
+.no-prediction-label {
+  color: var(--color-muted, #888);
+  font-size: 0.85rem;
+}
+
 /* ── Game time ── */
 
 .game_time {
