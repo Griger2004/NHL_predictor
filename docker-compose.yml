@@ -1,0 +1,25 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: main/backend/Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - nhl_db:/data
+    environment:
+      DATABASE_URL: sqlite:////data/nhl_predictions.db
+
+  frontend:
+    build:
+      context: .
+      dockerfile: main/frontend/Dockerfile
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_URL: http://localhost:5000/api
+    depends_on:
+      - backend
+
+volumes:
+  nhl_db:

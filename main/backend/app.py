@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import subprocess
 import os
+import sys
 import json
 import requests
 from datetime import datetime, timedelta
@@ -15,7 +16,7 @@ from db import (
 BACKEND_DIR     = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT    = os.path.abspath(os.path.join(BACKEND_DIR, '..'))
 
-VENV_PYTHON     = os.path.join(PROJECT_ROOT, 'nhl_venv', 'Scripts', 'python.exe')
+VENV_PYTHON     = sys.executable
 ML_SCRIPTS_DIR  = os.path.join(PROJECT_ROOT, 'ml_dev', 'scripts')
 PREDICT_SCRIPT  = os.path.join(ML_SCRIPTS_DIR, 'predict_games.py')
 HISTORICAL_DATA_FILE = os.path.join(ML_SCRIPTS_DIR, 'generated', 'data', 'nhl_data.csv')
@@ -222,4 +223,4 @@ def prediction_accuracy():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
