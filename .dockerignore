@@ -1,0 +1,7 @@
+main/nhl_venv/
+main/frontend/node_modules/
+main/ml_dev/scripts/predictions/
+**/__pycache__/
+**/*.pyc
+*.db
+.git/
