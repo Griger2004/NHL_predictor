@@ -8,10 +8,12 @@ This directory contains the Flask API server and the SQLAlchemy database layer t
 
 ```
 backend/
-├── app.py                 Flask API server (5 endpoints)
+├── app.py                 Flask API server (6 endpoints)
 ├── db.py                  SQLAlchemy engine, schema, and query functions
 ├── migrate_csv_to_db.py   One-time utility: loads historical CSV into nhl_game_data table
 ├── wsgi.py                WSGI entry point for production deployments
+├── Dockerfile             Container image for the backend service
+├── requirements.txt       Python dependencies
 └── nhl_predictions.db     SQLite database file (not committed)
 ```
 
@@ -184,7 +186,15 @@ The subprocess has a 180-second timeout. If it exceeds that, a `500` is returned
 
 ### `GET /api/games`
 
-Returns today's schedule directly from the NHL API without hitting the database. Used by the frontend on initial page load before predictions are generated.
+Returns yesterday's and today's schedules directly from the NHL API without hitting the database. Used by the frontend on page load to show the full game list. Each game object includes `game_state`, current scores, full team names, and start time.
+
+---
+
+### `GET /api/predictions/today?date=YYYY-MM-DD`
+
+Returns the latest predictions already stored in the database for a given date, without running the ML pipeline. Used on page load to restore any predictions generated earlier in the day.
+
+**Response:** same shape as `/api/predict`.
 
 ---
 
@@ -215,10 +225,22 @@ Computes live accuracy across all finalized games in the database by joining `pr
 
 ## Running the Backend
 
+### With Docker (recommended)
+
+From the repo root:
 ```bash
-cd main
-source nhl_venv/Scripts/activate   # Windows: nhl_venv\Scripts\activate
-cd backend
+docker-compose up --build
+```
+
+### Without Docker
+
+```bash
+# Windows
+main\nhl_venv\Scripts\activate
+# macOS/Linux
+source main/nhl_venv/bin/activate
+
+cd main/backend
 python app.py
 ```
 

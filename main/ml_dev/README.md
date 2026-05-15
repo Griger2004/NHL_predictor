@@ -17,6 +17,12 @@ Step 5: add_rest_days()             → team rest days + goalie rest days
 Step 6: add_head_to_head()          → cumulative season matchup stats
 ```
 
+Supporting modules:
+- **[scripts/utils/helpers.py](scripts/utils/helpers.py)** — shared stat extraction utilities used by both `main.py` and `predict_games.py`: power play parsing, penalty kill calculation, goalie extraction, standings parsing, and fractional stat conversion.
+- **[scripts/api/client.py](scripts/api/client.py)** — async HTTP client with retry logic for NHL API requests.
+- **[scripts/config.py](scripts/config.py)** — seasons list, API base URL, and feature column definitions.
+- **[tests/test_main.py](tests/test_main.py)** — unit tests for the data pipeline.
+
 ---
 
 ## Step 1 — Game Fetching

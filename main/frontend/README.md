@@ -13,7 +13,8 @@ frontend/
 ├── src/
 │   ├── components/
 │   │   └── GameCard/
-│   │       └── GameCard.jsx   Individual game prediction card
+│   │       ├── GameCard.jsx        Prediction card with goalie change diffs
+│   │       └── GameResultCard.jsx  Finished-game card for games with no prediction
 │   ├── constants/
 │   │   └── gameStates.js      GAME_STATE enum, FINISHED_STATES, LIVE_STATES, STATUS_LABELS
 │   ├── hooks/
@@ -25,8 +26,10 @@ frontend/
 │   ├── App.jsx                Root component: layout and derived state
 │   ├── App.css                Styles, CSS custom properties, animations
 │   ├── index.css              Global base styles
-│   └── main.jsx               React entry point + footer
+│   └── main.jsx               React entry point
+├── public/
 ├── index.html
+├── vite.config.js
 └── package.json
 ```
 
@@ -39,16 +42,18 @@ The frontend is read-only — it never writes to the database directly. All muta
 ```
 Page load
     ├── GET /api/games
-    │       └── Flask fetches today's NHL schedule, returns game list
+    │       └── Flask fetches yesterday + today NHL schedules, returns game list
     │
-    └── GET /api/predictions/today?date=YYYY-MM-DD    (today + yesterday)
+    └── GET /api/predictions/today?date=YYYY-MM-DD    (called twice: today + yesterday)
             └── Flask reads latest prediction per game for the given date
+                If predictions exist, also fetches prediction history
 
 User clicks "Generate"
     │
     ▼
 GET /api/predict
     └── Flask runs predict_games.py, upserts predictions, returns latest set
+        Then fetches /api/predictions/history for today + yesterday
 
 After predictions load (both page-load and generate paths):
     └── GET /api/predictions/history?date=YYYY-MM-DD  (today + yesterday)
@@ -79,7 +84,9 @@ All state lives in the `useNHLData` hook (`src/hooks/useNHLData.js`). `App.jsx` 
 
 ---
 
-## GameCard
+## Components
+
+### GameCard
 
 `src/components/GameCard/GameCard.jsx` receives three props:
 
@@ -105,6 +112,16 @@ Cards receive a `.finished` CSS class when the game is done and a `.correct` cla
 
 Game state constants (`FINISHED_STATES`, `LIVE_STATES`, `STATUS_LABELS`) are defined in `src/constants/gameStates.js` and shared between `App.jsx` and `GameCard`.
 
+### GameResultCard
+
+`src/components/GameCard/GameResultCard.jsx` renders finished games for which no prediction was ever generated (e.g., games that completed before "Generate" was clicked). It receives one prop:
+
+| Prop | Description |
+|---|---|
+| `game` | Game object from the NHL schedule (`game_state`, scores, team names) |
+
+Renders the final score, matchup header with a status badge, the winner's name, and a "No prediction made" label. Uses the same `.game-card.finished` CSS class as `GameCard`.
+
 ---
 
 ## How Reprediction History Is Used
@@ -116,6 +133,15 @@ Every time the backend detects a goalie change, `predict_games.py` inserts a new
 ---
 
 ## Development
+
+### With Docker (recommended)
+
+From the repo root:
+```bash
+docker-compose up --build
+```
+
+### Without Docker
 
 ```bash
 cd main/frontend
